@@ -172,7 +172,6 @@ export default function MiniDrawer(props) {
 
   return (
     <div className={classes.root}>
-    <div>Heeeelloooo</div>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -197,6 +196,7 @@ export default function MiniDrawer(props) {
           <Typography variant="h6" noWrap>
             شرکت بهنیه سازان کیفیت
           </Typography>
+          
         </Toolbar>
       </AppBar>
       <Drawer
