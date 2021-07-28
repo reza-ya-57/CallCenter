@@ -1,14 +1,7 @@
 import './App.css';
-import {useState} from 'react';
-import {useSelector , useDispatch} from 'react-redux';
-import TextField from '@material-ui/core/TextField';
-import {Route , Switch , withRouter , Redirect} from 'react-router-dom';
-import * as actionCreator from './Redux/Actions/authAction';
-import mainLayout from './Layout/mainLayout/mainLayout';
-import { makeStyles } from '@material-ui/core/styles';
+import {Route , Switch , withRouter } from 'react-router-dom';
 import formPage from './formPage/formPage';
 import Drawer from './Drawer/Drawer';
-import ClippedDrawer from './Drawer/menuItem';
 // 
 function App() {
   let routes =  (
@@ -19,8 +12,9 @@ function App() {
 
   return (
       <div className="App">
-        <Drawer />
-        {/* <ClippedDrawer /> */}
+        <Drawer>
+          {routes}
+        </Drawer>
     </div>
   );
 }
