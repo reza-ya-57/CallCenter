@@ -16,7 +16,7 @@
 //     Icon: <DraftsIcon /> , 
 //     collapse: true ,
 //     subMenu: {
-//       text: "stare" ,
+//       text: "stare" 
 //       Icon : <StarBorder />
 //     }
 //   }

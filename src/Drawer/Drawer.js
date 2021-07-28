@@ -19,7 +19,7 @@ import Collapse from '@material-ui/core/Collapse';
 import StarBorder from '@material-ui/icons/StarBorder';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import DraftsIcon from '@material-ui/icons/Drafts';
-
+import companyLogo from '../assets/Images/QBLogo.svg'
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
@@ -86,6 +86,31 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  ListItem: {
+    '&:hover': {
+      backgroundColor: "#ff5722" , 
+      transform: "scale(1.02)" , 
+      color: "white"
+    }
+  } ,
+  appbar: {
+    backgroundColor: "#e65100"
+  } , 
+
+  companyLogoWraperDiv: {
+    display: "flex" , 
+    alignItems: "center" , 
+    justifyContent: "center" ,
+    borderRadius: "100px" ,
+    marginRight: "50px"
+  } ,
+  companyLogo: {
+    width: "50px" , 
+    height: "50px"  ,
+    borderRadius: "100px" ,
+  } ,
+  
+
 }));
 
 export default function MiniDrawer(props) {
@@ -101,7 +126,7 @@ export default function MiniDrawer(props) {
       subMenu: {
         
       }
-    } , 
+    } ,
     {
       id: 2 ,
       text: "آمار" ,
@@ -147,6 +172,7 @@ export default function MiniDrawer(props) {
 
   return (
     <div className={classes.root}>
+    <div>Heeeelloooo</div>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -154,7 +180,8 @@ export default function MiniDrawer(props) {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar>
+        <Toolbar 
+            className={classes.appbar}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -164,6 +191,7 @@ export default function MiniDrawer(props) {
               [classes.hide]: open,
             })}
           >
+            
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
@@ -185,6 +213,9 @@ export default function MiniDrawer(props) {
         }}
       >
         <div className={classes.toolbar}>
+          <div className={classes.companyLogoWraperDiv}>
+          <img src={companyLogo} className={classes.companyLogo} />
+          </div>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
@@ -198,7 +229,7 @@ export default function MiniDrawer(props) {
             {menuItem.map((item , index) => {
               return (
                 <>
-                <ListItem key={item.id} button onClick={(e) => handleClick(e , item.id)}>
+                <ListItem className={classes.ListItem} key={item.id} button onClick={(e) => handleClick(e , item.id)}>
               <ListItemIcon>
                 {item.Icon}
               </ListItemIcon>
@@ -208,9 +239,9 @@ export default function MiniDrawer(props) {
               {/* Check if menuItems have collapse for subMenu */}
                 {item.collapse ? 
                       // Looping through subMenu of menuItem for generating subMenu
-                      item.subMenu.map((collapseItem) => {
+                      item.subMenu.map((collapseItem , index) => {
                         return (
-                          <Collapse in={item.in} timeout="auto" unmountOnExit>
+                          <Collapse className={classes.ListItem}  in={item.in} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                               <ListItem button className={classes.nested}>
                                 <ListItemIcon>
