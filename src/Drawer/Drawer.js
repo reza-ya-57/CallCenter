@@ -116,6 +116,7 @@ const useStyles = makeStyles((theme) => ({
 export default function MiniDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
+  console.log(theme)
   const [open, setOpen] = React.useState(false);
   const [menuItem , setmenuItem] = React.useState([
     {
@@ -220,15 +221,13 @@ export default function MiniDrawer(props) {
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
-        <Divider />
-
-        <Divider />
 
           <List>
             {/* Looping through menuItem for building ListItem */}
             {menuItem.map((item , index) => {
               return (
-                <>
+                <div>
+                <Divider />
                 <ListItem className={classes.ListItem} key={item.id} button onClick={(e) => handleClick(e , item.id)}>
               <ListItemIcon>
                 {item.Icon}
@@ -241,7 +240,9 @@ export default function MiniDrawer(props) {
                       // Looping through subMenu of menuItem for generating subMenu
                       item.subMenu.map((collapseItem , index) => {
                         return (
+                         <div>
                           <Collapse className={classes.ListItem}  in={item.in} timeout="auto" unmountOnExit>
+                            <Divider />
                             <List component="div" disablePadding>
                               <ListItem button className={classes.nested}>
                                 <ListItemIcon>
@@ -250,11 +251,13 @@ export default function MiniDrawer(props) {
                                 <ListItemText primary={collapseItem.text} />
                               </ListItem>
                             </List>
-                        </Collapse>
+                          </Collapse>
+                        <Divider />
+                         </div>
                         )
                       })
                 : null}
-                </>
+                </div>
               )
             })}
           </List>
