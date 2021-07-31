@@ -1,16 +1,10 @@
 import React from "react";
-import { TextField } from "@material-ui/core";
 
 import Typography from '@material-ui/core/Typography';
 
 const formPage = (props) => {
     return (
         <>
-        <div>سلام جطوری</div>
-        <div>salam chetori</div>
-        <Typography>
-          این یک تست است
-        </Typography>
         <Typography paragraph>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
           ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
@@ -23,7 +17,7 @@ const formPage = (props) => {
           arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
           donec massa sapien faucibus et molestie ac.
         </Typography>
-        <TextField label="ای یک تست است" />
+
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper eget nulla
           facilisi etiam dignissim diam. Pulvinar elementum integer enim neque volutpat ac

@@ -12,8 +12,10 @@ import {BrowserRouter} from 'react-router-dom';
 import {createStore , applyMiddleware , compose , combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
+import { theme001 } from './Theme/CustomTheme/Theme001';
 
 import {authReducer} from "./Redux/Reducers/authReducer";
+import themeReducer from "./Redux/Reducers/ThemeReducer";
 
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -21,7 +23,8 @@ const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  auth: authReducer
+  auth: authReducer , 
+  theme: themeReducer
 })
 
 const store = createStore(rootReducer, composeEnhancers(
@@ -32,7 +35,7 @@ ReactDOM.render(
   <Provider store={store}>
     <React.Fragment>
     <BrowserRouter>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme001}>
         <CssBaseline />
         <StylesProvider jss={jss}>
         <App />
