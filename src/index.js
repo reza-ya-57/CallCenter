@@ -14,6 +14,7 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 
 import {authReducer} from "./Redux/Reducers/authReducer";
+import themeReducer from "./Redux/Reducers/ThemeReducer";
 
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -21,7 +22,8 @@ const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
-  auth: authReducer
+  auth: authReducer , 
+  theme: themeReducer
 })
 
 const store = createStore(rootReducer, composeEnhancers(

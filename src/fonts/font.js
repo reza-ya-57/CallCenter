@@ -1,5 +1,6 @@
 import IranSansttf from "./assets/Iranian_Sans.ttf";
-console.log(IranSansttf)
+import ShabnamBold from "./assets/Shabnam_Bold.woff";
+
 export const IranSans = {
   fontFamily: 'IranSans',
   fontStyle: 'normal',

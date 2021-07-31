@@ -1,7 +1,9 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import { makeStyles, useTheme , withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
+import { useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -19,12 +21,20 @@ import Collapse from '@material-ui/core/Collapse';
 import StarBorder from '@material-ui/icons/StarBorder';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import DraftsIcon from '@material-ui/icons/Drafts';
-import companyLogo from '../assets/Images/QBLogo.svg'
+import companyLogo from '../../assets/Images/QBLogo.svg'
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
+import { NavLink } from 'react-router-dom';
+import CallIcon from '@material-ui/icons/Call';
+import StatisticLogo  from '../../CustomLogo/StatisticLogo';
+import CustomThemeProvider from '../../Theme/CustomTheme/ThemeProvider';
+import {theme001} from '../../Theme/CustomTheme/Theme001';
+import { theme002 } from '../../Theme/CustomTheme/Theme002';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 
 const drawerWidth = 240;
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
-  menuButton: {
+  menuButton: {  
     marginRight: 36,
   },
   hide: {
@@ -75,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   toolbar: {
+    position: "relative" ,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
@@ -83,18 +94,23 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   content: {
+    position: "relative" , 
+    height: "100vh" ,
     flexGrow: 1,
     padding: theme.spacing(3),
   },
   ListItem: {
+    color: "white" ,
     '&:hover': {
-      backgroundColor: "#ff5722" , 
+      backgroundColor: "#ab003c" , 
       transform: "scale(1.02)" , 
       color: "white"
     }
   } ,
   appbar: {
-    backgroundColor: "#e65100"
+    color: "white" ,
+    // backgroundColor: "#e65100"
+    backgroundColor: "#ab003c"
   } , 
 
   companyLogoWraperDiv: {
@@ -109,44 +125,97 @@ const useStyles = makeStyles((theme) => ({
     height: "50px"  ,
     borderRadius: "100px" ,
   } ,
+  NavLink : {
+    textDecoration: "none" , 
+    color : "black"
+  } , 
+  paper: {
+    backgroundColor: "blue"
+  }  , 
+  orange: {
+    backgroundColor: "#131628"
+  } , 
   
 
 }));
 
-export default function MiniDrawer(props) {
+ function MiniDrawer(props) {
   const classes = useStyles();
+  const state = useSelector(state => state.theme);
   const theme = useTheme();
-  console.log(theme)
   const [open, setOpen] = React.useState(false);
+  const [Theme , setTheme] = React.useState("firsttheme")
+  console.log(state)
+
+ 
   const [menuItem , setmenuItem] = React.useState([
     {
       id: 1 ,
       text: "داشبورد" ,
-      Icon: <DashboardIcon /> , 
+      Icon: <DashboardIcon style={{ color: "white" }} /> , 
+      path : "/dashboard" ,
       collapse: false ,
       subMenu: {
         
       }
     } ,
+
     {
       id: 2 ,
+      text: "تماس" ,
+      Icon: <CallIcon style={{ color: "white" }}/> , 
+      path : "/call" ,
+      collapse: false ,
+      subMenu: {
+        
+      }
+    } ,
+
+    {
+      id: 3 ,
       text: "آمار" ,
-      Icon: <DraftsIcon /> , 
+      Icon: <StarBorder style={{ color: "white" }}/> ,
+      linkTo: null ,
       collapse: true ,
       in: false ,
-      subMenu: [
-        {
-          text: "تاریخچه تماس" ,
-          Icon : <StarBorder />
-        } ,
-        {
-          text: "تاریخچه تماس" ,
-          Icon : <StarBorder />
-        }
-      ]
-    }
+        subMenu: [
+          {
+            text: "تاریخچه تماس" ,
+            Icon : <StarBorder style={{ color: "white" }}/> ,
+            path: "/dashboard"
+          } ,
+          {
+            text: "تاریخچه تماس" ,
+            Icon : <StarBorder style={{ color: "white" }}/> ,
+            path: null
+          }
+        ]
+    } , 
+    {
+      id: 4 ,
+      text: "تنظیمات" ,
+      Icon: <SettingsIcon style={{ color: "white" }}/> , 
+      path : "/setting" ,
+      collapse: false ,
+    } ,
+
   ])
 
+  let customTheme = theme001;
+  if (Theme === "secondtheme") {
+    customTheme = theme002;
+  }
+  if (Theme === "firsttheme") {
+    customTheme = theme001
+  }
+  
+  const themeHandler = () => {
+    if (Theme === "firsttheme") {
+      setTheme("secondtheme")
+    }else if (Theme == "secondtheme") {
+      setTheme("firsttheme")
+    }
+  }
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -172,9 +241,11 @@ export default function MiniDrawer(props) {
   // DRAWER START HERE
 
   return (
-    <div className={classes.root}>
+    <ThemeProvider theme={theme001}>
+      <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        // style={{backgroundColor: state.customTheme.primary}}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -183,7 +254,7 @@ export default function MiniDrawer(props) {
         <Toolbar 
             className={classes.appbar}>
           <IconButton
-            color="inherit"
+            style={{color: "white"}}
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -195,7 +266,7 @@ export default function MiniDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            شرکت بهنیه سازان کیفیت
+            شرکت بهینه کاوان کیفیت
           </Typography>
           
         </Toolbar>
@@ -206,14 +277,16 @@ export default function MiniDrawer(props) {
           [classes.drawerOpen]: open,
           [classes.drawerClose]: !open,
         })}
+
         classes={{
           paper: clsx({
+            [classes.orange]: true ,
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
           }),
         }}
       >
-        <div className={classes.toolbar}>
+        <div className={classes.toolbar} style={{backgroundImage:" linear-gradient(120deg, #ab003c , #131628)"}}>
           <div className={classes.companyLogoWraperDiv}>
           <img src={companyLogo} className={classes.companyLogo} />
           </div>
@@ -228,13 +301,25 @@ export default function MiniDrawer(props) {
               return (
                 <div>
                 <Divider />
-                <ListItem className={classes.ListItem} key={item.id} button onClick={(e) => handleClick(e , item.id)}>
-              <ListItemIcon>
-                {item.Icon}
-              </ListItemIcon>
-              <ListItemText primary={item.text} />
-              {item.collapse ? (item.in ? <ExpandLess /> : <ExpandMore />) : null}
-              </ListItem>
+                { item.path ? (
+                    <NavLink className={classes.NavLink} to={item.path} >
+                    <ListItem className={classes.ListItem} key={item.id} button onClick={(e) => handleClick(e , item.id)}>
+                        <ListItemIcon>
+                          {item.Icon}
+                        </ListItemIcon>
+                      <ListItemText primary={item.text} />
+                    {item.collapse ? (item.in ? <ExpandLess /> : <ExpandMore />) : null}
+                  </ListItem>
+                  </NavLink>
+                ) : (
+                  <ListItem className={classes.ListItem} key={item.id} button onClick={(e) => handleClick(e , item.id)}>
+                      <ListItemIcon>
+                        {item.Icon}
+                      </ListItemIcon>
+                    <ListItemText primary={item.text} />
+                  {item.collapse ? (item.in ? <ExpandLess /> : <ExpandMore />) : null}
+                </ListItem>
+                )}
               {/* Check if menuItems have collapse for subMenu */}
                 {item.collapse ? 
                       // Looping through subMenu of menuItem for generating subMenu
@@ -244,12 +329,23 @@ export default function MiniDrawer(props) {
                           <Collapse className={classes.ListItem}  in={item.in} timeout="auto" unmountOnExit>
                             <Divider />
                             <List component="div" disablePadding>
-                              <ListItem button className={classes.nested}>
+                              {collapseItem.path ? (
+                                <NavLink className={classes.NavLink} to={collapseItem.path}>
+                                  <ListItem style={{color:"white"}} button className={classes.nested}>
+                                    <ListItemIcon>
+                                      {collapseItem.Icon}
+                                    </ListItemIcon>
+                                    <ListItemText primary={collapseItem.text} />
+                                  </ListItem> 
+                                </NavLink>
+                              ): (
+                                <ListItem style={{color:"white"}} button className={classes.nested}>
                                 <ListItemIcon>
                                   {collapseItem.Icon}
                                 </ListItemIcon>
                                 <ListItemText primary={collapseItem.text} />
                               </ListItem>
+                              )}
                             </List>
                           </Collapse>
                         <Divider />
@@ -262,10 +358,14 @@ export default function MiniDrawer(props) {
             })}
           </List>
       </Drawer>
-      <main className={classes.content}>
         <div className={classes.toolbar} />
+        <main  className={classes.content}>
         {props.children}
       </main>
     </div>
+    </ThemeProvider>
   );
 }
+
+
+export default MiniDrawer;
