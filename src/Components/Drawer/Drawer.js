@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState} from 'react';
 import clsx from 'clsx';
 import { ThemeProvider } from '@material-ui/styles';
 import { makeStyles, useTheme , withStyles } from '@material-ui/core/styles';
@@ -31,6 +31,9 @@ import CustomThemeProvider from '../../Theme/CustomTheme/ThemeProvider';
 import {theme001} from '../../Theme/CustomTheme/Theme001';
 import { theme002 } from '../../Theme/CustomTheme/Theme002';
 import SettingsIcon from '@material-ui/icons/Settings';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import { CardHeader } from '@material-ui/core';
 import { ListSubheader } from '@material-ui/core';
@@ -96,7 +99,6 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   content: {
-    backgroundColor: "gray",
     position: "relative" , 
     height: "100vh" ,
     flexGrow: 1,
@@ -141,12 +143,28 @@ const useStyles = makeStyles((theme) => ({
   orange: {
     backgroundColor: "#131628" ,
   } , 
-  subHeader: {
-    marginTop: "64px" ,
+  subHeader: { 
+    backgroundColor: "#f9f9f9",
     zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: "red" , 
-    borderRadius: "25px" ,
-    height: "100px"
+    // borderRadius: "0px 0px 25px 25px" ,
+    // border: "1px black solid"  ,
+    boxShadow: "1px 1px 10px 2px black" ,
+    height: "50px"
+  } ,
+
+  profileContainer: {
+    width: "20px",
+    marginRight: "20px"
+  }, 
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+  FillGap: {
+    backgroundColor: "green",
+    flexGrow: 1 ,
   }
 
 }));
@@ -155,11 +173,11 @@ const useStyles = makeStyles((theme) => ({
   const classes = useStyles();
   const state = useSelector(state => state.theme);
   const theme = useTheme();
-  console.log(theme)
   const [open, setOpen] = React.useState(false);
   const [Theme , setTheme] = React.useState("firsttheme")
-  console.log(state)
 
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [ProfileDetailIcon , setProfileDetailIcon] = useState(false)
  
   const [menuItem , setmenuItem] = React.useState([
     {
@@ -250,6 +268,29 @@ const useStyles = makeStyles((theme) => ({
     })
   }
 
+ 
+
+  // const open = Boolean(anchorEl);
+  // const openAnchor = true
+
+  // const handleChange = (event) => {
+  //   setAuth(event.target.checked);
+  // };
+
+  const handleCloseProfileDetail = () => {
+    setProfileDetailIcon(true)
+  }
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget); 
+  };
+
+  const handleClose = (event) => {
+    event.stopPropagation();
+    setProfileDetailIcon(false)
+    setAnchorEl(<div></div>);
+  };
+
 
   // DRAWER START HERE
 
@@ -258,14 +299,12 @@ const useStyles = makeStyles((theme) => ({
       <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        // style={{backgroundColor: state.customTheme.primary}}
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
-        <Toolbar 
-            className={classes.appbar}>
+        <Toolbar className={classes.appbar}>
           <IconButton
             style={{color: "white"}}
             aria-label="open drawer"
@@ -281,7 +320,40 @@ const useStyles = makeStyles((theme) => ({
           <Typography variant="h6" noWrap>
             شرکت بهینه کاوان کیفیت
           </Typography>
-          
+            <div className={classes.FillGap}></div>
+         <div className={classes.profileContainer}>
+         <div onClick={handleCloseProfileDetail}>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={ProfileDetailIcon}
+                onClose={handleClose}
+                onClick={handleCloseProfileDetail}
+              >
+                
+                <MenuItem onClick={handleClose}>علیرضا تیلکو</MenuItem>
+                <MenuItem onClick={handleClose}>خروج</MenuItem>
+              </Menu>
+            </div>
+         </div>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -372,13 +444,17 @@ const useStyles = makeStyles((theme) => ({
           </List>
       </Drawer>
         <main  className={classes.content}>
+      <div style={{backgroundColor: "green" ,width: "100%" , height: "64px"}}>hello</div>
+      {/* <nav className={classes.subHeader}>hello</nav> */}
         {/* <div style={{backgroundColor: "blue" , width: "100%" , margin: "0px"}} className={classes.toolbar} /> */}
         {/* <div className={classes.subHeader}>hello</div> */}
         {/* <ListSubheader style={{backgroundColor: "red"}} title="hello">
           hello
         </ListSubheader> */}
-        
+        <div style={{padding: "20px"}}>
         {props.children}
+        </div>
+        
       </main>
        </div>
     // </ThemeProvider>
