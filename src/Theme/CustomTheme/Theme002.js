@@ -24,6 +24,9 @@ export const theme002 = createTheme({
     // background
     success: {
       main: "#ffffff"
+    } , 
+    warning: {
+      main: "#f9f9f9"
     }
     // secondary: {
     //   main: purple[500] 

@@ -148,7 +148,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.grey.main  ,
   } , 
   subHeader: { 
-    background: "linear-gradient(90deg," + `${theme.palette.green.main}` +" 0%, " + `${theme.palette.green.main}` +" 35%, black 100%)" ,
+    background: "linear-gradient(90deg," + `${theme.palette.green.main}` +" 0%, " + `${theme.palette.warning.main}` +" 35%, #000000 100%)" ,
     color: "white" ,
     zIndex: theme.zIndex.drawer + 1,
     display: "flex" ,
@@ -252,6 +252,9 @@ const useStyles = makeStyles((theme) => ({
   else if (history.location.pathname == "/call" && HeaderMessage !== "تماس ها") {
     setHeaderMessage("تماس ها")
   }
+  else if (history.location.pathname == "/setting" && HeaderMessage !== "تنظیمات") {
+    setHeaderMessage("تنظیمات")
+  }
  
 
   const handleDrawerOpen = () => {
@@ -302,8 +305,8 @@ const useStyles = makeStyles((theme) => ({
         })}
       >
         <Toolbar className={classes.appbar}>
+          {/* HAMBURGER MENU ICON */}
           <IconButton
-            style={{color: "white"}}
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -312,7 +315,7 @@ const useStyles = makeStyles((theme) => ({
             })}
           >
             
-            <MenuIcon />
+            <MenuIcon style={{color: "white" }} />
           </IconButton>
           <Typography variant="h6" noWrap>
             شرکت بهینه کاوان کیفیت

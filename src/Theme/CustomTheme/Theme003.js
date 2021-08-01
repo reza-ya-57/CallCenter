@@ -21,6 +21,9 @@ export const theme003 = createTheme({
     } ,
     success: {
         main: "#f5f3f5"
+    } , 
+    warning: {
+        main: "#242e5f"
     }
     // secondary: {
     //   main: purple[500] 
