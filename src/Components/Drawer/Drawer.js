@@ -1,4 +1,5 @@
 import React , {useState} from 'react';
+import "./Drawer.css";
 import { useHistory } from 'react-router';
 import clsx from 'clsx';
 import { makeStyles, useTheme  } from '@material-ui/core/styles';
@@ -169,10 +170,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "green",
     flexGrow: 1 ,
   } ,
-  appBarArow: {
-    backgroundColor: "red" ,
-    color: "red"
-  }
 
 }));
 
@@ -308,8 +305,7 @@ const useStyles = makeStyles((theme) => ({
       <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        style={{color: "white"}}
-        classes={{root: "appBarArow"}}  
+        style={{color: "white"}}  
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -386,7 +382,7 @@ const useStyles = makeStyles((theme) => ({
           <div className={classes.companyLogoWraperDiv}>
           <img src={companyLogo} className={classes.companyLogo} />
           </div>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton style={{color: "white"}}  onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
         </div>
