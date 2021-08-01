@@ -1,6 +1,6 @@
 import React from 'react';
 import classes from './StatisticLogo.module.css'
-import StatisticLogo from '../assets/SvgLogo/StatisticIcon.svg';
+import StatisticLogo from '../assets/SvgLogo/statistic.jpg';
 
 const StatisticIcon = () => {
     return (

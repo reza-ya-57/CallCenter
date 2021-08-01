@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -35,12 +36,10 @@ ReactDOM.render(
   <Provider store={store}>
     <React.Fragment>
     <BrowserRouter>
-      <ThemeProvider theme={theme001}>
         <CssBaseline />
         <StylesProvider jss={jss}>
         <App />
       </StylesProvider>
-      </ThemeProvider>
     </BrowserRouter>
   </React.Fragment>
   </Provider>,

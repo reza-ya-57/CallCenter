@@ -1,13 +1,11 @@
 import * as actionTypes from '../Actions/actionTypes';
-import {theme001} from '../../Theme/CustomTheme/Theme001'
-import {theme002} from '../../Theme/CustomTheme/Theme002'
+import {theme001} from '../../Theme/CustomTheme/Theme001';
+import {theme002} from '../../Theme/CustomTheme/Theme002';
+import {theme003} from '../../Theme/CustomTheme/Theme003';
 
 const initialState = { 
     customTheme : {
-        primary: "red" , 
-        secondary: "pink" ,
-        third: "pink" , 
-        four: "brown"
+        ...theme001
     }
 }
 
@@ -17,19 +15,19 @@ const themeReducer = (state = initialState , action) => {
         if (action.payload == "theme001") {
             return {
                 customTheme: {
-                    primary: "red" , 
-                    secondary: "pink" ,
-                    third: "pink" , 
-                    four: "brown"
+                    ...theme001
                 }
             }
         } else if (action.payload == "theme002")  {
-            return {
+            return  {
                 customTheme: {
-                    primary: "orange" , 
-                    secondary: "red" ,
-                    third: "pink" , 
-                    four: "brown"
+                    ...theme002
+                }
+            }   
+        } else if (action.payload == "theme003")  {
+            return  {
+                customTheme: {
+                    ...theme003
                 }
             }   
         }

@@ -1,4 +1,5 @@
 import React , {useState} from 'react';
+import { useHistory } from 'react-router';
 import clsx from 'clsx';
 import { ThemeProvider } from '@material-ui/styles';
 import { makeStyles, useTheme , withStyles } from '@material-ui/core/styles';
@@ -28,6 +29,7 @@ import { NavLink } from 'react-router-dom';
 import CallIcon from '@material-ui/icons/Call';
 import StatisticLogo  from '../../CustomLogo/StatisticLogo';
 import CustomThemeProvider from '../../Theme/CustomTheme/ThemeProvider';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import {theme001} from '../../Theme/CustomTheme/Theme001';
 import { theme002 } from '../../Theme/CustomTheme/Theme002';
 import SettingsIcon from '@material-ui/icons/Settings';
@@ -95,6 +97,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
+    backgroundImage:" linear-gradient(120deg, " + `${theme.palette.green.main}` + " , #131628 )" ,
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
@@ -102,13 +105,14 @@ const useStyles = makeStyles((theme) => ({
     position: "relative" , 
     height: "100vh" ,
     flexGrow: 1,
+    backgroundColor: theme.palette.success.main,
     // padding: theme.spacing(3),
     padding: "0px"
   },
   ListItem: {
     color: "white" ,
     '&:hover': {
-      backgroundColor: "#ab003c" , 
+      backgroundColor: theme.palette.green.main , 
       // backgroundColor: theme.palette.secondary.main, 
       transform: "scale(1.02)" , 
       color: "white"
@@ -117,8 +121,8 @@ const useStyles = makeStyles((theme) => ({
   appbar: {
     color: "white" ,
     // backgroundColor: "#e65100"
-    backgroundColor: "#ab003c"
-    // backgroundColor: theme.palette.success.main
+    // backgroundColor: "#ab003c"
+    backgroundColor: theme.palette.green.main
   } , 
 
   companyLogoWraperDiv: {
@@ -140,16 +144,23 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     backgroundColor: "blue"
   }  , 
-  orange: {
-    backgroundColor: "#131628" ,
+  SidebarContainer: {
+    backgroundColor: theme.palette.grey.main  ,
   } , 
   subHeader: { 
-    backgroundColor: "#f9f9f9",
+    background: "linear-gradient(90deg," + `${theme.palette.green.main}` +" 0%, " + `${theme.palette.green.main}` +" 35%, black 100%)" ,
+    color: "white" ,
     zIndex: theme.zIndex.drawer + 1,
-    // borderRadius: "0px 0px 25px 25px" ,
+    display: "flex" ,
+    borderRadius: "0px 0px 50px 0px" ,
     // border: "1px black solid"  ,
-    boxShadow: "1px 1px 10px 2px black" ,
+    boxShadow: "1px 1px 4px 1px black" ,
     height: "50px"
+  } ,
+
+  SubmenuText: {
+    padding: "10px 20px" , 
+    fontSize: "20px"
   } ,
 
   profileContainer: {
@@ -169,12 +180,15 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+
  function MiniDrawer(props) {
   const classes = useStyles();
+  const history = useHistory();
   const state = useSelector(state => state.theme);
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [Theme , setTheme] = React.useState("firsttheme")
+  const [HeaderMessage , setHeaderMessage] = useState("");
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [ProfileDetailIcon , setProfileDetailIcon] = useState(false)
@@ -205,7 +219,7 @@ const useStyles = makeStyles((theme) => ({
     {
       id: 3 ,
       text: "آمار" ,
-      Icon: <StarBorder style={{ color: "white" }}/> ,
+      Icon: <TrendingUpIcon style={{color: "white"}} /> ,
       linkTo: null ,
       collapse: true ,
       in: false ,
@@ -232,21 +246,13 @@ const useStyles = makeStyles((theme) => ({
 
   ])
 
-  let customTheme = theme001;
-  if (Theme === "secondtheme") {
-    customTheme = theme002;
+  if (history.location.pathname == "/dashboard" && HeaderMessage !== "داشبورد") {
+    setHeaderMessage("داشبورد")
   }
-  if (Theme === "firsttheme") {
-    customTheme = theme001
+  else if (history.location.pathname == "/call" && HeaderMessage !== "تماس ها") {
+    setHeaderMessage("تماس ها")
   }
-  
-  const themeHandler = () => {
-    if (Theme === "firsttheme") {
-      setTheme("secondtheme")
-    }else if (Theme == "secondtheme") {
-      setTheme("firsttheme")
-    }
-  }
+ 
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -268,15 +274,7 @@ const useStyles = makeStyles((theme) => ({
     })
   }
 
- 
-
-  // const open = Boolean(anchorEl);
-  // const openAnchor = true
-
-  // const handleChange = (event) => {
-  //   setAuth(event.target.checked);
-  // };
-
+  // FUNCTION HANDLER
   const handleCloseProfileDetail = () => {
     setProfileDetailIcon(true)
   }
@@ -295,7 +293,6 @@ const useStyles = makeStyles((theme) => ({
   // DRAWER START HERE
 
   return (
-    // <ThemeProvider theme={theme001}>
       <div className={classes.root}>
       <CssBaseline />
       <AppBar
@@ -365,13 +362,13 @@ const useStyles = makeStyles((theme) => ({
 
         classes={{
           paper: clsx({
-            [classes.orange]: true ,
+            [classes.SidebarContainer]: true ,
             [classes.drawerOpen]: open,
             [classes.drawerClose]: !open,
           }),
         }}
       >
-        <div className={classes.toolbar} style={{backgroundImage:" linear-gradient(120deg, #ab003c , #131628)"}}>
+        <div className={classes.toolbar} >
           <div className={classes.companyLogoWraperDiv}>
           <img src={companyLogo} className={classes.companyLogo} />
           </div>
@@ -444,8 +441,12 @@ const useStyles = makeStyles((theme) => ({
           </List>
       </Drawer>
         <main  className={classes.content}>
-      <div style={{backgroundColor: "green" ,width: "100%" , height: "64px"}}>hello</div>
-      {/* <nav className={classes.subHeader}>hello</nav> */}
+      <div style={{backgroundColor: "green" ,width: "100%" , height: "64px"}}></div>
+      <nav className={classes.subHeader}>
+        <div className={classes.SubmenuText}>
+          {HeaderMessage}
+        </div>
+      </nav>
         {/* <div style={{backgroundColor: "blue" , width: "100%" , margin: "0px"}} className={classes.toolbar} /> */}
         {/* <div className={classes.subHeader}>hello</div> */}
         {/* <ListSubheader style={{backgroundColor: "red"}} title="hello">

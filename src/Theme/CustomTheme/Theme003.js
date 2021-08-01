@@ -11,19 +11,16 @@ import ShabnamFont from "../../fonts/assets/Shabnam.woff";
 };
 
 
-export const theme002 = createTheme({
+export const theme003 = createTheme({
   palette: {
-    // header
     green: {
-      main:"#000000"
+      main: "#242e5f"
     } ,
-    // sidebar
     grey: {
-      main:"#333333"
+      main: "#444674"
     } ,
-    // background
     success: {
-      main: "#ffffff"
+        main: "#f5f3f5"
     }
     // secondary: {
     //   main: purple[500] 

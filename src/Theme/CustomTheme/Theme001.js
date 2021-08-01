@@ -13,16 +13,27 @@ import ShabnamFont from "../../fonts/assets/Shabnam.woff";
 
 
 export const theme001 = createTheme({
-    palette: {
-      secondary: {
-        main: purple[500] 
-      } , 
-      primary: {
-          main: red[500]
-      }   ,
+  palette: {
+      green: {
+        main:"#ab003c"
+        // main: red[900]
+      } ,
+      grey: {
+        main:"#131628"
+      } ,
       success: {
-        main: pink[200]
+        main: "#DBE9F4"
       }
+      // secondary: {
+      //   main: purple[500] 
+      // } , 
+      // primary: {
+      //     main: red[500]
+      // }   ,
+      // success: {
+      //   main: "#ab003c"
+      // } , 
+
     } ,
     direction: 'rtl',
     typography: {
