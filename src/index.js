@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -7,13 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import rtl from 'jss-rtl';
 import { create } from 'jss';
-import { StylesProvider, jssPreset, ThemeProvider } from '@material-ui/core/styles';
-import {theme} from './Theme/Theme';
+import { StylesProvider, jssPreset } from '@material-ui/core/styles';
 import {BrowserRouter} from 'react-router-dom';
 import {createStore , applyMiddleware , compose , combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-import { theme001 } from './Theme/CustomTheme/Theme001';
 
 import {authReducer} from "./Redux/Reducers/authReducer";
 import themeReducer from "./Redux/Reducers/ThemeReducer";

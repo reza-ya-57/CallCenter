@@ -1,4 +1,3 @@
-import { brown, green, pink, purple, red } from '@material-ui/core/colors';
 import {createTheme} from '@material-ui/core/styles';
 import ShabnamFont from "../../fonts/assets/Shabnam.woff";
 

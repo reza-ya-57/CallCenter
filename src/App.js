@@ -6,7 +6,6 @@ import Drawer from './Components/Drawer/Drawer.js';
 import DashboardPage from './Components/Pages/Dashboard/DashboardPage';
 import CallPage from './Components/Pages/CallPage/CallPage';
 import SettingPage from './Components/Pages/SettingPage/SettingPage';
-import { theme001 } from './Theme/CustomTheme/Theme001';
 import {ThemeProvider} from '@material-ui/core/styles';
 
 

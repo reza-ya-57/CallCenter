@@ -2,6 +2,7 @@ import * as actionTypes from '../Actions/actionTypes';
 import {theme001} from '../../Theme/CustomTheme/Theme001';
 import {theme002} from '../../Theme/CustomTheme/Theme002';
 import {theme003} from '../../Theme/CustomTheme/Theme003';
+import {theme004} from '../../Theme/CustomTheme/Theme004';
 
 const initialState = { 
     customTheme : {
@@ -28,6 +29,12 @@ const themeReducer = (state = initialState , action) => {
             return  {
                 customTheme: {
                     ...theme003
+                }
+            }   
+        } else if (action.payload == "theme004")  {
+            return  {
+                customTheme: {
+                    ...theme004
                 }
             }   
         }

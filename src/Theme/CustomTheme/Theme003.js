@@ -1,13 +1,13 @@
-import { brown, green, pink, purple, red } from '@material-ui/core/colors';
 import {createTheme} from '@material-ui/core/styles';
 import ShabnamFont from "../../fonts/assets/Shabnam.woff";
+import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 
 
- const Shabnam = {
-  fontFamily: 'shabnam',
+ const Iransans = {
+  fontFamily: 'iransans',
   fontStyle: 'normal',
   fontWeight: 400,
-  src: ` url(${ShabnamFont}) format('woff')  `,
+  src: ` url(${IranSansFont}) format('woff2')  `,
 };
 
 
@@ -38,12 +38,12 @@ export const theme003 = createTheme({
   } ,
     direction: 'rtl',
     typography: {
-      fontFamily: 'shabnam, Arial',
+      fontFamily: 'iransans, Arial',
     },
     overrides: {
       MuiCssBaseline: {
         '@global': {
-          '@font-face': [Shabnam],
+          '@font-face': [Iransans],
         },
       },
     },

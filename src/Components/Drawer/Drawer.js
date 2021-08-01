@@ -1,8 +1,7 @@
 import React , {useState} from 'react';
 import { useHistory } from 'react-router';
 import clsx from 'clsx';
-import { ThemeProvider } from '@material-ui/styles';
-import { makeStyles, useTheme , withStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme  } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import { useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
@@ -21,24 +20,17 @@ import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import StarBorder from '@material-ui/icons/StarBorder';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import DraftsIcon from '@material-ui/icons/Drafts';
 import companyLogo from '../../assets/Images/QBLogo.svg'
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { NavLink } from 'react-router-dom';
 import CallIcon from '@material-ui/icons/Call';
-import StatisticLogo  from '../../CustomLogo/StatisticLogo';
-import CustomThemeProvider from '../../Theme/CustomTheme/ThemeProvider';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import {theme001} from '../../Theme/CustomTheme/Theme001';
-import { theme002 } from '../../Theme/CustomTheme/Theme002';
 import SettingsIcon from '@material-ui/icons/Settings';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-
-import { CardHeader } from '@material-ui/core';
-import { ListSubheader } from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
 
 const drawerWidth = 240;
 
@@ -167,15 +159,19 @@ const useStyles = makeStyles((theme) => ({
     width: "20px",
     marginRight: "20px"
   }, 
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
+  // menuButton: {
+  //   marginRight: theme.spacing(2),
+  // },
   title: {
     flexGrow: 1,
   },
   FillGap: {
     backgroundColor: "green",
     flexGrow: 1 ,
+  } ,
+  appBarArow: {
+    backgroundColor: "red" ,
+    color: "red"
   }
 
 }));
@@ -186,8 +182,8 @@ const useStyles = makeStyles((theme) => ({
   const history = useHistory();
   const state = useSelector(state => state.theme);
   const theme = useTheme();
+  console.log(theme)
   const [open, setOpen] = React.useState(false);
-  const [Theme , setTheme] = React.useState("firsttheme")
   const [HeaderMessage , setHeaderMessage] = useState("");
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -196,6 +192,16 @@ const useStyles = makeStyles((theme) => ({
   const [menuItem , setmenuItem] = React.useState([
     {
       id: 1 ,
+      text: "خانه" ,
+      Icon: <HomeIcon style={{ color: "white" }} /> , 
+      path : "/" ,
+      collapse: false ,
+      subMenu: {
+        
+      } 
+    },
+    {
+      id: 2 ,
       text: "داشبورد" ,
       Icon: <DashboardIcon style={{ color: "white" }} /> , 
       path : "/dashboard" ,
@@ -206,7 +212,7 @@ const useStyles = makeStyles((theme) => ({
     } ,
 
     {
-      id: 2 ,
+      id: 3 ,
       text: "تماس" ,
       Icon: <CallIcon style={{ color: "white" }}/> , 
       path : "/call" ,
@@ -217,7 +223,7 @@ const useStyles = makeStyles((theme) => ({
     } ,
 
     {
-      id: 3 ,
+      id: 4 ,
       text: "آمار" ,
       Icon: <TrendingUpIcon style={{color: "white"}} /> ,
       linkTo: null ,
@@ -237,7 +243,7 @@ const useStyles = makeStyles((theme) => ({
         ]
     } , 
     {
-      id: 4 ,
+      id: 5 ,
       text: "تنظیمات" ,
       Icon: <SettingsIcon style={{ color: "white" }}/> , 
       path : "/setting" ,
@@ -246,14 +252,17 @@ const useStyles = makeStyles((theme) => ({
 
   ])
 
-  if (history.location.pathname == "/dashboard" && HeaderMessage !== "داشبورد") {
+  if (history.location.pathname === "/dashboard" && HeaderMessage !== "داشبورد") {
     setHeaderMessage("داشبورد")
   }
-  else if (history.location.pathname == "/call" && HeaderMessage !== "تماس ها") {
+  else if (history.location.pathname === "/call" && HeaderMessage !== "تماس ها") {
     setHeaderMessage("تماس ها")
   }
-  else if (history.location.pathname == "/setting" && HeaderMessage !== "تنظیمات") {
+  else if (history.location.pathname === "/setting" && HeaderMessage !== "تنظیمات") {
     setHeaderMessage("تنظیمات")
+  }
+  else if (history.location.pathname === "/" && HeaderMessage !== "خانه") {
+    setHeaderMessage("خانه")
   }
  
 
@@ -299,6 +308,8 @@ const useStyles = makeStyles((theme) => ({
       <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        style={{color: "white"}}
+        classes={{root: "appBarArow"}}  
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -315,7 +326,7 @@ const useStyles = makeStyles((theme) => ({
             })}
           >
             
-            <MenuIcon style={{color: "white" }} />
+            <MenuIcon style={{color: "white"  }} />
           </IconButton>
           <Typography variant="h6" noWrap>
             شرکت بهینه کاوان کیفیت

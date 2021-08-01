@@ -19,20 +19,20 @@ const Iransans = {
 };
 
 
-export const theme001 = createTheme({
+export const theme004 = createTheme({
   palette: {
       green: {
-        main:"#ab003c"
+        main:"#0bb883"
         // main: red[900]
       } ,
       grey: {
-        main:"#131628"
+        main:"#324232"
       } ,
       success: {
-        main: "#DBE9F4"
+        main: "#fbf6f0"
       } , 
       warning: {
-        main: "#ab003c"
+        main: "#0bb883"
       }
       // secondary: {
       //   main: purple[500] 
