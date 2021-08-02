@@ -28,15 +28,11 @@ import { NavLink } from 'react-router-dom';
 import CallIcon from '@material-ui/icons/Call';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import SettingsIcon from '@material-ui/icons/Settings';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import ProfileMenu from '../UI/ProfileMenu';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+import CallcenterLogo from '../../assets/Images/callcenter.png';
+import CallcenterLogo2 from '../../assets/Images/callcenter2.svg';
 
 const drawerWidth = 240;
 
@@ -118,7 +114,6 @@ const useStyles = makeStyles((theme) => ({
     color: "white" ,
     '&:hover': {
       backgroundColor: theme.palette.warning.dark , 
-      // backgroundColor: theme.palette.secondary.main, 
       transform: "scale(1.02)" , 
       color: "white"
     },
@@ -128,7 +123,6 @@ const useStyles = makeStyles((theme) => ({
     color: "white" ,
     '&:hover': {
       backgroundColor: theme.palette.warning.light , 
-      // backgroundColor: theme.palette.secondary.main, 
       transform: "scale(1.02)" , 
       color: "white"
     },
@@ -136,8 +130,6 @@ const useStyles = makeStyles((theme) => ({
 
   appbar: {
     color: "white" ,
-    // backgroundColor: "#e65100"
-    // backgroundColor: "#ab003c"
     backgroundColor: theme.palette.green.main
   } , 
 
@@ -182,9 +174,7 @@ const useStyles = makeStyles((theme) => ({
     width: "20px",
     marginRight: "20px"
   }, 
-  // menuButton: {
-  //   marginRight: theme.spacing(2),
-  // },
+
   title: {
     flexGrow: 1,
   },

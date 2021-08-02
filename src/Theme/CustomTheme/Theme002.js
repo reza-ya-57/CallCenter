@@ -33,9 +33,9 @@ export const theme002 = createTheme({
       // Gradiant for SubHeader
       main: "#f9f9f9" ,
       // hover color on sidebar menu
-      dark: "#262F87" , 
+      dark: "#BE4147" , 
       // selected item form sidemenu color
-      light: "#131954"
+      light: "#9B0007"
     }
     // secondary: {
     //   main: purple[500] 

@@ -44,7 +44,7 @@ export const theme001 = createTheme({
         // hover color on sidebar menu
         dark: "#AA1C4E" ,
       // selected item form sidemenu color
-        light: "#ab003c"
+      light: "#ab003c"
       } 
 
     } ,

@@ -17,6 +17,10 @@ const SettingPage = (props) => {
             dispatch({type:actionTypes.SET_THEME , payload: "theme003"})
         } else if (theme === "theme004") {
             dispatch({type:actionTypes.SET_THEME , payload: "theme004"})
+        }else if (theme === "theme005") {
+            dispatch({type:actionTypes.SET_THEME , payload: "theme005"})
+        }else if (theme === "theme006") {
+            dispatch({type:actionTypes.SET_THEME , payload: "theme006"})
         }
     }
 
@@ -29,6 +33,8 @@ const SettingPage = (props) => {
             <button onClick={() => ThemeHandler("theme002")}>Theme002</button>
             <button onClick={() => ThemeHandler("theme003")}>Theme003</button>
             <button onClick={() => ThemeHandler("theme004")}>Theme004</button>
+            <button onClick={() => ThemeHandler("theme005")}>Theme005</button>
+            <button onClick={() => ThemeHandler("theme006")}>Theme006</button>
         </>
     )
 }

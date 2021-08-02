@@ -2,6 +2,7 @@ import {createTheme} from '@material-ui/core/styles';
 // import IranSansttf from "../fonts/assets/Sahel-Black-FD.woff2";
 import ShabnamFont from "../../fonts/assets/Shabnam.woff";
 import IranSansFont from "../../fonts/assets/IRANSans.woff2"
+import { purple, red } from '@material-ui/core/colors';
 
 
  const Shabnam = {
@@ -19,41 +20,32 @@ const Iransans = {
 };
 
 
-export const theme004 = createTheme({
+export const theme005 = createTheme({
   palette: {
       green: {
         // header color
-        main:"#0bb883"
-        // main: red[900]
+        main:"#55003B" 
       } ,
       grey: {
         // side menu color
-        main:"#1B291B"
+        main:"#130910"
       } ,
       success: {
         // BackgroundColor
-        main: "#fbf6f0",
+        main: "#DCD0D9" ,
         // hover effect on profile Icon color
-        dark: "#10A175" , 
+        dark: "#980436" , 
         // BackgroundColor for submenu
-        light: "#324232"
+        light: "#2F3249"
       } , 
       warning: {
-        main: "#0bb883",
+        // Gradiant for SubHeader
+        main: "#55003B" ,
         // hover color on sidebar menu
-        dark: "#8B9A96" ,
+        dark: "#AA1C4E" ,
       // selected item form sidemenu color
-        light: "#038764"
-      }
-      // secondary: {
-      //   main: purple[500] 
-      // } , 
-      // primary: {
-      //     main: red[500]
-      // }   ,
-      // success: {
-      //   main: "#ab003c"
-      // } , 
+        light: "#ab003c"
+      } 
 
     } ,
     direction: 'rtl',
