@@ -42,7 +42,9 @@ export const theme001 = createTheme({
         // Gradiant for SubHeader
         main: "#ab003c" ,
         // hover color on sidebar menu
-        dark: "#AA1C4E"
+        dark: "#AA1C4E" ,
+      // selected item form sidemenu color
+        light: "#ab003c"
       } 
 
     } ,

@@ -1,3 +1,4 @@
+import { blue } from '@material-ui/core/colors';
 import {createTheme} from '@material-ui/core/styles';
 import ShabnamFont from "../../fonts/assets/Shabnam.woff";
 
@@ -12,20 +13,29 @@ import ShabnamFont from "../../fonts/assets/Shabnam.woff";
 
 export const theme002 = createTheme({
   palette: {
-    // header
+    // header color
     green: {
       main:"#000000"
     } ,
-    // sidebar
+    // side menu color
     grey: {
-      main:"#333333"
+      main: "#1E1B1B"
     } ,
-    // background
+    // BackgroundColor
     success: {
-      main: "#ffffff"
+      main: "#ffffff",
+      // hover effect on profile Icon color
+      dark: "#302222" , 
+      // BackgroundColor for submenu
+      light: "#333333"
     } , 
     warning: {
-      main: "#f9f9f9"
+      // Gradiant for SubHeader
+      main: "#f9f9f9" ,
+      // hover color on sidebar menu
+      dark: "#262F87" , 
+      // selected item form sidemenu color
+      light: "#131954"
     }
     // secondary: {
     //   main: purple[500] 
