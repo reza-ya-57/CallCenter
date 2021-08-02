@@ -20,7 +20,7 @@ function App() {
       <Route path="/"  component={formPage} />
     </Switch>
   )
-
+  
   return (
       <div className="App">
         <ThemeProvider theme={customTheme}>

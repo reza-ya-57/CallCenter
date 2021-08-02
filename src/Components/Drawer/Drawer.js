@@ -2,7 +2,7 @@ import React , {useState} from 'react';
 import "./Drawer.css";
 import { useHistory } from 'react-router';
 import clsx from 'clsx';
-import { makeStyles, useTheme  } from '@material-ui/core/styles';
+import { makeStyles, useTheme , withStyles  } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import { useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
@@ -32,13 +32,22 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import SendIcon from '@material-ui/icons/Send';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import ProfileMenu from '../UI/ProfileMenu';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 const drawerWidth = 240;
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+  },
+  
+  ListItemSelected: {
+    backgroundColor: theme.palette.green.main ,
+    transform: "scale(1.04)" ,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -94,6 +103,9 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
+  nested: {
+    backgroundColor: theme.palette.success.light
+  } ,
   content: {
     position: "relative" , 
     height: "100vh" ,
@@ -105,12 +117,23 @@ const useStyles = makeStyles((theme) => ({
   ListItem: {
     color: "white" ,
     '&:hover': {
+      backgroundColor: theme.palette.warning.dark , 
+      // backgroundColor: theme.palette.secondary.main, 
+      transform: "scale(1.02)" , 
+      color: "white"
+    },
+  } ,
+
+  ListItemHover: {
+    color: "white" ,
+    '&:hover': {
       backgroundColor: theme.palette.green.main , 
       // backgroundColor: theme.palette.secondary.main, 
       transform: "scale(1.02)" , 
       color: "white"
-    }
+    },
   } ,
+
   appbar: {
     color: "white" ,
     // backgroundColor: "#e65100"
@@ -131,8 +154,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "100px" ,
   } ,
   NavLink : {
-    textDecoration: "none" , 
-    color : "black"
+    textDecoration: "none" ,
   } , 
   paper: {
     backgroundColor: "blue"
@@ -170,6 +192,29 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "green",
     flexGrow: 1 ,
   } ,
+  DividerStyle: {
+    backgroundColor: "#676767"
+  } , 
+  SubMenulistItemText: {
+    fontSize: "12px" , 
+    fontWeight: "0"
+  } , 
+   
+  SubMenulistItemTextSelected: {
+    backgroundColor: theme.palette.green.main ,
+    transform: "scale(1.04)" ,
+  } ,
+
+  SubMenuStyle: {
+    color: "white" , 
+    fontSize: "10px" ,
+    position: "relative" , 
+    left: "20px" , 
+    marginRight: "10px" , 
+    color: "white"
+  } , 
+  
+  
 
 }));
 
@@ -179,7 +224,6 @@ const useStyles = makeStyles((theme) => ({
   const history = useHistory();
   const state = useSelector(state => state.theme);
   const theme = useTheme();
-  console.log(theme)
   const [open, setOpen] = React.useState(false);
   const [HeaderMessage , setHeaderMessage] = useState("");
 
@@ -193,6 +237,7 @@ const useStyles = makeStyles((theme) => ({
       Icon: <HomeIcon style={{ color: "white" }} /> , 
       path : "/" ,
       collapse: false ,
+      selected: false ,
       subMenu: {
         
       } 
@@ -203,6 +248,7 @@ const useStyles = makeStyles((theme) => ({
       Icon: <DashboardIcon style={{ color: "white" }} /> , 
       path : "/dashboard" ,
       collapse: false ,
+      selected: false ,
       subMenu: {
         
       }
@@ -214,6 +260,7 @@ const useStyles = makeStyles((theme) => ({
       Icon: <CallIcon style={{ color: "white" }}/> , 
       path : "/call" ,
       collapse: false ,
+      selected: false ,
       subMenu: {
         
       }
@@ -225,16 +272,28 @@ const useStyles = makeStyles((theme) => ({
       Icon: <TrendingUpIcon style={{color: "white"}} /> ,
       linkTo: null ,
       collapse: true ,
+      selected: false ,
       in: false ,
         subMenu: [
           {
-            text: "تاریخچه تماس" ,
-            Icon : <StarBorder style={{ color: "white" }}/> ,
+            id: 101 ,
+            text: "نمونه یک" ,
+            subSelected: false ,
+            Icon : <StarBorder className={classes.SubMenuStyle} /> ,
             path: "/dashboard"
           } ,
           {
-            text: "تاریخچه تماس" ,
-            Icon : <StarBorder style={{ color: "white" }}/> ,
+            id: 102 ,
+            text: "نمونه دو" ,
+            subSelected: false ,
+            Icon : <StarBorder className={classes.SubMenuStyle}/> ,
+            path: null
+          } ,
+          {
+            id: 103 ,
+            text: "نمونه سه" ,
+            subSelected: false ,
+            Icon : <StarBorder className={classes.SubMenuStyle}/> ,
             path: null
           }
         ]
@@ -245,10 +304,12 @@ const useStyles = makeStyles((theme) => ({
       Icon: <SettingsIcon style={{ color: "white" }}/> , 
       path : "/setting" ,
       collapse: false ,
+      selected: false ,
     } ,
 
   ])
 
+  // Look at path and change subHeaderMessage 
   if (history.location.pathname === "/dashboard" && HeaderMessage !== "داشبورد") {
     setHeaderMessage("داشبورد")
   }
@@ -269,19 +330,72 @@ const useStyles = makeStyles((theme) => ({
 
   const handleDrawerClose = () => {
     setOpen(false);
+    let UpdatemenuItem = menuItem.slice();
+    UpdatemenuItem.forEach((item , index) => {
+      item.in = false;
+    })
   };
 
+
+  // Click on menuItem with Submenu and toggle Submenu open or close
   const handleClick = ( e , Id ) => {
     let UpdatemenuItem = menuItem.slice()
     UpdatemenuItem.forEach((item , index) => {
+        item.selected = false;
+        if (item.collapse) {
+          item.subMenu.forEach((item , index) => {
+            item.subSelected = false
+          })
+        }
       if (item.id === Id) {
         item.in = !item.in 
+        item.selected = true
       }
       setmenuItem([
         ...UpdatemenuItem
       ])
     })
   }
+
+
+  const SubmenuHandleClick = (e , Id) => {
+
+    let UpdatemenuItem = menuItem.slice()
+    UpdatemenuItem.forEach((item , index) => {
+        item.selected = false;
+        if (item.collapse) {
+          item.subMenu.forEach((item , index) => {
+            item.subSelected = false
+            if (item.id === Id) {
+              item.subSelected = true
+            }
+          })
+        }
+      if (item.id === Id) {
+        item.in = !item.in 
+        item.selected = true
+      }
+      setmenuItem([
+        ...UpdatemenuItem
+      ])
+    })
+  //   console.log(Id)
+  //   let UpdatemenuItem = menuItem.slice();
+  //   UpdatemenuItem.forEach((item , index) => {
+  //     item.selected = false;
+  //     if (item.collapse) {
+  //       item.subMenu.forEach((item , index) => {
+  //         item.
+  //       })
+  //     }
+  //   })
+  //   UpdatemenuItem.forEach((subItem , index) => {
+  //     subItem.selected = false;
+  //     if (subItem.id === Id) {
+  //     subItem.selected = true;
+  //     }
+  // })
+}
 
   // FUNCTION HANDLER
   const handleCloseProfileDetail = () => {
@@ -305,7 +419,7 @@ const useStyles = makeStyles((theme) => ({
       <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        style={{color: "white"}}  
+        style={{color: "white"}} 
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -329,37 +443,7 @@ const useStyles = makeStyles((theme) => ({
           </Typography>
             <div className={classes.FillGap}></div>
          <div className={classes.profileContainer}>
-         <div onClick={handleCloseProfileDetail}>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={ProfileDetailIcon}
-                onClose={handleClose}
-                onClick={handleCloseProfileDetail}
-              >
-                
-                <MenuItem onClick={handleClose}>علیرضا تیلکو</MenuItem>
-                <MenuItem onClick={handleClose}>خروج</MenuItem>
-              </Menu>
-            </div>
+                <ProfileMenu />
          </div>
         </Toolbar>
       </AppBar>
@@ -392,10 +476,14 @@ const useStyles = makeStyles((theme) => ({
             {menuItem.map((item , index) => {
               return (
                 <div>
-                <Divider />
+                <Divider className={classes.DividerStyle} />
                 { item.path ? (
                     <NavLink className={classes.NavLink} to={item.path} >
-                    <ListItem className={classes.ListItem} key={item.id} button onClick={(e) => handleClick(e , item.id)}>
+                    <ListItem className={clsx({
+                      [classes.ListItem]: true ,
+                      [classes.ListItemSelected]: item.selected , 
+                      [classes.ListItemHover]: item.selected
+                    })} key={item.id} button onClick={(e) => handleClick(e , item.id)}>
                         <ListItemIcon>
                           {item.Icon}
                         </ListItemIcon>
@@ -416,31 +504,39 @@ const useStyles = makeStyles((theme) => ({
                 {item.collapse ? 
                       // Looping through subMenu of menuItem for generating subMenu
                       item.subMenu.map((collapseItem , index) => {
+
                         return (
                          <div>
                           <Collapse className={classes.ListItem}  in={item.in} timeout="auto" unmountOnExit>
-                            <Divider />
+                            <Divider className={classes.DividerStyle} />
                             <List component="div" disablePadding>
                               {collapseItem.path ? (
                                 <NavLink className={classes.NavLink} to={collapseItem.path}>
-                                  <ListItem style={{color:"white"}} button className={classes.nested}>
+                                  <ListItem style={{color:"white"}} button className={clsx({
+                                  [classes.nested]: true ,
+                                  [classes.SubMenulistItemTextSelected]: collapseItem.subSelected, 
+                                  [classes.ListItemHover]: collapseItem.subSelected
+                                })} onClick={(e) => SubmenuHandleClick(e , collapseItem.id)}>
                                     <ListItemIcon>
                                       {collapseItem.Icon}
                                     </ListItemIcon>
-                                    <ListItemText primary={collapseItem.text} />
+                                    <ListItemText classes={{primary:classes.SubMenulistItemText}} primary={collapseItem.text} />
                                   </ListItem> 
                                 </NavLink>
                               ): (
-                                <ListItem style={{color:"white"}} button className={classes.nested}>
+                                <ListItem style={{color:"white"}}  button className={clsx({
+                                  [classes.nested]: true ,
+                                  [classes.SubMenulistItemTextSelected]: collapseItem.subSelected, 
+                                  [classes.ListItemHover]: collapseItem.subSelected
+                                })} onClick={(e) => SubmenuHandleClick(e , collapseItem.id)}>
                                 <ListItemIcon>
                                   {collapseItem.Icon}
                                 </ListItemIcon>
-                                <ListItemText primary={collapseItem.text} />
+                                <ListItemText classes={{primary:classes.SubMenulistItemText}} primary={collapseItem.text} />
                               </ListItem>
                               )}
                             </List>
                           </Collapse>
-                        <Divider />
                          </div>
                         )
                       })
@@ -448,6 +544,7 @@ const useStyles = makeStyles((theme) => ({
                 </div>
               )
             })}
+            <Divider className={classes.DividerStyle} />
           </List>
       </Drawer>
         <main  className={classes.content}>
