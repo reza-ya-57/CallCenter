@@ -17,7 +17,7 @@ function App() {
       <Route exact path="/dashboard"  component={DashboardPage} />
       <Route exact path="/call"  component={CallPage} />
       <Route exact path="/setting"  component={SettingPage} />
-      <Route path="/"  component={formPage} />
+      <Route path="/"  component={DashboardPage} />
     </Switch>
   )
   

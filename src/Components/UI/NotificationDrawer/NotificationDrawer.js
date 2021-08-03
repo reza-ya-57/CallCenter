@@ -13,15 +13,18 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
+import Notifications from './Notifications';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   list: {
     width: 250,
+    height: "100%",
+    backgroundColor: theme.palette.success.main
   },
   fullList: {
     width: 'auto',
   },
-});
+}));
 
 export default function NotificationDrawer() {
   const classes = useStyles();
@@ -50,7 +53,7 @@ export default function NotificationDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-
+        <Notifications />
         {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
           <ListItem button key={text}>
             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>

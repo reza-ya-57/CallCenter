@@ -21,6 +21,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import StarBorder from '@material-ui/icons/StarBorder';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+// import companyLogo from '../../assets/Images/Logo.svg'
 import companyLogo from '../../assets/Images/QBLogo.svg'
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
@@ -33,7 +34,7 @@ import ProfileMenu from '../UI/ProfileMenu';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import CallcenterLogo from '../../assets/Images/callcenter.png';
 import CallcenterLogo2 from '../../assets/Images/callcenter2.svg';
-import NotificationDrawer from '../UI/NotificationDrawer';
+import NotificationDrawer from '../UI/NotificationDrawer/NotificationDrawer';
 
 const drawerWidth = 240;
 
@@ -104,12 +105,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.success.light
   } ,
   content: {
-    position: "relative" , 
+    // position: "relative" , 
+    width: "100%" ,
     height: "100vh" ,
-    flexGrow: 1,
     backgroundColor: theme.palette.success.main,
     // padding: theme.spacing(3),
-    padding: "0px"
   },
   ListItem: {
     color: "white" ,
@@ -546,18 +546,12 @@ const useStyles = makeStyles((theme) => ({
           {HeaderMessage}
         </div>
       </nav>
-        {/* <div style={{backgroundColor: "blue" , width: "100%" , margin: "0px"}} className={classes.toolbar} /> */}
-        {/* <div className={classes.subHeader}>hello</div> */}
-        {/* <ListSubheader style={{backgroundColor: "red"}} title="hello">
-          hello
-        </ListSubheader> */}
-        <div style={{padding: "20px"}}>
+        <div style={{padding: "20px" , width: "100%"}}>
         {props.children}
         </div>
         
       </main>
        </div>
-    // </ThemeProvider>
   );
 }
 

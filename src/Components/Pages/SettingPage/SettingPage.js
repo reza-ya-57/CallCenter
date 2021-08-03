@@ -27,9 +27,6 @@ const SettingPage = (props) => {
 
     return (
         <>
-            <div>This is a Setting Page!</div>
-            <br />
-            <br />
             <ButtonGroup color="primary" aria-label="outlined primary button group">
             <Button  onClick={() => ThemeHandler("theme001")}>تم شماره 1</Button>
             <Button  onClick={() => ThemeHandler("theme002")}>تم شماره 2</Button>
