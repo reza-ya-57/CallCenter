@@ -21,8 +21,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import StarBorder from '@material-ui/icons/StarBorder';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-// import companyLogo from '../../assets/Images/Logo.svg'
-import companyLogo from '../../assets/Images/QBLogo.svg'
+
+// import companyLogo from '../../assets/Images/badsvg.svg'
+import companyLogo from '../../assets/Images/logo-behine22.png'
+// import companyLogo from '../../assets/Images/QBLogo.svg'
+
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { NavLink } from 'react-router-dom';
@@ -139,11 +142,11 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center" , 
     justifyContent: "center" ,
     borderRadius: "100px" ,
-    marginRight: "50px"
+    marginRight: "30px"
   } ,
   companyLogo: {
-    width: "50px" , 
-    height: "50px"  ,
+    width: "70px" , 
+    height: "60px"  ,
     borderRadius: "100px" ,
   } ,
   NavLink : {
