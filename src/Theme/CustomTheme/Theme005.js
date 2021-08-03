@@ -24,11 +24,11 @@ export const theme005 = createTheme({
   palette: {
       green: {
         // header color
-        main:"#55003B" 
+        main:"#2E165B" 
       } ,
       grey: {
         // side menu color
-        main:"#130910"
+        main:"#120632"
       } ,
       success: {
         // BackgroundColor
@@ -36,15 +36,15 @@ export const theme005 = createTheme({
         // hover effect on profile Icon color
         dark: "#980436" , 
         // BackgroundColor for submenu
-        light: "#2F3249"
+        light: "#2E165B"
       } , 
       warning: {
         // Gradiant for SubHeader
         main: "#55003B" ,
         // hover color on sidebar menu
-        dark: "#AA1C4E" ,
+        dark: "#532D84" ,
       // selected item form sidemenu color
-        light: "#ab003c"
+        light: "#8F329D"
       } 
 
     } ,

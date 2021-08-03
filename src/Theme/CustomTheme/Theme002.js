@@ -1,13 +1,13 @@
 import { blue } from '@material-ui/core/colors';
 import {createTheme} from '@material-ui/core/styles';
 import ShabnamFont from "../../fonts/assets/Shabnam.woff";
+import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 
-
- const Shabnam = {
-  fontFamily: 'shabnam',
+ const IranSans = {
+  fontFamily: 'iransans',
   fontStyle: 'normal',
   fontWeight: 400,
-  src: ` url(${ShabnamFont}) format('woff')  `,
+  src: ` url(${IranSansFont}) format('woff')  `,
 };
 
 
@@ -23,7 +23,7 @@ export const theme002 = createTheme({
     } ,
     // BackgroundColor
     success: {
-      main: "#ffffff",
+      main: "#F8E8E8",
       // hover effect on profile Icon color
       dark: "#302222" , 
       // BackgroundColor for submenu
@@ -50,12 +50,12 @@ export const theme002 = createTheme({
   } ,
     direction: 'rtl',
     typography: {
-      fontFamily: 'shabnam, Arial',
+      fontFamily: 'iransans, Arial',
     },
     overrides: {
       MuiCssBaseline: {
         '@global': {
-          '@font-face': [Shabnam],
+          '@font-face': [IranSans],
         },
       },
     },

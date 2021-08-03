@@ -15,7 +15,7 @@ export const theme003 = createTheme({
   palette: {
     green: {
       // header color
-      main: "#242e5f"
+      main: "#1261A0"
     } ,
     grey: {
       // side menu color
@@ -23,7 +23,7 @@ export const theme003 = createTheme({
     } ,
     success: {
       // BackgroundColor
-        main: "#f5f3f5" ,
+        main: "#C6DAEA" ,
         // hover effect on profile Icon color
         dark: "#1A234F" ,
         // BackgroundColor for submenu
@@ -35,7 +35,7 @@ export const theme003 = createTheme({
         // hover color on sidebar menu
         dark: "#444674" ,
       // selected item form sidemenu color
-        light: "#030ECC"
+        light: "#1261A0"
     }
     // secondary: {
     //   main: purple[500] 

@@ -33,6 +33,7 @@ import ProfileMenu from '../UI/ProfileMenu';
 import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 import CallcenterLogo from '../../assets/Images/callcenter.png';
 import CallcenterLogo2 from '../../assets/Images/callcenter2.svg';
+import NotificationDrawer from '../UI/NotificationDrawer';
 
 const drawerWidth = 240;
 
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   
   ListItemSelected: {
     backgroundColor: theme.palette.warning.light ,
-    transform: "scale(1.04)" ,
+    // transform: "scale(1.04)" ,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -114,7 +115,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white" ,
     '&:hover': {
       backgroundColor: theme.palette.warning.dark , 
-      transform: "scale(1.02)" , 
+      // transform: "scale(1.02)" , 
       color: "white"
     },
   } ,
@@ -123,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white" ,
     '&:hover': {
       backgroundColor: theme.palette.warning.light , 
-      transform: "scale(1.02)" , 
+      // transform: "scale(1.02)" , 
       color: "white"
     },
   } ,
@@ -192,7 +193,7 @@ const useStyles = makeStyles((theme) => ({
    
   SubMenulistItemTextSelected: {
     backgroundColor: theme.palette.warning.light ,
-    transform: "scale(1.04)" ,
+    // transform: "scale(1.04)" ,
   } ,
 
   SubMenuStyle: {
@@ -432,7 +433,8 @@ const useStyles = makeStyles((theme) => ({
             شرکت بهینه کاوان کیفیت
           </Typography>
             <div className={classes.FillGap}></div>
-         <div className={classes.profileContainer}>
+         <div className={classes.profileContainer} style={{ display: "flex" , width: "120px" , justifyContent: "space-around" }}>
+                <NotificationDrawer />
                 <ProfileMenu />
          </div>
         </Toolbar>

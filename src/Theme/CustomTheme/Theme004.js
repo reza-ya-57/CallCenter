@@ -23,7 +23,7 @@ export const theme004 = createTheme({
   palette: {
       green: {
         // header color
-        main:"#0bb883"
+        main:"#1E5631"
         // main: red[900]
       } ,
       grey: {
@@ -32,7 +32,7 @@ export const theme004 = createTheme({
       } ,
       success: {
         // BackgroundColor
-        main: "#fbf6f0",
+        main: "#ECF8E2",
         // hover effect on profile Icon color
         dark: "#10A175" , 
         // BackgroundColor for submenu

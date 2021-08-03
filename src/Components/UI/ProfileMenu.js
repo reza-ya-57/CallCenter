@@ -22,8 +22,10 @@ const useStyle = makeStyles(theme => ({
       padding: "3px" ,
       cursor: "pointer" , 
       "&:hover": {
-        transform: "scale(1.04)" ,
-        backgroundColor: theme.palette.success.dark
+        transform: "scale(1.02)" ,
+        backgroundColor: theme.palette.success.dark ,
+        opacity: "0.9" ,
+        
       }
 
     }
@@ -57,6 +59,11 @@ const StyledMenuItem = withStyles((theme) => ({
         color: theme.palette.common.white,
       },
     },
+    ProfileIconWraper: {
+      '&:hover': {
+        backgroundColor: "red"
+      }
+    }
   },
 }))(MenuItem);
 
@@ -79,6 +86,7 @@ export default function ProfileMenu() {
 
   return (
     <div>
+      <div className={classes.ProfileIconWraper}>
       <AccountCircleIcon
         className={classes.CircleIcon}
         aria-controls="customized-menu"
@@ -86,9 +94,9 @@ export default function ProfileMenu() {
         variant="contained"
         color="white"
         onClick={handleClick}
-      >
-        Open Menu
-      </AccountCircleIcon>
+       />
+      </div>
+
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}

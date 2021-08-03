@@ -24,7 +24,7 @@ export const theme006 = createTheme({
   palette: {
       green: {
         // header color
-        main:"#DF8F00" 
+        main:"#b79906" 
       } ,
       grey: {
         // side menu color
@@ -42,9 +42,9 @@ export const theme006 = createTheme({
         // Gradiant for SubHeader
         main: "#EEB34B" ,
         // hover color on sidebar menu
-        dark: "#AA1C4E" ,
+        dark: "#B49311" ,
       // selected item form sidemenu color
-        light: "#ab003c"
+        light: "#CE5501"
       } 
 
     } ,
