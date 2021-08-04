@@ -15,27 +15,24 @@ const useStyle = makeStyles(theme => ({
         height: "100px" ,
         margin: "10px 8px" ,
         boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px "
-
     }
 }))
 
 const Notifications = (props) => {
     const classes = useStyle();
    return (
-    <>
         <div className={classes.root}>
             <Paper className={classes.Notif}>
              <Typography>
-             پیام شماره یک 
+                 پیام شماره یک 
              </Typography>
             </Paper>
             <Paper className={classes.Notif}>
               <Typography>
-              پیام شماره دو
+                پیام شماره دو
               </Typography>
             </Paper>
         </div>
-    </>
    )
 }
 

@@ -1,7 +1,5 @@
-import React , {useState , useSelector} from "react";
-import AreaChart from "./Charts/AreaChart";
+import React  from "react";
 import ColumnChart from "./Charts/ColumnChart";
-import PopularAreaChart from "./Charts/PopularArea";
 import SplineChart from "./Charts/SplineChart";
 import MonoChromeChart from "./Charts/MonoChromeChart";
 

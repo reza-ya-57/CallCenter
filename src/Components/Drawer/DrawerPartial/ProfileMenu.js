@@ -1,19 +1,21 @@
+// لوگو پروفایل در گوشه سمت چپ هدر قرار گرفته 
+// شامل دراپ دون و لوگو
+
+// PROFILE ICON WITH FROP DOWN 
+
+
 import React from 'react';
 import { withStyles , makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Avatar from '@material-ui/core/Avatar';
-import AvatarPicture from '../../assets/Images/rezayari.jfif'
+import AvatarPicture from '../../../assets/Images/rezayari.jfif'
 
 
 const useStyle = makeStyles(theme => ({

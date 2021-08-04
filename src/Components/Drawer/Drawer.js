@@ -1,8 +1,15 @@
+
+
+
+// Header and SideMenu
+// این قسمت تمام صفحات برنامه رو در داخل خود قرار میدهد  
+// صفحات برنامه از داخل این برنامه رندر میشوند
+
+
 import React , {useState} from 'react';
-import "./Drawer.css";
 import { useHistory } from 'react-router';
 import clsx from 'clsx';
-import { makeStyles, useTheme , withStyles  } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import { useSelector } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
@@ -21,9 +28,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import StarBorder from '@material-ui/icons/StarBorder';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-
-// import companyLogo from '../../assets/Images/badsvg.svg'
-import companyLogo from '../../assets/Images/logo-behine22.png'
+import companyLogo from '../../assets/Images/logo-behine22.png';
 // import companyLogo from '../../assets/Images/QBLogo.svg'
 
 import ExpandLess from '@material-ui/icons/ExpandLess';
@@ -33,11 +38,8 @@ import CallIcon from '@material-ui/icons/Call';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import SettingsIcon from '@material-ui/icons/Settings';
 import HomeIcon from '@material-ui/icons/Home';
-import ProfileMenu from '../UI/ProfileMenu';
-import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-import CallcenterLogo from '../../assets/Images/callcenter.png';
-import CallcenterLogo2 from '../../assets/Images/callcenter2.svg';
-import NotificationDrawer from '../UI/NotificationDrawer/NotificationDrawer';
+import ProfileMenu from './DrawerPartial/ProfileMenu';
+import NotificationDrawer from '../Drawer/DrawerPartial/NotificationDrawer/NotificationDrawer';
 
 const drawerWidth = 240;
 
@@ -224,14 +226,20 @@ const useStyles = makeStyles((theme) => ({
   const [anchorEl, setAnchorEl] = useState(null);
   const [ProfileDetailIcon , setProfileDetailIcon] = useState(false)
  
+
+  // SideMenu information
+  // Main state define here For looping through
   const [menuItem , setmenuItem] = React.useState([
     {
       id: 1 ,
       text: "خانه" ,
       Icon: <HomeIcon style={{ color: "white" }} /> , 
       path : "/" ,
+      // True if menu item has a submenu
       collapse: false ,
+      // True when Click on the itemList and attatch a className to item for change backgroundColor
       selected: false ,
+      // Content of submenu
       subMenu: {
         
       } 
@@ -264,7 +272,7 @@ const useStyles = makeStyles((theme) => ({
       id: 4 ,
       text: "آمار" ,
       Icon: <TrendingUpIcon style={{color: "white"}} /> ,
-      linkTo: null ,
+      path: false ,
       collapse: true ,
       selected: false ,
       in: false ,
@@ -303,7 +311,7 @@ const useStyles = makeStyles((theme) => ({
 
   ])
 
-  // Look at path and change subHeaderMessage 
+  // Look at current path and change subHeaderMessage dynamically
   if (history.location.pathname === "/dashboard" && HeaderMessage !== "داشبورد") {
     setHeaderMessage("داشبورد")
   }
@@ -331,7 +339,9 @@ const useStyles = makeStyles((theme) => ({
   };
 
 
-  // Click on menuItem with Submenu and toggle Submenu open or close
+  // CLICK ON MENUITEM WITH SUBMENU AND TOGGLE SUBMENU OPEN OR CLOSE
+  // AND ALSO LOOPING THROUTH MENUITEM STATE AND TURN SELECTED OF ITEM TRUE
+  // AND ALL OTHERS SELECTED ATTRIBUTE FALSE
   const handleClick = ( e , Id ) => {
     let UpdatemenuItem = menuItem.slice()
     UpdatemenuItem.forEach((item , index) => {
@@ -351,7 +361,7 @@ const useStyles = makeStyles((theme) => ({
     })
   }
 
-
+  // DO THE SAME THING AS FUNCTION ABOVE BUT DO IT FOR SUBMENU ITEM
   const SubmenuHandleClick = (e , Id) => {
 
     let UpdatemenuItem = menuItem.slice()
@@ -373,42 +383,25 @@ const useStyles = makeStyles((theme) => ({
         ...UpdatemenuItem
       ])
     })
-  //   console.log(Id)
-  //   let UpdatemenuItem = menuItem.slice();
-  //   UpdatemenuItem.forEach((item , index) => {
-  //     item.selected = false;
-  //     if (item.collapse) {
-  //       item.subMenu.forEach((item , index) => {
-  //         item.
-  //       })
-  //     }
-  //   })
-  //   UpdatemenuItem.forEach((subItem , index) => {
-  //     subItem.selected = false;
-  //     if (subItem.id === Id) {
-  //     subItem.selected = true;
-  //     }
-  // })
 }
 
   // FUNCTION HANDLER
-  const handleCloseProfileDetail = () => {
-    setProfileDetailIcon(true)
-  }
+  // const handleCloseProfileDetail = () => {
+  //   setProfileDetailIcon(true)
+  // }
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget); 
-  };
+  // const handleMenu = (event) => {
+  //   setAnchorEl(event.currentTarget); 
+  // };
 
-  const handleClose = (event) => {
-    event.stopPropagation();
-    setProfileDetailIcon(false)
-    setAnchorEl(<div></div>);
-  };
+  // const handleClose = (event) => {
+  //   event.stopPropagation();
+  //   setProfileDetailIcon(false)
+  //   setAnchorEl(<div></div>);
+  // };
 
 
   // DRAWER START HERE
-
   return (
       <div className={classes.root}>
       <CssBaseline />
@@ -435,13 +428,17 @@ const useStyles = makeStyles((theme) => ({
           <Typography variant="h6" noWrap>
             شرکت بهینه کاوان کیفیت
           </Typography>
-            <div className={classes.FillGap}></div>
-         <div className={classes.profileContainer} style={{ display: "flex" , width: "120px" , justifyContent: "space-around" }}>
-                <NotificationDrawer />
-                <ProfileMenu />
+          <div className={classes.FillGap}></div>
+          <div className={classes.profileContainer} style={{ display: "flex" , width: "120px" , justifyContent: "space-around" }}>
+            {/* COMPONENT FOR NOTIFICATION ICON AND SIDDRAER NOTIFICTION */}
+            <NotificationDrawer />
+            {/* COMPONENT FOR PROFILE ICON AND SUBMENU FUNCTIONALITY FOR DROPDOWN WHEN CLICK ON ICON */}
+            <ProfileMenu />
          </div>
         </Toolbar>
       </AppBar>
+
+
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
@@ -461,6 +458,7 @@ const useStyles = makeStyles((theme) => ({
           <div className={classes.companyLogoWraperDiv}>
           <img src={companyLogo} className={classes.companyLogo} />
           </div>
+          {/* ARROW BUTTON FOR CLOSING DRAWER WHEN IT IS OPEN */}
           <IconButton style={{color: "white"}}  onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
@@ -543,17 +541,20 @@ const useStyles = makeStyles((theme) => ({
           </List>
       </Drawer>
         <main  className={classes.content}>
-      <div style={{backgroundColor: "green" ,width: "100%" , height: "64px"}}></div>
-      <nav className={classes.subHeader}>
-        <div className={classes.SubmenuText}>
-          {HeaderMessage}
-        </div>
-      </nav>
-        <div style={{padding: "20px" , width: "100%"}}>
-        {props.children}
-        </div>
-        
-      </main>
+            {/* THIS DIV LIE UNDER THE APPBAR (SUBHEADER) AND PREVENT CONTENT TO GO UNDER THE APPBAR  */}
+            <div style={{backgroundColor: "green" ,width: "100%" , height: "64px"}}></div>
+            {/* SUBHEADER FOR SHOW PAGE NAME UNDER THE MAIN HEADER */}
+            <nav className={classes.subHeader}>
+              {/* TEXT THAT SHOW IN SUBHEADER */}
+              <div className={classes.SubmenuText}>
+                {/* THIS MESSAGE DYNAMICALLY CHANGE WHEN CURRENT PATH CHANGE */}
+                {HeaderMessage}
+              </div>
+            </nav>
+            <div style={{padding: "20px" , width: "100%"}}>
+            {props.children}
+            </div>
+       </main>
        </div>
   );
 }
