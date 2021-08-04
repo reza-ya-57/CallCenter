@@ -2,9 +2,9 @@ import './App.css';
 import { useSelector } from 'react-redux';
 import { Route , Switch , withRouter } from 'react-router-dom';
 import Drawer from './Components/Drawer/Drawer.js';
-import DashboardPage from './Components/Pages/Dashboard/DashboardPage';
-import CallPage from './Components/Pages/CallPage/CallPage';
-import SettingPage from './Components/Pages/SettingPage/SettingPage';
+import DashboardPage from './Pages/Dashboard/DashboardPage';
+import CallPage from './Pages/CallPage/CallPage';
+import SettingPage from './Pages/SettingPage/SettingPage';
 import {ThemeProvider} from '@material-ui/core/styles';
 
 

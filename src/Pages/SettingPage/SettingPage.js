@@ -1,6 +1,6 @@
 import React from "react";
 import {useSelector , useDispatch} from 'react-redux';
-import * as actionTypes from '../../../Redux/Actions/actionTypes';
+import * as actionTypes from '../../Redux/Actions/actionTypes';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 
