@@ -1,6 +1,5 @@
 
 
-
 // Header and SideMenu
 // این قسمت تمام صفحات برنامه رو در داخل خود قرار میدهد  
 // صفحات برنامه از داخل این برنامه رندر میشوند
@@ -11,13 +10,13 @@ import { useHistory } from 'react-router';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import { useSelector } from 'react-redux';
+import { useSelector , useDispatch } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider'; 
+import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -219,6 +218,7 @@ const useStyles = makeStyles((theme) => ({
   const classes = useStyles();
   const history = useHistory();
   const state = useSelector(state => state.theme);
+  const dispatch = useDispatch();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [HeaderMessage , setHeaderMessage] = useState("");
@@ -327,6 +327,7 @@ const useStyles = makeStyles((theme) => ({
  
 
   const handleDrawerOpen = () => {
+    dispatch({type:"rerender"})
     setOpen(true);
   };
 

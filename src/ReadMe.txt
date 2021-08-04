@@ -1,4 +1,4 @@
-Component Tree start with: 
+Component Tree: 
                 App --> Drawer --> Pages
                                     |
                                     |--> Dashboard

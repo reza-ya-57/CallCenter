@@ -14,6 +14,7 @@ import thunk from 'redux-thunk';
 
 import {authReducer} from "./Redux/Reducers/authReducer";
 import themeReducer from "./Redux/Reducers/ThemeReducer";
+import apexReducer from './Redux/Reducers/apexReducer';
 
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -22,7 +23,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
   auth: authReducer , 
-  theme: themeReducer
+  theme: themeReducer ,
+  apex: apexReducer
 })
 
 const store = createStore(rootReducer, composeEnhancers(
