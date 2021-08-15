@@ -24,6 +24,7 @@ const Data = {
 const useStyles = makeStyles(theme => ({
     Root: {
         display: 'flex' , 
+        margin: '10px' ,
         boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' ,
         backgroundColor: '#f9f9f9'  ,
         padding: '20px' ,

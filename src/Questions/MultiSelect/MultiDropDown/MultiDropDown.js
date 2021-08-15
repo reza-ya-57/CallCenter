@@ -4,26 +4,22 @@ import Chip from '@material-ui/core/Chip';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import QNumber from '../../../Partial/QNumber/QNumber';
+import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
+
 
 const useStyles = makeStyles((theme) => ({
-    Root: {
-      margin: '10px' ,
-      boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' ,
-      backgroundColor: '#f9f9f9'  ,
-      padding: '40px 20px' ,
-      borderRadius: '10px'
-    } , 
 }));
 
-export default function Tags() {
+export default function MultiDropDown(props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.Root}>
-      <Autocomplete
+    <QuestionTemplate number={props.number}>
+         <Autocomplete
         multiple
         id="tags-outlined"
-        options={top100Films}
+        options={Top100City}
         getOptionLabel={(option) => option.title}
         filterSelectedOptions
         renderInput={(params) => (
@@ -34,9 +30,38 @@ export default function Tags() {
           />
         )}
       />
-    </div>
+    </QuestionTemplate>
   );
 }
+
+
+
+
+
+
+
+const Top100City = [
+    { title: 'تهران' } ,
+    { title: 'شیراز' } ,
+    { title: 'اصفهان' } ,
+    { title: 'قزوین' } ,
+    { title: 'مشهد' } ,
+    { title: 'تبریز' } ,
+    { title: 'سمنان' } ,
+    { title: 'کرمان' } ,
+    { title: 'یزد' } ,
+    { title: 'بروجرد' } ,
+    { title: 'بجنورد' } ,
+    { title: 'زنجان' } ,
+    { title: 'خوزستان' } ,
+    { title: 'گرکان' } ,
+    { title: 'ساری' } ,
+    { title: 'لاهیجان' } ,
+    { title: 'چالوس' } ,
+    { title: 'اردبیل' } ,
+    { title: 'نوشهر' } ,
+    { title: 'زاهدان' } ,
+  ]
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [

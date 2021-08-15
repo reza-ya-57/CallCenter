@@ -4,8 +4,8 @@ import { Paper } from '@material-ui/core';
 import RadioQuestion from '../../Questions/SingleSelect/Radio/Radio';
 import DropDown from '../../Questions/SingleSelect/DropDown/DropDown';
 import CustomizedSlider from '../../Questions/SingleSelect/Slider/Slider';
-import NextBack from '../../Components/UI/NextBack/NextBack';
 import MultiDropDown from '../../Questions/MultiSelect/MultiDropDown/MultiDropDown';
+import QuestionTemplate from '../../Components/UI/WrapperComponent/QuestionTemplate';
 
 const PaperWidth = "600px";
 
@@ -32,9 +32,10 @@ export default function SimpleCard() {
 
   return (
       <div>
-        {/* <MultiDropDown number='1' /> */}
-        <RadioQuestion number='2' />
-        {/* <DropDown number='3' /> */}
+          {/* <RadioQuestion number='2' /> */}
+         <MultiDropDown number='1' />
+        {/* <RadioQuestion number='2' />
+        <DropDown number='3' />  */}
         {/* <CustomizedSlider /> */}
       </div>
   );
