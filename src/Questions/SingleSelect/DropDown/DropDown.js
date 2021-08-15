@@ -4,44 +4,28 @@ import { makeStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import QNumber from '../../../Partial/QNumber/QNumber';
+import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
 
 
 const useStyles = makeStyles(theme => ({
-  Root: {
-    display: 'flex' ,
-    margin: '10px' ,
-    boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' ,
-    backgroundColor: '#f9f9f9'  ,
-    padding: '40px 20px' ,
-    borderRadius: '10px'
-  } , 
-  
-  NumberWraper: {
-    display: 'flex' ,
-    justifyContent: 'center' ,
-    alignItems: 'center' ,
-    padding: '5px' , 
-  } ,
+
+
 }))
 
 
 export default function DropDown(props) {
   const classes = useStyles();
   return (
-    <div className={classes.Root}>
-      <div className={classes.NumberWraper}>
-        <QNumber number={props.number} />
-      </div>
-      <div className={classes.AutoWraper}>
-        <Autocomplete
+
+      <QuestionTemplate number={props.number} text={props.text}>
+           <Autocomplete
               id="combo-box-demo"
               options={Top100City}
               getOptionLabel={(option) => option.title}
               style={{ width: 400 }}
-              renderInput={(params) => <TextField {...params} label="شهر" variant="filled" />}
+              renderInput={(params) => <TextField {...params} label="شهر" variant="outlined" />}
           />
-      </div>
-    </div>
+      </QuestionTemplate>
   );
 }
 

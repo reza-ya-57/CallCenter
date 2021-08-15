@@ -5,6 +5,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import QNumber from '../../../Partial/QNumber/QNumber';
+import { Typography } from '@material-ui/core';
 
 const MaxWidth = 400;
 
@@ -24,6 +25,11 @@ const useStyles = makeStyles((theme) => ({
 
     Question: {
         minWidth: MaxWidth
+    } ,
+
+    Text: {
+        color: '#3f51b5' ,
+        marginBottom: '20px'
     }
 }));
 
@@ -36,9 +42,9 @@ export default function QuestionTemplate(props) {
             <QNumber number={props.number} />
         </div>
         <div className={classes.Question}>
-            <div className={classes.Text}>
+            <Typography className={classes.Text}>
                 {props.text}
-            </div>
+            </Typography>
             <div className={classes.Answer}>
                 {props.children}
             </div>

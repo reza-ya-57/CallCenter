@@ -15,7 +15,7 @@ export default function MultiDropDown(props) {
   const classes = useStyles();
 
   return (
-    <QuestionTemplate number={props.number}>
+    <QuestionTemplate number={props.number} text={props.text}>
          <Autocomplete
         multiple
         id="tags-outlined"
