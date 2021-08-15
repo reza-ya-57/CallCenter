@@ -1,8 +1,6 @@
 import {createTheme} from '@material-ui/core/styles';
-// import IranSansttf from "../fonts/assets/Sahel-Black-FD.woff2";
 import ShabnamFont from "../../fonts/assets/Shabnam.woff";
 import IranSansFont from "../../fonts/assets/IRANSans.woff2"
-import { purple, red } from '@material-ui/core/colors';
 
 
  const Shabnam = {
@@ -21,6 +19,7 @@ const Iransans = {
 
 
 export const theme001 = createTheme({
+
   palette: {
       green: {
         // header color

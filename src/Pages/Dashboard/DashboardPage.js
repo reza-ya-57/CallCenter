@@ -39,7 +39,6 @@ const DashboardPage = (props) => {
     const classes = useStyle();
     return (
             <div>
-                {state.reRender}
                 <div className={classes.Chart}>
                     <SplineChart />
                     {/* <PopularAreaChart /> */}

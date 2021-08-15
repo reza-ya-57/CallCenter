@@ -11,6 +11,7 @@ import {ThemeProvider} from '@material-ui/core/styles';
 function App() {
 
   let {customTheme} = useSelector(state => state.theme)
+  console.log(customTheme)
   let routes =  (
     <Switch>
       <Route exact path="/dashboard"  component={DashboardPage} />

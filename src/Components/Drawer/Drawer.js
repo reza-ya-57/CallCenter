@@ -1,6 +1,6 @@
 
 
-// Header and SideMenu
+//  ader and SideMenu
 // این قسمت تمام صفحات برنامه رو در داخل خود قرار میدهد  
 // صفحات برنامه از داخل این برنامه رندر میشوند
 
@@ -109,8 +109,10 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.success.light
   } ,
   content: {
-    // position: "relative" , 
+    // flexGrow: 1 ,
     width: "100%" ,
+    // position: "relative" , 
+    // width: "100%" ,
     height: "100vh" ,
     backgroundColor: theme.palette.success.main,
     // padding: theme.spacing(3),
@@ -552,7 +554,7 @@ const useStyles = makeStyles((theme) => ({
                 {HeaderMessage}
               </div>
             </nav>
-            <div style={{padding: "20px" , width: "100%"}}>
+            <div style={{padding: "20px" }}>
             {props.children}
             </div>
        </main>

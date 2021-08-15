@@ -7,7 +7,6 @@ class SplineChart extends React.Component {
       super(props);
 
       this.state = {
-      
         series: [{
           name: 'series1',
           data: [31, 40, 28, 51, 42, 109, 100]
@@ -18,7 +17,8 @@ class SplineChart extends React.Component {
         options: {
           chart: {
             height: 350,
-            type: 'area'
+            type: 'area' ,
+            redrawOnParentResize: true
           },
           dataLabels: {
             enabled: false
