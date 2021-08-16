@@ -1,6 +1,6 @@
 @font-face {
   font-family: "customfont";
-  src: url("./fonts/assets/Shabnam.woff");
+  src: url("./fonts/assets/IRANSans.woff2");
   font-weight: normal;
   font-style: normal;
 }
@@ -10,11 +10,6 @@
 }
 
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> ad8c9f27c6f08f148464e0745e41d11d90aa4907
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

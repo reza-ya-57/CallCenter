@@ -17,6 +17,11 @@ const QuestionFilter = (Question) => {
                 <MultiDropDown number={Question.number} text={Question.text} />
             )
         }
+        case "SingleSelectRadio": {
+            return (
+                <RadioQuestion number={Question.number} text={Question.text} />
+            )
+        }
     }
 }
 

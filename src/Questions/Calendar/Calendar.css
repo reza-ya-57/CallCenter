@@ -1,0 +1,26 @@
+
+
+
+.Calendar__header {
+    background-color: #00b159;
+    border-radius: 10px 10px 0px 0px;
+    color: white !important;
+  }
+
+  .Calendar__weekDays {
+      padding: 10px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white !important;
+      border-top: gray 2px solid;
+      border-bottom: gray 2px solid;
+      background-color: #3C4043;
+  }
+
+ 
+  .-selected {
+      background-color: #00b159    !important;
+  }
+  

@@ -1,4 +1,4 @@
-
+import * as actionTypes from '../Actions/actionTypes';
 
 const initialState = {
     user: "Reza"
@@ -6,7 +6,7 @@ const initialState = {
 
 export const authReducer = (state = initialState , action) => {
     switch(action.type) {
-        case("SET_USER"): 
+        case(actionTypes.SET_USER): 
         return {
             ...state ,
             user: action.payload

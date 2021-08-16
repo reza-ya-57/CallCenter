@@ -1,4 +1,4 @@
-
+import * as actionTypes from '../Actions/actionTypes';
 
 const initialState = {
     CurrentQuestion : 1
@@ -6,11 +6,11 @@ const initialState = {
 
 export const CurrentQuestionReducer = (state = initialState , action) => {
    switch(action.type) {
-       case("NEXT_QUESTION"): 
+       case(actionTypes.NEXT_QUESTION): 
        return {
         CurrentQuestion : state.CurrentQuestion + 1
        }
-       case("BACK_QUESTION"): 
+       case(actionTypes.BACK_QUESTION): 
        return {
         CurrentQuestion : state.CurrentQuestion - 1
        }
