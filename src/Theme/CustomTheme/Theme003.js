@@ -14,16 +14,28 @@ import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 export const theme003 = createTheme({
   palette: {
     green: {
-      main: "#242e5f"
+      // header color
+      main: "#1261A0"
     } ,
     grey: {
-      main: "#444674"
+      // side menu color
+      main: "#030421"
     } ,
     success: {
-        main: "#f5f3f5"
+      // BackgroundColor
+        main: "#C6DAEA" ,
+        // hover effect on profile Icon color
+        dark: "#1A234F" ,
+        // BackgroundColor for submenu
+        light: "#2F3249"
     } , 
     warning: {
-        main: "#242e5f"
+      // Gradiant for SubHeader
+        main: "#242e5f",
+        // hover color on sidebar menu
+        dark: "#444674" ,
+      // selected item form sidemenu color
+        light: "#1261A0"
     }
     // secondary: {
     //   main: purple[500] 

@@ -1,15 +1,22 @@
+
+
+//  ader and SideMenu
+// این قسمت تمام صفحات برنامه رو در داخل خود قرار میدهد  
+// صفحات برنامه از داخل این برنامه رندر میشوند
+
+
 import React , {useState} from 'react';
 import { useHistory } from 'react-router';
 import clsx from 'clsx';
-import { makeStyles, useTheme  } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import { useSelector } from 'react-redux';
+import { useSelector , useDispatch } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider'; 
+import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
@@ -20,24 +27,29 @@ import IconButton from '@material-ui/core/IconButton';
 import Collapse from '@material-ui/core/Collapse';
 import StarBorder from '@material-ui/icons/StarBorder';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import companyLogo from '../../assets/Images/QBLogo.svg'
+import companyLogo from '../../assets/Images/logo-behine22.png';
+// import companyLogo from '../../assets/Images/QBLogo.svg'
+
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { NavLink } from 'react-router-dom';
 import CallIcon from '@material-ui/icons/Call';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import SettingsIcon from '@material-ui/icons/Settings';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
 import HomeIcon from '@material-ui/icons/Home';
+import ProfileMenu from './DrawerPartial/ProfileMenu';
+import NotificationDrawer from '../Drawer/DrawerPartial/NotificationDrawer/NotificationDrawer';
 
 const drawerWidth = 240;
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+  },
+  
+  ListItemSelected: {
+    backgroundColor: theme.palette.warning.light ,
+    // transform: "scale(1.04)" ,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
@@ -93,27 +105,38 @@ const useStyles = makeStyles((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
+  nested: {
+    backgroundColor: theme.palette.success.light
+  } ,
   content: {
-    position: "relative" , 
+    // flexGrow: 1 ,
+    width: "100%" ,
+    // position: "relative" , 
+    // width: "100%" ,
     height: "100vh" ,
-    flexGrow: 1,
     backgroundColor: theme.palette.success.main,
     // padding: theme.spacing(3),
-    padding: "0px"
   },
   ListItem: {
     color: "white" ,
     '&:hover': {
-      backgroundColor: theme.palette.green.main , 
-      // backgroundColor: theme.palette.secondary.main, 
-      transform: "scale(1.02)" , 
+      backgroundColor: theme.palette.warning.dark , 
+      // transform: "scale(1.02)" , 
       color: "white"
-    }
+    },
   } ,
+
+  ListItemHover: {
+    color: "white" ,
+    '&:hover': {
+      backgroundColor: theme.palette.warning.light , 
+      // transform: "scale(1.02)" , 
+      color: "white"
+    },
+  } ,
+
   appbar: {
     color: "white" ,
-    // backgroundColor: "#e65100"
-    // backgroundColor: "#ab003c"
     backgroundColor: theme.palette.green.main
   } , 
 
@@ -122,16 +145,15 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center" , 
     justifyContent: "center" ,
     borderRadius: "100px" ,
-    marginRight: "50px"
+    marginRight: "30px"
   } ,
   companyLogo: {
-    width: "50px" , 
-    height: "50px"  ,
+    width: "70px" , 
+    height: "60px"  ,
     borderRadius: "100px" ,
   } ,
   NavLink : {
-    textDecoration: "none" , 
-    color : "black"
+    textDecoration: "none" ,
   } , 
   paper: {
     backgroundColor: "blue"
@@ -159,9 +181,7 @@ const useStyles = makeStyles((theme) => ({
     width: "20px",
     marginRight: "20px"
   }, 
-  // menuButton: {
-  //   marginRight: theme.spacing(2),
-  // },
+
   title: {
     flexGrow: 1,
   },
@@ -169,6 +189,29 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "green",
     flexGrow: 1 ,
   } ,
+  DividerStyle: {
+    backgroundColor: "#676767"
+  } , 
+  SubMenulistItemText: {
+    fontSize: "12px" , 
+    fontWeight: "0"
+  } , 
+   
+  SubMenulistItemTextSelected: {
+    backgroundColor: theme.palette.warning.light ,
+    // transform: "scale(1.04)" ,
+  } ,
+
+  SubMenuStyle: {
+    color: "white" , 
+    fontSize: "10px" ,
+    position: "relative" , 
+    left: "20px" , 
+    marginRight: "10px" , 
+    color: "white"
+  } , 
+  
+  
 
 }));
 
@@ -177,21 +220,28 @@ const useStyles = makeStyles((theme) => ({
   const classes = useStyles();
   const history = useHistory();
   const state = useSelector(state => state.theme);
+  const dispatch = useDispatch();
   const theme = useTheme();
-  console.log(theme)
   const [open, setOpen] = React.useState(false);
   const [HeaderMessage , setHeaderMessage] = useState("");
 
   const [anchorEl, setAnchorEl] = useState(null);
   const [ProfileDetailIcon , setProfileDetailIcon] = useState(false)
  
+
+  // SideMenu information
+  // Main state define here For looping through
   const [menuItem , setmenuItem] = React.useState([
     {
       id: 1 ,
       text: "خانه" ,
       Icon: <HomeIcon style={{ color: "white" }} /> , 
       path : "/" ,
+      // True if menu item has a submenu
       collapse: false ,
+      // True when Click on the itemList and attatch a className to item for change backgroundColor
+      selected: false ,
+      // Content of submenu
       subMenu: {
         
       } 
@@ -202,6 +252,7 @@ const useStyles = makeStyles((theme) => ({
       Icon: <DashboardIcon style={{ color: "white" }} /> , 
       path : "/dashboard" ,
       collapse: false ,
+      selected: false ,
       subMenu: {
         
       }
@@ -213,6 +264,7 @@ const useStyles = makeStyles((theme) => ({
       Icon: <CallIcon style={{ color: "white" }}/> , 
       path : "/call" ,
       collapse: false ,
+      selected: false ,
       subMenu: {
         
       }
@@ -222,18 +274,30 @@ const useStyles = makeStyles((theme) => ({
       id: 4 ,
       text: "آمار" ,
       Icon: <TrendingUpIcon style={{color: "white"}} /> ,
-      linkTo: null ,
+      path: false ,
       collapse: true ,
+      selected: false ,
       in: false ,
         subMenu: [
           {
-            text: "تاریخچه تماس" ,
-            Icon : <StarBorder style={{ color: "white" }}/> ,
+            id: 101 ,
+            text: "نمونه یک" ,
+            subSelected: false ,
+            Icon : <StarBorder className={classes.SubMenuStyle} /> ,
             path: "/dashboard"
           } ,
           {
-            text: "تاریخچه تماس" ,
-            Icon : <StarBorder style={{ color: "white" }}/> ,
+            id: 102 ,
+            text: "نمونه دو" ,
+            subSelected: false ,
+            Icon : <StarBorder className={classes.SubMenuStyle}/> ,
+            path: null
+          } ,
+          {
+            id: 103 ,
+            text: "نمونه سه" ,
+            subSelected: false ,
+            Icon : <StarBorder className={classes.SubMenuStyle}/> ,
             path: null
           }
         ]
@@ -244,10 +308,12 @@ const useStyles = makeStyles((theme) => ({
       Icon: <SettingsIcon style={{ color: "white" }}/> , 
       path : "/setting" ,
       collapse: false ,
+      selected: false ,
     } ,
 
   ])
 
+  // Look at current path and change subHeaderMessage dynamically
   if (history.location.pathname === "/dashboard" && HeaderMessage !== "داشبورد") {
     setHeaderMessage("داشبورد")
   }
@@ -263,18 +329,34 @@ const useStyles = makeStyles((theme) => ({
  
 
   const handleDrawerOpen = () => {
+    dispatch({type:"rerender"})
     setOpen(true);
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
+    let UpdatemenuItem = menuItem.slice();
+    UpdatemenuItem.forEach((item , index) => {
+      item.in = false;
+    })
   };
 
+
+  // CLICK ON MENUITEM WITH SUBMENU AND TOGGLE SUBMENU OPEN OR CLOSE
+  // AND ALSO LOOPING THROUTH MENUITEM STATE AND TURN SELECTED OF ITEM TRUE
+  // AND ALL OTHERS SELECTED ATTRIBUTE FALSE
   const handleClick = ( e , Id ) => {
     let UpdatemenuItem = menuItem.slice()
     UpdatemenuItem.forEach((item , index) => {
+        item.selected = false;
+        if (item.collapse) {
+          item.subMenu.forEach((item , index) => {
+            item.subSelected = false
+          })
+        }
       if (item.id === Id) {
         item.in = !item.in 
+        item.selected = true
       }
       setmenuItem([
         ...UpdatemenuItem
@@ -282,29 +364,52 @@ const useStyles = makeStyles((theme) => ({
     })
   }
 
+  // DO THE SAME THING AS FUNCTION ABOVE BUT DO IT FOR SUBMENU ITEM
+  const SubmenuHandleClick = (e , Id) => {
+
+    let UpdatemenuItem = menuItem.slice()
+    UpdatemenuItem.forEach((item , index) => {
+        item.selected = false;
+        if (item.collapse) {
+          item.subMenu.forEach((item , index) => {
+            item.subSelected = false
+            if (item.id === Id) {
+              item.subSelected = true
+            }
+          })
+        }
+      if (item.id === Id) {
+        item.in = !item.in 
+        item.selected = true
+      }
+      setmenuItem([
+        ...UpdatemenuItem
+      ])
+    })
+}
+
   // FUNCTION HANDLER
-  const handleCloseProfileDetail = () => {
-    setProfileDetailIcon(true)
-  }
+  // const handleCloseProfileDetail = () => {
+  //   setProfileDetailIcon(true)
+  // }
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget); 
-  };
+  // const handleMenu = (event) => {
+  //   setAnchorEl(event.currentTarget); 
+  // };
 
-  const handleClose = (event) => {
-    event.stopPropagation();
-    setProfileDetailIcon(false)
-    setAnchorEl(<div></div>);
-  };
+  // const handleClose = (event) => {
+  //   event.stopPropagation();
+  //   setProfileDetailIcon(false)
+  //   setAnchorEl(<div></div>);
+  // };
 
 
   // DRAWER START HERE
-
   return (
       <div className={classes.root}>
       <CssBaseline />
       <AppBar
-        style={{color: "white"}}  
+        style={{color: "white"}} 
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
@@ -326,42 +431,17 @@ const useStyles = makeStyles((theme) => ({
           <Typography variant="h6" noWrap>
             شرکت بهینه کاوان کیفیت
           </Typography>
-            <div className={classes.FillGap}></div>
-         <div className={classes.profileContainer}>
-         <div onClick={handleCloseProfileDetail}>
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={ProfileDetailIcon}
-                onClose={handleClose}
-                onClick={handleCloseProfileDetail}
-              >
-                
-                <MenuItem onClick={handleClose}>علیرضا تیلکو</MenuItem>
-                <MenuItem onClick={handleClose}>خروج</MenuItem>
-              </Menu>
-            </div>
+          <div className={classes.FillGap}></div>
+          <div className={classes.profileContainer} style={{ display: "flex" , width: "120px" , justifyContent: "space-around" }}>
+            {/* COMPONENT FOR NOTIFICATION ICON AND SIDDRAER NOTIFICTION */}
+            <NotificationDrawer />
+            {/* COMPONENT FOR PROFILE ICON AND SUBMENU FUNCTIONALITY FOR DROPDOWN WHEN CLICK ON ICON */}
+            <ProfileMenu />
          </div>
         </Toolbar>
       </AppBar>
+
+
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
@@ -381,6 +461,7 @@ const useStyles = makeStyles((theme) => ({
           <div className={classes.companyLogoWraperDiv}>
           <img src={companyLogo} className={classes.companyLogo} />
           </div>
+          {/* ARROW BUTTON FOR CLOSING DRAWER WHEN IT IS OPEN */}
           <IconButton style={{color: "white"}}  onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
@@ -391,10 +472,14 @@ const useStyles = makeStyles((theme) => ({
             {menuItem.map((item , index) => {
               return (
                 <div>
-                <Divider />
+                <Divider className={classes.DividerStyle} />
                 { item.path ? (
                     <NavLink className={classes.NavLink} to={item.path} >
-                    <ListItem className={classes.ListItem} key={item.id} button onClick={(e) => handleClick(e , item.id)}>
+                    <ListItem className={clsx({
+                      [classes.ListItem]: true ,
+                      [classes.ListItemSelected]: item.selected , 
+                      [classes.ListItemHover]: item.selected
+                    })} key={item.id} button onClick={(e) => handleClick(e , item.id)}>
                         <ListItemIcon>
                           {item.Icon}
                         </ListItemIcon>
@@ -415,31 +500,39 @@ const useStyles = makeStyles((theme) => ({
                 {item.collapse ? 
                       // Looping through subMenu of menuItem for generating subMenu
                       item.subMenu.map((collapseItem , index) => {
+
                         return (
                          <div>
                           <Collapse className={classes.ListItem}  in={item.in} timeout="auto" unmountOnExit>
-                            <Divider />
+                            <Divider className={classes.DividerStyle} />
                             <List component="div" disablePadding>
                               {collapseItem.path ? (
                                 <NavLink className={classes.NavLink} to={collapseItem.path}>
-                                  <ListItem style={{color:"white"}} button className={classes.nested}>
+                                  <ListItem style={{color:"white"}} button className={clsx({
+                                  [classes.nested]: true ,
+                                  [classes.SubMenulistItemTextSelected]: collapseItem.subSelected, 
+                                  [classes.ListItemHover]: collapseItem.subSelected
+                                })} onClick={(e) => SubmenuHandleClick(e , collapseItem.id)}>
                                     <ListItemIcon>
                                       {collapseItem.Icon}
                                     </ListItemIcon>
-                                    <ListItemText primary={collapseItem.text} />
+                                    <ListItemText classes={{primary:classes.SubMenulistItemText}} primary={collapseItem.text} />
                                   </ListItem> 
                                 </NavLink>
                               ): (
-                                <ListItem style={{color:"white"}} button className={classes.nested}>
+                                <ListItem style={{color:"white"}}  button className={clsx({
+                                  [classes.nested]: true ,
+                                  [classes.SubMenulistItemTextSelected]: collapseItem.subSelected, 
+                                  [classes.ListItemHover]: collapseItem.subSelected
+                                })} onClick={(e) => SubmenuHandleClick(e , collapseItem.id)}>
                                 <ListItemIcon>
                                   {collapseItem.Icon}
                                 </ListItemIcon>
-                                <ListItemText primary={collapseItem.text} />
+                                <ListItemText classes={{primary:classes.SubMenulistItemText}} primary={collapseItem.text} />
                               </ListItem>
                               )}
                             </List>
                           </Collapse>
-                        <Divider />
                          </div>
                         )
                       })
@@ -447,21 +540,25 @@ const useStyles = makeStyles((theme) => ({
                 </div>
               )
             })}
+            <Divider className={classes.DividerStyle} />
           </List>
       </Drawer>
         <main  className={classes.content}>
-          <div style={{backgroundColor: "green" ,width: "100%" , height: "64px"}}></div>
+            {/* THIS DIV LIE UNDER THE APPBAR (SUBHEADER) AND PREVENT CONTENT TO GO UNDER THE APPBAR  */}
+            <div style={{backgroundColor: "green" ,width: "100%" , height: "64px"}}></div>
+            {/* SUBHEADER FOR SHOW PAGE NAME UNDER THE MAIN HEADER */}
             <nav className={classes.subHeader}>
+              {/* TEXT THAT SHOW IN SUBHEADER */}
               <div className={classes.SubmenuText}>
+                {/* THIS MESSAGE DYNAMICALLY CHANGE WHEN CURRENT PATH CHANGE */}
                 {HeaderMessage}
               </div>
             </nav>
-          <div style={{padding: "20px"}}>
-             {props.children}
-          </div>
-        </main>
+            <div style={{padding: "20px" }}>
+            {props.children}
+            </div>
+       </main>
        </div>
-    // </ThemeProvider>
   );
 }
 

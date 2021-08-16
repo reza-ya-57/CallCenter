@@ -3,6 +3,8 @@ import {theme001} from '../../Theme/CustomTheme/Theme001';
 import {theme002} from '../../Theme/CustomTheme/Theme002';
 import {theme003} from '../../Theme/CustomTheme/Theme003';
 import {theme004} from '../../Theme/CustomTheme/Theme004';
+import {theme005} from '../../Theme/CustomTheme/Theme005';
+import {theme006} from '../../Theme/CustomTheme/Theme006';
 
 const initialState = { 
     customTheme : {
@@ -35,6 +37,18 @@ const themeReducer = (state = initialState , action) => {
             return  {
                 customTheme: {
                     ...theme004
+                }
+            }   
+        }else if (action.payload == "theme005")  {
+            return  {
+                customTheme: {
+                    ...theme005
+                }
+            }   
+        }else if (action.payload == "theme006")  {
+            return  {
+                customTheme: {
+                    ...theme006
                 }
             }   
         }

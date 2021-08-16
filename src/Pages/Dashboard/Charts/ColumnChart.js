@@ -121,7 +121,7 @@ class ColumnChart extends React.Component {
               columnWidth: '60%'
             }
           },
-          colors: ['#00E396'],
+          colors: ['#1AA6B7'],
           dataLabels: {
             enabled: false
           },
