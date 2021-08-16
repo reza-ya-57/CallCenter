@@ -1,5 +1,4 @@
 import React , {useState} from 'react';
-import "./Drawer.css";
 import { useHistory } from 'react-router';
 import clsx from 'clsx';
 import { makeStyles, useTheme  } from '@material-ui/core/styles';
@@ -451,22 +450,16 @@ const useStyles = makeStyles((theme) => ({
           </List>
       </Drawer>
         <main  className={classes.content}>
-      <div style={{backgroundColor: "green" ,width: "100%" , height: "64px"}}></div>
-      <nav className={classes.subHeader}>
-        <div className={classes.SubmenuText}>
-          {HeaderMessage}
-        </div>
-      </nav>
-        {/* <div style={{backgroundColor: "blue" , width: "100%" , margin: "0px"}} className={classes.toolbar} /> */}
-        {/* <div className={classes.subHeader}>hello</div> */}
-        {/* <ListSubheader style={{backgroundColor: "red"}} title="hello">
-          hello
-        </ListSubheader> */}
-        <div style={{padding: "20px"}}>
-        {props.children}
-        </div>
-        
-      </main>
+          <div style={{backgroundColor: "green" ,width: "100%" , height: "64px"}}></div>
+            <nav className={classes.subHeader}>
+              <div className={classes.SubmenuText}>
+                {HeaderMessage}
+              </div>
+            </nav>
+          <div style={{padding: "20px"}}>
+             {props.children}
+          </div>
+        </main>
        </div>
     // </ThemeProvider>
   );
