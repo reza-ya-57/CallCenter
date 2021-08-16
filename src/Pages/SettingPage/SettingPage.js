@@ -1,5 +1,5 @@
 import React from "react";
-import {useSelector , useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import * as actionTypes from '../../Redux/Actions/actionTypes';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -7,8 +7,6 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 const SettingPage = (props) => {
     const dispatch = useDispatch();
-
-    const state = useSelector(state => state.theme)
     const ThemeHandler = (theme) => {
         if (theme === "theme001") {
             dispatch({type:actionTypes.SET_THEME , payload: "theme001"})

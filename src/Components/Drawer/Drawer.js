@@ -10,7 +10,7 @@ import { useHistory } from 'react-router';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-import { useSelector , useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%" ,
     // position: "relative" , 
     // width: "100%" ,
-    height: "100vh" ,
+    height: "100vmin" ,
     backgroundColor: theme.palette.success.main,
     // padding: theme.spacing(3),
   },
@@ -203,7 +203,6 @@ const useStyles = makeStyles((theme) => ({
   } ,
 
   SubMenuStyle: {
-    color: "white" , 
     fontSize: "10px" ,
     position: "relative" , 
     left: "20px" , 
@@ -219,14 +218,11 @@ const useStyles = makeStyles((theme) => ({
  function MiniDrawer(props) {
   const classes = useStyles();
   const history = useHistory();
-  const state = useSelector(state => state.theme);
   const dispatch = useDispatch();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [HeaderMessage , setHeaderMessage] = useState("");
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [ProfileDetailIcon , setProfileDetailIcon] = useState(false)
  
 
   // SideMenu information
@@ -388,20 +384,6 @@ const useStyles = makeStyles((theme) => ({
     })
 }
 
-  // FUNCTION HANDLER
-  // const handleCloseProfileDetail = () => {
-  //   setProfileDetailIcon(true)
-  // }
-
-  // const handleMenu = (event) => {
-  //   setAnchorEl(event.currentTarget); 
-  // };
-
-  // const handleClose = (event) => {
-  //   event.stopPropagation();
-  //   setProfileDetailIcon(false)
-  //   setAnchorEl(<div></div>);
-  // };
 
 
   // DRAWER START HERE
@@ -459,7 +441,7 @@ const useStyles = makeStyles((theme) => ({
       >
         <div className={classes.toolbar} >
           <div className={classes.companyLogoWraperDiv}>
-          <img src={companyLogo} className={classes.companyLogo} />
+          <img src={companyLogo} alt='companylogo' className={classes.companyLogo} />
           </div>
           {/* ARROW BUTTON FOR CLOSING DRAWER WHEN IT IS OPEN */}
           <IconButton style={{color: "white"}}  onClick={handleDrawerClose}>
@@ -474,7 +456,7 @@ const useStyles = makeStyles((theme) => ({
                 <div>
                 <Divider className={classes.DividerStyle} />
                 { item.path ? (
-                    <NavLink className={classes.NavLink} to={item.path} >
+                    <NavLink key={item.key} className={classes.NavLink} to={item.path} >
                     <ListItem className={clsx({
                       [classes.ListItem]: true ,
                       [classes.ListItemSelected]: item.selected , 
@@ -554,7 +536,7 @@ const useStyles = makeStyles((theme) => ({
                 {HeaderMessage}
               </div>
             </nav>
-            <div style={{padding: "20px" }}>
+            <div>
             {props.children}
             </div>
        </main>

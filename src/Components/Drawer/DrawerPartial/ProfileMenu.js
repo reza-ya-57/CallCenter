@@ -14,8 +14,6 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import Avatar from '@material-ui/core/Avatar';
-import AvatarPicture from '../../../assets/Images/rezayari.jfif'
 
 
 const useStyle = makeStyles(theme => ({

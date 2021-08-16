@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
-import classes from './Chart.module.css';
 
 class SplineChart extends React.Component {
     constructor(props) {

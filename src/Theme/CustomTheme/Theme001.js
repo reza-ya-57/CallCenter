@@ -1,14 +1,6 @@
 import {createTheme} from '@material-ui/core/styles';
-import ShabnamFont from "../../fonts/assets/Shabnam.woff";
 import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 
-
- const Shabnam = {
-  fontFamily: 'shabnam',
-  fontStyle: 'normal',
-  fontWeight: 400,
-  src: ` url(${ShabnamFont}) format('woff')  `,
-};
 
 const Iransans = {
   fontFamily: 'iransans',

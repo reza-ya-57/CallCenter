@@ -1,5 +1,4 @@
 import {createTheme} from '@material-ui/core/styles';
-import ShabnamFont from "../../fonts/assets/Shabnam.woff";
 import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 
 

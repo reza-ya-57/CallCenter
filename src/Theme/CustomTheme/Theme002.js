@@ -1,6 +1,4 @@
-import { blue } from '@material-ui/core/colors';
 import {createTheme} from '@material-ui/core/styles';
-import ShabnamFont from "../../fonts/assets/Shabnam.woff";
 import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 
  const IranSans = {

@@ -1,14 +1,9 @@
 import React  from "react";
-import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core";
-import ColumnChart from "./Charts/ColumnChart";
 import SplineChart from "./Charts/SplineChart";
-import MonoChromeChart from "./Charts/MonoChromeChart";
-import clsx from 'clsx';
 
 
 
-const columnChartMaxWidth = "200px";
 const useStyle = makeStyles(theme => ({
     Root: {
         width: "100%" , 
@@ -35,7 +30,7 @@ const useStyle = makeStyles(theme => ({
 }))
 
 const DashboardPage = (props) => {
-    const state = useSelector(state => state.apex)
+
     const classes = useStyle();
     return (
             <div>

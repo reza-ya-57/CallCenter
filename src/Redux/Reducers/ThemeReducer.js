@@ -15,43 +15,44 @@ const initialState = {
 const themeReducer = (state = initialState , action) => {
     switch (action.type) {
         case (actionTypes.SET_THEME): 
-        if (action.payload == "theme001") {
+        if (action.payload === "theme001") {
             return {
                 customTheme: {
                     ...theme001
                 }
             }
-        } else if (action.payload == "theme002")  {
+        } else if (action.payload === "theme002")  {
             return  {
                 customTheme: {
                     ...theme002
                 }
             }   
-        } else if (action.payload == "theme003")  {
+        } else if (action.payload === "theme003")  {
             return  {
                 customTheme: {
                     ...theme003
                 }
             }   
-        } else if (action.payload == "theme004")  {
+        } else if (action.payload === "theme004")  {
             return  {
                 customTheme: {
                     ...theme004
                 }
             }   
-        }else if (action.payload == "theme005")  {
+        }else if (action.payload === "theme005")  {
             return  {
                 customTheme: {
                     ...theme005
                 }
             }   
-        }else if (action.payload == "theme006")  {
+        }else if (action.payload === "theme006")  {
             return  {
                 customTheme: {
                     ...theme006
                 }
             }   
         }
+        break
         default: return state
     }
 
