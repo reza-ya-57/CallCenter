@@ -10,27 +10,27 @@ const QuestionFilter = (Question) => {
         case "SingleSelectDropDown": {
             
             return (
-                <DropDown number={Question.number} text={Question.text} />
+                <DropDown key={Question.id} number={Question.number} text={Question.text} />
             )
         }
         case "MultiSelectDropDown": {
             return (
-                <MultiDropDown number={Question.number} text={Question.text} />
+                <MultiDropDown key={Question.id} number={Question.number} text={Question.text} />
             )
         }
         case "SingleSelectRadio": {
             return (
-                <RadioQuestion number={Question.number} text={Question.text} />
+                <RadioQuestion key={Question.id}  number={Question.number} text={Question.text} />
             )
         }
         case "Calendar": {
             return (
-                <CustomCalendar number={Question.number} text={Question.text} />
+                <CustomCalendar key={Question.id} number={Question.number} text={Question.text} />
             )
         }
         case "MultiCheckbox": {
             return (
-                <MultiCheckbox number={Question.number} text={Question.text}
+                <MultiCheckbox key={Question.id} number={Question.number} text={Question.text}
                 checks={
                     {...Question.checks}
                 }

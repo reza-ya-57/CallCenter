@@ -242,6 +242,7 @@ const useStyles = makeStyles((theme) => ({
         
       } 
     },
+    
     {
       id: 2 ,
       text: "داشبورد" ,
@@ -270,7 +271,7 @@ const useStyles = makeStyles((theme) => ({
       id: 4 ,
       text: "آمار" ,
       Icon: <TrendingUpIcon style={{color: "white"}} /> ,
-      path: false ,
+      path: null ,
       collapse: true ,
       selected: false ,
       in: false ,
@@ -287,14 +288,14 @@ const useStyles = makeStyles((theme) => ({
             text: "نمونه دو" ,
             subSelected: false ,
             Icon : <StarBorder className={classes.SubMenuStyle}/> ,
-            path: null
+            path: "/call"
           } ,
           {
             id: 103 ,
             text: "نمونه سه" ,
             subSelected: false ,
             Icon : <StarBorder className={classes.SubMenuStyle}/> ,
-            path: null
+            path: "/call"
           }
         ]
     } , 
@@ -450,18 +451,19 @@ const useStyles = makeStyles((theme) => ({
         </div>
 
           <List style={{padding: "0px"}}>
-            {/* Looping through menuItem for building ListItem */}
+          
+           {/* Looping through menuItem for building ListItem */}
             {menuItem.map((item , index) => {
               return (
-                <div>
+                <div key={item.id}>
                 <Divider className={classes.DividerStyle} />
                 { item.path ? (
-                    <NavLink key={item.key} className={classes.NavLink} to={item.path} >
+                    <NavLink className={classes.NavLink} to={item.path} >
                     <ListItem className={clsx({
                       [classes.ListItem]: true ,
                       [classes.ListItemSelected]: item.selected , 
                       [classes.ListItemHover]: item.selected
-                    })} key={item.id} button onClick={(e) => handleClick(e , item.id)}>
+                    })} button onClick={(e) => handleClick(e , item.id)}>
                         <ListItemIcon>
                           {item.Icon}
                         </ListItemIcon>
@@ -470,21 +472,24 @@ const useStyles = makeStyles((theme) => ({
                   </ListItem>
                   </NavLink>
                 ) : (
-                  <ListItem className={classes.ListItem} key={item.id} button onClick={(e) => handleClick(e , item.id)}>
+                 <div key={item.id + 200}>
+                    <ListItem className={classes.ListItem} button onClick={(e) => handleClick(e , item.id)}>
                       <ListItemIcon>
                         {item.Icon}
                       </ListItemIcon>
                     <ListItemText primary={item.text} />
                   {item.collapse ? (item.in ? <ExpandLess /> : <ExpandMore />) : null}
                 </ListItem>
+                    
+                  </div>
                 )}
-              {/* Check if menuItems have collapse for subMenu */}
+                 {/* Check if menuItems have collapse for subMenu */}
                 {item.collapse ? 
                       // Looping through subMenu of menuItem for generating subMenu
                       item.subMenu.map((collapseItem , index) => {
 
                         return (
-                         <div>
+                         <div key={collapseItem.id}>
                           <Collapse className={classes.ListItem}  in={item.in} timeout="auto" unmountOnExit>
                             <Divider className={classes.DividerStyle} />
                             <List component="div" disablePadding>
@@ -501,18 +506,7 @@ const useStyles = makeStyles((theme) => ({
                                     <ListItemText classes={{primary:classes.SubMenulistItemText}} primary={collapseItem.text} />
                                   </ListItem> 
                                 </NavLink>
-                              ): (
-                                <ListItem style={{color:"white"}}  button className={clsx({
-                                  [classes.nested]: true ,
-                                  [classes.SubMenulistItemTextSelected]: collapseItem.subSelected, 
-                                  [classes.ListItemHover]: collapseItem.subSelected
-                                })} onClick={(e) => SubmenuHandleClick(e , collapseItem.id)}>
-                                <ListItemIcon>
-                                  {collapseItem.Icon}
-                                </ListItemIcon>
-                                <ListItemText classes={{primary:classes.SubMenulistItemText}} primary={collapseItem.text} />
-                              </ListItem>
-                              )}
+                              ): null}
                             </List>
                           </Collapse>
                          </div>
@@ -523,6 +517,8 @@ const useStyles = makeStyles((theme) => ({
               )
             })}
             <Divider className={classes.DividerStyle} />
+
+
           </List>
       </Drawer>
         <main  className={classes.content}>
@@ -546,3 +542,78 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default MiniDrawer;
+
+
+            // {/* Looping through menuItem for building ListItem */}
+            // {menuItem.map((item , index) => {
+            //   return (
+            //     <div>
+            //     <Divider key={(item.id + 200)} className={classes.DividerStyle} />
+            //     { item.path ? (
+            //         <NavLink key={(item.id + 300)} className={classes.NavLink} to={item.path} >
+            //         <ListItem className={clsx({
+            //           [classes.ListItem]: true ,
+            //           [classes.ListItemSelected]: item.selected , 
+            //           [classes.ListItemHover]: item.selected
+            //         })} key={item.id + 400} button onClick={(e) => handleClick(e , item.id)}>
+            //             <ListItemIcon>
+            //               {item.Icon}
+            //             </ListItemIcon>
+            //           <ListItemText primary={item.text} />
+            //         {item.collapse ? (item.in ? <ExpandLess /> : <ExpandMore />) : null}
+            //       </ListItem>
+            //       </NavLink>
+            //     ) : (
+            //       <ListItem className={classes.ListItem} key={(item.id + 500)} button onClick={(e) => handleClick(e , item.id)}>
+            //           <ListItemIcon>
+            //             {item.Icon}
+            //           </ListItemIcon>
+            //         <ListItemText primary={item.text} />
+            //       {item.collapse ? (item.in ? <ExpandLess /> : <ExpandMore />) : null}
+            //     </ListItem>
+            //     )}
+            //   {/* Check if menuItems have collapse for subMenu */}
+            //     {item.collapse ? 
+            //           // Looping through subMenu of menuItem for generating subMenu
+            //           item.subMenu.map((collapseItem , index) => {
+
+            //             return (
+            //              <div>
+            //               <Collapse key={collapseItem.id + 600} className={classes.ListItem}  in={item.in} timeout="auto" unmountOnExit>
+            //                 <Divider className={classes.DividerStyle} />
+            //                 <List component="div" disablePadding>
+            //                   {collapseItem.path ? (
+            //                     <NavLink key={(collapseItem.id + 700)} className={classes.NavLink} to={collapseItem.path}>
+            //                       <ListItem style={{color:"white"}} button className={clsx({
+            //                       [classes.nested]: true ,
+            //                       [classes.SubMenulistItemTextSelected]: collapseItem.subSelected, 
+            //                       [classes.ListItemHover]: collapseItem.subSelected
+            //                     })} onClick={(e) => SubmenuHandleClick(e , collapseItem.id)}>
+            //                         <ListItemIcon>
+            //                           {collapseItem.Icon}
+            //                         </ListItemIcon>
+            //                         <ListItemText classes={{primary:classes.SubMenulistItemText}} primary={collapseItem.text} />
+            //                       </ListItem> 
+            //                     </NavLink>
+            //                   ): (
+            //                     <ListItem style={{color:"white"}}  button className={clsx({
+            //                       [classes.nested]: true ,
+            //                       [classes.SubMenulistItemTextSelected]: collapseItem.subSelected, 
+            //                       [classes.ListItemHover]: collapseItem.subSelected
+            //                     })} onClick={(e) => SubmenuHandleClick(e , collapseItem.id)}>
+            //                     <ListItemIcon>
+            //                       {collapseItem.Icon}
+            //                     </ListItemIcon>
+            //                     <ListItemText classes={{primary:classes.SubMenulistItemText}} primary={collapseItem.text} />
+            //                   </ListItem>
+            //                   )}
+            //                 </List>
+            //               </Collapse>
+            //              </div>
+            //             )
+            //           })
+            //     : null}
+            //     </div>
+            //   )
+            // })}
+            // <Divider className={classes.DividerStyle} />

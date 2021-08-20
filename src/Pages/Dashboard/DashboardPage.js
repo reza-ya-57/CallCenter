@@ -9,7 +9,7 @@ const useStyle = makeStyles(theme => ({
         width: "100%" , 
         display: "flex" , 
         flexDirection: "column" , 
-        flexWrap: "wrap"
+        flexWrap: "wrap" 
     } , 
 
     Chart: {

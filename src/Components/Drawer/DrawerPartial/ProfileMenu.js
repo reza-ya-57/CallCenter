@@ -94,17 +94,8 @@ export default function ProfileMenu() {
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
-        color="white"
         onClick={handleClick}
        />
-       {/* <Avatar
-        className={classes.CircleIcon}
-        aria-controls="customized-menu"
-        aria-haspopup="true"
-        variant="contained"
-        color="white"
-        onClick={handleClick}
-       alt="Remy Sharp" src={AvatarPicture} /> */}
       </div>
 
       <StyledMenu
@@ -114,21 +105,21 @@ export default function ProfileMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem onClick={ClickOnSubMenuHandler}>
+        <StyledMenuItem key={667} onClick={ClickOnSubMenuHandler}>
           <ListItemIcon>
             <PersonOutlineIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="پروفایل" />
         </StyledMenuItem>
 
-        <StyledMenuItem onClick={ClickOnSubMenuHandler}>
+        <StyledMenuItem key={666} onClick={ClickOnSubMenuHandler}>
           <ListItemIcon>
             <SettingsIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="تنظیمات" />
         </StyledMenuItem>
 
-        <StyledMenuItem onClick={ClickOnSubMenuHandler}>
+        <StyledMenuItem key={668} onClick={ClickOnSubMenuHandler}>
           <ListItemIcon>
             <ExitToAppIcon fontSize="small" />
           </ListItemIcon>
