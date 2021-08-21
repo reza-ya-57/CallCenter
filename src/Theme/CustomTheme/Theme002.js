@@ -56,5 +56,15 @@ export const theme002 = createTheme({
           '@font-face': [IranSans],
         },
       },
+
+      MuiRadio: {
+        colorSecondary: {
+          '&$checked': {
+            color: "black",
+          },
+        },
+      },
     },
+
+
   });

@@ -9,6 +9,7 @@ import { FindQuestionById } from '../../Questions/Functions/FindQuestionById';
 // import LandlinePhone from '../../Questions/SingleSelect/LandlinePhone/LandlinePhone';
 import RankingDAD2 from '../../Questions/MultiSelect/RankingDAD/RankingDAD2';
 import RankingDAD from '../../Questions/MultiSelect/RankingDAD/RankingDAD';
+import RadioCustom from '../../Questions/SingleSelect/Radio/RadioCustom';
 
 
 
@@ -47,8 +48,18 @@ export default function SimpleCard() {
   return (
 
       <div>
+        <RadioCustom choice={{
+              Horizontal: false ,
+              value: {
+                  value2: 'خیر' , 
+                  value1: 'بله' ,
+                  value5: 'نمیدانم' ,
+                  value4: 'سایر موارد'
+              }
+          
+        }} number={3} text="گزینه مورد نظر را انتخاب کنید ؟" />
         {/* {Quest} */}
-        <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" />
+        {/* <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" /> */}
         {/* <input type='time' /> */}
         {/* <PhoneNumber number='7' text="شماره تلفن همراه را وارد کنید ؟" /> */}
         {/* <EmailField number='8' text='ایمیل خود را با فرمت مناسب وارد کنید ؟' /> */}

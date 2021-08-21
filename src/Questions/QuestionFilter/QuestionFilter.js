@@ -1,4 +1,4 @@
-import RadioQuestion from "../SingleSelect/Radio/Radio";
+import RadioQuestion from "../SingleSelect/Radio/RadioCustom";
 import DropDown from "../SingleSelect/DropDown/DropDown";
 import MultiDropDown from "../MultiSelect/MultiDropDown/MultiDropDown";
 import CustomCalendar from "../SingleSelect/Calendar/Calendar";

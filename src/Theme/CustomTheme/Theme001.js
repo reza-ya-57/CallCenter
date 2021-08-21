@@ -1,3 +1,4 @@
+import { red } from '@material-ui/core/colors';
 import {createTheme} from '@material-ui/core/styles';
 import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 
@@ -11,6 +12,7 @@ const Iransans = {
 
 
 export const theme001 = createTheme({
+
 
   palette: {
       green: {
@@ -45,9 +47,25 @@ export const theme001 = createTheme({
     },
     overrides: {
       MuiCssBaseline: {
-        '@global': {
+        '@global': {  
           '@font-face': [Iransans],
+          
         },
       },
+
+      MuiRadio: {
+        colorSecondary: {
+          '&$checked': {
+            color: "#ab003c",
+          },
+        },
+      },
+
+      MuiFormControl: {
+        root: {
+          width: "100%"
+        }
+      }
     },
+
   });

@@ -22,7 +22,8 @@ const grid = 8;
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
   userSelect: "none",
-  padding: grid * 2,
+  // padding: grid * 2,
+  padding: "10px 30px" ,
   margin: `0 0 ${grid}px 0`,
   color: isDragging ? "black" : "white", 
 
@@ -30,6 +31,8 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   background: isDragging ? "lightgreen" : "#006a4e",
   borderRadius: "20px",
   boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" ,
+  height: "40px" ,
+
 
   // styles we need to apply on draggables
   ...draggableStyle
