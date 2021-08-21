@@ -1,7 +1,6 @@
-import { classes } from 'istanbul-lib-coverage';
 import React , {useState} from 'react';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
-import { makeStyles , TextField , Input } from '@material-ui/core';
+import { makeStyles , TextField } from '@material-ui/core';
 import { PowerInputSharp } from '@material-ui/icons';
 
 
@@ -11,7 +10,8 @@ const useStyles = makeStyles(theme => ({
     } , 
     
     TextField: {
-    width: "400px"
+    width: "400px" , 
+    padding: "20px"
     }
 }))
 
@@ -21,15 +21,17 @@ const EmailField = (props) => {
     const [Error, setError] = useState(false)
 
     const InputHandler = (e) => {
-        console.log(e.target.value)
-        setError(!validateEmail(e.target.value))
-        console.log(validateEmail(e.target.value))
+        setError(!validateEmail(e.target.value));
     }
 
     return (
         <QuestionTemplate number={props.number} text={props.text}>
             <div className={classes.Root}>
                <TextField
+                    onFocus={InputHandler}
+                    onBlur={() => {
+                        setError(false)
+                    }}
                     placeholder="example@gmail.com"
                     className={classes.TextField}
                     type="email"

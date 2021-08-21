@@ -57,5 +57,12 @@ export const theme005 = createTheme({
           },
         },
       },
+
+
+      MuiFormControl: {
+        root: {
+          width: "100%"
+        }
+      }
     },
   });

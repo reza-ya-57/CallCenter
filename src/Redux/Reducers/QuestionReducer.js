@@ -22,12 +22,14 @@ const initialState = {
             number: 3 ,
             type: 'SingleSelectRadio'  ,
             text: ' آیا در انتهاي كار (در زمان ترخيص) مسئول ترخيص موارد ثبت شده در برگه ي پذيرش را براي شما توضيح دادند كه چه كاري روي ماشين انجام دادند؟'  ,
-            Horizontal: false ,
-            value: {
-                value2: 'خیر' , 
-                value1: 'بله' ,
-                value3: 'نمیدانم' ,
-                value4: 'سایر موارد'
+            choice: {
+                Horizontal: false ,
+                value: {
+                    value2: 'خیر' , 
+                    value1: 'بله' ,
+                    value3: 'نمیدانم' ,
+                    value4: 'سایر موارد'
+                }
             }
          } ,
 

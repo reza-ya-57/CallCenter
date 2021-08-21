@@ -9,6 +9,7 @@ import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+      display: "flex" ,
       position: 'relative' ,
       bottom: '10px' ,
       padding: '10px 0px' , 
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   } ,
 
   FormControl: {
-    boxShadow: " rgba(149, 157, 165, 0.2) 0px 8px 24px" ,
+    // boxShadow: " rgba(149, 157, 165, 0.2) 0px 8px 24px" ,
       backgroundColor: '#EBFFE5' , 
       padding: '0px 10px' ,
       borderRadius: '0px 10px 10px 10px' ,

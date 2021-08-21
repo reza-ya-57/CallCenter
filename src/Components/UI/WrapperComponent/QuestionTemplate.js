@@ -7,16 +7,7 @@ import { Typography } from '@material-ui/core';
 const MaxWidth = 400;
 
 const useStyles = makeStyles((theme) => ({
-    Root: {
-      display: 'flex' ,
-    //   justifyContent: "center" , 
-    //   margin: '20px' ,
-    //   boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px' ,
-    //   backgroundColor: '#f9f9f9 '  ,
-    //   padding: '20px 30px' ,
-    //   borderRadius: '10px' , 
-    //   border: "0.5px grey solid"
-    } , 
+   
 
     NumberWraper: {
         marginRight: '10px' , 
@@ -26,8 +17,9 @@ const useStyles = makeStyles((theme) => ({
     } ,
 
     Question: {
-        minWidth: MaxWidth ,
-        margin: "20px" , 
+        width: "80%" ,
+        margin: "auto" , 
+        marginTop: "40px" , 
     } ,
 
     Text: {

@@ -1,8 +1,9 @@
 import RadioQuestion from "../SingleSelect/Radio/RadioCustom";
-import DropDown from "../SingleSelect/DropDown/DropDown";
+import DropDown from "../SingleSelect/DropDown/SingleDropDown";
 import MultiDropDown from "../MultiSelect/MultiDropDown/MultiDropDown";
-import CustomCalendar from "../SingleSelect/Calendar/Calendar";
+import Shamsi from "../SingleSelect/Calendar/Shamsi";
 import MultiCheckbox from "../MultiSelect/MultiCheckbox/MultiCheckbox";
+
 
 
 const QuestionFilter = (Question) => {
@@ -20,12 +21,12 @@ const QuestionFilter = (Question) => {
         }
         case "SingleSelectRadio": {
             return (
-                <RadioQuestion key={Question.id}  number={Question.number} text={Question.text} />
+                <RadioQuestion key={Question.id}  number={Question.number} text={Question.text} choice={Question.choice} />
             )
         }
-        case "Calendar": {
+        case "Shamsi": {
             return (
-                <CustomCalendar key={Question.id} number={Question.number} text={Question.text} />
+                <Shamsi key={Question.id} number={Question.number} text={Question.text} />
             )
         }
         case "MultiCheckbox": {
