@@ -4,6 +4,25 @@ import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
 import { makeStyles } from "@material-ui/core";
 import QuestionTemplate from "../../../Components/UI/WrapperComponent/QuestionTemplate";
+import { InputBase , TextField } from "@material-ui/core";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+
+let year = []
+
+for (let i = 1; i < 100; i++) {
+  year.unshift({title: (i + 1303).toString()})
+}
+year.push({title: ''})
+
+let day = []
+
+for (let i = 0; i < 32; i++) {
+  day.unshift({title: i.toString()})
+}
+
+day.push({title: ""})
+// console.log(day)
+console.log(year)
 
 const useStyles = makeStyles(theme => ({
   Root: {
@@ -19,17 +38,78 @@ const useStyles = makeStyles(theme => ({
   } , 
   selectedDay: {
     borderRadius: '0px'
+  } , 
+
+  InputWraper: {
+    display: "flex" , 
+    flexDirection: "column" ,
+    // margin: "50px" ,
+    // backgroundColor: "#3C4043" , 
+    borderRadius: "10px" , 
+    color: "white" , 
+    justifyContent: "space-around" , 
+    width: "40%" , 
+    padding: "40px" , 
+    // height: "100%" , 
+    height: "380px" , 
+    // marginTop: "15px"
+  } , 
+
+  Label: {
+    display: "block"
+  } , 
+
+  InputLabelWraper: {
+    display: "flex" , 
+    justifyContent: "space-around" , 
+    alignItems: "center"
+  } , 
+
+  TextField: {
+    backgroundColor: "white"
   }
 }))
 
 const Shamsi = (props) => {
   const classes = useStyles();
   const [selectedDay, setSelectedDay] = useState(null);
+  const [Year, setYear] = useState("");
+  const [Month, setMonth] = useState("");
+  const [Day, setDay] = useState("");
 
   const InputHandler = (e) => {
+    setSelectedDay({...e});
+    setYear(e.year.toString());
+    setMonth(e.month.toString());
+    setDay(e.day.toString());
     console.log(e)
-    setSelectedDay({...e})
-    console.log(selectedDay)
+  }
+
+  const yearHandler = (e , list) => {
+
+    let localMonth;
+    month.forEach(item => {
+      if (item.title === Month) {
+        localMonth = item.id
+      }
+    });
+    setSelectedDay({day: Day , month: localMonth ,year: parseInt(list.title)})
+    console.log(list)
+    setYear(list.title)
+  }
+  const monthHandler = (e , list) => {
+    setMonth(list.title)
+    setSelectedDay({day: Day , month: parseInt(list.id) ,year: parseInt(Year)})
+  }
+  const dayHandler = (e , list) => {
+    let localMonth;
+    month.forEach(item => {
+      if (item.title === Month) {
+        localMonth = item.id
+      }
+    });
+    setDay(list.title)
+    setSelectedDay({day: parseInt(list.title) , month: localMonth ,year: parseInt(Year)})
   }
 
 
@@ -44,10 +124,41 @@ const Shamsi = (props) => {
               calendarClassName={classes.Calendar}
               calendarSelectedDayClassName={classes.selectedDay}
             />
-            <div>
-              <div>Day:</div>
-              <div>Time</div>
-              <div></div>
+            <div className={classes.InputWraper}>
+              <div className={classes.InputLabelWraper}>
+                <Autocomplete
+                  onChange={(e , list) => yearHandler(e , list)}
+                  value={{title: Year}}
+                  id="combo-box-demo"
+                  options={year}
+                  getOptionLabel={(option) => option.title}
+                  style={{ width: 300 }}
+                  renderInput={(params) => <TextField className={classes.TextField} {...params} label="سال شمسی" variant="outlined" />}
+                />
+              </div>
+              <div className={classes.InputLabelWraper}>
+                <Autocomplete
+                  onChange={(e , list) => monthHandler(e , list)}
+                  value={{title: Month}}
+                  // id="combo-box-demo"
+                  options={month}
+                  getOptionLabel={(option) => option.title}
+                  style={{ width: 300 }}
+                  renderInput={(params) => <TextField className={classes.TextField} {...params} label="ماه" variant="outlined" />}
+                />
+              </div>
+              <div className={classes.InputLabelWraper}>
+                <Autocomplete
+                  onChange={(e , list) => dayHandler(e , list)}
+                  value={{title: Day}}
+                  // id="combo-box-demo"
+                  options={day}
+                  getOptionLabel={(option) => option.title}
+                  style={{ width: 300 }}
+                  renderInput={(params) => <TextField className={classes.TextField} {...params} label="روز" variant="outlined" />}
+                />
+              </div>
+              
             </div>
         </div>
     </QuestionTemplate>
@@ -55,3 +166,22 @@ const Shamsi = (props) => {
 };
 
 export default Shamsi;
+
+
+
+const month = [
+
+  { id: 1 , title: "فروردین" } ,
+  { id: 2 , title: "اردیبهشت" } ,
+  { id: 3 , title: "خرداد" } ,
+  { id: 4 , title: "تیر" } ,
+  { id: 5 , title: "مرداد" } ,
+  { id: 6 , title: "شهریور" } ,
+  { id: 7 , title: "مهر" } ,
+  { id: 8 , title: "آبان" } ,
+  { id: 9 , title: "آذر" } ,
+  { id: 10 , title: "دی" } ,
+  { id: 11 , title: "بهمن" } ,
+  { id: 12 , title: "اسفند" } ,
+  { id: 0 , title: "" } ,
+];
