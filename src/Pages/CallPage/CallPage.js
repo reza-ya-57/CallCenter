@@ -18,6 +18,7 @@ import Shamsi from '../../Questions/SingleSelect/Calendar/Shamsi';
 import SimpleNumberInput from '../../Questions/SingleSelect/SimpleNumberInput/SimpleNumberInput';
 import MultiLineInput from '../../Questions/SingleSelect/MultiLineInput/MultiLineInput';
 import CascadingDropDown from '../../Questions/MultiSelect/CascadingDropDown/CascadingDropDown';
+import MultiCheckbox from '../../Questions/MultiSelect/MultiCheckbox/MultiCheckbox';
 
 
 
@@ -56,6 +57,25 @@ export default function SimpleCard() {
     return (
       
       <div>
+
+        <MultiCheckbox number="15" text="کدام گزینه ها بیشتر شما را آزار داده است؟"
+        choices={[
+          {id: 10 , choice: "گزینه شماره 1"} ,
+          {id: 2 , choice: "گزینه شماره 2"} ,
+          {id: 3 , choice: "گزینه شماره 3"} ,
+          {id: 4 , choice: "گزینه شماره 4"} ,
+          {id: 5 , choice: "گزینه شماره 5"} ,
+          {id: 6 , choice: "گزینه شماره 6"} ,
+          // {id: 7 , choice: "گزینه شماره 7"} ,
+          // {id: 8 , choice: "گزینه شماره 5"} ,
+          // {id: 9 , choice: "گزینه شماره 6"} ,
+          // {id: 10 , choice: "گزینه شماره 7"} ,
+          // {id: 7 , choice: "گزینه شماره 7"} ,
+          // {id: 8 , choice: "گزینه شماره 5"} ,
+          // {id: 9 , choice: "گزینه شماره 6"} ,
+          // {id: 10 , choice: "گزینه شماره 7"} ,
+        ]}
+        />
         {/* <CascadingDropDown 
           number="4" 
           text="گزینه های مناسب را انتخاب کنید ؟" 

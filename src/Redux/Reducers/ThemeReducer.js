@@ -8,7 +8,7 @@ import {theme006} from '../../Theme/CustomTheme/Theme006';
 
 const initialState = { 
     customTheme : {
-        ...theme001
+        ...theme004
     }
 }
 

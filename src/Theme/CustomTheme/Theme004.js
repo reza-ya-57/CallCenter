@@ -66,6 +66,14 @@ export const theme004 = createTheme({
         },
       },
 
+      MuiCheckbox: {
+        colorSecondary: {
+          "&$checked": {
+            color: "#1E5631"
+          }
+        }
+      } ,
+
       MuiFormControl: {
         root: {
           width: "100%"
