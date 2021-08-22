@@ -45,6 +45,7 @@ export default function CascadingDropDown(props) {
     })
 
     setChildData(updateChildData)
+    setChild({id: null , title: "" , parentid: null})
 
   }
 

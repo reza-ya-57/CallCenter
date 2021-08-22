@@ -56,7 +56,7 @@ export default function SimpleCard() {
     return (
       
       <div>
-        <CascadingDropDown 
+        {/* <CascadingDropDown 
           number="4" 
           text="گزینه های مناسب را انتخاب کنید ؟" 
           parent="استان"
@@ -105,8 +105,8 @@ export default function SimpleCard() {
           { id: 18, title: 'اردبیل' , parentid: 20 } ,
           { id: 19, title: 'نوشهر' , parentid: 20 } ,
           { id: 20, title: 'زاهدان' , parentid: 20 } ,
-      ]}
-          />
+      ]} */}
+          {/* /> */}
         {/* <RankingDAD number="9" text='سیتبسیتب تمست بمسیتب ستب مستیب مستی ب' /> */}
         {/* <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" /> */}
         {/* <MultiLineInput number="22" text="توضیحات لازم را در کادر پایین تایپ کنید ؟" /> */}
@@ -145,7 +145,7 @@ export default function SimpleCard() {
           ]}
             /> */}
         {/* <RadioCustom choice={{
-              Horizontal: false ,
+              Horizontal: true ,
               value: {
                   value2: 'خیر' , 
                   value1: 'بله' ,
