@@ -1,37 +1,51 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import "date-fns";
+import React from "react";
+import Grid from "@material-ui/core/Grid";
+import DateFnsUtils from "@date-io/date-fns";
+import { makeStyles } from "@material-ui/core";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker
+} from "@material-ui/pickers";
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
-}));
+import QuestionTemplate from "../../../Components/UI/WrapperComponent/QuestionTemplate";
 
-export default function TimePicker() {
+const useStyles = makeStyles(theme => ({
+  TimePicker: {
+    width: "400px"
+  }
+}))
+
+export default function TimePicker(props) {
+  // The first commit of Material-UI
   const classes = useStyles();
+  const [selectedDate, setSelectedDate] = React.useState(
+    new Date("2014-08-18T21:11:54")
+  );
+
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
   return (
-    <form className={classes.container} noValidate>
-      <TextField
-        id="time"
-        label="Alarm clock"
-        type="time"
-        defaultValue="07:30"
-        className={classes.textField}
-        InputLabelProps={{
-          shrink: true,
-        }}
-        inputProps={{
-          step: 300, // 5 min
-        }}
-      />
-    </form>
+  <QuestionTemplate number={props.number} text={props.text}>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Grid container>
+        <KeyboardTimePicker
+        color="primary"
+        // className={classes.TimePicker}
+          margin="normal"
+          id="time-picker"
+          label="Time picker"
+          value={selectedDate}
+          onChange={handleDateChange}
+          KeyboardButtonProps={{
+            "aria-label": "change time"
+          }}
+        />
+      </Grid>
+    </MuiPickersUtilsProvider>
+  </QuestionTemplate>
   );
 }

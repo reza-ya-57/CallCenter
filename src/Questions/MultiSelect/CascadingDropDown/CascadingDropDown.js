@@ -16,21 +16,11 @@ const useStyles = makeStyles(theme => ({
 export default function CascadingDropDown(props) {
     const classes = useStyles();
     let firstChildData = props.ChildData;
-    const ParentData = props.ParentData;
-    console.log(firstChildData)
     const [Parent, setParent] = useState({ title: ""  , id: null });
     const [Child, setChild] = useState({ title: "" , id: null , parentid: null });
 
 
     const [ChildData, setChildData] = useState(props.ChildData)
-//   const ChildData = props.ChildData.filter(child => {
-//         ParentData.forEach(parent => {
-//            return parent.id === child.parentid
-//         })
-//         console.log(child)
-//         return "hello"
-//   });
-//   console.log(ChildData)
 
 
   const parentHandler = (e , list) => {
@@ -38,10 +28,12 @@ export default function CascadingDropDown(props) {
     setParent({...list})
     let updateChildData = [];
     firstChildData.forEach(item => {
-
+    if (list) {
         if (item.parentid === list.id) {
-           updateChildData.push(item)
-        }
+            updateChildData.push(item)
+         }
+    }
+    
     })
 
     setChildData(updateChildData)
@@ -50,7 +42,6 @@ export default function CascadingDropDown(props) {
   }
 
   const childHandler = (e , list) => {
-      console.log(list)
         setChild({...list})
   }
 
@@ -62,9 +53,14 @@ export default function CascadingDropDown(props) {
             value={{...Parent}}
             noOptionsText={'موردی یافت نشد'}
                 onChange={(e , list) => parentHandler(e , list)}
-                id="combo-box-demo"
+                id="parent-combo-box"
                 options={props.ParentData}
-                getOptionLabel={(option) => option.title}
+                getOptionLabel={(option) => {
+                    if(!option.title) {
+                        return ""
+                    }
+                    return option.title
+                }}
                 style={{ width: 400 , padding: "20px" }}
                 renderInput={(params) => <TextField
                                             {...params} 
@@ -75,9 +71,13 @@ export default function CascadingDropDown(props) {
             value={{...Child}}
             noOptionsText={'موردی یافت نشد'}
                 onChange={(e , list) => childHandler(e , list)}
-                id="combo-box-demo"
-                options={ChildData}
-                getOptionLabel={(option) => option.title}
+                id="child-combo-box"
+                options={ChildData} getOptionLabel={(option) => {
+                    if(!option.title) {
+                        return ""
+                    }
+                    return option.title
+                }}
                 style={{ width: 400 , padding: "20px" }}
                 renderInput={(params) => <TextField
                                             {...params} 

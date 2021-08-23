@@ -1,7 +1,7 @@
 import RadioQuestion from "../SingleSelect/Radio/RadioCustom";
 import DropDown from "../SingleSelect/DropDown/SingleDropDown";
 import MultiDropDown from "../MultiSelect/MultiDropDown/MultiDropDown";
-import Shamsi from "../SingleSelect/Calendar/Shamsi";
+import Shamsi from "../SingleSelect/Shamsi/Shamsi";
 import MultiCheckbox from "../MultiSelect/MultiCheckbox/MultiCheckbox";
 
 

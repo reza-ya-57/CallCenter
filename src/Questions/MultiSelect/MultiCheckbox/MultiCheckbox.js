@@ -57,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
 
 let object = {}
 object.check11 = false;
-console.log(object)
 
 
 export default function MultiCheckbox(props) {

@@ -21,8 +21,6 @@ for (let i = 0; i < 32; i++) {
 }
 
 day.push({title: ""})
-// console.log(day)
-console.log(year)
 
 const useStyles = makeStyles(theme => ({
   Root: {

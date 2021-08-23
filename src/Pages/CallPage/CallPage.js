@@ -14,11 +14,13 @@ import SingleDropDown from '../../Questions/SingleSelect/DropDown/SingleDropDown
 import MultiDropDown from '../../Questions/MultiSelect/MultiDropDown/MultiDropDown';
 import NationalCode from '../../Questions/SingleSelect/NationalCode/NationalCode';
 import EmailField from '../../Questions/SingleSelect/EmailField/EmailField';
-import Shamsi from '../../Questions/SingleSelect/Calendar/Shamsi';
+import Shamsi from '../../Questions/SingleSelect/Shamsi/Shamsi';
 import SimpleNumberInput from '../../Questions/SingleSelect/SimpleNumberInput/SimpleNumberInput';
 import MultiLineInput from '../../Questions/SingleSelect/MultiLineInput/MultiLineInput';
 import CascadingDropDown from '../../Questions/MultiSelect/CascadingDropDown/CascadingDropDown';
 import MultiCheckbox from '../../Questions/MultiSelect/MultiCheckbox/MultiCheckbox';
+import TimePicker from '../../Questions/SingleSelect/TimePicker/TimePicker';
+import CustomSlider from '../../Questions/SingleSelect/Slider/Slider';
 
 
 
@@ -57,32 +59,33 @@ export default function SimpleCard() {
     return (
       
       <div>
-
-        <MultiCheckbox number="15" text="کدام گزینه ها بیشتر شما را آزار داده است؟"
+        {/* <TimePicker number="12" text="زمان مد نظر خود را انتخاب کنید " /> */}
+        {/* <CustomSlider number="14" text="میزان رضایت خود را اعلام کنید ؟" /> */}
+        {/* <MultiCheckbox number="15" text="کدام گزینه ها بیشتر شما را آزار داده است؟"
         choices={[
           {id: 10 , choice: "گزینه شماره 1"} ,
           {id: 2 , choice: "گزینه شماره 2"} ,
           {id: 3 , choice: "گزینه شماره 3"} ,
-          {id: 4 , choice: "گزینه شماره 4"} ,
+          {id: 4 , choice: "گزینه ماره 4"} ,
           {id: 5 , choice: "گزینه شماره 5"} ,
           {id: 6 , choice: "گزینه شماره 6"} ,
-          // {id: 7 , choice: "گزینه شماره 7"} ,
-          // {id: 8 , choice: "گزینه شماره 5"} ,
-          // {id: 9 , choice: "گزینه شماره 6"} ,
-          // {id: 10 , choice: "گزینه شماره 7"} ,
-          // {id: 7 , choice: "گزینه شماره 7"} ,
-          // {id: 8 , choice: "گزینه شماره 5"} ,
-          // {id: 9 , choice: "گزینه شماره 6"} ,
-          // {id: 10 , choice: "گزینه شماره 7"} ,
+          {id: 7 , choice: "گزینه شماره 7"} ,
+          {id: 8 , choice: "گزینه شماره 5"} ,
+          {id: 9 , choice: "گزینه شماره 6"} ,
+          {id: 10 , choice: "گزینه شماره 7"} ,
+          {id: 7 , choice: "گزینه شماره 7"} ,
+          {id: 8 , choice: "گزینه شماره 5"} ,
+          {id: 9 , choice: "گزینه شماره 6"} ,
+          {id: 10 , choice: "گزینه شماره 7"} ,
         ]}
-        />
-        {/* <CascadingDropDown 
+        /> */}
+        <CascadingDropDown 
           number="4" 
           text="گزینه های مناسب را انتخاب کنید ؟" 
           parent="استان"
           child="شهر"
           ParentData={[
-            { id: 50 , title: 'تهران' } ,
+            { id: 1 , title: 'تهران' } ,
             { id: 2 , title: 'شیراز' } ,
             { id: 3 , title: 'اصفهان' } ,
             { id: 4 , title: 'قزوین' } ,
@@ -95,7 +98,7 @@ export default function SimpleCard() {
             { id: 11, title: 'بجنورد' } ,
             { id: 12, title: 'زنجان' } ,
             { id: 13, title: 'خوزستان' } ,
-            { id: 14, title: 'گرکان' } ,
+            { id: 14, title: 'قصه حسین کرد شبستری قصه حسین کرد شبستری  قصه حسین کرد شبستری  قصه حسین کرد شبستری' } ,
             { id: 15, title: 'ساری' } ,
             { id: 16, title: 'لاهیجان' } ,
             { id: 17, title: 'چالوس' } ,
@@ -120,13 +123,13 @@ export default function SimpleCard() {
           { id: 13, title: 'خوزستان' , parentid: 16 } ,
           { id: 14, title: 'گرکان' , parentid: 16 } ,
           { id: 15, title: 'ساری' , parentid: 16 } ,
-          { id: 16, title: 'لاهیجان' , parentid: 16 } ,
-          { id: 17, title: 'چالوس' , parentid: 20 } ,
-          { id: 18, title: 'اردبیل' , parentid: 20 } ,
-          { id: 19, title: 'نوشهر' , parentid: 20 } ,
-          { id: 20, title: 'زاهدان' , parentid: 20 } ,
-      ]} */}
-          {/* /> */}
+          { id: 16, title: 'لاهیجان' , parentid: 1 } ,
+          { id: 17, title: 'چالوس' , parentid: 1 } ,
+          { id: 18, title: 'اردبیل' , parentid: 1 } ,
+          { id: 19, title: 'نوشهر' , parentid: 1 } ,
+          { id: 20, title: 'زاهدان' , parentid: 1 } ,
+      ]}
+           /> 
         {/* <RankingDAD number="9" text='سیتبسیتب تمست بمسیتب ستب مستیب مستی ب' /> */}
         {/* <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" /> */}
         {/* <MultiLineInput number="22" text="توضیحات لازم را در کادر پایین تایپ کنید ؟" /> */}
