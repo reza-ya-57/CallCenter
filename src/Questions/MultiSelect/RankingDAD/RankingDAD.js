@@ -27,23 +27,23 @@ const DATA = [
     ],
     tint: 1,
   },
-//   {
-//     id: 'af4',
-//     label: 'Closing leads',
-//     items: [
-//       {id: 'af5', label: 'Item 1'}, 
-//       {id: 'af6', label: 'Item 2'}, 
-//     ],
-//     tint: 2,
-//   },
-//   {
-//     id: 'af7', label: 'On hold', 
-//     items: [
-//       {id: 'af8', label: 'Item 1'}, 
-//       {id: 'af9', label: 'Item 2'}, 
-//     ],
-//     tint: 3,
-//   }, 
+  {
+    id: 'af4',
+    label: 'Closing leads',
+    items: [
+      {id: 'af5', label: 'Item 1'}, 
+      {id: 'af6', label: 'Item 2'}, 
+    ],
+    tint: 2,
+  },
+  {
+    id: 'af7', label: 'On hold', 
+    items: [
+      {id: 'af8', label: 'Item 1'}, 
+      {id: 'af9', label: 'Item 2'}, 
+    ],
+    tint: 3,
+  }, 
 ];
 
 

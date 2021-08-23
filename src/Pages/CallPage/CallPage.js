@@ -60,8 +60,42 @@ export default function SimpleCard() {
       
       <div>
         {/* <TimePicker number="12" text="زمان مد نظر خود را انتخاب کنید " /> */}
-        {/* <CustomSlider number="14" text="میزان رضایت خود را اعلام کنید ؟" /> */}
-        {/* <MultiCheckbox number="15" text="کدام گزینه ها بیشتر شما را آزار داده است؟"
+        {/* <CustomSlider 
+        marks={ [
+          {
+            id: 1 ,
+            value: 2,
+            label: 'خیلی بد',
+            icon: null
+          },
+          {
+            id: 2 ,
+            value: 25,
+            label: 'بد',
+            icon: null
+          },
+          {
+            id: 3 ,
+            value: 50,
+            label: 'متوسط',
+            icon: null
+          },
+          {
+            id: 4 ,
+            value: 75,
+            label: 'خوب',
+            icon: null
+          },
+          {
+            id: 5 ,
+            value: 99,
+            label: 'خیلی خوب',
+            icon: null
+          },
+        ]}
+          number="14" 
+          text="میزان رضایت خود را اعلام کنید ؟" /> */}
+        <MultiCheckbox number="15" text="کدام گزینه ها بیشتر شما را آزار داده است؟"
         choices={[
           {id: 10 , choice: "گزینه شماره 1"} ,
           {id: 2 , choice: "گزینه شماره 2"} ,
@@ -71,14 +105,14 @@ export default function SimpleCard() {
           {id: 6 , choice: "گزینه شماره 6"} ,
           {id: 7 , choice: "گزینه شماره 7"} ,
           {id: 8 , choice: "گزینه شماره 5"} ,
-          {id: 9 , choice: "گزینه شماره 6"} ,
-          {id: 10 , choice: "گزینه شماره 7"} ,
-          {id: 7 , choice: "گزینه شماره 7"} ,
-          {id: 8 , choice: "گزینه شماره 5"} ,
-          {id: 9 , choice: "گزینه شماره 6"} ,
-          {id: 10 , choice: "گزینه شماره 7"} ,
+          // {id: 9 , choice: "گزینه شماره 6"} ,
+          // {id: 10 , choice: "گزینه شماره 7"} ,
+          // {id: 7 , choice: "گزینه شماره 7"} ,
+          // {id: 8 , choice: "گزینه شماره 5"} ,
+          // {id: 9 , choice: "گزینه شماره 6"} ,
+          // {id: 10 , choice: "گزینه شماره 7"} ,
         ]}
-        /> */}
+        />
         <CascadingDropDown 
           number="4" 
           text="گزینه های مناسب را انتخاب کنید ؟" 
@@ -130,17 +164,15 @@ export default function SimpleCard() {
           { id: 20, title: 'زاهدان' , parentid: 1 } ,
       ]}
            /> 
-        {/* <RankingDAD number="9" text='سیتبسیتب تمست بمسیتب ستب مستیب مستی ب' /> */}
-        {/* <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" /> */}
+    
         {/* <MultiLineInput number="22" text="توضیحات لازم را در کادر پایین تایپ کنید ؟" /> */}
         {/* <LandlinePhone number="20" text="شماره تلفن ثابت را وارد کنید ؟" /> */}
-      {/* <NationalCode number="2" text="شماره ملی را وارد کنید؟" /> */}
-      {/* <EmailField number="12" text="ایمیل را با فرمت صحیح وارد کنید؟" /> */}
+      <NationalCode number="2" text="شماره ملی را وارد کنید؟" />
+      <EmailField number="12" text="ایمیل را با فرمت صحیح وارد کنید؟" />
       {/* <Shamsi number="13" text="تاریخ مد نظر را انتخاب کنید ؟" /> */}
       {/* <SimpleNumberInput number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} /> */}
  
-
-        {/* <MultiDropDown 
+        <MultiDropDown 
             number="11" 
             text="سلام نیتب م یمت بیمست مستبی می؟" 
             caption="شهر"
@@ -166,7 +198,9 @@ export default function SimpleCard() {
               { id: 19, title: 'نوشهر' } ,
               { id: 20, title: 'زاهدان' } ,
           ]}
-            /> */}
+            />
+    <RankingDAD number="9" text='سیتبسیتب تمست بمسیتب ستب مستیب مستی ب' />
+        <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" />
         {/* <RadioCustom choice={{
               Horizontal: true ,
               value: {

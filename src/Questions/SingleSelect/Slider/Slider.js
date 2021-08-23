@@ -4,7 +4,26 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
+import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
+import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
+import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
+
+
+
+
 const Width = 600
+
+const Icons = [
+  <SentimentVeryDissatisfiedIcon /> , 
+  <SentimentDissatisfiedIcon /> ,
+  <SentimentSatisfiedIcon /> , 
+  <InsertEmoticonIcon /> , 
+  <InsertEmoticonIcon />
+]
+
+
+
 const useStyles = makeStyles({
   root: {
     margin: "20px 50px"  , 
@@ -18,7 +37,7 @@ const useStyles = makeStyles({
 
   Rail: {
     height: "30px" ,
-    borderRadius: "10px"
+    borderRadius: "10px" , 
   } , 
   
   Track: {
@@ -38,55 +57,73 @@ const useStyles = makeStyles({
   } ,
 
   MarkLabel: {
-      // position: "relative" , 
       marginTop: "15px" ,
-      // bottom: "10px"
       padding: "5px"
-    // borderRadius: "10px" , 
-    // backgroundColor: "#0bb883" , 
-    // color: "black" , 
-    // "&:hover": {
-    //   color: "white" , 
-    //   boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px" ,
-    //   backgroundColor: "#1CC468"
-    // }
   } 
 });
 
-const marks = [
-  {
-    value: 2,
-    label: 'خیلی بد',
-  },
-  {
-    value: 25,
-    label: 'بد',
-  },
-  {
-    value: 50,
-    label: 'متوسط',
-  },
-  {
-    value: 75,
-    label: 'خوب',
-  },
-  {
-    value: 99,
-    label: 'خیلی خوب',
-  },
-];
+
 
 function valuetext(value) {
   return `${value}°C`;
 }
 
-function valueLabelFormat(value) {
-  return marks.findIndex((mark) => mark.value === value) + 1;
-}
+
 
 export default function CustomSlider(props) {
   const classes = useStyles();
 
+  let initialmarks = [];
+
+  const step =  parseInt(99 / (props.marks.length -1 ))
+  // const step = 20;
+  // const maxofslider = 20 * props.marks.length
+
+  props.marks.forEach((item  , index) => {
+
+    initialmarks.push ({
+      value: 2 + (index * step) , 
+      label: item.label ,  
+      icon: item.icon ? item.icon : Icons[parseInt(((4/props.marks.length)*index) + 1 )]
+    })
+  })  
+
+  let marks = initialmarks
+
+  // const marks = [
+  //   {
+  //     value: 2,
+  //     label: 'خیلی بد',
+  //     icon: <SentimentVeryDissatisfiedIcon />
+  //   },
+  //   {
+  //     value: 25,
+  //     label: 'بد',
+  //     icon: <SentimentDissatisfiedIcon />
+  //   },
+  //   {
+  //     value: 50,
+  //     label: 'متوسط',
+  //     icon: <SentimentSatisfiedIcon />
+  //   },
+  //   {
+  //     value: 75,
+  //     label: 'خوب',
+  //     icon: <InsertEmoticonIcon />
+  //   },
+  //   {
+  //     value: 99,
+  //     label: 'خیلی خوب',
+  //     icon: <InsertEmoticonIcon />
+  //   },
+  // ];
+
+
+  function valueLabelFormat(value) {
+
+    var test = marks.filter((mark) => mark.value === value);
+    return test[0].icon
+  }
   return (
     <QuestionTemplate number={props.number} text={props.text}>
           <div className={classes.root}>
