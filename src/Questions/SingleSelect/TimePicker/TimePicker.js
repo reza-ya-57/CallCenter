@@ -30,22 +30,25 @@ export default function TimePicker(props) {
 
   return (
   <QuestionTemplate number={props.number} text={props.text}>
+    <div style={{width: "400px  " , margin: "auto"}}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Grid container>
-        <KeyboardTimePicker
-        color="primary"
-        // className={classes.TimePicker}
-          margin="normal"
-          id="time-picker"
-          label="Time picker"
-          value={selectedDate}
-          onChange={handleDateChange}
-          KeyboardButtonProps={{
-            "aria-label": "change time"
-          }}
-        />
-      </Grid>
-    </MuiPickersUtilsProvider>
+        <Grid container>
+          <KeyboardTimePicker
+          inputVariant="outlined"
+          color="primary"
+          // className={classes.TimePicker}
+            margin="normal"
+            id="time-picker"
+            label="Time picker"
+            value={selectedDate}
+            onChange={handleDateChange}
+            KeyboardButtonProps={{
+              "aria-label": "change time"
+            }}
+          />
+        </Grid>
+      </MuiPickersUtilsProvider>
+    </div>
   </QuestionTemplate>
   );
 }

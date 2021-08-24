@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component , useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import QuestionTemplate from "../../../Components/UI/WrapperComponent/QuestionTemplate";
 // fake data generator
 const getItems = count =>
   Array.from({ length: count }, (v, k) => k).map(k => ({
     id: `item-${k}`,
-    content: `item ${k}`
+    choice: `item ${k}`
   }));
 
 // a little function to help us with reordering the result
@@ -18,6 +18,7 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 const grid = 8;
+
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the items look a bit nicer
@@ -40,8 +41,8 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? "lightblue" : "lightgrey",
-  padding: grid,
-  width: 250 , 
+  padding: "10px 50px",
+  width: "100%" , 
   borderRadius: "10px" , 
   backgroundColor: "f9f9f9"
 });
@@ -50,16 +51,23 @@ class RankingDAD2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: getItems(5)
+      items: this.props.choices.map(item => {
+        return {id: item.id.toString() , choice: item.choice}
+      })
     };
     this.onDragEnd = this.onDragEnd.bind(this);
   }
+  
+
+
 
   onDragEnd(result) {
     // dropped outside the list
     if (!result.destination) {
       return;
     }
+
+  
 
     const items = reorder(
       this.state.items,
@@ -75,9 +83,12 @@ class RankingDAD2 extends Component {
   // Normally you would want to split things out into separate components.
   // But in this example everything is just done in one place for simplicity
   render() {
+
+    console.log(this.state);
+    console.log(this.props.choices);
     return (
       <QuestionTemplate number={this.props.number} text={this.props.text}>
-          <div>
+          <div >
           <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable style={{backgroundColor: "red"}} droppableId="droppable">
           {(provided, snapshot) => (
@@ -98,7 +109,7 @@ class RankingDAD2 extends Component {
                         provided.draggableProps.style
                       )}
                     >
-                      {item.content}
+                      {item.choice}
                     </div>
                   )}
                 </Draggable>

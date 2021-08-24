@@ -28,14 +28,15 @@ const useStyle = makeStyles(theme => ({
         height: "300px"
     }
 }))
-
+    // console.log("Here")
 const DashboardPage = (props) => {
 
     const classes = useStyle();
     return (
             <div>
                 <div className={classes.Chart}>
-                    <SplineChart />
+                    {/* <SplineChart /> */}
+
                     {/* <PopularAreaChart /> */}
                 </div>
                 {/* <div style={{display: "flex"}}>

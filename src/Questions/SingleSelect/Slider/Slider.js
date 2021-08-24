@@ -4,22 +4,25 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
-import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
+
+import SentimentVeryDissatisfiedOutlinedIcon from '@material-ui/icons/SentimentVeryDissatisfiedOutlined';
+import SentimentDissatisfiedOutlinedIcon from '@material-ui/icons/SentimentDissatisfiedOutlined';
+import MoodBadIcon from '@material-ui/icons/MoodBad';
 import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied';
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
-import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
-
-
-
+import InsertEmoticonOutlinedIcon from '@material-ui/icons/InsertEmoticonOutlined';
+import SentimentVerySatisfiedOutlinedIcon from '@material-ui/icons/SentimentVerySatisfiedOutlined';
 
 const Width = 600
 
 const Icons = [
-  <SentimentVeryDissatisfiedIcon /> , 
-  <SentimentDissatisfiedIcon /> ,
-  <SentimentSatisfiedIcon /> , 
-  <InsertEmoticonIcon /> , 
-  <InsertEmoticonIcon />
+  <SentimentVeryDissatisfiedOutlinedIcon /> , 
+  <MoodBadIcon /> , 
+  <SentimentDissatisfiedOutlinedIcon /> ,
+  <SentimentDissatisfiedIcon /> , 
+  <SentimentSatisfiedIcon /> ,
+  <InsertEmoticonOutlinedIcon /> ,
+  <SentimentVerySatisfiedOutlinedIcon />
 ]
 
 
@@ -37,7 +40,7 @@ const useStyles = makeStyles({
 
   Rail: {
     height: "30px" ,
-    borderRadius: "10px" , 
+    borderRadius: "10px" ,  
   } , 
   
   Track: {
@@ -75,16 +78,16 @@ export default function CustomSlider(props) {
 
   let initialmarks = [];
 
-  const step =  parseInt(99 / (props.marks.length -1 ))
+  const step =  parseInt(98 / (props.marks.length -1 ))
   // const step = 20;
   // const maxofslider = 20 * props.marks.length
 
   props.marks.forEach((item  , index) => {
 
     initialmarks.push ({
-      value: 2 + (index * step) , 
+      value: index + 1 === props.marks.length ? 100 : 2 + (index * step) , 
       label: item.label ,  
-      icon: item.icon ? item.icon : Icons[parseInt(((4/props.marks.length)*index) + 1 )]
+      icon: item.icon ? item.icon : Icons[parseInt(((7/props.marks.length)*(index + 1)) - 1 )]
     })
   })  
 
