@@ -1,10 +1,12 @@
-import React from 'react';
+import React , {useState} from 'react';
 import "./Slider.css";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
+import Checkbox from '@material-ui/core/Checkbox';
 import SentimentVeryDissatisfiedOutlinedIcon from '@material-ui/icons/SentimentVeryDissatisfiedOutlined';
 import SentimentDissatisfiedOutlinedIcon from '@material-ui/icons/SentimentDissatisfiedOutlined';
 import MoodBadIcon from '@material-ui/icons/MoodBad';
@@ -12,6 +14,7 @@ import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied'
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
 import InsertEmoticonOutlinedIcon from '@material-ui/icons/InsertEmoticonOutlined';
 import SentimentVerySatisfiedOutlinedIcon from '@material-ui/icons/SentimentVerySatisfiedOutlined';
+import clsx from 'clsx';
 
 const Width = 600
 
@@ -35,8 +38,10 @@ const useStyles = makeStyles({
   },
 
   SliderRoot: {
-    color: "#1E5631"
+    color: "#1E5631" , 
   } ,
+
+ 
 
   Rail: {
     height: "30px" ,
@@ -62,7 +67,11 @@ const useStyles = makeStyles({
   MarkLabel: {
       marginTop: "15px" ,
       padding: "5px"
-  } 
+  } ,
+
+  SliderOpacity: {
+    opacity: "0.3"
+  } ,
 });
 
 
@@ -75,7 +84,7 @@ function valuetext(value) {
 
 export default function CustomSlider(props) {
   const classes = useStyles();
-
+  const [Checked, setChecked] = useState(false)
   let initialmarks = [];
 
   const step =  parseInt(98 / (props.marks.length -1 ))
@@ -93,46 +102,26 @@ export default function CustomSlider(props) {
 
   let marks = initialmarks
 
-  // const marks = [
-  //   {
-  //     value: 2,
-  //     label: 'خیلی بد',
-  //     icon: <SentimentVeryDissatisfiedIcon />
-  //   },
-  //   {
-  //     value: 25,
-  //     label: 'بد',
-  //     icon: <SentimentDissatisfiedIcon />
-  //   },
-  //   {
-  //     value: 50,
-  //     label: 'متوسط',
-  //     icon: <SentimentSatisfiedIcon />
-  //   },
-  //   {
-  //     value: 75,
-  //     label: 'خوب',
-  //     icon: <InsertEmoticonIcon />
-  //   },
-  //   {
-  //     value: 99,
-  //     label: 'خیلی خوب',
-  //     icon: <InsertEmoticonIcon />
-  //   },
-  // ];
-
-
   function valueLabelFormat(value) {
 
     var test = marks.filter((mark) => mark.value === value);
     return test[0].icon
   }
+
+  const handleChange = () => {
+    setChecked(prev => !prev)
+  }
+
   return (
     <QuestionTemplate number={props.number} text={props.text}>
           <div className={classes.root}>
-            <Typography id="discrete-slider-restrict" gutterBottom>
+            {/* <Typography style={{fontSize: "1.4rem"}} id="discrete-slider-restrict" gutterBottom>
               میزان رضایت
-            </Typography>
+            </Typography> */}
+              <FormControlLabel
+                control={<Checkbox checked={Checked} onChange={handleChange} name="check" />}
+                label="نظری ندارم"
+              />
             <Slider
             defaultValue={2}
               classes={{
@@ -142,6 +131,9 @@ export default function CustomSlider(props) {
                 markLabel: classes.MarkLabel , 
                 thumb: classes.Thumb
               }}
+              className={clsx({
+                [classes.SliderOpacity]: Checked
+              })}
               valueLabelFormat={valueLabelFormat}
               getAriaValueText={valuetext}
               aria-labelledby="discrete-slider-restrict"
@@ -149,6 +141,7 @@ export default function CustomSlider(props) {
               valueLabelDisplay="auto"
               marks={marks}
             />
+            
         </div>
     </QuestionTemplate>
   );

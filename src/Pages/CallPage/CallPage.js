@@ -2,18 +2,18 @@ import React , { useEffect , useState }  from 'react';
 import { useSelector , useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { FindQuestionById } from '../../Questions/Functions/FindQuestionById';
-// import NumberField from '../../Questions/SingleSelect/NumberField/NumberField';
-import PhoneNumber from '../../Questions/SingleSelect/PhoneNumber/PhoneNumber';
-// import EmailField from '../../Questions/SingleSelect/EmailField/EmailField';
+import NumberField from '../../Questions/SingleSelect/NumberField/NumberField';
+import EmailField from '../../Questions/SingleSelect/EmailField/EmailField';
 // import RankingDAD from '../../Questions/MultiSelect/RankingDAD/RankingDAD';
+// import RankingDAD2 from '../../Questions/MultiSelect/RankingDAD/RankingDAD2';
+import PhoneNumber from '../../Questions/SingleSelect/PhoneNumber/PhoneNumber';
 import LandlinePhone from '../../Questions/SingleSelect/LandlinePhone/LandlinePhone';
-import RankingDAD2 from '../../Questions/MultiSelect/RankingDAD/RankingDAD2';
-import RankingDAD from '../../Questions/MultiSelect/RankingDAD/RankingDAD';
+// import RankingDAD from '../../Questions/MultiSelect/RankingDAD/RankingDAD';
 import RadioCustom from '../../Questions/SingleSelect/Radio/RadioCustom';
 import SingleDropDown from '../../Questions/SingleSelect/DropDown/SingleDropDown';
 import MultiDropDown from '../../Questions/MultiSelect/MultiDropDown/MultiDropDown';
 import NationalCode from '../../Questions/SingleSelect/NationalCode/NationalCode';
-import EmailField from '../../Questions/SingleSelect/EmailField/EmailField';
+// import EmailField from '../../Questions/SingleSelect/EmailField/EmailField';
 import Shamsi from '../../Questions/SingleSelect/Shamsi/Shamsi';
 import SimpleNumberInput from '../../Questions/SingleSelect/SimpleNumberInput/SimpleNumberInput';
 import MultiLineInput from '../../Questions/SingleSelect/MultiLineInput/MultiLineInput';
@@ -59,21 +59,51 @@ export default function SimpleCard() {
       
       <div>
 
-          <RadioCustom choice={{
-              Horizontal: false ,
+           <MultiCheckbox 
+              number="15" 
+              text="کدام گزینه ها بیشتر شما را آزار داده است؟"
+              choices={{
+                other: true ,
+                column: 4 ,
+                values:[
+                  {id: 1 , choice: "ایساکو"} ,
+                  {id: 2 , choice: "سایپا بسدک"} ,
+                  {id: 3 , choice: "هپ کو "} ,
+                  {id: 4 , choice: " تو (ISPCO)"} ,
+                  {id: 5 , choice: "آی  (GISP)"} ,
+                  {id: 6 , choice: "RPCO"} ,
+                  {id: 7 , choice: "کروز"} ,
+                  {id: 8 , choice: "عظام"} ,
+                  // {id: 9 , choice: "دیناپارت"} ,
+                  // {id: 9 , choice: "دیناپارت"} ,
+                  // {id: 9 , choice: "دیناپارت"} ,
+                  // {id: 10 , choice: "لنت پارس"} ,
+                  // {id: 11 , choice: "راه فدک"} ,
+                  // {id: 12 , choice: "مدرن"} ,
+                  // {id: 13 , choice: "کوشش (رادیوتور)"} ,
+                  // {id: 14 , choice: "جهان پارت"} ,
+                  // {id: 15 , choice: "الدورا"} ,
+                  // {id: 16 , choice: "مهرکام پارس"} ,
+                  // {id: 17 , choice: "سپاهان"} ,
+                  // {id: 18 , choice: "هیچکدام"} ,
+          ]
+              }}
+        />
+
+          {/* <RadioCustom choices={{
+              Horizontal: true ,
               others: true ,
-              value: {
-                  value1: 'خیر' , 
-                  value2: 'بله' ,
-                  value3: 'نمیدانم' ,
-                  value4: 'سایر موارد' ,
-                  value5: 'سایر موارد' ,
-                  value6: 'سایر موارد' ,  
-              }
+              values: [
+                {id: 1 , value: "گزینه 1"} , 
+                {id: 2 , value: "گزینه 2"} ,
+                {id: 3 , value: "گزینه 3"} ,  
+                {id: 4 , value: "گزینه 4"} ,
+                {id: 5 , value: "سایر موارد"} ,
+              ]
           
-        }} number={3} text="گزینه مورد نظر را انتخاب کنید ؟" />
-        <TimePicker number="12" text="زمان مد نظر خود را انتخاب کنید " />
-          <CustomSlider 
+        }} number={3} text="گزینه مورد نظر را انتخاب کنید ؟" /> */}
+        {/* <TimePicker number="12" text="زمان مد نظر خود را انتخاب کنید " /> */}
+          {/* <CustomSlider 
           marks={ [
             {
               id: 1 ,
@@ -103,25 +133,8 @@ export default function SimpleCard() {
         
           ]}
             number="14" 
-            text="میزان رضایت خود را اعلام کنید ؟" />
-        {/* <MultiCheckbox number="15" text="کدام گزینه ها بیشتر شما را آزار داده است؟"
-        choices={[
-          {id: 10 , choice: "گزینه شماره 1"} ,
-          {id: 2 , choice: "گزینه شماره 2"} ,
-          {id: 3 , choice: "گزینه شماره 3"} ,
-          {id: 4 , choice: "گزینه ماره 4"} ,
-          {id: 5 , choice: "گزینه شماره 5"} ,
-          {id: 6 , choice: "گزینه شماره 6"} ,
-          {id: 7 , choice: "گزینه شماره 7"} ,
-          {id: 8 , choice: "گزینه شماره 5"} ,
-          // {id: 9 , choice: "گزینه شماره 6"} ,
-          // {id: 10 , choice: "گزینه شماره 7"} ,
-          // {id: 7 , choice: "گزینه شماره 7"} ,
-          // {id: 8 , choice: "گزینه شماره 5"} ,
-          // {id: 9 , choice: "گزینه شماره 6"} ,
-          // {id: 10 , choice: "گزینه شماره 7"} ,
-        ]}
-        /> */}
+            text="میزان اشنایی شما با برند ایکاپ چقدر است؟" /> */}
+     
         {/* <CascadingDropDown 
           number="4" 
           text="گزینه های مناسب را انتخاب کنید ؟" 
@@ -181,7 +194,7 @@ export default function SimpleCard() {
       {/* <Shamsi number="13" text="تاریخ مد نظر را انتخاب کنید ؟" /> */}
       {/* <SimpleNumberInput number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} /> */}
  
-        {/* <MultiDropDown 
+        <MultiDropDown 
             number="11" 
             text="سلام نیتب م یمت بیمست مستبی می؟" 
             caption="شهر"
@@ -205,18 +218,18 @@ export default function SimpleCard() {
               { id: 17, title: 'چالوس' } ,
               { id: 18, title: 'اردبیل' } ,
               { id: 19, title: 'نوشهر' } ,
-              { id: 20, title: 'زاهدان' } ,
+              { id: 20, title: 'زابت مسنت مست مستب مستب مسیبت سمیتب سمنیبت سمنیبت سم لان' } ,
           ]}
-            /> */}
+            />
     {/* <RankingDAD number="9" text='سیتبسیتب تمست بمسیتب ستب مستیب مستی ب' /> */}
-        <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" choices={[
+        {/* <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" choices={[
           {id:1 , choice: "گزینه شماره 1" } ,
           {id:2 , choice: "گزینه شماره 2" } ,
           {id:3 , choice: "گزینه شماره 3" } ,
           {id:4 , choice: "گزینه شماره 4" } ,
           {id:5 , choice: "گزینه شماره 5" } ,
           {id:6 , choice: "گزینه شماره 5" } ,
-        ]} />
+        ]} /> */}
      
         {/* {Quest} */}
         {/* <SingleDropDown

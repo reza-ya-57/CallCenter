@@ -113,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%" ,
     // position: "relative" , 
     // width: "100%" ,
-    // height: "100vmin" ,
+    height: "100vmin" ,
     backgroundColor: theme.palette.success.main,
     // padding: theme.spacing(3),
   },

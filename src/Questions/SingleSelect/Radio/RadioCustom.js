@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
    TextFieldVisibility: {
     marginTop: "20px" , 
     width: "100%"  
+   } , 
+   TextFieldExist: {
+     display: "none"
    }
 }))
 
@@ -39,24 +42,25 @@ export default function RadioCustom(props) {
 
 
   let FormControlLabels = [];
-
-  for (let item in props.choice.value) {
-      FormControlLabels.push(
-        <FormControlLabel
-        className={clsx({
-          [classes.FormControlLabel]: true ,
-          
-        })} 
-        value={props.choice.value[item]} 
-        control={<Radio 
-          colorSecondary="primary"
-                classes={{colorPrimary: classes.Radio ,
-                          colorSecondary: classes.RadioColor ,
-                          checked: classes.Radio}} 
-                />} 
-                    label={props.choice.value[item]} />
-      )
-  }
+  props.choices.values.forEach(item => {
+    console.log(item)
+    FormControlLabels.push(
+      <FormControlLabel
+      key={item.id}
+      className={clsx({
+        [classes.FormControlLabel]: true ,
+        
+      })} 
+      value={item.value} 
+      control={<Radio 
+        colorSecondary="primary"
+              classes={{colorPrimary: classes.Radio ,
+                        colorSecondary: classes.RadioColor ,
+                        checked: classes.Radio}} 
+              />} 
+                  label={item.value} />
+    )
+  })
 
 
   return (
@@ -66,21 +70,12 @@ export default function RadioCustom(props) {
           <FormControl className={classes.FormControl} >
               {/* <FormLabel className={classes.Text} component="div">{Data.text}</FormLabel> */}
                   <RadioGroup  className={clsx({
-                                              [classes.RadioGroupRow]: props.choice.Horizontal,
+                                              [classes.RadioGroupRow]: props.choices.Horizontal,
                                               })} 
                               value={value} onChange={handleChange}>
                               {FormControlLabels}
                   </RadioGroup>
-                              <TextField 
-                                  multiline={true}
-                                  className={clsx({
-                                    [classes.TextField]: true , 
-                                    [classes.TextFieldVisibility]: true
-                                  })}
-                                  color="secondary" 
-                                  variant="outlined" 
-                                  label="سایر موارد"
-                                  disabled={!(value === "سایر موارد")}/>
+
           </FormControl>
         </div>
       </QuestionTemplate>

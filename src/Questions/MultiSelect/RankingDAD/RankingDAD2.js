@@ -84,8 +84,6 @@ class RankingDAD2 extends Component {
   // But in this example everything is just done in one place for simplicity
   render() {
 
-    console.log(this.state);
-    console.log(this.props.choices);
     return (
       <QuestionTemplate number={this.props.number} text={this.props.text}>
           <div >
