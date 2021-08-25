@@ -2,13 +2,13 @@ import React , {useEffect , useState}  from 'react';
 import "./MultiCheckbox.css";
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import clsx from 'clsx';
 import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
 import { TextField } from '@material-ui/core';
 import  CheckBox  from '@material-ui/core/Checkbox';
-import clsx from 'clsx';
 import { height } from '@material-ui/system';
 import { green } from '@material-ui/core/colors';
 
@@ -27,41 +27,25 @@ const useStyles = makeStyles((theme) => ({
       maxHeight: Height
   },
 
-  rowRoot : {
-
-  } ,
-
-  formControl: {
-  } ,
-
-  formControl_column_1: {
-    display: "grid" , 
-    gridTemplateColumns: "auto" ,
-  },
-  formControl_column_2: {
-    display: "grid" , 
-    gridTemplateColumns: "auto auto" ,
-  },
-  formControl_column_3: {
-    display: "grid" , 
-    gridTemplateColumns: "auto auto auto" ,
-  },
-
-  DisplayNone: {
+  CheckBoxColorSelected: {
+    backgroundColor: theme.palette.warning.main
   } ,
 
   FormControlLabel: {
-      backgroundColor: "white" , 
+      // backgroundColor: "white" , 
       userSelect: "none" ,
-      boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" ,
+      // boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" ,
+      border: "1px black solid" ,
+      borderRadius: "10px" ,
       padding: " 5px 10px" ,
-      borderBottom: "3px " + `${theme.palette.grey.dark}` + " solid" ,
+      // borderBottom: "3px " + `${theme.palette.grey.dark}` + " solid" ,
       margin: "10px" ,
       "&:hover" : {
         transform: "scale(1.02)"
       }
-      
-
+  } ,
+  CheckedBoxNonOf: {
+    display: "none"
   }
 }));
 
@@ -139,7 +123,8 @@ const formControlStyle = getFormControlStyle(props.choices.column);
     <FormControlLabel
     key={item.id}
     className={clsx({
-        [classes.FormControlLabel]: true
+        [classes.FormControlLabel]: true , 
+        [classes.CheckBoxColorSelected] : item.status
     })}
     control={<Checkbox disabled={Checked} key={item.id} checked={item.status} onChange={(e) => handleChange(e , item.id)} />}
     label={item.choice}
@@ -165,12 +150,15 @@ const formControlStyle = getFormControlStyle(props.choices.column);
     </div>
     <div style={{display: "flex" , justifyContent: "flex-start" , alignItems: "center" , marginRight: "30px" , alignItems: "flex-start" }}>
     <FormControlLabel
+          className={clsx({
+            [classes.CheckedBoxNonOf]: props.choices.nonof
+          })}
           style={{backgroundColor: "grey" , padding: "5px 10px" , color: "white" , borderRadius: "10px" , height: "60px" , marginTop: "10px"}}
             control={<Checkbox checked={Checked} onChange={handleChecked} name="check" />}
             label="هیچکدام"
           />
     <TextField 
-        style={{width: "500px" , marginTop: "20px" , position: "relative" , bottom: "10px"}}
+        style={{width: "100%" , marginTop: "20px" , position: "relative" , bottom: "10px"}}
         multiline={true}
         className={clsx({
           [classes.TextField]: true , 

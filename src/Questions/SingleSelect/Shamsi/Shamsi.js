@@ -75,8 +75,9 @@ const Shamsi = (props) => {
   const [Month, setMonth] = useState("");
   const [Day, setDay] = useState("");
 
-  const InputHandler = (e) => {
+  const InputHandler = (e ) => {
     setSelectedDay({...e});
+    console.log(selectedDay)
     setYear(e.year.toString());
     setMonth(e.month.toString());
     setDay(e.day.toString());
@@ -85,29 +86,42 @@ const Shamsi = (props) => {
 
   const yearHandler = (e , list) => {
 
-    let localMonth;
-    month.forEach(item => {
-      if (item.title === Month) {
-        localMonth = item.id
-      }
-    });
-    setSelectedDay({day: Day , month: localMonth ,year: parseInt(list.title)})
-    console.log(list)
-    setYear(list.title)
+    if (list) {
+      let localMonth;
+      month.forEach(item => {
+        if (item.title === Month) {
+          localMonth = item.id
+        }
+      });
+      setSelectedDay({day: parseInt(Day) , month: localMonth ,year: parseInt(list.title)})
+  
+      console.log(list)
+      setYear(list.title)
+    }
+
   }
+
+
   const monthHandler = (e , list) => {
-    setMonth(list.title)
-    setSelectedDay({day: Day , month: parseInt(list.id) ,year: parseInt(Year)})
+    if(list) {
+      setMonth(list.title)
+      setSelectedDay({day: parseInt(Day) , month: parseInt(list.id) ,year: parseInt(Year)})
+    }
   }
+
+
   const dayHandler = (e , list) => {
-    let localMonth;
-    month.forEach(item => {
-      if (item.title === Month) {
-        localMonth = item.id
-      }
-    });
-    setDay(list.title)
-    setSelectedDay({day: parseInt(list.title) , month: localMonth ,year: parseInt(Year)})
+    if (list) {
+      console.log(list)
+      let localMonth;
+      month.forEach(item => {
+        if (item.title === Month) {
+          localMonth = item.id
+        }
+      });
+      setDay(list.title)
+      setSelectedDay({day: parseInt(list.title) , month: localMonth ,year: parseInt(Year)})
+    }
   }
 
 
@@ -116,7 +130,7 @@ const Shamsi = (props) => {
         <div className={classes.Root}>
           <Calendar
               value={selectedDay}
-              onChange={(e) => InputHandler(e)}
+              onChange={(e ) => InputHandler(e )}
               shouldHighlightWeekends
               locale="fa" 
               calendarClassName={classes.Calendar}

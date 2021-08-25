@@ -63,6 +63,7 @@ export default function SimpleCard() {
               number="15" 
               text="کدام گزینه ها بیشتر شما را آزار داده است؟"
               choices={{
+                nonof: true ,
                 other: true ,
                 column: 3 ,
                 values:[
@@ -116,7 +117,7 @@ export default function SimpleCard() {
             ]
                 }}
           />
-          
+
         <TimePicker number="12" text="زمان مد نظر خود را انتخاب کنید " />
           <CustomSlider 
           marks={ [
@@ -214,9 +215,9 @@ export default function SimpleCard() {
            /> 
     
         <MultiLineInput number="22" text="توضیحات لازم را در کادر پایین تایپ کنید ؟" />
-        <LandlinePhone number="20" text="شماره تلفن ثابت را وارد کنید ؟" />
-      <NationalCode number="2" text="شماره ملی را وارد کنید؟" />
-      <EmailField number="12" text="ایمیل را با فرمت صحیح وارد کنید؟" />
+        <LandlinePhone noidea={true} number="20" text="شماره تلفن ثابت را وارد کنید ؟" />
+      <NationalCode noidea={true} number="2" text="شماره ملی را وارد کنید؟" />
+      <EmailField noidea={true} number="12" text="ایمیل را با فرمت صحیح وارد کنید؟" />
       <Shamsi number="13" text="تاریخ مد نظر را انتخاب کنید ؟" />
       <SimpleNumberInput number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} />
            
@@ -285,7 +286,7 @@ export default function SimpleCard() {
               { id: 20, title: 'زاهدان' } ,
           ]} />
         {/* <input type='time' /> */}
-        <PhoneNumber number='7' text="شماره تلفن همراه را وارد کنید ؟" />
+        <PhoneNumber noidea={true} number='7' text="شماره تلفن همراه را وارد کنید ؟" />
         <EmailField number='8' text='ایمیل خود را با فرمت مناسب وارد کنید ؟' />
         <LandlinePhone number='10' text='شماره تلفن ثابت را وارد کنید ؟' />
         {/* <RankingDAD />

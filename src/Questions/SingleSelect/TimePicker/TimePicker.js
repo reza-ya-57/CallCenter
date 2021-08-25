@@ -39,7 +39,7 @@ export default function TimePicker(props) {
           // className={classes.TimePicker}
             margin="normal"
             id="time-picker"
-            label="Time picker"
+            label="زمان"
             value={selectedDate}
             onChange={handleDateChange}
             KeyboardButtonProps={{

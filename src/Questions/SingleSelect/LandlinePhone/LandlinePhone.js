@@ -2,12 +2,19 @@ import React , { useState } from 'react';
 import { makeStyles, TextField } from '@material-ui/core';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
 import { FilledInput , Input , InputBase } from '@material-ui/core';
+import clsx from 'clsx';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 const useStyles = makeStyles(theme => ({
     TextField: {
-        width: "400px" , 
-        padding: "20px"
+    width: "400px" , 
+    padding: "20px"
+    } ,
+
+    CheckedBoxNonOf: {
+        display: "none"
         }
 }))
 
@@ -16,6 +23,7 @@ const LandlinePhone = (props) => {
     const classes = useStyles();
     const [Input, setInput] = useState('')
     const [Error, setError] = useState(false)
+    const [Checked, setChecked] = useState(false)
 
     const InputHanlder = (e) => {
         setInput(e.target.value)
@@ -27,22 +35,37 @@ const LandlinePhone = (props) => {
 
     }
 
+    const handleChecked = () => {
+        setChecked(prev => !prev)
+    }
+
 
     return (
         <div className={classes.Root}>
            <QuestionTemplate number={props.number} text={props.text}>
+                <div style={{display: "flex" , justifyContent: "flex-start" , alignItems: "center" , marginRight: "30px" , alignItems: "flex-start" }}>
                 <TextField
+                    disabled={Checked}
                     className={classes.TextField}
                     error={Error}
                     value={Input}
                     onChange={InputHanlder}
-                    type='number'
+                    type='tel'
                     onInput={(e) => {
                         e.target.value = e.target.value.toString().slice(0,12)
                     }}
                     placeholder="شماره تلفن ثابت"
                     variant="outlined" 
                     autoFocus  />
+                    <FormControlLabel
+                        className={clsx({
+                            [classes.CheckedBoxNonOf]: !props.noidea
+                        })}
+                        style={{backgroundColor: "grey" , padding: "5px 10px" , color: "white" , borderRadius: "10px" , height: "55px" , marginTop: "19px"}}
+                            control={<Checkbox checked={Checked} onChange={handleChecked} name="check" />}
+                            label="هیچکدام"
+                        />
+                </div>
 
                     {/* <Autocomplete
                         id="combo-box-demo"

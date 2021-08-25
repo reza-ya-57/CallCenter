@@ -51,11 +51,13 @@ const useStyles = makeStyles(theme => ({
 export default function RadioCustom(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState('');
-  const [Checked, setChecked] = useState(false)
+  const [Checked, setChecked] = useState(false);
+  const [TextFieldStatus, setTextFieldStatus] = useState(false)
 
   const handleChange = (event) => {
     console.log(event.target.value)
     setValue(event.target.value);
+    // setTextFieldStatus(true)
   };
 
 
@@ -142,7 +144,15 @@ const formControlStyle = getFormControlStyle(props.choices.column);
                     label="هیچکدام"
                   />
             <TextField 
-                style={{width: "500px" , marginTop: "20px" , position: "relative" , bottom: "10px"}}
+                onChange={ e => {
+                  if ( e.target.value.toString().length > 0) {
+                    setValue("");
+                    setChecked(true)
+                  } else {
+                    setChecked(false)
+                  }
+                } }
+                style={{width: "100%" , marginTop: "20px" , position: "relative" , bottom: "10px"}}
                 multiline={true}
                 className={clsx({
                   [classes.TextField]: true , 
@@ -152,7 +162,7 @@ const formControlStyle = getFormControlStyle(props.choices.column);
                 color="secondary" 
                 variant="outlined" 
                 label="سایر موارد"
-                disabled={false}
+                disabled={TextFieldStatus}
                 // !(value === "سایر موارد")
                 />
           </div>
