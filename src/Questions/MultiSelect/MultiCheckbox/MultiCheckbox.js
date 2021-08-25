@@ -1,4 +1,5 @@
 import React , {useEffect , useState}  from 'react';
+import "./MultiCheckbox.css";
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -11,7 +12,7 @@ import clsx from 'clsx';
 import { height } from '@material-ui/system';
 
 const Width = 200;
-
+const Height = 600
 const useStyles = makeStyles((theme) => ({
   columnRoot: {
       // display: "flex" ,
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
       // justifyContent: "center"
       overflow: "auto" , 
       overflowX: "hidden" ,
-      // height: "250px"
+      maxHeight: Height
   },
 
   rowRoot : {
@@ -68,7 +69,6 @@ const useStyles = makeStyles((theme) => ({
 export default function MultiCheckbox(props) {
   const classes = useStyles();
   const [Checked, setChecked] = useState(false)  
-  
   const Data = props.choices.values;
   let initialState = [];
   for (let i = 0; i < Data.length; i++) {
@@ -78,8 +78,9 @@ export default function MultiCheckbox(props) {
       choice: Data[i].choice
     })
   }
-  const [Choices , setChoices] = useState(initialState);
   
+  const [Choices , setChoices] = useState(initialState);
+  console.log(Choices)
   const handleChange = (e, key) => {
     let updateChoices = [];
     Choices.forEach(item => {
@@ -139,7 +140,7 @@ const formControlStyle = getFormControlStyle(props.choices.column);
     className={clsx({
         [classes.FormControlLabel]: true
     })}
-    control={<Checkbox key={item.id} checked={item.status} onChange={(e) => handleChange(e , item.id)} />}
+    control={<Checkbox disabled={Checked} key={item.id} checked={item.status} onChange={(e) => handleChange(e , item.id)} />}
     label={item.choice}
   />
    )
@@ -148,6 +149,9 @@ const formControlStyle = getFormControlStyle(props.choices.column);
 
  const handleChecked = () => {
   setChecked(prev => !prev)
+  let updateChoices = []
+  setChoices(initialState)
+
 }
 
 
@@ -158,9 +162,9 @@ const formControlStyle = getFormControlStyle(props.choices.column);
           {FormGroup}
           </FormControl>
     </div>
-    <div style={{display: "flex" , justifyContent: "flex-start" , alignItems: "center" , marginRight: "30px" }}>
+    <div style={{display: "flex" , justifyContent: "flex-start" , alignItems: "center" , marginRight: "30px" , alignItems: "flex-start" }}>
     <FormControlLabel
-          style={{backgroundColor: "grey" , padding: "5px 10px" , color: "white" , borderRadius: "10px" , height: "60px"}}
+          style={{backgroundColor: "grey" , padding: "5px 10px" , color: "white" , borderRadius: "10px" , height: "60px" , marginTop: "10px"}}
             control={<Checkbox checked={Checked} onChange={handleChecked} name="check" />}
             label="هیچکدام"
           />

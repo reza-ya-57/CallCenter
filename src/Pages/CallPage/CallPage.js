@@ -5,7 +5,7 @@ import { FindQuestionById } from '../../Questions/Functions/FindQuestionById';
 import NumberField from '../../Questions/SingleSelect/NumberField/NumberField';
 import EmailField from '../../Questions/SingleSelect/EmailField/EmailField';
 // import RankingDAD from '../../Questions/MultiSelect/RankingDAD/RankingDAD';
-// import RankingDAD2 from '../../Questions/MultiSelect/RankingDAD/RankingDAD2';
+import RankingDAD2 from '../../Questions/MultiSelect/RankingDAD/RankingDAD2';
 import PhoneNumber from '../../Questions/SingleSelect/PhoneNumber/PhoneNumber';
 import LandlinePhone from '../../Questions/SingleSelect/LandlinePhone/LandlinePhone';
 // import RankingDAD from '../../Questions/MultiSelect/RankingDAD/RankingDAD';
@@ -58,27 +58,25 @@ export default function SimpleCard() {
     return (
       
       <div>
-
+{/* 
            <MultiCheckbox 
               number="15" 
               text="کدام گزینه ها بیشتر شما را آزار داده است؟"
               choices={{
                 other: true ,
-                column: 4 ,
+                column: 3 ,
                 values:[
                   {id: 1 , choice: "ایساکو"} ,
-                  {id: 2 , choice: "سایپا بسدک"} ,
+                  {id: 2 , choice: "سایپا بسسیبنمسیتبنم دک"} ,
                   {id: 3 , choice: "هپ کو "} ,
                   {id: 4 , choice: " تو (ISPCO)"} ,
                   {id: 5 , choice: "آی  (GISP)"} ,
                   {id: 6 , choice: "RPCO"} ,
                   {id: 7 , choice: "کروز"} ,
                   {id: 8 , choice: "عظام"} ,
-                  // {id: 9 , choice: "دیناپارت"} ,
-                  // {id: 9 , choice: "دیناپارت"} ,
-                  // {id: 9 , choice: "دیناپارت"} ,
-                  // {id: 10 , choice: "لنت پارس"} ,
-                  // {id: 11 , choice: "راه فدک"} ,
+                  {id: 9 , choice: "دیناپارت"} ,
+                  {id: 10 , choice: "لنت پارس"} ,
+                  {id: 11 , choice: "راه فدک"} ,
                   // {id: 12 , choice: "مدرن"} ,
                   // {id: 13 , choice: "کوشش (رادیوتور)"} ,
                   // {id: 14 , choice: "جهان پارت"} ,
@@ -88,10 +86,38 @@ export default function SimpleCard() {
                   // {id: 18 , choice: "هیچکدام"} ,
           ]
               }}
-        />
+        /> */}
+                <RadioCustom 
+                number="15" 
+                text="کدام گزینه ها بیشتر شما را آزار داده است؟"
+                choices={{
+                  nonof: false ,
+                  other: true ,
+                  column: 4 ,
+                  values:[
+                    {id: 1 , choice: "ایساکو"} ,
+                    {id: 2 , choice: "سایپا  دک"} ,
+                    {id: 3 , choice: "هپ کو "} ,
+                    {id: 4 , choice: " تو (ISPCO)"} ,
+                    {id: 5 , choice: "آی  (GISP)"} ,
+                    {id: 6 , choice: "RPCO"} ,
+                    {id: 7 , choice: "کروز"} ,
+                    {id: 8 , choice: "عظام"} ,
+                    {id: 9 , choice: "دیناپارت"} ,
+                    {id: 10 , choice: "لنت پارس"} ,
+                    {id: 11 , choice: "راه فدک"} ,
+                    // {id: 12 , choice: "مدرن"} ,
+                    // {id: 13 , choice: "کوشش (رادیوتور)"} ,
+                    // {id: 14 , choice: "جهان پارت"} ,
+                    // {id: 15 , choice: "الدورا"} ,
+                    // {id: 16 , choice: "مهرکام پارس"} ,
+                    // {id: 17 , choice: "سپاهان"} ,
+                    // {id: 18 , choice: "هیچکدام"} ,
+            ]
+                }}
+          />
 
           {/* <RadioCustom choices={{
-              Horizontal: true ,
               others: true ,
               values: [
                 {id: 1 , value: "گزینه 1"} , 
@@ -101,13 +127,16 @@ export default function SimpleCard() {
                 {id: 5 , value: "سایر موارد"} ,
               ]
           
-        }} number={3} text="گزینه مورد نظر را انتخاب کنید ؟" /> */}
+        }}
+         number={3} 
+         text="گزینه مورد نظر را انتخاب کنید ؟" /> */}
         {/* <TimePicker number="12" text="زمان مد نظر خود را انتخاب کنید " /> */}
           {/* <CustomSlider 
           marks={ [
             {
               id: 1 ,
               label: 'خیلی بد',
+              
               icon: null
             },
             {
@@ -123,6 +152,16 @@ export default function SimpleCard() {
             {
               id: 4 ,
               label: 'خوب',
+              icon: null
+            },
+            {
+              id: 5 ,
+              label: 'خیلی خوب',
+              icon: null
+            },
+            {
+              id: 5 ,
+              label: 'خیلی خوب',
               icon: null
             },
             {
@@ -193,8 +232,8 @@ export default function SimpleCard() {
       {/* <EmailField number="12" text="ایمیل را با فرمت صحیح وارد کنید؟" /> */}
       {/* <Shamsi number="13" text="تاریخ مد نظر را انتخاب کنید ؟" /> */}
       {/* <SimpleNumberInput number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} /> */}
- 
-        <MultiDropDown 
+           
+        {/* <MultiDropDown 
             number="11" 
             text="سلام نیتب م یمت بیمست مستبی می؟" 
             caption="شهر"
@@ -220,7 +259,7 @@ export default function SimpleCard() {
               { id: 19, title: 'نوشهر' } ,
               { id: 20, title: 'زابت مسنت مست مستب مستب مسیبت سمیتب سمنیبت سمنیبت سم لان' } ,
           ]}
-            />
+            /> */}
     {/* <RankingDAD number="9" text='سیتبسیتب تمست بمسیتب ستب مستیب مستی ب' /> */}
         {/* <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" choices={[
           {id:1 , choice: "گزینه شماره 1" } ,

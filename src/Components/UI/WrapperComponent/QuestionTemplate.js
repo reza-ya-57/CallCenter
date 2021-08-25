@@ -5,7 +5,7 @@ import QNumber from '../../../Partial/QNumber/QNumber';
 import { Typography } from '@material-ui/core';
 
 const MaxWidth = 400;
-
+const Height = 600
 const useStyles = makeStyles((theme) => ({
    
 
@@ -19,7 +19,11 @@ const useStyles = makeStyles((theme) => ({
     Question: {
         width: "80%" ,
         margin: "auto" , 
-        marginTop: "40px" , 
+        marginTop: "40px" ,
+        maxHeight: Height  , 
+        overflow: "auto" , 
+        border: "1px solid black" , 
+        borderRadius: "10px 10px 10px 10px" 
     } ,
 
     Text: {
@@ -31,9 +35,7 @@ const useStyles = makeStyles((theme) => ({
     } , 
     Answer: {
         backgroundColor: "#E8E8E8" ,
-        // marginTop: "10px" , 
-        border: "1px solid black" , 
-        borderRadius: "0px 0px 10px 10px" ,
+        // marginTop: "10px" , ,
         padding: "10px 20px" ,
         paddingBottom: "30px" ,
         width: "100%" ,

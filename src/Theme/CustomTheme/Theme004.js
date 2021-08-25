@@ -31,7 +31,7 @@ export const theme004 = createTheme({
         light: "#324232"
       } , 
       warning: {
-        main: "#0bb883",
+        main: "#c8e6c9",
         // hover color on sidebar menu
         dark: "#8B9A96" ,
       // selected item form sidemenu color
