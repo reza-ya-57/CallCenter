@@ -10,6 +10,7 @@ import { TextField } from '@material-ui/core';
 import  CheckBox  from '@material-ui/core/Checkbox';
 import clsx from 'clsx';
 import { height } from '@material-ui/system';
+import { green } from '@material-ui/core/colors';
 
 const Width = 200;
 const Height = 600
@@ -51,10 +52,10 @@ const useStyles = makeStyles((theme) => ({
 
   FormControlLabel: {
       backgroundColor: "white" , 
-      color: "green" ,
+      userSelect: "none" ,
       boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" ,
       padding: " 5px 10px" ,
-      borderBottom: "3px green solid" ,
+      borderBottom: "3px " + `${theme.palette.grey.dark}` + " solid" ,
       margin: "10px" ,
       "&:hover" : {
         transform: "scale(1.02)"

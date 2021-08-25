@@ -1,3 +1,4 @@
+import { green, red, yellow } from '@material-ui/core/colors';
 import {createTheme} from '@material-ui/core/styles';
 import IranSansFont from "../../fonts/assets/IRANSans.woff2";
 
@@ -13,14 +14,20 @@ const Iransans = {
 
 
 export const theme006 = createTheme({
-  palette: {
+    palette: {
+      background: {
+        default: "#ECE1D0"
+      } , 
+      
       green: {
         // header color
         main:"#b79906" 
       } ,
       grey: {
         // side menu color
-        main:"#120B01"
+        main:"#120B01", 
+        // complementary color for theme using in question
+          dark: yellow[800]
       } ,
       success: {
         // BackgroundColor
@@ -57,6 +64,14 @@ export const theme006 = createTheme({
           },
         },
       },
+                        
+      MuiCheckbox: {
+        colorSecondary: {
+          "&$checked": {
+            color: yellow[800]
+          }
+        }
+      } ,
 
       MuiFormControl: {
         root: {

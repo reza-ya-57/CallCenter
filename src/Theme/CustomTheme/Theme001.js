@@ -15,13 +15,18 @@ export const theme001 = createTheme({
 
 
   palette: {
+    background: {
+      default: "#DBE9F4"
+    } , 
       green: {
         // header color
         main:"#ab003c" 
       } ,
       grey: {
         // side menu color
-        main:"#131628"
+        main:"#131628" ,
+        // complementary color for theme using in question
+        dark: "#ab003c"
       } ,
       success: {
         // BackgroundColor
@@ -60,6 +65,14 @@ export const theme001 = createTheme({
           },
         },
       },
+      
+      MuiCheckbox: {
+        colorSecondary: {
+          "&$checked": {
+            color: "#ab003c"
+          }
+        }
+      } ,
 
       MuiFormControl: {
         root: {

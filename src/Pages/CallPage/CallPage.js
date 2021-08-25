@@ -58,7 +58,7 @@ export default function SimpleCard() {
     return (
       
       <div>
-{/* 
+
            <MultiCheckbox 
               number="15" 
               text="کدام گزینه ها بیشتر شما را آزار داده است؟"
@@ -86,7 +86,7 @@ export default function SimpleCard() {
                   // {id: 18 , choice: "هیچکدام"} ,
           ]
               }}
-        /> */}
+        />
                 <RadioCustom 
                 number="15" 
                 text="کدام گزینه ها بیشتر شما را آزار داده است؟"
@@ -116,22 +116,9 @@ export default function SimpleCard() {
             ]
                 }}
           />
-
-          {/* <RadioCustom choices={{
-              others: true ,
-              values: [
-                {id: 1 , value: "گزینه 1"} , 
-                {id: 2 , value: "گزینه 2"} ,
-                {id: 3 , value: "گزینه 3"} ,  
-                {id: 4 , value: "گزینه 4"} ,
-                {id: 5 , value: "سایر موارد"} ,
-              ]
           
-        }}
-         number={3} 
-         text="گزینه مورد نظر را انتخاب کنید ؟" /> */}
-        {/* <TimePicker number="12" text="زمان مد نظر خود را انتخاب کنید " /> */}
-          {/* <CustomSlider 
+        <TimePicker number="12" text="زمان مد نظر خود را انتخاب کنید " />
+          <CustomSlider 
           marks={ [
             {
               id: 1 ,
@@ -172,9 +159,9 @@ export default function SimpleCard() {
         
           ]}
             number="14" 
-            text="میزان اشنایی شما با برند ایکاپ چقدر است؟" /> */}
+            text="میزان اشنایی شما با برند ایکاپ چقدر است؟" />
      
-        {/* <CascadingDropDown 
+        <CascadingDropDown 
           number="4" 
           text="گزینه های مناسب را انتخاب کنید ؟" 
           parent="استان"
@@ -224,16 +211,16 @@ export default function SimpleCard() {
           { id: 19, title: 'نوشهر' , parentid: 1 } ,
           { id: 20, title: 'زاهدان' , parentid: 1 } ,
       ]}
-           />  */}
+           /> 
     
-        {/* <MultiLineInput number="22" text="توضیحات لازم را در کادر پایین تایپ کنید ؟" /> */}
-        {/* <LandlinePhone number="20" text="شماره تلفن ثابت را وارد کنید ؟" /> */}
-      {/* <NationalCode number="2" text="شماره ملی را وارد کنید؟" /> */}
-      {/* <EmailField number="12" text="ایمیل را با فرمت صحیح وارد کنید؟" /> */}
-      {/* <Shamsi number="13" text="تاریخ مد نظر را انتخاب کنید ؟" /> */}
-      {/* <SimpleNumberInput number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} /> */}
+        <MultiLineInput number="22" text="توضیحات لازم را در کادر پایین تایپ کنید ؟" />
+        <LandlinePhone number="20" text="شماره تلفن ثابت را وارد کنید ؟" />
+      <NationalCode number="2" text="شماره ملی را وارد کنید؟" />
+      <EmailField number="12" text="ایمیل را با فرمت صحیح وارد کنید؟" />
+      <Shamsi number="13" text="تاریخ مد نظر را انتخاب کنید ؟" />
+      <SimpleNumberInput number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} />
            
-        {/* <MultiDropDown 
+        <MultiDropDown 
             number="11" 
             text="سلام نیتب م یمت بیمست مستبی می؟" 
             caption="شهر"
@@ -259,19 +246,19 @@ export default function SimpleCard() {
               { id: 19, title: 'نوشهر' } ,
               { id: 20, title: 'زابت مسنت مست مستب مستب مسیبت سمیتب سمنیبت سمنیبت سم لان' } ,
           ]}
-            /> */}
+            />
     {/* <RankingDAD number="9" text='سیتبسیتب تمست بمسیتب ستب مستیب مستی ب' /> */}
-        {/* <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" choices={[
+        <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" choices={[
           {id:1 , choice: "گزینه شماره 1" } ,
           {id:2 , choice: "گزینه شماره 2" } ,
           {id:3 , choice: "گزینه شماره 3" } ,
           {id:4 , choice: "گزینه شماره 4" } ,
           {id:5 , choice: "گزینه شماره 5" } ,
           {id:6 , choice: "گزینه شماره 5" } ,
-        ]} /> */}
+        ]} />
      
         {/* {Quest} */}
-        {/* <SingleDropDown
+        <SingleDropDown
             number="10" 
             caption="شهر"
             text="گزینه مورد نظر را از منوی پایین انتخاب کنید ؟"
@@ -296,11 +283,11 @@ export default function SimpleCard() {
               { id: 18, title: 'اردبیل' } ,
               { id: 19, title: 'نوشهر' } ,
               { id: 20, title: 'زاهدان' } ,
-          ]} /> */}
+          ]} />
         {/* <input type='time' /> */}
-        {/* <PhoneNumber number='7' text="شماره تلفن همراه را وارد کنید ؟" /> */}
-        {/* <EmailField number='8' text='ایمیل خود را با فرمت مناسب وارد کنید ؟' /> */}
-        {/* <LandlinePhone number='10' text='شماره تلفن ثابت را وارد کنید ؟' /> */}
+        <PhoneNumber number='7' text="شماره تلفن همراه را وارد کنید ؟" />
+        <EmailField number='8' text='ایمیل خود را با فرمت مناسب وارد کنید ؟' />
+        <LandlinePhone number='10' text='شماره تلفن ثابت را وارد کنید ؟' />
         {/* <RankingDAD />
          */}
         {/* <NumberField placeholder="کد ملی" number="6" text="این تست سوال شماره 6 میباشد ؟" /> */}

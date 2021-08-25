@@ -1,3 +1,4 @@
+import { green } from '@material-ui/core/colors';
 import {createTheme} from '@material-ui/core/styles';
 import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 
@@ -13,14 +14,20 @@ const Iransans = {
 
 export const theme004 = createTheme({
   palette: {
+    background: {
+      default: "#ECF8E2"
+    } , 
       green: {
         // header color
-        main:"#1E5631"
+        // main:"#1E5631"
+        main: green[700]
         // main: red[900]
       } ,
       grey: {
         // side menu color
-        main:"#1B291B"
+        main:"#1B291B", 
+        // complementary color for theme using in question
+          dark: green[800]
       } ,
       success: {
         // BackgroundColor
