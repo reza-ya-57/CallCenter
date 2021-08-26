@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React , {useState , useEffect} from 'react';
+import React , {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
@@ -9,7 +9,7 @@ import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTe
 
 export default function SingleDropDown(props) {
   const DataTable = props.DataTable;
-  const [Input, setInput] = useState(0)
+  const [, setInput] = useState(0)
   const InputHandler = (e) => {
     DataTable.forEach(item => {
       if (item.title === e.target.innerText) {

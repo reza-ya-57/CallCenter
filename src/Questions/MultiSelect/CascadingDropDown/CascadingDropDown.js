@@ -15,15 +15,14 @@ const useStyles = makeStyles(theme => ({
 export default function CascadingDropDown(props) {
     const classes = useStyles();
     let firstChildData = props.ChildData;
-    const [Parent, setParent] = useState({ id: 1 , title: 'تهران' });
-    const [Child, setChild] = useState({ title: "" , id: null , parentid: null });
+    const [, setParent] = useState({ id: null , title: '' });
+    const [, setChild] = useState({ title: "" , id: null , parentid: null });
 
 
     const [ChildData, setChildData] = useState(props.ChildData)
 
 
   const parentHandler = (e , list) => {
-    console.log(list)
     setParent({...list})
     let updateChildData = [];
     firstChildData.forEach(item => {
@@ -49,7 +48,6 @@ export default function CascadingDropDown(props) {
       <QuestionTemplate number={props.number} text={props.text}>
           <div className={classes.Root}>
             <Autocomplete
-                value={{...Parent}}
                 noOptionsText={'موردی یافت نشد'}
                 onChange={(e , list) => parentHandler(e , list)}
                 id="parent-combo-box"
@@ -67,7 +65,6 @@ export default function CascadingDropDown(props) {
                                             variant="outlined" />}
             />
             <Autocomplete
-                value={{...Child}}
                 noOptionsText={'موردی یافت نشد'}
                 onChange={(e , list) => childHandler(e , list)}
                 id="child-combo-box"

@@ -27,8 +27,8 @@ const useStyles = makeStyles(theme => ({
 const LandlinePhone = (props) => {
     const classes = useStyles();
     const [InputValue, setInputValue] = useState('')
-    const [Error, setError] = useState(false)
-    const [Checked, setChecked] = useState(false)
+    const [Error, setError] = useState(false);
+    const [Checked, setChecked] = useState(false);
 
     const InputHanlder = (e) => {
         setInputValue(e.target.value)
@@ -49,6 +49,7 @@ const LandlinePhone = (props) => {
            <QuestionTemplate number={props.number} text={props.text}>
                 <div className={classes.Root}>
                 <TextField
+                    type="number"
                     disabled={Checked}
                     className={classes.TextField}
                     error={Error}
@@ -59,7 +60,6 @@ const LandlinePhone = (props) => {
                     }}
                     placeholder="شماره تلفن ثابت"
                     variant="outlined" 
-                    type="tel"
                       />
 
                 <NoIdeaCheckbox

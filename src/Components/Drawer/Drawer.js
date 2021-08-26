@@ -163,7 +163,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.grey.main  ,
   } , 
   subHeader: { 
-    background: "linear-gradient(90deg," + `${theme.palette.green.main}` +" 0%, " + `${theme.palette.warning.main}` +" 35%, #000000 100%)" ,
+    // background: "linear-gradient(90deg," + `${theme.palette.green.main}` +" 0%, " + `${theme.palette.warning.main}` +" 35%, #000000 100%)" ,
+    backgroundColor: theme.palette.green.main ,
     color: "white" ,
     zIndex: theme.zIndex.drawer + 1,
     display: "flex" ,

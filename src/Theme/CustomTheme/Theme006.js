@@ -1,4 +1,4 @@
-import { green, red, yellow } from '@material-ui/core/colors';
+import {yellow } from '@material-ui/core/colors';
 import {createTheme} from '@material-ui/core/styles';
 import IranSansFont from "../../fonts/assets/IRANSans.woff2";
 

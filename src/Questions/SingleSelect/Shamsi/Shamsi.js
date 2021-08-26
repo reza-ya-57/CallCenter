@@ -129,7 +129,7 @@ const Shamsi = (props) => {
     <QuestionTemplate type="Calendar" number={props.number} text={props.text}>
         <div className={classes.Root}>
           <Calendar
-              value={selectedDay}
+              // value={selectedDay}
               onChange={(e ) => InputHandler(e )}
               shouldHighlightWeekends
               locale="fa" 
@@ -140,7 +140,7 @@ const Shamsi = (props) => {
               <div className={classes.InputLabelWraper}>
                 <Autocomplete
                   onChange={(e , list) => yearHandler(e , list)}
-                  value={{title: Year}}
+                  // value={{title: Year}}
                   options={year}
                   getOptionLabel={(option) => option.title}
                   style={{ width: 300 }}
@@ -150,7 +150,7 @@ const Shamsi = (props) => {
               <div className={classes.InputLabelWraper}>
                 <Autocomplete
                   onChange={(e , list) => monthHandler(e , list)}
-                  value={{title: Month}}
+                  // value={{title: Month}}
                   options={month}
                   getOptionLabel={(option) => option.title}
                   style={{ width: 300 }}
@@ -160,7 +160,7 @@ const Shamsi = (props) => {
               <div className={classes.InputLabelWraper}>
                 <Autocomplete
                   onChange={(e , list) => dayHandler(e , list)}
-                  value={{title: Day}}
+                  // value={{title: Day}}
                   options={day}
                   getOptionLabel={(option) => option.title}
                   style={{ width: 300 }}

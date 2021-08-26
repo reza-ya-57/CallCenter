@@ -28,7 +28,7 @@ const EmailField = (props) => {
     const classes = useStyles();
     const [Error, setError] = useState(false)
     const [Checked, setChecked] = useState(false)
-    const [InputValue, setInputValue] = useState("")
+    const [, setInputValue] = useState("")
 
     const InputHandler = (e) => {
         setError(!validateEmail(e.target.value));

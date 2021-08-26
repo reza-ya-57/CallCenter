@@ -35,6 +35,8 @@ const SimpleNumberInput = (props) => {
     const InputHanlder = (e) => {
         setInputValue(e.target.value)
 
+
+        
         if (props.decimal) {
             if (hasDecimal(e.target.value)) {
                 setError(true)
@@ -118,6 +120,5 @@ export default SimpleNumberInput;
 
 
 function hasDecimal (num) {
-    console.log(!(num % 1))
     return !!(num % 1);
 }

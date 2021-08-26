@@ -34,7 +34,7 @@ const PhoneNumber = (props) => {
         setInputValue(e.target.value)
         if (e.target.value.toString().length < 11) {
             setError(true)
-        } else if (e.target.value.toString()[0] + e.target.value.toString()[1] != "09") {
+        } else if (e.target.value.toString()[0] + e.target.value.toString()[1] !== "09") {
             setError(true)
         } else {
             setError(false)
@@ -51,7 +51,6 @@ const PhoneNumber = (props) => {
                 <div className={classes.Root}>
                     <TextField
                             disabled={Checked}
-                            type="tel"
                             className={classes.TextField}
                             error={Error}
                             value={InputValue}
