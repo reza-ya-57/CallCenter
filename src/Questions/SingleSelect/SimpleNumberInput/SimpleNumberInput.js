@@ -34,25 +34,44 @@ const SimpleNumberInput = (props) => {
 
     const InputHanlder = (e) => {
         setInputValue(e.target.value)
-        switch(props.decimal) {
-            case false : {
-                if (hasDecimal(e.target.value)) {
-                    setError(true)
-                } else if (e.target.value.toString().length <= props.min) {
-                    setError(true)
-                } else {
-                    setError (false)
-                }
+
+        if (props.decimal) {
+            if (hasDecimal(e.target.value)) {
+                setError(true)
+            } else if (e.target.value.toString().length <= props.min) {
+                setError(true)
+            } else {
+                setError (false)
             }
-                break
-            case true : {
-                if (e.target.value.toString().length <= props.min) {
-                    setError(true)
-                } else {
-                    setError(false)
-                }
+        } else {
+            if (e.target.value.toString().length <= props.min) {
+                setError(true)
+            } else {
+                setError(false)
             }
         }
+        // switch(props.decimal) {
+        //     case false : {
+        //         if (hasDecimal(e.target.value)) {
+        //             setError(true)
+        //         } else if (e.target.value.toString().length <= props.min) {
+        //             setError(true)
+        //         } else {
+        //             setError (false)
+        //         }
+        //     }
+        //         break
+        //     case true : {
+        //         if (e.target.value.toString().length <= props.min) {
+        //             setError(true)
+        //         } else {
+        //             setError(false)
+        //         }
+        //     }
+        //     default: {
+        //         setError(true)
+        //     }   
+        // }
         setInputValue(e.target.value)
 
     }

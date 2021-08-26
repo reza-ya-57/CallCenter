@@ -1,12 +1,12 @@
-import React, { Component , useEffect } from "react";
+import React, { Component} from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import QuestionTemplate from "../../../Components/UI/WrapperComponent/QuestionTemplate";
 // fake data generator
-const getItems = count =>
-  Array.from({ length: count }, (v, k) => k).map(k => ({
-    id: `item-${k}`,
-    choice: `item ${k}`
-  }));
+// const getItems = count =>
+//   Array.from({ length: count }, (v, k) => k).map(k => ({
+//     id: `item-${k}`,
+//     choice: `item ${k}`
+//   }));
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {

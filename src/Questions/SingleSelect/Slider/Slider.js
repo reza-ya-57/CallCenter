@@ -14,7 +14,6 @@ import InsertEmoticonOutlinedIcon from '@material-ui/icons/InsertEmoticonOutline
 import SentimentVerySatisfiedOutlinedIcon from '@material-ui/icons/SentimentVerySatisfiedOutlined';
 import clsx from 'clsx';
 
-const Width = 600
 
 const Icons = [
   <SentimentVeryDissatisfiedOutlinedIcon /> , 
@@ -47,13 +46,11 @@ const useStyles = makeStyles({
   } , 
   
   Track: {
-    background: "rgb(52,171,0)" , 
     background: "linear-gradient(90deg, rgba(52,171,0,1) 13%, rgba(252,6,6,1) 100%)" ,
     height: "30px" , 
   } , 
 
   Thumb: {
-    borderRadius: "unset" ,
     borderRadius: "5px" ,
     width: "10px" , 
     height: "30px" ,

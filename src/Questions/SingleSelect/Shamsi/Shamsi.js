@@ -4,7 +4,7 @@ import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
 import { makeStyles } from "@material-ui/core";
 import QuestionTemplate from "../../../Components/UI/WrapperComponent/QuestionTemplate";
-import { InputBase , TextField } from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 let year = []
@@ -141,7 +141,6 @@ const Shamsi = (props) => {
                 <Autocomplete
                   onChange={(e , list) => yearHandler(e , list)}
                   value={{title: Year}}
-                  id="combo-box-demo"
                   options={year}
                   getOptionLabel={(option) => option.title}
                   style={{ width: 300 }}
@@ -152,7 +151,6 @@ const Shamsi = (props) => {
                 <Autocomplete
                   onChange={(e , list) => monthHandler(e , list)}
                   value={{title: Month}}
-                  // id="combo-box-demo"
                   options={month}
                   getOptionLabel={(option) => option.title}
                   style={{ width: 300 }}
@@ -163,7 +161,6 @@ const Shamsi = (props) => {
                 <Autocomplete
                   onChange={(e , list) => dayHandler(e , list)}
                   value={{title: Day}}
-                  // id="combo-box-demo"
                   options={day}
                   getOptionLabel={(option) => option.title}
                   style={{ width: 300 }}

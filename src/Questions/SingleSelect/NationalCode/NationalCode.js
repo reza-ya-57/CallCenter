@@ -72,7 +72,7 @@ const NationalCode = (props) => {
                             })}
                             checked={Checked}
                             onChange={checkboxChangeHandler}
-                            />
+                        />
             </div>
            </QuestionTemplate>
     )

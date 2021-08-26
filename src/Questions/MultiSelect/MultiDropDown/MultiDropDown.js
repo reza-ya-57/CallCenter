@@ -16,7 +16,7 @@ export default function MultiDropDown(props) {
   // const DataTable = props.DataTable;
   const [Input, setInput] = useState([])
   const classes = useStyles();
-
+  
   const InputHandler = (e , list , reason , detail) => {
     let updateInput = [];
     list.forEach(item => {

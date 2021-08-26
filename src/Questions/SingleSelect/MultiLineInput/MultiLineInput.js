@@ -27,7 +27,6 @@ const MultiLineInput = (props) => {
         <div className={classes.Root}>
            <QuestionTemplate number={props.number} text={props.text}>
                 <TextField
-                    color="success"
                     id="hello"
                     multiline={true}
                     maxRows={2}

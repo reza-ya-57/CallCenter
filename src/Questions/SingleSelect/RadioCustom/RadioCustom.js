@@ -36,7 +36,6 @@ const useStyles = makeStyles(theme => ({
     OtherCheckboxWraper: {
       display: "flex" , 
       justifyContent: "flex-start" , 
-      alignItems: "center" , 
       marginLeft: "30px" , 
       alignItems: "flex-start"
     } ,
@@ -66,18 +65,14 @@ export default function RadioCustom(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState('');
   const [Checked, setChecked] = useState(false);
-  const [TextFieldStatus, setTextFieldStatus] = useState(false)
 
   const handleChange = (event) => {
-    console.log(event.target.value)
     setValue(event.target.value);
-    // setTextFieldStatus(true)
   };
 
 
   let FormControlLabels = [];
   props.choices.values.forEach(item => {
-    console.log(item.choice)
     FormControlLabels.push(
         <FormControlLabel
           label={item.choice}
@@ -90,7 +85,6 @@ export default function RadioCustom(props) {
           value={item.choice} 
           control={<Radio
                   disabled={Checked}
-                  colorSecondary="primary"
                   classes={{colorPrimary: classes.Radio ,
                             colorSecondary: classes.RadioColor ,
                             checked: classes.Radio}} 
@@ -178,7 +172,6 @@ const formControlStyle = getFormControlStyle(props.choices.column);
                 color="secondary" 
                 variant="outlined" 
                 label="سایر موارد"
-                disabled={TextFieldStatus}
                 />
           </div>
         </div>

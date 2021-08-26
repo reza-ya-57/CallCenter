@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import QNumber from '../../../Partial/QNumber/QNumber';
 import { Typography } from '@material-ui/core';
 
-const MaxWidth = 400;
 const Height = 600
 const useStyles = makeStyles((theme) => ({
    
@@ -27,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     } ,
 
     Text: {
-        color: '#3f51b5' ,
         color: "white" ,
         marginBottom: '20px' , 
         position: "relative" , 

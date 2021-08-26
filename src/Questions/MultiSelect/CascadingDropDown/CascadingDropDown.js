@@ -1,5 +1,5 @@
 /* eslint-disable no-use-before-define */
-import React , {useState , useEffect} from 'react';
+import React , {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 export default function CascadingDropDown(props) {
     const classes = useStyles();
     let firstChildData = props.ChildData;
-    const [Parent, setParent] = useState({ title: ""  , id: null });
+    const [Parent, setParent] = useState({ id: 1 , title: 'تهران' });
     const [Child, setChild] = useState({ title: "" , id: null , parentid: null });
 
 

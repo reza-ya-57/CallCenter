@@ -101,7 +101,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
-    backgroundImage:" linear-gradient(120deg, " + `${theme.palette.green.main}` + " , #131628 )" ,
+    // backgroundImage:" linear-gradient(120deg,  " + `${theme.palette.green.main}` + ", #131628 )" ,
+    backgroundImage: theme.palette.green.main ,
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },

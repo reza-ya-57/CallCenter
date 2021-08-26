@@ -52,7 +52,6 @@ const PhoneNumber = (props) => {
                     <TextField
                             disabled={Checked}
                             type="tel"
-                            color="success"
                             className={classes.TextField}
                             error={Error}
                             value={InputValue}

@@ -1,8 +1,9 @@
-import React , { useEffect , useState }  from 'react';
-import { useSelector , useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
-import { FindQuestionById } from '../../Questions/Functions/FindQuestionById';
-import EmailField from '../../Questions/SingleSelect/EmailField/EmailField';
+import React   from 'react';
+// import { useEffect , useState }  from 'react';
+// import { useSelector , useDispatch } from 'react-redux';
+// import { makeStyles } from '@material-ui/core/styles';
+// import { FindQuestionById } from '../../Questions/Functions/FindQuestionById';
+// import EmailField from '../../Questions/SingleSelect/EmailField/EmailField';
 // import RankingDAD from '../../Questions/MultiSelect/RankingDAD/RankingDAD';
 import RankingDAD2 from '../../Questions/MultiSelect/RankingDAD/RankingDAD2';
 import PhoneNumber from '../../Questions/SingleSelect/PhoneNumber/PhoneNumber';
@@ -11,11 +12,11 @@ import LandlinePhone from '../../Questions/SingleSelect/LandlinePhone/LandlinePh
 import RadioCustom from '../../Questions/SingleSelect/RadioCustom/RadioCustom';
 import SingleDropDown from '../../Questions/SingleSelect/SingleDropDown/SingleDropDown';
 import MultiDropDown from '../../Questions/MultiSelect/MultiDropDown/MultiDropDown';
-import NationalCode from '../../Questions/SingleSelect/NationalCode/NationalCode';
+// import NationalCode from '../../Questions/SingleSelect/NationalCode/NationalCode';
 // import EmailField from '../../Questions/SingleSelect/EmailField/EmailField';
-import Shamsi from '../../Questions/SingleSelect/Shamsi/Shamsi';
-import SimpleNumberInput from '../../Questions/SingleSelect/SimpleNumberInput/SimpleNumberInput';
-import MultiLineInput from '../../Questions/SingleSelect/MultiLineInput/MultiLineInput';
+// import Shamsi from '../../Questions/SingleSelect/Shamsi/Shamsi';
+// import SimpleNumberInput from '../../Questions/SingleSelect/SimpleNumberInput/SimpleNumberInput';
+// import MultiLineInput from '../../Questions/SingleSelect/MultiLineInput/MultiLineInput';
 import CascadingDropDown from '../../Questions/MultiSelect/CascadingDropDown/CascadingDropDown';
 import MultiCheckbox from '../../Questions/MultiSelect/MultiCheckbox/MultiCheckbox';
 import TimePicker from '../../Questions/SingleSelect/TimePicker/TimePicker';
@@ -24,23 +25,24 @@ import CustomSlider from '../../Questions/SingleSelect/Slider/Slider';
 
 
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    // minWidth: 275,
-  },
+// const useStyles = makeStyles(theme => ({
+//   root: {
+//     // minWidth: 275,
+//   },
 
-  Footer: {
-    // backgroundColor: 'red' ,
-    // height: "100px" ,
+//   Footer: {
+//     // backgroundColor: 'red' ,
+//     // height: "100px" ,
 
 
-  }
-}));
+//   }
+// }));
 
 
 
 export default function SimpleCard() {
-  const classes = useStyles();
+  // const classes = useStyles();
+  console.log("what's going on?")
   // let dispatch = useDispatch();
   // const [Quest, setQuest] = useState([]);
   // let {Questions} = useSelector(state => state.qa);
@@ -211,12 +213,12 @@ export default function SimpleCard() {
       ]}
            /> 
     
-        <MultiLineInput number="22" text="توضیحات لازم را در کادر پایین تایپ کنید ؟" />
+        {/* <MultiLineInput number="22" text="توضیحات لازم را در کادر پایین تایپ کنید ؟" />
         <LandlinePhone noidea={true} number="20" text="شماره تلفن ثابت را وارد کنید ؟" />
       <NationalCode noidea={true} number="2" text="شماره ملی را وارد کنید؟" />
       <EmailField noidea={true} number="12" text="ایمیل را با فرمت صحیح وارد کنید؟" />
       <Shamsi number="13" text="تاریخ مد نظر را انتخاب کنید ؟" />
-      <SimpleNumberInput noidea={true} number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} />
+      <SimpleNumberInput noidea={true} number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} /> */}
            
         <MultiDropDown 
             number="11" 

@@ -24,7 +24,6 @@ export default function SingleDropDown(props) {
            <Autocomplete
             noOptionsText={'موردی یافت نشد'}
               onChange={(e) => InputHandler(e)}
-              id="combo-box-demo"
               options={props.DataTable}
               getOptionLabel={(option) => option.title}
               style={{ width: 400 , padding: "20px" }}
