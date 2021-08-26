@@ -2,7 +2,7 @@ import React  from "react";
 import { makeStyles } from "@material-ui/core";
 import SplineChart from "./Charts/SplineChart";
 
-
+import NoIdeaCheckbox from "../../Partial/NoIdeaCheckbox/NoIdeaCheckbox";
 
 const useStyle = makeStyles(theme => ({
     Root: {

@@ -1,7 +1,6 @@
 import React , { useState } from 'react';
 import { makeStyles, TextField } from '@material-ui/core';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
-import { TextareaAutosize } from '@material-ui/core';
 import "./MultiLineInput.css"
 
 const useStyles = makeStyles(theme => ({

@@ -2,15 +2,14 @@ import React , { useEffect , useState }  from 'react';
 import { useSelector , useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { FindQuestionById } from '../../Questions/Functions/FindQuestionById';
-import NumberField from '../../Questions/SingleSelect/NumberField/NumberField';
 import EmailField from '../../Questions/SingleSelect/EmailField/EmailField';
 // import RankingDAD from '../../Questions/MultiSelect/RankingDAD/RankingDAD';
 import RankingDAD2 from '../../Questions/MultiSelect/RankingDAD/RankingDAD2';
 import PhoneNumber from '../../Questions/SingleSelect/PhoneNumber/PhoneNumber';
 import LandlinePhone from '../../Questions/SingleSelect/LandlinePhone/LandlinePhone';
 // import RankingDAD from '../../Questions/MultiSelect/RankingDAD/RankingDAD';
-import RadioCustom from '../../Questions/SingleSelect/Radio/RadioCustom';
-import SingleDropDown from '../../Questions/SingleSelect/DropDown/SingleDropDown';
+import RadioCustom from '../../Questions/SingleSelect/RadioCustom/RadioCustom';
+import SingleDropDown from '../../Questions/SingleSelect/SingleDropDown/SingleDropDown';
 import MultiDropDown from '../../Questions/MultiSelect/MultiDropDown/MultiDropDown';
 import NationalCode from '../../Questions/SingleSelect/NationalCode/NationalCode';
 // import EmailField from '../../Questions/SingleSelect/EmailField/EmailField';
@@ -41,29 +40,27 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function SimpleCard() {
-  let dispatch = useDispatch();
-  const [Quest, setQuest] = useState([]);
-  let {Questions} = useSelector(state => state.qa);
-  let {CurrentQuestion} = useSelector(state => state.currentqa);
+  const classes = useStyles();
+  // let dispatch = useDispatch();
+  // const [Quest, setQuest] = useState([]);
+  // let {Questions} = useSelector(state => state.qa);
+  // let {CurrentQuestion} = useSelector(state => state.currentqa);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-      let UpdateQuest = FindQuestionById(Questions , CurrentQuestion)
+    //   let UpdateQuest = FindQuestionById(Questions , CurrentQuestion)
 
-      setQuest([UpdateQuest])
+    //   setQuest([UpdateQuest])
 
-    } , [CurrentQuestion , Questions] )
+    // } , [CurrentQuestion , Questions] )
     
-    const classes = useStyles();
     return (
-      
       <div>
-
            <MultiCheckbox 
               number="15" 
               text="کدام گزینه ها بیشتر شما را آزار داده است؟"
               choices={{
-                nonof: true ,
+                noidea: true ,
                 other: true ,
                 column: 3 ,
                 values:[
@@ -92,7 +89,7 @@ export default function SimpleCard() {
                 number="15" 
                 text="کدام گزینه ها بیشتر شما را آزار داده است؟"
                 choices={{
-                  nonof: false ,
+                  noidea: true ,
                   other: true ,
                   column: 4 ,
                   values:[
@@ -219,7 +216,7 @@ export default function SimpleCard() {
       <NationalCode noidea={true} number="2" text="شماره ملی را وارد کنید؟" />
       <EmailField noidea={true} number="12" text="ایمیل را با فرمت صحیح وارد کنید؟" />
       <Shamsi number="13" text="تاریخ مد نظر را انتخاب کنید ؟" />
-      <SimpleNumberInput number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} />
+      <SimpleNumberInput noidea={true} number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} />
            
         <MultiDropDown 
             number="11" 
@@ -285,13 +282,10 @@ export default function SimpleCard() {
               { id: 19, title: 'نوشهر' } ,
               { id: 20, title: 'زاهدان' } ,
           ]} />
-        {/* <input type='time' /> */}
+
         <PhoneNumber noidea={true} number='7' text="شماره تلفن همراه را وارد کنید ؟" />
-        <EmailField number='8' text='ایمیل خود را با فرمت مناسب وارد کنید ؟' />
         <LandlinePhone number='10' text='شماره تلفن ثابت را وارد کنید ؟' />
-        {/* <RankingDAD />
-         */}
-        {/* <NumberField placeholder="کد ملی" number="6" text="این تست سوال شماره 6 میباشد ؟" /> */}
+
         {/* <div className={classes.Footer}>
           <button onClick={() => dispatch({ type: 'BACK_QUESTION' })}>قبلی</button>
           <button onClick={() => dispatch({ type: 'NEXT_QUESTION' })}>بعدی</button>

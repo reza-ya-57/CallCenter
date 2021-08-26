@@ -7,7 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import { makeStyles } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
-import  CheckBox  from '@material-ui/core/Checkbox';
+import NoIdeaCheckbox from '../../../Partial/NoIdeaCheckbox/NoIdeaCheckbox';
 
 const Height = 400
 const useStyles = makeStyles(theme => ({
@@ -31,21 +31,35 @@ const useStyles = makeStyles(theme => ({
       borderRadius: "10px" ,
       margin: "10px 10px" , 
       padding: "0px 10px"
-    }
-   ,
-   TextFieldVisibility: {
+    } ,
+
+    OtherCheckboxWraper: {
+      display: "flex" , 
+      justifyContent: "flex-start" , 
+      alignItems: "center" , 
+      marginLeft: "30px" , 
+      alignItems: "flex-start"
+    } ,
+
+  TextField: {
+    width: "100%" , 
     marginTop: "20px" , 
-    width: "100%"  
-   } , 
-   TextFieldExist: {
-     display: "none"
-   } , 
-   RadioCheckedColor: {
-     backgroundColor: theme.palette.warning.main
-   } , 
-   CheckedBoxNonOf: {
-     display: "none"
-   }
+    position: "relative" , 
+    bottom: "10px"
+  } ,
+
+    RadioCheckedColor: {
+      backgroundColor: theme.palette.warning.main
+    } , 
+ 
+
+    NoIdeaCheckbox: {
+      marginTop: "10px"
+    } ,
+
+    NoIdeaStatus: {
+    display: "none"
+}
 }))
 
 export default function RadioCustom(props) {
@@ -65,22 +79,22 @@ export default function RadioCustom(props) {
   props.choices.values.forEach(item => {
     console.log(item.choice)
     FormControlLabels.push(
-      <FormControlLabel
-      key={item.id}
-      className={clsx({
-        [classes.FormControlLabel]: true ,
-        [classes.RadioCheckedColor]: value === item.choice
-        
-      })} 
-      value={item.choice} 
-      control={<Radio
-              disabled={Checked}
-              colorSecondary="primary"
-              classes={{colorPrimary: classes.Radio ,
-                        colorSecondary: classes.RadioColor ,
-                        checked: classes.Radio}} 
-              />} 
-              label={item.choice} />
+        <FormControlLabel
+          label={item.choice}
+          key={item.id}
+          className={clsx({
+            [classes.FormControlLabel]: true ,
+            [classes.RadioCheckedColor]: value === item.choice
+            
+          })} 
+          value={item.choice} 
+          control={<Radio
+                  disabled={Checked}
+                  colorSecondary="primary"
+                  classes={{colorPrimary: classes.Radio ,
+                            colorSecondary: classes.RadioColor ,
+                            checked: classes.Radio}} 
+                />}  />
     )
   })
 
@@ -114,35 +128,39 @@ export default function RadioCustom(props) {
 
 const formControlStyle = getFormControlStyle(props.choices.column);
 
-  const handleChecked = () => {
-    setChecked(prev => !prev)
-    setValue("")
-  }
+
+  const checkboxChangeHandler = () => {
+    setChecked(prev => !prev);
+    setValue("");
+}
+
 
   return (
 
       <QuestionTemplate number={props.number} text={props.text}>
         <div style={{margin: "auto" }}>
           <FormControl className={classes.FormControl} >
-                  <RadioGroup
-                    style={formControlStyle}
-                    className={clsx({
-                              [classes.RadioGroupRow]: props.choices.Horizontal,
-                              [classes.RadioGroup]: true
-                              })} 
-                              value={value} onChange={handleChange}>
-                              {FormControlLabels}
-                  </RadioGroup>                  
+            <RadioGroup
+              style={formControlStyle}
+              className={clsx({
+                        [classes.RadioGroupRow]: props.choices.Horizontal,
+                        [classes.RadioGroup]: true
+                        })} 
+                        value={value} onChange={handleChange}>
+                        {FormControlLabels}
+            </RadioGroup>                  
           </FormControl>
-          <div style={{display: "flex" , justifyContent: "flex-start" , alignItems: "center" , marginRight: "30px" , alignItems: "flex-start" }}>
-            <FormControlLabel
-                  className={clsx({
-                    [classes.CheckedBoxNonOf]: props.choices.nonof
-                  })}
-                  style={{backgroundColor: "grey" , padding: "5px 10px" , color: "white" , borderRadius: "10px" , height: "60px" , marginTop: "10px"}}
-                    control={<CheckBox  checked={Checked} onChange={handleChecked} name="check" />}
-                    label="هیچکدام"
-                  />
+          <div className={classes.OtherCheckboxWraper}>
+            <NoIdeaCheckbox
+              label="هیچکدام"
+              className={clsx({
+                  [classes.NoIdeaStatus]: !props.choices.noidea , 
+                  [classes.NoIdeaCheckbox]: true
+              })}
+              checked={Checked}
+              onChange={checkboxChangeHandler}
+              />
+
             <TextField 
                 onChange={ e => {
                   if ( e.target.value.toString().length > 0) {
@@ -152,18 +170,15 @@ const formControlStyle = getFormControlStyle(props.choices.column);
                     setChecked(false)
                   }
                 } }
-                style={{width: "100%" , marginTop: "20px" , position: "relative" , bottom: "10px"}}
+
                 multiline={true}
                 className={clsx({
                   [classes.TextField]: true , 
-                  // [classes.TextFieldVisibility]: true , 
-                  // [classes.TextFieldExist]: !props.choices.others
                 })}
                 color="secondary" 
                 variant="outlined" 
                 label="سایر موارد"
                 disabled={TextFieldStatus}
-                // !(value === "سایر موارد")
                 />
           </div>
         </div>

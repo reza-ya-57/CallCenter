@@ -1,11 +1,9 @@
 import React , {useState} from 'react';
 import "./Slider.css";
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-
 import Checkbox from '@material-ui/core/Checkbox';
 import SentimentVeryDissatisfiedOutlinedIcon from '@material-ui/icons/SentimentVeryDissatisfiedOutlined';
 import SentimentDissatisfiedOutlinedIcon from '@material-ui/icons/SentimentDissatisfiedOutlined';
@@ -88,8 +86,6 @@ export default function CustomSlider(props) {
   let initialmarks = [];
 
   const step =  parseInt(98 / (props.marks.length -1 ))
-  // const step = 20;
-  // const maxofslider = 20 * props.marks.length
 
   props.marks.forEach((item  , index) => {
 
@@ -115,32 +111,29 @@ export default function CustomSlider(props) {
   return (
     <QuestionTemplate number={props.number} text={props.text}>
           <div className={classes.root}>
-            {/* <Typography style={{fontSize: "1.4rem"}} id="discrete-slider-restrict" gutterBottom>
-              میزان رضایت
-            </Typography> */}
               <FormControlLabel
                 control={<Checkbox checked={Checked} onChange={handleChange} name="check" />}
                 label="نظری ندارم"
               />
-            <Slider
-            defaultValue={2}
-              classes={{
-                root: classes.SliderRoot ,
-                rail: classes.Rail, 
-                track: classes.Track ,
-                markLabel: classes.MarkLabel , 
-                thumb: classes.Thumb
-              }}
-              className={clsx({
-                [classes.SliderOpacity]: Checked
-              })}
-              valueLabelFormat={valueLabelFormat}
-              getAriaValueText={valuetext}
-              aria-labelledby="discrete-slider-restrict"
-              step={null}
-              valueLabelDisplay="auto"
-              marks={marks}
-            />
+              <Slider
+                defaultValue={2}
+                classes={{
+                  root: classes.SliderRoot ,
+                  rail: classes.Rail, 
+                  track: classes.Track ,
+                  markLabel: classes.MarkLabel , 
+                  thumb: classes.Thumb
+                }}
+                className={clsx({
+                  [classes.SliderOpacity]: Checked
+                })}
+                valueLabelFormat={valueLabelFormat}
+                getAriaValueText={valuetext}
+                aria-labelledby="discrete-slider-restrict"
+                step={null}
+                valueLabelDisplay="auto"
+                marks={marks}
+              />
             
         </div>
     </QuestionTemplate>

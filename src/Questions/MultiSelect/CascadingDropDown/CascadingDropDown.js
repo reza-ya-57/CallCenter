@@ -3,7 +3,6 @@ import React , {useState , useEffect} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
-import classNames from 'classnames';
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -50,8 +49,8 @@ export default function CascadingDropDown(props) {
       <QuestionTemplate number={props.number} text={props.text}>
           <div className={classes.Root}>
             <Autocomplete
-            value={{...Parent}}
-            noOptionsText={'موردی یافت نشد'}
+                value={{...Parent}}
+                noOptionsText={'موردی یافت نشد'}
                 onChange={(e , list) => parentHandler(e , list)}
                 id="parent-combo-box"
                 options={props.ParentData}
@@ -63,13 +62,13 @@ export default function CascadingDropDown(props) {
                 }}
                 style={{ width: 400 , padding: "20px" }}
                 renderInput={(params) => <TextField
-                                            {...params} 
-                                        label={props.parent} 
-                                        variant="outlined" />}
+                                                {...params} 
+                                            label={props.parent} 
+                                            variant="outlined" />}
             />
             <Autocomplete
-            value={{...Child}}
-            noOptionsText={'موردی یافت نشد'}
+                value={{...Child}}
+                noOptionsText={'موردی یافت نشد'}
                 onChange={(e , list) => childHandler(e , list)}
                 id="child-combo-box"
                 options={ChildData} getOptionLabel={(option) => {
@@ -80,10 +79,10 @@ export default function CascadingDropDown(props) {
                 }}
                 style={{ width: 400 , padding: "20px" }}
                 renderInput={(params) => <TextField
-                                            {...params} 
-                                        label={props.child} 
-                                        variant="outlined" />}
-            />
+                                                {...params} 
+                                            label={props.child} 
+                                            variant="outlined" />}
+                />
           </div>
       </QuestionTemplate>
   );

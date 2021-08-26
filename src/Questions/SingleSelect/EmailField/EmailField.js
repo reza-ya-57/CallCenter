@@ -1,21 +1,26 @@
 import React , {useState} from 'react';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
 import { makeStyles , TextField } from '@material-ui/core';
-import { PowerInputSharp } from '@material-ui/icons';
+import NoIdeaCheckbox from '../../../Partial/NoIdeaCheckbox/NoIdeaCheckbox';
 import clsx from 'clsx';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 
 const useStyles = makeStyles(theme => ({
     Root: {
+    display: "flex" , 
+    justifyContent: "center" , 
+    alignItems: "center" , 
+    marginRight: "30px" ,
+} ,
 
-    } , 
-    
     TextField: {
     width: "400px" , 
     padding: "20px"
+} , 
+    NoIdeaStatus: {
+        display: "none"
     }
+
 }))
 
 
@@ -23,18 +28,20 @@ const EmailField = (props) => {
     const classes = useStyles();
     const [Error, setError] = useState(false)
     const [Checked, setChecked] = useState(false)
+    const [InputValue, setInputValue] = useState("")
 
     const InputHandler = (e) => {
         setError(!validateEmail(e.target.value));
+        setInputValue(e.target.value)
     }
 
-    const handleChecked = () => {
+    const checkboxChangeHandler = () => {
         setChecked(prev => !prev)
     }
 
     return (
         <QuestionTemplate number={props.number} text={props.text}>
-            <div style={{display: "flex" , justifyContent: "flex-start" , alignItems: "center" , marginRight: "30px" , alignItems: "flex-start" }} className={classes.Root}>
+            <div className={classes.Root}>
                <TextField
                     disabled={Checked}
                     onFocus={InputHandler}
@@ -48,14 +55,14 @@ const EmailField = (props) => {
                     onChange={InputHandler}
                     inputProps={{ maxLength: 40 }}
                     error={Error}
+                    autoFocus
                     />
-                <FormControlLabel
+                <NoIdeaCheckbox
                     className={clsx({
-                        [classes.CheckedBoxNonOf]: props.noidea
+                        [classes.NoIdeaStatus]: !props.noidea
                     })}
-                    style={{backgroundColor: "grey" , padding: "5px 10px" , color: "white" , borderRadius: "10px" , height: "55px" , marginTop: "19px"}}
-                        control={<Checkbox checked={Checked} onChange={handleChecked} name="check" />}
-                        label="هیچکدام"
+                    checked={Checked}
+                    onChange={checkboxChangeHandler}
                     />
             </div>
         </QuestionTemplate>

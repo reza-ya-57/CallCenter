@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function MultiDropDown(props) {
-  const DataTable = props.DataTable;
+  // const DataTable = props.DataTable;
   const [Input, setInput] = useState([])
   const classes = useStyles();
 
@@ -29,14 +29,14 @@ export default function MultiDropDown(props) {
   return (
     <QuestionTemplate number={props.number} text={props.text}>
          <Autocomplete
-          className={classes.Autocomplete}
-          onChange={(e , list, reason , detail) => InputHandler(e , list, reason , detail)}
-          multiple
-          id="tags-outlined"
-          options={props.DataTable}
-          getOptionLabel={(option) => option.title}
-          filterSelectedOptions
-          renderInput={(params) => (
+            className={classes.Autocomplete}
+            onChange={(e , list, reason , detail) => InputHandler(e , list, reason , detail)}
+            multiple
+            id="tags-outlined"
+            options={props.DataTable}
+            getOptionLabel={(option) => option.title}
+            filterSelectedOptions
+            renderInput={(params) => (
           <TextField
             {...params}
             variant="outlined"

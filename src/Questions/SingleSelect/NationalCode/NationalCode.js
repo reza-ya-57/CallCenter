@@ -1,80 +1,80 @@
 import React , { useState } from 'react';
 import { makeStyles, TextField } from '@material-ui/core';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
-import { FilledInput , Input , InputBase } from '@material-ui/core';
+import NoIdeaCheckbox from '../../../Partial/NoIdeaCheckbox/NoIdeaCheckbox';
 import clsx from 'clsx';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 const MaxWidth = 400
 const useStyles = makeStyles(theme => ({
+    Root: {
+        display: "flex" , 
+        justifyContent: "center" , 
+        alignItems: "center" , 
+        marginRight: "30px" ,
+} ,
     TextField: {
         padding: "20px" , 
         maxWidth: MaxWidth , 
     }  ,
 
-    CheckedBoxNonOf: {
+    NoIdeaStatus: {
         display: "none"
-        }
+    }
 }))
 
 
 const NationalCode = (props) => {
     const classes = useStyles();
-    const [Input, setInput] = useState('')
     const [Error, setError] = useState(false)
     const [Checked, setChecked] = useState(false)
-    
-    const handleChecked = () => {
+    const [InputValue, setInputValue] = useState("")
+
+
+    const InputHanlder = (e) => {
+        setInputValue(e.target.value)
+        if (!checkCodeMeli(e.target.value.toString())) {
+            setError(true)
+        } else {
+            setError(false)
+        }
+    }
+
+    const checkboxChangeHandler = () => {
         setChecked(prev => !prev)
     }
 
 
 
-    const InputHanlder = (e) => {
-        setInput(e.target.value)
-        if (!checkCodeMeli(e.target.value.toString())) {
-            setError(true)
-        } else {
-            setError(false)
-            setInput(e.target.value)
-        }
-    }
-
-
     return (
-        <div className={classes.Root}>
            <QuestionTemplate number={props.number} text={props.text}>
-                <div style={{display: "flex" , justifyContent: "flex-start" , alignItems: "center" , marginRight: "30px" , alignItems: "flex-start" }}>
-            <TextField
-                    disabled={Checked}
-                    onFocus={InputHanlder}
-                    onBlur={() => {
-                        setError(false)
-                    }}
-                    className={classes.TextField}
-                    error={Error}
-                    value={Input}
-                    onChange={InputHanlder}
-                    type='tel'
-                    // onInput={(e) => {
-                    //     e.target.value = e.target.value.toString().slice(0,11)
-                        
-                    // }}
-                    placeholder="کد ملی"
-                    variant="outlined" 
-                    autoFocus  />
-            <FormControlLabel
-                    className={clsx({
-                        [classes.CheckedBoxNonOf]: !props.noidea
-                    })}
-                    style={{backgroundColor: "grey" , padding: "5px 10px" , color: "white" , borderRadius: "10px" , height: "55px" , marginTop: "19px"}}
-                        control={<Checkbox checked={Checked} onChange={handleChecked} name="check" />}
-                        label="هیچکدام"
-                    />
+                <div className={classes.Root}>
+                    <TextField
+                            disabled={Checked}
+                            onFocus={InputHanlder}
+                            onBlur={() => {
+                                setError(false)
+                            }}
+                            className={classes.TextField}
+                            error={Error}
+                            value={InputValue}
+                            onChange={InputHanlder}
+                            type='tel'
+                            // onInput={(e) => {
+                            //     e.target.value = e.target.value.toString().slice(0,11)
+                                
+                            // }}
+                            placeholder="کد ملی"
+                            variant="outlined" 
+                            autoFocus  />
+                        <NoIdeaCheckbox
+                            className={clsx({
+                                [classes.NoIdeaStatus]: !props.noidea
+                            })}
+                            checked={Checked}
+                            onChange={checkboxChangeHandler}
+                            />
             </div>
            </QuestionTemplate>
-        </div>
     )
 }
 
