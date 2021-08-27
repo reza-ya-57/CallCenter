@@ -8,7 +8,7 @@ import React   from 'react';
 import RankingDAD2 from '../../Questions/MultiSelect/RankingDAD/RankingDAD2';
 import PhoneNumber from '../../Questions/SingleSelect/PhoneNumber/PhoneNumber';
 import LandlinePhone from '../../Questions/SingleSelect/LandlinePhone/LandlinePhone';
-// import RankingDAD from '../../Questions/MultiSelect/RankingDAD/RankingDAD';
+import RankingDAD from '../../Questions/MultiSelect/RankingDAD/RankingDAD';
 import RadioCustom from '../../Questions/SingleSelect/RadioCustom/RadioCustom';
 import SingleDropDown from '../../Questions/SingleSelect/SingleDropDown/SingleDropDown';
 import MultiDropDown from '../../Questions/MultiSelect/MultiDropDown/MultiDropDown';
@@ -46,18 +46,19 @@ export default function SimpleCard() {
   // const [Quest, setQuest] = useState([]);
   // let {Questions} = useSelector(state => state.qa);
   // let {CurrentQuestion} = useSelector(state => state.currentqa);
-
-    // useEffect(() => {
-
+  
+  // useEffect(() => {
+    
     //   let UpdateQuest = FindQuestionById(Questions , CurrentQuestion)
-
+    
     //   setQuest([UpdateQuest])
-
+    
     // } , [CurrentQuestion , Questions] )
     
     return (
       <div>
-           <MultiCheckbox 
+        {/* {Quest} */}
+            <MultiCheckbox 
               number="15" 
               text="کدام گزینه ها بیشتر شما را آزار داده است؟"
               choices={{
@@ -76,13 +77,13 @@ export default function SimpleCard() {
                   {id: 9 , choice: "دیناپارت"} ,
                   {id: 10 , choice: "لنت پارس"} ,
                   {id: 11 , choice: "راه فدک"} ,
-                  // {id: 12 , choice: "مدرن"} ,
-                  // {id: 13 , choice: "کوشش (رادیوتور)"} ,
-                  // {id: 14 , choice: "جهان پارت"} ,
-                  // {id: 15 , choice: "الدورا"} ,
-                  // {id: 16 , choice: "مهرکام پارس"} ,
-                  // {id: 17 , choice: "سپاهان"} ,
-                  // {id: 18 , choice: "هیچکدام"} ,
+                  {id: 12 , choice: "مدرن"} ,
+                  {id: 13 , choice: "کوشش (رادیوتور)"} ,
+                  {id: 14 , choice: "جهان پارت"} ,
+                  {id: 15 , choice: "الدورا"} ,
+                  {id: 16 , choice: "مهرکام پارس"} ,
+                  {id: 17 , choice: "سپاهان"} ,
+                  {id: 18 , choice: "هیچکدام"} ,
           ]
               }}
         />
@@ -105,13 +106,13 @@ export default function SimpleCard() {
                     {id: 9 , choice: "دیناپارت"} ,
                     {id: 10 , choice: "لنت پارس"} ,
                     {id: 11 , choice: "راه فدک"} ,
-                    // {id: 12 , choice: "مدرن"} ,
-                    // {id: 13 , choice: "کوشش (رادیوتور)"} ,
-                    // {id: 14 , choice: "جهان پارت"} ,
-                    // {id: 15 , choice: "الدورا"} ,
-                    // {id: 16 , choice: "مهرکام پارس"} ,
-                    // {id: 17 , choice: "سپاهان"} ,
-                    // {id: 18 , choice: "هیچکدام"} ,
+                    {id: 12 , choice: "مدرن"} ,
+                    {id: 13 , choice: "کوشش (رادیوتور)"} ,
+                    {id: 14 , choice: "جهان پارت"} ,
+                    {id: 15 , choice: "الدورا"} ,
+                    {id: 16 , choice: "مهرکام پارس"} ,
+                    {id: 17 , choice: "سپاهان"} ,
+                    {id: 18 , choice: "هیچکدام"} ,
             ]
                 }}
           />
@@ -219,7 +220,7 @@ export default function SimpleCard() {
       <Shamsi number="13" text="تاریخ مد نظر را انتخاب کنید ؟" />
       <SimpleNumberInput noidea={true} number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} />
            
-        <MultiDropDown 
+       <MultiDropDown 
             number="11" 
             text="سلام نیتب م یمت بیمست مستبی می؟" 
             caption="شهر"
@@ -246,7 +247,7 @@ export default function SimpleCard() {
               { id: 20, title: 'زابت مسنت مست مستب مستب مسیبت سمیتب سمنیبت سمنیبت سم لان' } ,
           ]}
             />
-    {/* <RankingDAD number="9" text='سیتبسیتب تمست بمسیتب ستب مستیب مستی ب' /> */}
+    <RankingDAD number="9" text='سیتبسیتب تمست بمسیتب ستب مستیب مستی ب' />
         <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" choices={[
           {id:1 , choice: "گزینه شماره 1" } ,
           {id:2 , choice: "گزینه شماره 2" } ,
@@ -256,7 +257,6 @@ export default function SimpleCard() {
           {id:6 , choice: "گزینه شماره 5" } ,
         ]} />
      
-        {/* {Quest} */}
         <SingleDropDown
             number="10" 
             caption="شهر"

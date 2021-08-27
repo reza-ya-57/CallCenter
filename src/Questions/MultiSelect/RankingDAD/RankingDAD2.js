@@ -29,10 +29,12 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   color: isDragging ? "black" : "white", 
 
   // change background colour if dragging
-  background: isDragging ? "lightgreen" : "#006a4e",
-  borderRadius: "20px",
+  background: isDragging ? "green" : "hsl(215, 14%, 37.5%)",
+  color: "white" ,
+  borderRadius: "10px",
   boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" ,
   height: "40px" ,
+  border: "3px balck solid" ,
 
 
   // styles we need to apply on draggables
@@ -42,9 +44,9 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 const getListStyle = isDraggingOver => ({
   background: isDraggingOver ? "lightblue" : "lightgrey",
   padding: "10px 50px",
-  width: "100%" , 
+  width: "70%" , 
+  margin: "auto" ,
   borderRadius: "10px" , 
-  backgroundColor: "f9f9f9"
 });
 
 class RankingDAD2 extends Component {

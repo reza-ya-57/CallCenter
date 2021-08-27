@@ -8,12 +8,10 @@ import { TextField } from "@material-ui/core";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 
 let year = []
-
 for (let i = 1; i < 100; i++) {
   year.unshift({title: (i + 1303).toString()})
 }
 year.push({title: ''})
-
 let day = []
 
 for (let i = 0; i < 32; i++) {
@@ -69,19 +67,22 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Shamsi = (props) => {
+  
   const classes = useStyles();
   const [selectedDay, setSelectedDay] = useState(null);
-  const [Year, setYear] = useState("");
-  const [Month, setMonth] = useState("");
+  const [Year, setYear] = useState('1400');
+  const [Month, setMonth] = useState("مرداد");
   const [Day, setDay] = useState("");
 
   const InputHandler = (e ) => {
     setSelectedDay({...e});
-    console.log(selectedDay)
     setYear(e.year.toString());
-    setMonth(e.month.toString());
+    month.forEach(item => {
+      if (item.id === e.month) {
+        setMonth(item.title)
+      }
+    })
     setDay(e.day.toString());
-    console.log(e)
   }
 
   const yearHandler = (e , list) => {
@@ -95,7 +96,6 @@ const Shamsi = (props) => {
       });
       setSelectedDay({day: parseInt(Day) , month: localMonth ,year: parseInt(list.title)})
   
-      console.log(list)
       setYear(list.title)
     }
 
@@ -112,7 +112,6 @@ const Shamsi = (props) => {
 
   const dayHandler = (e , list) => {
     if (list) {
-      console.log(list)
       let localMonth;
       month.forEach(item => {
         if (item.title === Month) {
@@ -129,7 +128,7 @@ const Shamsi = (props) => {
     <QuestionTemplate type="Calendar" number={props.number} text={props.text}>
         <div className={classes.Root}>
           <Calendar
-              // value={selectedDay}
+              value={selectedDay}
               onChange={(e ) => InputHandler(e )}
               shouldHighlightWeekends
               locale="fa" 
@@ -140,17 +139,19 @@ const Shamsi = (props) => {
               <div className={classes.InputLabelWraper}>
                 <Autocomplete
                   onChange={(e , list) => yearHandler(e , list)}
-                  // value={{title: Year}}
+                  value={{title: Year}}
                   options={year}
-                  getOptionLabel={(option) => option.title}
+                  getOptionLabel={(option) => {
+                    return option.title
+                  }}
                   style={{ width: 300 }}
-                  renderInput={(params) => <TextField className={classes.TextField} {...params} label="سال شمسی" variant="outlined" />}
+                  renderInput={(params) => <TextField  value={Year} className={classes.TextField} {...params} label="سال شمسی" variant="outlined" />}
                 />
               </div>
               <div className={classes.InputLabelWraper}>
                 <Autocomplete
                   onChange={(e , list) => monthHandler(e , list)}
-                  // value={{title: Month}}
+                  value={{id:5  ,title: Month}}
                   options={month}
                   getOptionLabel={(option) => option.title}
                   style={{ width: 300 }}
@@ -160,7 +161,7 @@ const Shamsi = (props) => {
               <div className={classes.InputLabelWraper}>
                 <Autocomplete
                   onChange={(e , list) => dayHandler(e , list)}
-                  // value={{title: Day}}
+                  value={{title: Day}}
                   options={day}
                   getOptionLabel={(option) => option.title}
                   style={{ width: 300 }}
