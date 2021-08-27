@@ -27,6 +27,7 @@ export default function TimePicker(props) {
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container>
           <KeyboardTimePicker
+          ampm={false}
           inputVariant="outlined"
           color="primary"
           // className={classes.TimePicker}
