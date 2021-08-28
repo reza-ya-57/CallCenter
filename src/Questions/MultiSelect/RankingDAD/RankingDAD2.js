@@ -1,12 +1,26 @@
 import React, { Component} from "react";
+import { withStyles } from "@material-ui/core/styles";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import QuestionTemplate from "../../../Components/UI/WrapperComponent/QuestionTemplate";
+import clsx from "clsx";
+import { blueGrey } from "@material-ui/core/colors";
 // fake data generator
 // const getItems = count =>
 //   Array.from({ length: count }, (v, k) => k).map(k => ({
 //     id: `item-${k}`,
 //     choice: `item ${k}`
 //   }));
+
+const styles = theme => ({
+  DraggAbleListIsDraggin: {
+    backgroundColor: theme.palette.success.main , 
+    color: "blue" , 
+  } , 
+
+  DraggAbleListNotDragging: {
+    backgroundColor: blueGrey[700]
+  }
+});
 
 // a little function to help us with reordering the result
 const reorder = (list, startIndex, endIndex) => {
@@ -29,7 +43,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   color: isDragging ? "black" : "white", 
 
   // change background colour if dragging
-  background: isDragging ? "green" : "hsl(215, 14%, 37.5%)",
+  // background: isDragging ? "green" : "hsl(215, 14%, 37.5%)",
   color: "white" ,
   borderRadius: "10px",
   boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" ,
@@ -85,7 +99,7 @@ class RankingDAD2 extends Component {
   // Normally you would want to split things out into separate components.
   // But in this example everything is just done in one place for simplicity
   render() {
-
+    const { classes } = this.props;
     return (
       <QuestionTemplate number={this.props.number} text={this.props.text}>
           <div >
@@ -108,6 +122,10 @@ class RankingDAD2 extends Component {
                         snapshot.isDragging,
                         provided.draggableProps.style
                       )}
+                      className={clsx({
+                        [classes.DraggAbleListIsDraggin]: snapshot.isDragging ,
+                        [classes.DraggAbleListNotDragging]: !snapshot.isDragging
+                      })}
                     >
                       {item.choice}
                     </div>
@@ -125,5 +143,5 @@ class RankingDAD2 extends Component {
   }
 }
 
-export default RankingDAD2;
+export default  withStyles(styles, { withTheme: true })(RankingDAD2);
 // Put the thing into the DOM!

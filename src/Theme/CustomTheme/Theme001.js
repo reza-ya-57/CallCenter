@@ -1,4 +1,4 @@
-import { pink } from '@material-ui/core/colors';
+import { green, pink } from '@material-ui/core/colors';
 import {createTheme} from '@material-ui/core/styles';
 import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 
@@ -16,7 +16,7 @@ export const theme001 = createTheme({
 
   palette: {
     background: {
-      default: pink[50]
+      default: pink[30]
     } , 
       green: {
         // header color
@@ -25,12 +25,12 @@ export const theme001 = createTheme({
       grey: {
         // side menu color
         main:"#131628" ,
-        // complementary color for theme using in question
+        // complementary color for theme using in question such as multicheckbox and radio
         dark: pink[100]
       } ,
       success: {
-        // BackgroundColor
-        main: "#DBE9F4" ,
+        // using in question number and drag&drop question
+        main: pink[900] ,
         // hover effect on profile Icon color
         dark: "#980436" , 
         // BackgroundColor for submenu

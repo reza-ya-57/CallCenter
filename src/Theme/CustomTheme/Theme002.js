@@ -25,9 +25,9 @@ export const theme002 = createTheme({
     // complementary color for theme using in question
       dark: red[100]
     } ,
-    // BackgroundColor
+    // using in question number
     success: {
-      main: "#F8E8E8",
+      main: red[900],
       // hover effect on profile Icon color
       dark: "#302222" , 
       // BackgroundColor for submenu

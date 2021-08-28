@@ -4,8 +4,8 @@ import { makeStyles, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
     Root: {
-        backgroundColor: '#358597' ,
-        color: 'yellow' ,
+        backgroundColor: theme.palette.success.main,
+        color: 'white' ,
         display: 'flex' , 
         justifyContent: 'center' , 
         alignItems: 'center' , 

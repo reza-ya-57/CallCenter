@@ -27,8 +27,8 @@ export const theme003 = createTheme({
         dark: blue[100]
     } ,
     success: {
-      // BackgroundColor
-        main: "#C6DAEA" ,
+      // using in question number
+        main: blue[900] ,
         // hover effect on profile Icon color
         dark: "#1A234F" ,
         // BackgroundColor for submenu

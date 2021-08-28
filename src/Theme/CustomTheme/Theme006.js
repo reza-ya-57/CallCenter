@@ -30,8 +30,8 @@ export const theme006 = createTheme({
           dark: yellow[100]
       } ,
       success: {
-        // BackgroundColor
-        main: "#ECE1D0" ,
+        // using in quesiton number
+        main: yellow[900] ,
         // hover effect on profile Icon color
         dark: "#980436" , 
         // BackgroundColor for submenu
