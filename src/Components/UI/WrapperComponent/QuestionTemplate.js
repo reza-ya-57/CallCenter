@@ -3,6 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import QNumber from '../../../Partial/QNumber/QNumber';
 import { Typography } from '@material-ui/core';
+import { blueGrey } from '@material-ui/core/colors';
 
 const Height = 600
 const useStyles = makeStyles((theme) => ({
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: "flex-end"
     } ,
 
-    Question: {
+    QuestionContainer: {
         width: "80%" ,
         margin: "auto" , 
         marginTop: "40px" ,
@@ -25,6 +26,16 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: "10px 10px 10px 10px" 
     } ,
 
+    Question: {
+        display: 'flex' ,   
+        alignItems: "center"  , 
+        // backgroundColor: "#3B3E4F" ,
+        backgroundColor: blueGrey[900] ,
+        color : "white"  ,
+        borderRadius: "10px 10px 0px 0px" , 
+        padding: "0px 10px"
+    } ,
+
     Text: {
         color: "white" ,
         marginBottom: '20px' , 
@@ -32,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
         top: "10px" , 
     } , 
     Answer: {
-        backgroundColor: "#E8E8E8" ,
+        backgroundColor: blueGrey[50],
         // marginTop: "10px" , ,
         padding: "10px 20px" ,
         paddingBottom: "30px" ,
@@ -44,10 +55,8 @@ export default function QuestionTemplate(props) {
   const classes = useStyles();
 
   return (
-        <div className={classes.Question}>
-            <div style={{display: 'flex' ,   alignItems: "center"  , backgroundColor: "#3B3E4F" ,
-                        color : "white"  ,
-                        borderRadius: "10px 10px 0px 0px" , padding: "0px 10px"}}>
+        <div className={classes.QuestionContainer}>
+            <div className={classes.Question}>
                 <div className={classes.NumberWraper}>
                         <QNumber number={props.number} />
                 </div>

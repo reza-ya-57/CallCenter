@@ -64,7 +64,7 @@ export default function SimpleCard() {
               choices={{
                 noidea: true ,
                 other: true ,
-                column: 3 ,
+                column: 4 ,
                 values:[
                   {id: 1 , choice: "ایساکو"} ,
                   {id: 2 , choice: "سایپا بسسیبنمسیتبنم دک"} ,
@@ -77,13 +77,13 @@ export default function SimpleCard() {
                   {id: 9 , choice: "دیناپارت"} ,
                   {id: 10 , choice: "لنت پارس"} ,
                   {id: 11 , choice: "راه فدک"} ,
-                  {id: 12 , choice: "مدرن"} ,
-                  {id: 13 , choice: "کوشش (رادیوتور)"} ,
-                  {id: 14 , choice: "جهان پارت"} ,
-                  {id: 15 , choice: "الدورا"} ,
-                  {id: 16 , choice: "مهرکام پارس"} ,
-                  {id: 17 , choice: "سپاهان"} ,
-                  {id: 18 , choice: "هیچکدام"} ,
+                  // {id: 12 , choice: "مدرن"} ,
+                  // {id: 13 , choice: "کوشش (رادیوتور)"} ,
+                  // {id: 14 , choice: "جهان پارت"} ,
+                  // {id: 15 , choice: "الدورا"} ,
+                  // {id: 16 , choice: "مهرکام پارس"} ,
+                  // {id: 17 , choice: "سپاهان"} ,
+                  // {id: 18 , choice: "هیچکدام"} ,
           ]
               }}
         />
@@ -247,7 +247,7 @@ export default function SimpleCard() {
               { id: 20, title: 'زابت مسنت مست مستب مستب مسیبت سمیتب سمنیبت سمنیبت سم لان' } ,
           ]}
             />
-    <RankingDAD number="9" text='سیتبسیتب تمست بمسیتب ستب مستیب مستی ب' />
+    {/* <RankingDAاD number="9" text='سیتبسیتب تمست بمسیتب ستب مستیب مستی ب' /> */}
         <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" choices={[
           {id:1 , choice: "گزینه شماره 1" } ,
           {id:2 , choice: "گزینه شماره 2" } ,

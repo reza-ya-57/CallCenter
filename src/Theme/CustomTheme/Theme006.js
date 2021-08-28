@@ -27,7 +27,7 @@ export const theme006 = createTheme({
         // side menu color
         main:"#120B01", 
         // complementary color for theme using in question
-          dark: yellow[800]
+          dark: yellow[100]
       } ,
       success: {
         // BackgroundColor
@@ -39,7 +39,7 @@ export const theme006 = createTheme({
       } , 
       warning: {
         // Gradiant for SubHeader
-        main: "#EEB34B" ,
+        main: "#b79906" ,
         // hover color on sidebar menu
         dark: "#B49311" ,
       // selected item form sidemenu color

@@ -27,7 +27,7 @@ export const theme004 = createTheme({
         // side menu color
         main:"#1B291B", 
         // complementary color for theme using in question
-          dark: green[800]
+          dark: green[100]
       } ,
       success: {
         // BackgroundColor
@@ -38,7 +38,7 @@ export const theme004 = createTheme({
         light: "#324232"
       } , 
       warning: {
-        main: "#c8e6c9",
+        main: green[600],
         // hover color on sidebar menu
         dark: "#8B9A96" ,
       // selected item form sidemenu color

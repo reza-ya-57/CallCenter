@@ -1,4 +1,4 @@
-import { blue } from '@material-ui/core/colors';
+import { blue, cyan } from '@material-ui/core/colors';
 import {createTheme} from '@material-ui/core/styles';
 import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 
@@ -14,17 +14,17 @@ import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 export const theme003 = createTheme({
   palette: {
     background: {
-      default: "#C6DAEA"
+      default: cyan[50]
     } , 
     green: {
       // header color
-      main: "#1261A0"
+      main: blue[800]
     } ,
     grey: {
       // side menu color
       main: "#030421", 
       // complementary color for theme using in question
-        dark: blue[800]
+        dark: blue[100]
     } ,
     success: {
       // BackgroundColor
@@ -36,7 +36,7 @@ export const theme003 = createTheme({
     } , 
     warning: {
       // Gradiant for SubHeader
-        main: "#242e5f",
+        main: blue[700],
         // hover color on sidebar menu
         dark: "#444674" ,
       // selected item form sidemenu color

@@ -64,7 +64,7 @@ const LandlinePhone = (props) => {
 
                 <NoIdeaCheckbox
                     className={clsx({
-                        [classes.NoIdeaStatus]: !props.noidea
+                        [classes.NoIdeaStatus]: props.noidea
                     })}
                     checked={Checked}
                     onChange={checkboxChangeHandler}

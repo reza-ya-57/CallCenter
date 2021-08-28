@@ -16,18 +16,18 @@ const Iransans = {
 export const theme005 = createTheme({
   palette: {
     background: {
-      default: "#DCD0D9"
+      default: purple[30]
     } , 
     
       green: {
         // header color
-        main:"#2E165B" 
+        main: purple[900] 
       } ,
       grey: {
         // side menu color
         main:"#120632", 
         // complementary color for theme using in question
-          dark: purple[800]
+          dark: purple[100]
       } ,
       success: {
         // BackgroundColor
@@ -39,7 +39,7 @@ export const theme005 = createTheme({
       } , 
       warning: {
         // Gradiant for SubHeader
-        main: "#55003B" ,
+        main: purple[800] ,
         // hover color on sidebar menu
         dark: "#532D84" ,
       // selected item form sidemenu color

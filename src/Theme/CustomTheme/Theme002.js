@@ -1,4 +1,4 @@
-import { red } from '@material-ui/core/colors';
+import { grey, red } from '@material-ui/core/colors';
 import {createTheme} from '@material-ui/core/styles';
 import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 
@@ -13,17 +13,17 @@ import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 export const theme002 = createTheme({
   palette: {
     background: {
-      default: "#F8E8E8"
+      default: red[50]
     } , 
     // header color
     green: {
-      main:"#000000"
+      main: grey[900]
     } ,
     // side menu color
     grey: {
-      main: "#1E1B1B" , 
+      main: "#190000" , 
     // complementary color for theme using in question
-      dark: red[800]
+      dark: red[100]
     } ,
     // BackgroundColor
     success: {
@@ -35,7 +35,7 @@ export const theme002 = createTheme({
     } , 
     warning: {
       // Gradiant for SubHeader
-      main: "#f9f9f9" ,
+      main: grey[800] ,
       // hover color on sidebar menu
       dark: "#BE4147" , 
       // selected item form sidemenu color
@@ -66,7 +66,7 @@ export const theme002 = createTheme({
       MuiRadio: {
         colorSecondary: {
           '&$checked': {
-            color: "black",
+            color: red[800],
           },
         },
       },

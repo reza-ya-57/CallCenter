@@ -1,3 +1,4 @@
+import { pink } from '@material-ui/core/colors';
 import {createTheme} from '@material-ui/core/styles';
 import IranSansFont from "../../fonts/assets/IRANSans.woff2"
 
@@ -15,17 +16,17 @@ export const theme001 = createTheme({
 
   palette: {
     background: {
-      default: "#DBE9F4"
+      default: pink[50]
     } , 
       green: {
         // header color
-        main:"#ab003c" 
+        main: pink[800] 
       } ,
       grey: {
         // side menu color
         main:"#131628" ,
         // complementary color for theme using in question
-        dark: "#ab003c"
+        dark: pink[100]
       } ,
       success: {
         // BackgroundColor
@@ -37,7 +38,7 @@ export const theme001 = createTheme({
       } , 
       warning: {
         // Gradiant for SubHeader
-        main: "#ab003c" ,
+        main: pink[700] ,
         // hover color on sidebar menu
         dark: "#AA1C4E" ,
       // selected item form sidemenu color
