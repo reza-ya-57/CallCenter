@@ -9,7 +9,7 @@ import {ThemeProvider} from '@material-ui/core/styles';
 
 
 function App() {
-
+  // GET CUSTOM THEME FROM THEME_REDUCER REDUX
   let {customTheme} = useSelector(state => state.theme)
   
   let routes =  (
@@ -20,9 +20,11 @@ function App() {
       <Route path="/"  component={DashboardPage} />
     </Switch>
   )
-  
+
+
   return (
       <div className="App">
+        {/* GLOBAL THEME PROVED IN ALL NESTED COMPONENT IN PROJECT */}
         <ThemeProvider theme={customTheme}>
           <Drawer >
             {routes}

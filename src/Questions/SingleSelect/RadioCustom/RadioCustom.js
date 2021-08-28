@@ -30,7 +30,10 @@ const useStyles = makeStyles(theme => ({
       border: "1px grey solid"  ,
       borderRadius: "10px" ,
       margin: "10px 10px" , 
-      padding: "0px 10px"
+      padding: "0px 10px" , 
+      "&:hover": {
+        transform: "scale(1.02)"
+      }
     } ,
 
     OtherCheckboxWraper: {
@@ -48,7 +51,8 @@ const useStyles = makeStyles(theme => ({
   } ,
 
     RadioCheckedColor: {
-      backgroundColor: theme.palette.grey.dark
+      backgroundColor: theme.palette.grey.dark ,
+      transform: "scale(1.02)"
     } , 
  
 

@@ -64,7 +64,7 @@ export default function SimpleCard() {
               choices={{
                 noidea: true ,
                 other: true ,
-                column: 4 ,
+                column: 3 ,
                 values:[
                   {id: 1 , choice: "ایساکو"} ,
                   {id: 2 , choice: "سایپا بسسیبنمسیتبنم دک"} ,
@@ -213,12 +213,12 @@ export default function SimpleCard() {
       ]}
            /> 
     
-        <MultiLineInput number="22" text="توضیحات لازم را در کادر پایین تایپ کنید ؟" />
-        <LandlinePhone noidea={true} number="20" text="شماره تلفن ثابت را وارد کنید ؟" />
+        {/* <MultiLineInput number="22" text="توضیحات لازم را در کادر پایین تایپ کنید ؟" /> */}
+        {/* <LandlinePhone noidea={true} number="20" text="شماره تلفن ثابت را وارد کنید ؟" />
       <NationalCode noidea={true} number="2" text="شماره ملی را وارد کنید؟" />
-      <EmailField noidea={true} number="12" text="ایمیل را با فرمت صحیح وارد کنید؟" />
+      <EmailField noidea={true} number="12" text="ایمیل را با فرمت صحیح وارد کنید؟" /> */}
       <Shamsi number="13" text="تاریخ مد نظر را انتخاب کنید ؟" />
-      <SimpleNumberInput noidea={true} number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} />
+      {/* <SimpleNumberInput noidea={true} number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} /> */}
            
        <MultiDropDown 
             number="11" 
@@ -284,8 +284,8 @@ export default function SimpleCard() {
               { id: 20, title: 'زاهدان' } ,
           ]} />
 
-        <PhoneNumber noidea={true} number='7' text="شماره تلفن همراه را وارد کنید ؟" />
-        <LandlinePhone number='10' text='شماره تلفن ثابت را وارد کنید ؟' />
+        {/* <PhoneNumber noidea={true} number='7' text="شماره تلفن همراه را وارد کنید ؟" />
+        <LandlinePhone number='10' text='شماره تلفن ثابت را وارد کنید ؟' /> */}
 
         {/* <div className={classes.Footer}>
           <button onClick={() => dispatch({ type: 'BACK_QUESTION' })}>قبلی</button>

@@ -33,7 +33,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: "#eafeea" ,
   } , 
   selectedDay: {
-    borderRadius: '0px'
+    borderRadius: '0px' , 
+    background: "red" , 
+    color: "red"
   } , 
 
   InputWraper: {
@@ -133,6 +135,7 @@ const Shamsi = (props) => {
               shouldHighlightWeekends
               locale="fa" 
               calendarClassName={classes.Calendar}
+              // calendarSelectedDayClassName={classes.selectedDay}
               calendarSelectedDayClassName={classes.selectedDay}
             />
             <div className={classes.InputWraper}>

@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   CheckBoxColorSelected: {
-    backgroundColor: theme.palette.grey.dark
+    backgroundColor: theme.palette.grey.dark ,
   } ,
 
   FormControlLabel: {

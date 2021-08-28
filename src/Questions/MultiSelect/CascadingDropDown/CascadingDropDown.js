@@ -15,18 +15,26 @@ const useStyles = makeStyles(theme => ({
 
 export default function CascadingDropDown(props) {
     const classes = useStyles();
-    let firstChildData = props.ChildData;
+    // WE FIRST SAVE INITIAL CHILD_DATA THAT COMES FROM PROPS IN NEW VARIABLE 
+    // WHEN PARENT INPUT CHANGE WE LOOP THROUGH THAT TO 
+    //  GENRATE NEW FILTER CHILD ACORDING TO THE PARENT SELECTED
+    let initialChildData = props.ChildData;
+
     const [, setParent] = useState({ id: null , title: '' });
     const [, setChild] = useState({ title: "" , id: null , parentid: null });
 
-
+    // OPTION FOR PARENT DATA ALWAYS EQUAL TO THE PROPS.PARENT
+    // BUT FOR CHILD WE SHOULD FILTER IT ACORDING TO THE PARENT 
+    // THIS STATE DEFINE TO DO THAT AND INITIALY SET TO THE PROPS.CHILDDATA
     const [ChildData, setChildData] = useState(props.ChildData)
 
-
+   // TRIGGER WHEN PARENT INPUT CHANGE 
   const parentHandler = (e , list) => {
+    // SETPARENT TO THE INPUT THAT USER SELECT IN DROP_DOWN
     setParent({...list})
+    // 
     let updateChildData = [];
-    firstChildData.forEach(item => {
+    initialChildData.forEach(item => {
     if (list) {
         if (item.parentid === list.id) {
             updateChildData.push(item)
