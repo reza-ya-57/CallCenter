@@ -1,8 +1,8 @@
 import React   from 'react';
-// import { useEffect , useState }  from 'react';
-// import { useSelector , useDispatch } from 'react-redux';
-// import { makeStyles } from '@material-ui/core/styles';
-// import { FindQuestionById } from '../../Questions/Functions/FindQuestionById';
+import { useEffect , useState }  from 'react';
+import { useSelector , useDispatch } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
+import { FindQuestionById } from '../../Questions/Functions/FindQuestionById';
 // import EmailField from '../../Questions/SingleSelect/EmailField/EmailField';
 // import RankingDAD from '../../Questions/MultiSelect/RankingDAD/RankingDAD';
 import RankingDAD2 from '../../Questions/MultiSelect/RankingDAD/RankingDAD2';
@@ -25,38 +25,53 @@ import CustomSlider from '../../Questions/SingleSelect/Slider/Slider';
 
 
 
-// const useStyles = makeStyles(theme => ({
-//   root: {
-//     // minWidth: 275,
-//   },
+const useStyles = makeStyles(theme => ({
+  root: {
+    // minWidth: 275,
+  },
 
-//   Footer: {
-//     // backgroundColor: 'red' ,
-//     // height: "100px" ,
+  Footer: {
+    // backgroundColor: 'red' ,
+    // height: "100px" ,
 
 
-//   }
-// }));
+  }
+}));
 
 
 
 export default function SimpleCard() {
-  // const classes = useStyles();
-  // let dispatch = useDispatch();
-  // const [Quest, setQuest] = useState([]);
-  // let {Questions} = useSelector(state => state.qa);
-  // let {CurrentQuestion} = useSelector(state => state.currentqa);
+  const classes = useStyles();
+  let dispatch = useDispatch();
+  const [Quest, setQuest] = useState([]);
+
+  let {Questions} = useSelector(state => state.qa);
+
+  let {CurrentQuestion} = useSelector(state => state.currentqa);
+  console.log(CurrentQuestion)
+
+  let {Data} = useSelector(state => state.qa);
+  console.log(Data)
+
+  const nextHandler = () => {
+
+    dispatch({ type: 'NEXT_QUESTION' , payload: Data })
+  }
   
   // useEffect(() => {
+        
+      // let UpdateQuest = FindQuestionById(Questions , 2)
     
-    //   let UpdateQuest = FindQuestionById(Questions , CurrentQuestion)
-    
-    //   setQuest([UpdateQuest])
+      // setQuest([UpdateQuest])
     
     // } , [CurrentQuestion , Questions] )
     
     return (
       <div>
+            <div className={classes.Footer}>
+          <button onClick={() => dispatch({ type: 'BACK_QUESTION' })}>قبلی</button>
+          <button onClick={ nextHandler }>بعدی</button>
+        </div>
         {/* {Quest} */}
             <MultiCheckbox 
               number="15" 
@@ -64,7 +79,7 @@ export default function SimpleCard() {
               choices={{
                 noidea: true ,
                 other: true ,
-                column: 3 ,
+                column: 4 ,
                 values:[
                   {id: 1 , choice: "ایساکو"} ,
                   {id: 2 , choice: "سایپا بسسیبنمسیتبنم دک"} ,
@@ -77,17 +92,17 @@ export default function SimpleCard() {
                   {id: 9 , choice: "دیناپارت"} ,
                   {id: 10 , choice: "لنت پارس"} ,
                   {id: 11 , choice: "راه فدک"} ,
-                  // {id: 12 , choice: "مدرن"} ,
-                  // {id: 13 , choice: "کوشش (رادیوتور)"} ,
-                  // {id: 14 , choice: "جهان پارت"} ,
-                  // {id: 15 , choice: "الدورا"} ,
-                  // {id: 16 , choice: "مهرکام پارس"} ,
-                  // {id: 17 , choice: "سپاهان"} ,
-                  // {id: 18 , choice: "هیچکدام"} ,
+                  {id: 12 , choice: "مدرن"} ,
+                  {id: 13 , choice: "کوشش (رادیوتور)"} ,
+                  {id: 14 , choice: "جهان پارت"} ,
+                  {id: 15 , choice: "الدورا"} ,
+                  {id: 16 , choice: "مهرکام پارس"} ,
+                  {id: 17 , choice: "سپاهان"} ,
+                  {id: 18 , choice: "هیچکدام"} ,
           ]
               }}
         />
-                <RadioCustom 
+                {/* <RadioCustom 
                 number="15" 
                 text="کدام گزینه ها بیشتر شما را آزار داده است؟"
                 choices={{
@@ -115,9 +130,9 @@ export default function SimpleCard() {
                     {id: 18 , choice: "هیچکدام"} ,
             ]
                 }}
-          />
+          /> */}
 
-        <TimePicker number="12" text="زمان مد نظر خود را انتخاب کنید " />
+        {/* <TimePicker number="12" text="زمان مد نظر خود را انتخاب کنید " />
           <CustomSlider 
           marks={ [
             {
@@ -159,9 +174,9 @@ export default function SimpleCard() {
         
           ]}
             number="14" 
-            text="میزان اشنایی شما با برند ایکاپ چقدر است؟" />
+            text="میزان اشنایی شما با برند ایکاپ چقدر است؟" /> */}
      
-        <CascadingDropDown 
+        {/* <CascadingDropDown 
           number="4" 
           text="گزینه های مناسب را انتخاب کنید ؟" 
           parent="استان"
@@ -211,16 +226,16 @@ export default function SimpleCard() {
           { id: 19, title: 'نوشهر' , parentid: 1 } ,
           { id: 20, title: 'زاهدان' , parentid: 1 } ,
       ]}
-           /> 
+           />  */}
     
-        {/* <MultiLineInput number="22" text="توضیحات لازم را در کادر پایین تایپ کنید ؟" /> */}
-        {/* <LandlinePhone noidea={true} number="20" text="شماره تلفن ثابت را وارد کنید ؟" />
+        {/* <MultiLineInput number="22" text="توضیحات لازم را در کادر پایین تایپ کنید ؟" />
+        <LandlinePhone noidea={true} number="20" text="شماره تلفن ثابت را وارد کنید ؟" />
       <NationalCode noidea={true} number="2" text="شماره ملی را وارد کنید؟" />
-      <EmailField noidea={true} number="12" text="ایمیل را با فرمت صحیح وارد کنید؟" /> */}
+      <EmailField noidea={true} number="12" text="ایمیل را با فرمت صحیح وارد کنید؟" />
       <Shamsi number="13" text="تاریخ مد نظر را انتخاب کنید ؟" />
-      {/* <SimpleNumberInput noidea={true} number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} /> */}
+      <SimpleNumberInput noidea={true} number="14" text="شماره مورد نظر خود را وارد کنید ؟" min={5} max={12} decimal={true} /> */}
            
-       <MultiDropDown 
+       {/* <MultiDropDown 
             number="11" 
             text="سلام نیتب م یمت بیمست مستبی می؟" 
             caption="شهر"
@@ -246,18 +261,18 @@ export default function SimpleCard() {
               { id: 19, title: 'نوشهر' } ,
               { id: 20, title: 'زابت مسنت مست مستب مستب مسیبت سمیتب سمنیبت سمنیبت سم لان' } ,
           ]}
-            />
+            /> */}
     {/* <RankingDAاD number="9" text='سیتبسیتب تمست بمسیتب ستب مستیب مستی ب' /> */}
-        <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" choices={[
+        {/* <RankingDAD2 number={10} text="منبسیتبم سمینبت مسی سم تسمیبت س میبتسم؟" choices={[
           {id:1 , choice: "گزینه شماره 1" } ,
           {id:2 , choice: "گزینه شماره 2" } ,
           {id:3 , choice: "گزینه شماره 3" } ,
           {id:4 , choice: "گزینه شماره 4" } ,
           {id:5 , choice: "گزینه شماره 5" } ,
           {id:6 , choice: "گزینه شماره 5" } ,
-        ]} />
+        ]} /> */}
      
-        <SingleDropDown
+        {/* <SingleDropDown
             number="10" 
             caption="شهر"
             text="گزینه مورد نظر را از منوی پایین انتخاب کنید ؟"
@@ -282,15 +297,12 @@ export default function SimpleCard() {
               { id: 18, title: 'اردبیل' } ,
               { id: 19, title: 'نوشهر' } ,
               { id: 20, title: 'زاهدان' } ,
-          ]} />
+          ]} /> */}
 
         {/* <PhoneNumber noidea={true} number='7' text="شماره تلفن همراه را وارد کنید ؟" />
         <LandlinePhone number='10' text='شماره تلفن ثابت را وارد کنید ؟' /> */}
 
-        {/* <div className={classes.Footer}>
-          <button onClick={() => dispatch({ type: 'BACK_QUESTION' })}>قبلی</button>
-          <button onClick={() => dispatch({ type: 'NEXT_QUESTION' })}>بعدی</button>
-        </div> */}
+    
       </div>
   );
 }
