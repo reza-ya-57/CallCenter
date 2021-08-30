@@ -1,120 +1,112 @@
 import * as actionTypes from '../Actions/actionTypes';
 import { ReturnQuestionTurn } from '../../functions/handleData';
+import { ReplaceCurrentQuestionInData } from '../../functions/handleData';
 
 const initialState = {
     Data : [
-        {
-           id: 23 ,
-           caption: "گزینه مورد نظر خود را وارد کنید؟" ,
-           description: "توضیحی برای سوال" ,
-           mandatory: true , 
-           choiceTypeId: 12 , 
-           sortOrder: 1 ,
-           answered: true ,
-           dispaly: true ,
-           choices:{
-               noidea: true ,
-               other: true ,
-               column: 4 ,
-               values:[
-                 {id: 1 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , dispaly: true} ,
-                 {id: 1 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false } ,
-                 {id: 1 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false } ,
-                 {id: 1 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false } ,
-                 {id: 2 , choice: "سایپا  دک"} ,
-                 {id: 3 , choice: "هپ کو "} ,
-                 {id: 4 , choice: " تو (ISPCO)"} ,
-                 {id: 5 , choice: "آی  (GISP)"} ,   
-                   ]
-             }
-    
-       } ,
-    
-       {
-       id: 45 ,
+    {
+       id: 23 ,
        caption: "گزینه مورد نظر خود را وارد کنید؟" ,
        description: "توضیحی برای سوال" ,
        mandatory: true , 
        choiceTypeId: 12 , 
-       sortOrder: 2 ,
+       sortOrder: 1 ,
        answered: false ,
-       dispaly: true ,
+       display: true ,
        choices:{
            noidea: true ,
            other: true ,
            column: 4 ,
            values:[
-               {id: 1 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" } ,
-               {id: 34 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , dispaly: true} ,
-               {id: 56 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , dispaly: true} ,
-               {id: 1 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , dispaly: true} ,
-               {id: 12 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , dispaly: true} ,
-               {id: 1 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , dispaly: true} ,
-               {id: 2 , choice: "سایپا  دک"} ,
-               {id: 3 , choice: "هپ کو "} ,
-               {id: 4 , choice: " تو (ISPCO)"} ,
-               {id: 5 , choice: "آی  (GISP)"} ,
-               {id: 6 , choice: "RPCO"} ,
-               {id: 7 , choice: "کروز"} ,
+             {id: 102 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67 ,56" , status: false  , display: true} ,
+             {id: 202 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" ,  status: false  , display: true} ,
+             {id: 302 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true } ,
+             {id: 402 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true } ,
+             {id: 408 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true } ,
+             {id: 409 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true } ,
                ]
-           }
-    
-       } 
-       ,
-    
-       {
-       id: 29 ,
-       caption: "گزینه مورد نظر خود را وارد کنید؟" ,
-       description: "توضیحی برای سوال" ,
-       mandatory: true , 
-       choiceTypeId: 12 , 
-       sortOrder: 3 ,
-       answered: false ,
-       dispaly: true ,
-       choices:{
-           noidea: true ,
-           other: true ,
-           column: 4 ,
-           values:[
-               {id: 1 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" } ,
-               {id: 2 , choice: "سایپا  دک"} ,
-               {id: 3 , choice: "هپ کو "} ,
-               {id: 4 , choice: " تو (ISPCO)"} ,
-               {id: 5 , choice: "آی  (GISP)"} ,
-               {id: 6 , choice: "RPCO"} ,
-               {id: 7 , choice: "کروز"} ,
-               ]
-           }
-    
+         }
+
+   } ,
+
+   {
+   id: 45 ,
+   caption: "گزینه مورد نظر خود را وارد کنید؟" ,
+   description: "توضیحی برای سوال" ,
+   mandatory: true , 
+   choiceTypeId: 12 , 
+   sortOrder: 2 ,
+   answered: false ,
+   display: true ,
+   choices:{
+       noidea: true ,
+       other: true ,
+       column: 4 ,
+       values:[
+           {id: 1 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true } ,
+           {id: 34 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+           {id: 56 , choice: "ایسgdfgاکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+           {id: 5 , choice: "ایfdgfdساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+           {id: 12 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+        //    {id: 11 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+
+           ]
        }
-       ,
-    
-       {
-       id: 12 ,
-       caption: "گزینه مورد نظر خود را وارد کنید؟" ,
-       description: "توضیحی برای سوال" ,
-       mandatory: true , 
-       choiceTypeId: 12 , 
-       sortOrder: 3 ,
-       answered: false ,
-       dispaly: true ,
-       choices:{
-           noidea: true ,
-           other: true ,
-           column: 4 ,
-           values:[
-               {id: 1 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" } ,
-               {id: 2 , choice: "سایپا  دک"} ,
-               {id: 3 , choice: "هپ کو "} ,
-               {id: 4 , choice: " تو (ISPCO)"} ,
-               {id: 5 , choice: "آی  (GISP)"} ,
-               {id: 6 , choice: "RPCO"} ,
-               {id: 7 , choice: "کروز"} ,
-               ]
-           }
-    
+
+   } 
+   ,
+
+   {
+   id: 60 ,
+   caption: "گزینه مورد نظر خود را وارد کنید؟" ,
+   description: "توضیحی برای سوال" ,
+   mandatory: true , 
+   choiceTypeId: 12 , 
+   sortOrder: 3 ,
+   answered: false ,
+   display: true ,
+   choices:{
+       noidea: true ,
+       other: true ,
+       column: 4 ,
+       values:[
+           {id: 100 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true} ,
+           {id: 344 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+           {id: 564 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+           {id: 54 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+        //    {id: 124 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+        //    {id: 14 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+           ]
        }
-    ]
+
+   }
+   ,
+
+   {
+   id: 50 ,
+   caption: "گزینه مورد نظر خود را وارد کنید؟" ,
+   description: "توضیحی برای سوال" ,
+   mandatory: true , 
+   choiceTypeId: 12 , 
+   sortOrder: 3 ,
+   answered: false ,
+   display: true ,
+   choices:{
+       noidea: true ,
+       other: true ,
+       column: 4 ,
+       values:[
+           {id: 30 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true} ,
+           {id: 34 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+           {id: 56 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+        //    {id: 40 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+        //    {id: 12 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+        //    {id: 1 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+           ]
+       }
+
+   }
+]
 }
 
 
@@ -145,10 +137,14 @@ const initialState = {
 
 export const QuestionReducer = (state = initialState , action) => {
     switch(action.type) {
-        case("SET_QUESTION"): 
-        return {
-            ...state 
-        }
+
+        case(actionTypes.SUBMIT_ANSWER): 
+            let updateData = JSON.parse(JSON.stringify(state))
+            ReplaceCurrentQuestionInData(action.payload , updateData.Data)
+            return {
+                Data: updateData.Data
+            }
+
 
         default: return state
     }

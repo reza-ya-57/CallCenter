@@ -2,6 +2,7 @@ import React   from 'react';
 import { useEffect , useState }  from 'react';
 import { useSelector , useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+import * as actionCreators from '../../Redux/Actions/CurrentQuestionAction'
 import { FindQuestionById } from '../../Questions/Functions/FindQuestionById';
 // import EmailField from '../../Questions/SingleSelect/EmailField/EmailField';
 // import RankingDAD from '../../Questions/MultiSelect/RankingDAD/RankingDAD';
@@ -21,6 +22,8 @@ import CascadingDropDown from '../../Questions/MultiSelect/CascadingDropDown/Cas
 import MultiCheckbox from '../../Questions/MultiSelect/MultiCheckbox/MultiCheckbox';
 import TimePicker from '../../Questions/SingleSelect/TimePicker/TimePicker';
 import CustomSlider from '../../Questions/SingleSelect/Slider/Slider';
+import MultiCheckboxUpdate from '../../Questions/MultiSelect/MultiCheckbox/MultiCheckboxUpdate';
+import QuestionFilter from '../../Questions/QuestionFilter/QuestionFilter';
 
 
 
@@ -42,29 +45,27 @@ const useStyles = makeStyles(theme => ({
 
 export default function SimpleCard() {
   const classes = useStyles();
-  let dispatch = useDispatch();
-  const [Quest, setQuest] = useState([]);
-
-  let {Questions} = useSelector(state => state.qa);
-
   let {CurrentQuestion} = useSelector(state => state.currentqa);
-  console.log(CurrentQuestion)
+  const [CurrentQuestionToRender, setCurrentQuestionToRender] = useState(CurrentQuestion)
+  let dispatch = useDispatch();
+
+
 
   let {Data} = useSelector(state => state.qa);
-  console.log(Data)
+ 
+  // var CurrentQuestionToRender = QuestionFilter(CurrentQuestion)
+  // var CurrentQuestionToRender;
+
 
   const nextHandler = () => {
-
+    dispatch(actionCreators.submitAnswer(CurrentQuestion))
     dispatch({ type: 'NEXT_QUESTION' , payload: Data })
+    // CurrentQuestionToRender = ()
+    console.log("here")
+    console.log(QuestionFilter(CurrentQuestion))
+    console.log(CurrentQuestion)
+    setCurrentQuestionToRender(QuestionFilter(CurrentQuestion))
   }
-  
-  // useEffect(() => {
-        
-      // let UpdateQuest = FindQuestionById(Questions , 2)
-    
-      // setQuest([UpdateQuest])
-    
-    // } , [CurrentQuestion , Questions] )
     
     return (
       <div>
@@ -72,8 +73,8 @@ export default function SimpleCard() {
           <button onClick={() => dispatch({ type: 'BACK_QUESTION' })}>قبلی</button>
           <button onClick={ nextHandler }>بعدی</button>
         </div>
-        {/* {Quest} */}
-            <MultiCheckbox 
+        {CurrentQuestionToRender}
+            {/* <MultiCheckboxUpdate 
               number="15" 
               text="کدام گزینه ها بیشتر شما را آزار داده است؟"
               choices={{
@@ -101,7 +102,36 @@ export default function SimpleCard() {
                   {id: 18 , choice: "هیچکدام"} ,
           ]
               }}
-        />
+        /> */}
+            {/* <MultiCheckbox 
+              number="15" 
+              text="کدام گزینه ها بیشتر شما را آزار داده است؟"
+              choices={{
+                noidea: true ,
+                other: true ,
+                column: 4 ,
+                values:[
+                  {id: 1 , choice: "ایساکو"} ,
+                  {id: 2 , choice: "سایپا بسسیبنمسیتبنم دک"} ,
+                  {id: 3 , choice: "هپ کو "} ,
+                  {id: 4 , choice: " تو (ISPCO)"} ,
+                  {id: 5 , choice: "آی  (GISP)"} ,
+                  {id: 6 , choice: "RPCO"} ,
+                  {id: 7 , choice: "کروز"} ,
+                  {id: 8 , choice: "عظام"} ,
+                  {id: 9 , choice: "دیناپارت"} ,
+                  {id: 10 , choice: "لنت پارس"} ,
+                  {id: 11 , choice: "راه فدک"} ,
+                  {id: 12 , choice: "مدرن"} ,
+                  {id: 13 , choice: "کوشش (رادیوتور)"} ,
+                  {id: 14 , choice: "جهان پارت"} ,
+                  {id: 15 , choice: "الدورا"} ,
+                  {id: 16 , choice: "مهرکام پارس"} ,
+                  {id: 17 , choice: "سپاهان"} ,
+                  {id: 18 , choice: "هیچکدام"} ,
+          ]
+              }}
+        /> */}
                 {/* <RadioCustom 
                 number="15" 
                 text="کدام گزینه ها بیشتر شما را آزار داده است؟"

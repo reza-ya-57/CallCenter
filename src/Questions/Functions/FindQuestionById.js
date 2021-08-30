@@ -6,9 +6,10 @@ export const FindQuestionById = (Questions , CurrentQuestion) => {
     let FilteredQuestion;
 
     Questions.forEach(item => {
-        if (item.id === CurrentQuestion) {
+        if (item.id === CurrentQuestion.id) {
 
-            FilteredQuestion = QuestionFilter(item)
+            FilteredQuestion = item
+            // FilteredQuestion = QuestionFilter(item)
             
         }
     })

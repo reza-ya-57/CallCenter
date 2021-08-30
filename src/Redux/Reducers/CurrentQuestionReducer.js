@@ -10,15 +10,19 @@ const initialState = {
 export const CurrentQuestionReducer = (state = initialState , action) => {
    switch(action.type) {
        case(actionTypes.NEXT_QUESTION): 
-       console.log(action.payload)
-       
         let result = ReturnQuestionTurn(action.payload)
        return {
         CurrentQuestion : result
        }
+
        case(actionTypes.BACK_QUESTION): 
        return {
         CurrentQuestion : state.CurrentQuestion - 1
+       }
+
+       case(actionTypes.UPDATE_CURRENT_QUESTION):
+       return {
+        CurrentQuestion: action.payload
        }
 
        default: return state
