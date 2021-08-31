@@ -1,4 +1,4 @@
-import React , {useState , useEffect}  from 'react';
+import React , {useState }  from 'react';
 import { useSelector , useDispatch } from 'react-redux';
 import "./MultiCheckbox.css";
 import { makeStyles } from '@material-ui/core/styles';
@@ -72,35 +72,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MultiCheckboxUpdate(props) {
   const classes = useStyles();
-  let initialState = {...props}
-  let {Data} = useSelector(state => state.qa);
-  let initialData = FindQuestionById(Data , {...props})
   let dispatch = useDispatch();
-  const [Checked, setChecked] = useState(false) 
-  const [State, setState] = useState(initialState)
+  const [Checked, setChecked] = useState(false)
 
+  let {CurrentQuestion} = useSelector(state => state.currentqa);
 
   
-  // const Data = props.choices.values;
-
-  // let initialState = [];
-
-  // for (let i = 0; i < Data.length; i++) {
-  //   initialState.push({
-  //     id: Data[i].id , 
-  //     status: false , 
-  //     choice: Data[i].choice
-  //   })
-  // }
+  
  
 
   const handleChange = (e, key) => {
-    let updateState = JSON.parse(JSON.stringify(State));
+    console.log("heredd")
+    let updateState = JSON.parse(JSON.stringify(CurrentQuestion));
+    console.log(updateState)
     updateState.choices.values.forEach(item => {
       if (item.id === key) {
+        console.log("hhhh")
         item.status = !item.status
-        setState(updateState)
-        dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: State })
+        dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateState })
       } 
     });
 
@@ -133,12 +122,12 @@ export default function MultiCheckboxUpdate(props) {
   }
 }
 
-const formControlStyle = getFormControlStyle(State.choices.column);
+const formControlStyle = getFormControlStyle(CurrentQuestion.choices.column);
 
 
  let FormGroup = [];
 
- State.choices.values.forEach(item => {
+ CurrentQuestion.choices.values.forEach(item => {
    FormGroup.push(
     <FormControlLabel
     key={item.id}
@@ -156,14 +145,18 @@ const formControlStyle = getFormControlStyle(State.choices.column);
 
  const checkboxChangeHandler = () => {
   setChecked(prev => !prev);
-  setState(initialData);
-  dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: initialData });
+  let updateState = JSON.parse(JSON.stringify(CurrentQuestion));
+  updateState.choices.values.forEach(item => {
+      item.status = false
+  })
+  dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateState });
 }
 
 
   return (
     <QuestionTemplate number={props.number} text={props.text}>
         <div className={classes.columnRoot}>
+          {/* {props.id} */}
           <FormControl  style={formControlStyle} component="fieldset" className={classes.formControl}>
           {FormGroup}
           </FormControl>
@@ -172,7 +165,7 @@ const formControlStyle = getFormControlStyle(State.choices.column);
           <NoIdeaCheckbox
               label="هیچکدام"
               className={clsx({
-                        [classes.NoIdeaStatus]: !props.choices.noidea , 
+                        [classes.NoIdeaStatus]: !CurrentQuestion.choices.noidea , 
                         [classes.NoIdeaCheckbox]: true
               })}
               checked={Checked}
@@ -183,7 +176,7 @@ const formControlStyle = getFormControlStyle(State.choices.column);
               className={clsx({
                         [classes.TextField]: true , 
                         [classes.TextFieldVisibility]: true , 
-                        [classes.TextFieldExist]: !props.choices.others
+                        [classes.TextFieldExist]: !CurrentQuestion.choices.others
               })}
               color="secondary" 
               variant="outlined" 

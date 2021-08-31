@@ -9,6 +9,8 @@ import MultiCheckboxUpdate from "../MultiSelect/MultiCheckbox/MultiCheckboxUpdat
 
 const QuestionFilter = (CurrentQuestion) => {
    if (CurrentQuestion) {
+    console.log(CurrentQuestion)
+    console.log("here")
         switch (CurrentQuestion.choiceTypeId) {
             
             // case "SingleSelectDropDown": {
@@ -36,11 +38,13 @@ const QuestionFilter = (CurrentQuestion) => {
                 return (
                     // key={Question.id}
                     <MultiCheckboxUpdate
-                        // number={Question.number} 
                         {...CurrentQuestion}
-                        // caption={CurrentQuestion.caption}
-                        // choices={{...CurrentQuestion.choices}}
                     />
+                )
+            }
+            case 100: {
+                return (
+                    <DropDown />
                 )
             }
             default : return null;

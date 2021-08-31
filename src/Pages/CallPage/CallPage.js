@@ -1,5 +1,5 @@
 import React   from 'react';
-import { useEffect , useState }  from 'react';
+import { useEffect , useState , useRef }  from 'react';
 import { useSelector , useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import * as actionCreators from '../../Redux/Actions/CurrentQuestionAction'
@@ -45,35 +45,30 @@ const useStyles = makeStyles(theme => ({
 
 export default function SimpleCard() {
   const classes = useStyles();
-  let {CurrentQuestion} = useSelector(state => state.currentqa);
-  const [CurrentQuestionToRender, setCurrentQuestionToRender] = useState(CurrentQuestion)
   let dispatch = useDispatch();
-
-
-
+  let {CurrentQuestion} = useSelector(state => state.currentqa);
   let {Data} = useSelector(state => state.qa);
+  
  
-  // var CurrentQuestionToRender = QuestionFilter(CurrentQuestion)
-  // var CurrentQuestionToRender;
+  useEffect(() => {
+    console.log("useEffect")
+    dispatch({ type: 'NEXT_QUESTION' , payload: Data })
+  } , [Data])
+
 
 
   const nextHandler = () => {
     dispatch(actionCreators.submitAnswer(CurrentQuestion))
-    dispatch({ type: 'NEXT_QUESTION' , payload: Data })
-    // CurrentQuestionToRender = ()
-    console.log("here")
-    console.log(QuestionFilter(CurrentQuestion))
-    console.log(CurrentQuestion)
-    setCurrentQuestionToRender(QuestionFilter(CurrentQuestion))
+
   }
     
     return (
       <div>
-            <div className={classes.Footer}>
-          <button onClick={() => dispatch({ type: 'BACK_QUESTION' })}>قبلی</button>
-          <button onClick={ nextHandler }>بعدی</button>
+          <div className={classes.Footer}>
+            <button onClick={() => dispatch({ type: 'BACK_QUESTION' })}>قبلی</button>
+            <button onClick={ nextHandler }>بعدی</button>
         </div>
-        {CurrentQuestionToRender}
+        {QuestionFilter(CurrentQuestion)}
             {/* <MultiCheckboxUpdate 
               number="15" 
               text="کدام گزینه ها بیشتر شما را آزار داده است؟"
