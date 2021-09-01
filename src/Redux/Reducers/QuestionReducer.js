@@ -6,6 +6,7 @@ const initialState = {
     Data : [
     {
        id: 23 ,
+       number: 1 ,
        caption: "گزینه مورد نظر خود را وارد کنید؟" ,
        description: "توضیحی برای سوال" ,
        mandatory: true , 
@@ -18,12 +19,11 @@ const initialState = {
            other: true ,
            column: 4 ,
            values:[
-             {id: 102 , choice: "1" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "45" , status: false  , display: true} ,
-             {id: 202 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" ,  status: false  , display: true} ,
-             {id: 302 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true } ,
+             {id: 102 , choice: "سوال بعدی حذف میشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "45" , status: false  , display: true} ,
+             {id: 202 , choice: "گزینه اول سوال بعدی حذف میشود" , sortOrder: 12 , deletedChoiceId: "1" , deletedQuestionId: "67" ,  status: false  , display: true} ,
+             {id: 302 , choice: "تبمنسیتب" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true } ,
              {id: 402 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true } ,
              {id: 408 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true } ,
-             {id: 409 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true } ,
                ]
          }
 
@@ -31,6 +31,7 @@ const initialState = {
 
    {
    id: 45 ,
+   number: 2 ,
    caption: "گزینه مورد نظر خود را وارد کنید؟" ,
    description: "توضیحی برای سوال" ,
    mandatory: true , 
@@ -45,7 +46,7 @@ const initialState = {
        values:[
            {id: 1 , choice: "2" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true } ,
            {id: 34 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
-           {id: 56 , choice: "ایسgdfgاکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+           {id: 56 , choice: "سوال بعدی حذف میشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "60" , status: false  , display: true} ,
         //    {id: 5 , choice: "ایfdgfdساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
         //    {id: 12 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
         //    {id: 11 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
@@ -58,6 +59,7 @@ const initialState = {
 
    {
    id: 60 ,
+   number: 3 ,
    caption: "گزینه مورد نظر خود را وارد کنید؟" ,
    description: "توضیحی برای سوال" ,
    mandatory: true , 
@@ -84,6 +86,7 @@ const initialState = {
 
    {
    id: 50 ,
+   number: 4 ,
    caption: "گزینه مورد نظر خود را وارد کنید؟" ,
    description: "توضیحی برای سوال" ,
    mandatory: true , 

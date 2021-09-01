@@ -136,8 +136,15 @@ const formControlStyle = getFormControlStyle(CurrentQuestion.choices.column);
               [classes.CheckBoxColorSelected] : item.status , 
               [classes.DisplayNone]: !item.display
     })}
-    control={<Checkbox disabled={Checked} key={item.id} checked={item.status} onChange={(e) => handleChange(e , item.id)} />}
-    label={item.choice}
+    control={<Checkbox 
+              className={clsx({
+                [classes.DisplayNone]: !item.display
+              })}
+              disabled={Checked} 
+              key={item.id} 
+              checked={item.status} 
+              onChange={(e) => handleChange(e , item.id)} />}
+              label={item.choice}
   />
    )
  })
@@ -154,7 +161,7 @@ const formControlStyle = getFormControlStyle(CurrentQuestion.choices.column);
 
 
   return (
-    <QuestionTemplate number={props.number} text={CurrentQuestion.caption}>
+    <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
         <div className={classes.columnRoot}>
           <FormControl  style={formControlStyle} component="fieldset" className={classes.formControl}>
           {FormGroup}

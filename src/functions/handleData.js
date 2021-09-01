@@ -58,7 +58,7 @@ const deletedChoiceIdHandler = (choiceStringId , bool , data) => {
             item.choices.values.forEach((element , index) => {
                 intArr.forEach(lastelement => {
                     if (lastelement === element.id) {
-                        element.dispaly = bool
+                        element.display = bool
                     }
                 })
             })
@@ -74,7 +74,15 @@ const deletedQuestionIdHandler = (QuestionStringId , bool , data) => {
     data.forEach(item => {
         intArr.forEach(element => {
             if (item.id === element) {
-                item.dispaly = bool
+                console.log(item.choices.values)
+                item.display = bool
+                if (bool === false) {
+                    item.answered = false
+                    item.choices.values.forEach(valuesStatus => {
+                        valuesStatus.status = false
+                        console.log(valuesStatus)
+                    })
+                }
             }
         })
     })
