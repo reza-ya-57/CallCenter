@@ -1,6 +1,6 @@
 import * as actionTypes from '../Actions/actionTypes';
-import { ReturnQuestionTurn } from '../../functions/handleData';
 import { ReplaceCurrentQuestionInData } from '../../functions/handleData';
+import { checkConditionOfChoices } from '../../functions/handleData';
 
 const initialState = {
     Data : [
@@ -14,11 +14,11 @@ const initialState = {
        answered: false ,
        display: true ,
        choices:{
-           noidea: true ,
+           noidea:  {id: 102 , choice: "ایسhguygyuاکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67 ,56" , status: false  , display: true} ,
            other: true ,
            column: 4 ,
            values:[
-             {id: 102 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67 ,56" , status: false  , display: true} ,
+             {id: 102 , choice: "1" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "45" , status: false  , display: true} ,
              {id: 202 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" ,  status: false  , display: true} ,
              {id: 302 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true } ,
              {id: 402 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true } ,
@@ -43,7 +43,7 @@ const initialState = {
        other: true ,
        column: 4 ,
        values:[
-           {id: 1 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true } ,
+           {id: 1 , choice: "2" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true } ,
            {id: 34 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
            {id: 56 , choice: "ایسgdfgاکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
         //    {id: 5 , choice: "ایfdgfdساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
@@ -70,7 +70,7 @@ const initialState = {
        other: true ,
        column: 4 ,
        values:[
-           {id: 100 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true} ,
+           {id: 100 , choice: "3" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true} ,
            {id: 344 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
            {id: 564 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
            {id: 54 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
@@ -96,7 +96,7 @@ const initialState = {
        other: true ,
        column: 4 ,
        values:[
-           {id: 30 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true} ,
+           {id: 30 , choice: "4" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true} ,
            {id: 34 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
            {id: 56 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
         //    {id: 40 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
@@ -111,27 +111,6 @@ const initialState = {
 
 
 
-// export const QuestionReducer = (state = initialState , action) => {
-//     switch(action.type) {
-//         case(actionTypes.NEXT_QUESTION): 
-//         return {
-//          CurrentQuestion : state.CurrentQuestion + 1
-//         }
-//         case(actionTypes.BACK_QUESTION): 
-//         return {
-//          CurrentQuestion : state.CurrentQuestion - 1
-//         }
- 
-//         default: return state
-//     }
-//  }
-
-
-
-
-
-
-
 
 
 
@@ -140,6 +119,7 @@ export const QuestionReducer = (state = initialState , action) => {
 
         case(actionTypes.SUBMIT_ANSWER): 
             let updateData = JSON.parse(JSON.stringify(state))
+            checkConditionOfChoices( action.payload, updateData.Data)
             ReplaceCurrentQuestionInData(action.payload , updateData.Data)
             return {
                 Data: updateData.Data
@@ -149,85 +129,3 @@ export const QuestionReducer = (state = initialState , action) => {
         default: return state
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Questions : [
-//          {
-//             id: 1 , 
-//             number: 1 ,
-//             type: 'SingleSelectDropDown'  ,
-//             text: ' آیا در انتهاي كار (در زمان ترخيص) مسئول ترخيص موارد ثبت شده در برگه ي پذيرش را براي شما توضيح دادند كه چه كاري روي ماشين انجام دادند؟'  ,
-//          } ,
-
-
-//          {
-//             id: 2 , 
-//             number: 2 ,
-//             type: 'MultiSelectDropDown'  ,
-//             text: ' آیا در انتهاي كار (در زمان ترخيص) مسئول ترخيص موارد ثبت شده در برگه ي پذيرش را براي شما توضيح دادند كه چه كاري روي ماشين انجام دادند؟'  ,
-//          } ,
-
-//          {
-//             id: 3 , 
-//             number: 3 ,
-//             type: 'SingleSelectRadio'  ,
-//             text: ' آیا در انتهاي كار (در زمان ترخيص) مسئول ترخيص موارد ثبت شده در برگه ي پذيرش را براي شما توضيح دادند كه چه كاري روي ماشين انجام دادند؟'  ,
-//             choice: {
-//                 Horizontal: false ,
-//                 value: {
-//                     value2: 'خیر' , 
-//                     value1: 'بله' ,
-//                     value3: 'نمیدانم' ,
-//                     value4: 'سایر موارد'
-//                 }
-//             }
-//          } ,
-
-
-//          {
-//             id: 4 , 
-//             number: 4 ,
-//             type: 'Calendar'  ,
-//             text: ' آیا در انتهاي كار (در زمان ترخيص) مسئول ترخيص موارد ثبت شده در برگه ي پذيرش را براي شما توضيح دادند كه چه كاري روي ماشين انجام دادند؟'  ,
-//          } ,
-//          {
-//             id: 5 , 
-//             number: 5 ,
-//             type: 'MultiCheckbox'  ,
-//             text: ' آیا در انتهاي كار (در زمان ترخيص) مسئول ترخيص موارد ثبت شده در برگه ي پذيرش را براي شما توضيح دادند كه چه كاري روي ماشين انجام دادند؟'  ,
-//             checks: {
-//                 check001: 'گزینه 1' ,
-//                 check002: 'گزینه 2' , 
-//                 check003: 'گزینه 3' ,
-//                 check004: 'گزینه 4' ,
-//                 check005: 'گزینه 5' ,
-//                 check006: 'گزینه 6' ,
-//             }
-//          }
-//      ]

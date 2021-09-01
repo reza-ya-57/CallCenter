@@ -10,7 +10,7 @@ import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTe
 import { TextField } from '@material-ui/core';
 import NoIdeaCheckbox from '../../../Partial/NoIdeaCheckbox/NoIdeaCheckbox';
 import * as actionTypes from '../../../Redux/Actions/actionTypes';
-import { FindQuestionById } from '../../Functions/FindQuestionById';
+import { IsCurrentQuestionHaveAnswerd } from '../../../functions/handleData';
 
 
 
@@ -76,22 +76,22 @@ export default function MultiCheckboxUpdate(props) {
   const [Checked, setChecked] = useState(false)
 
   let {CurrentQuestion} = useSelector(state => state.currentqa);
+  let {Validate} = useSelector(state => state.validate);
 
   
   
  
 
   const handleChange = (e, key) => {
-    console.log("heredd")
-    let updateState = JSON.parse(JSON.stringify(CurrentQuestion));
-    console.log(updateState)
-    updateState.choices.values.forEach(item => {
+    let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
+    updateCurrentQuestion.choices.values.forEach(item => {
       if (item.id === key) {
-        console.log("hhhh")
         item.status = !item.status
-        dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateState })
+        dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
       } 
     });
+
+    dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
 
   }
 
@@ -154,9 +154,8 @@ const formControlStyle = getFormControlStyle(CurrentQuestion.choices.column);
 
 
   return (
-    <QuestionTemplate number={props.number} text={props.text}>
+    <QuestionTemplate number={props.number} text={CurrentQuestion.caption}>
         <div className={classes.columnRoot}>
-          {/* {props.id} */}
           <FormControl  style={formControlStyle} component="fieldset" className={classes.formControl}>
           {FormGroup}
           </FormControl>

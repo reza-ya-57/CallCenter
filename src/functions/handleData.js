@@ -3,9 +3,9 @@
 // GET DATA OBJECT AND RETURN THE NEXT QUESTION THAT SHOULD RENDER 
 export const ReturnQuestionTurn = ( Questions ) => {
     for (let i = 0; i < Questions.length; i++) {
-        if (Questions[i].answered === false) {
+        if (Questions[i].answered === false && Questions[i].display === true) {
             return Questions[i];
-        }
+        } 
     }
     
 }
@@ -35,7 +35,6 @@ export const deletedQuestionIdHandler = (Data ,QuestionStringId , bool) => {
     let intArr = stringArr.map(item => {
         return parseInt(item)
     })
-    console.log(intArr)
     Data.forEach(item => {
         intArr.forEach(element => {
             if (item.id === element) {
@@ -46,8 +45,8 @@ export const deletedQuestionIdHandler = (Data ,QuestionStringId , bool) => {
     
 }
 
-export const checkConditionOfChoices = (questionobject , data) => {
 
+export const checkConditionOfChoices = (questionobject , data) => {
     // GET ID OF CHOICES IN STRING FROMAT ("45,56,2") AND CHANG DISPLAY OF THAT CHOICE ACORDING TO BOOL 
 const deletedChoiceIdHandler = (choiceStringId , bool , data) => {
     let stringArr = choiceStringId.split(",");
@@ -68,12 +67,10 @@ const deletedChoiceIdHandler = (choiceStringId , bool , data) => {
 }
 // GET ID OF QUESTION TO CHANG DISPLAY STATUS TRUE TO FALSE ACORDING TO BOOL 
 const deletedQuestionIdHandler = (QuestionStringId , bool , data) => {
-    console.log(QuestionStringId)
     let stringArr = QuestionStringId.split(",");
     let intArr = stringArr.map(item => {
         return parseInt(item)
     })
-    console.log(intArr)
     data.forEach(item => {
         intArr.forEach(element => {
             if (item.id === element) {
@@ -97,7 +94,7 @@ const deletedQuestionIdHandler = (QuestionStringId , bool , data) => {
     //    deletedChoiceIdHandler(item.deletedChoiceId , true , data)
    })
 }
-
+// FINISH FUNCITON
  
 
 
@@ -115,4 +112,30 @@ export const ReplaceCurrentQuestionInData = (currentquestion , data) => {
                 }
         })
     }
+}
+
+
+
+export  const OneStepBackFromCurrentQuestion = (currentquestion , data) => {
+    for (let i = 0; i < data.length; i++) {
+        if (currentquestion.id === data[i].id) {
+            for (let j = (i - 1); j >= 0; j--) {
+                if (data[j].display === true) {
+                    return  data[j]
+                }
+            }
+        }
+    }
+}
+
+
+export const IsCurrentQuestionHaveAnswerd = (currentquesiton) => {
+    let haveAnswer = false;
+    currentquesiton.choices.values.forEach(item => {
+        if ( item.status === true ) {
+            haveAnswer = true; 
+        }
+    })
+
+    return haveAnswer;
 }

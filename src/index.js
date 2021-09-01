@@ -17,6 +17,7 @@ import themeReducer from "./Redux/Reducers/ThemeReducer";
 import apexReducer from './Redux/Reducers/apexReducer';
 import { QuestionReducer } from './Redux/Reducers/QuestionReducer';
 import { CurrentQuestionReducer } from './Redux/Reducers/CurrentQuestionReducer';
+import { ValidatorReducer } from './Redux/Reducers/ValidatorReducer';
 
 
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
   theme: themeReducer ,
   apex: apexReducer ,
   qa: QuestionReducer ,
-  currentqa: CurrentQuestionReducer
+  currentqa: CurrentQuestionReducer , 
+  validate: ValidatorReducer
 
 })
 

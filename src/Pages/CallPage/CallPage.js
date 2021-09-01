@@ -1,4 +1,8 @@
 import React   from 'react';
+import { useStore } from 'react-redux';
+import clsx from 'clsx';
+import * as actionTypes from '../../Redux/Actions/actionTypes';
+import { Button } from '@material-ui/core';
 import { useEffect , useState , useRef }  from 'react';
 import { useSelector , useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -24,6 +28,8 @@ import TimePicker from '../../Questions/SingleSelect/TimePicker/TimePicker';
 import CustomSlider from '../../Questions/SingleSelect/Slider/Slider';
 import MultiCheckboxUpdate from '../../Questions/MultiSelect/MultiCheckbox/MultiCheckboxUpdate';
 import QuestionFilter from '../../Questions/QuestionFilter/QuestionFilter';
+import { IsCurrentQuestionHaveAnswerd } from '../../functions/handleData';
+
 
 
 
@@ -38,6 +44,10 @@ const useStyles = makeStyles(theme => ({
     // height: "100px" ,
 
 
+  } , 
+
+  DisplayNone: {
+    display: "none"
   }
 }));
 
@@ -45,30 +55,51 @@ const useStyles = makeStyles(theme => ({
 
 export default function SimpleCard() {
   const classes = useStyles();
+  const store = useStore()
   let dispatch = useDispatch();
+
+  const [StartStatus, setStartStatus] = useState(false)
   let {CurrentQuestion} = useSelector(state => state.currentqa);
-  let {Data} = useSelector(state => state.qa);
+  let {Validate} = useSelector(state => state.validate);
   
- 
-  useEffect(() => {
-    console.log("useEffect")
-    dispatch({ type: 'NEXT_QUESTION' , payload: Data })
-  } , [Data])
-
-
 
   const nextHandler = () => {
-    dispatch(actionCreators.submitAnswer(CurrentQuestion))
 
+    dispatch(actionCreators.submitAnswer(CurrentQuestion))
+    dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+    const updateData = store.getState().qa.Data;
+    dispatch({ type: 'NEXT_QUESTION' , payload: updateData })
+
+  }
+
+  const backHandler = () => {
+    var CurrentChange = IsCurrentQuestionHaveAnswerd(CurrentQuestion)
+    if (CurrentChange) {
+      dispatch(actionCreators.submitAnswer(CurrentQuestion))
+    }
+    const updateData = store.getState().qa.Data;
+    dispatch({type: 'BACK_QUESTION' , Data: updateData})
+    dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: false})
+  }
+
+  const startHandler = () => {
+    const updateData = store.getState().qa.Data;
+    dispatch({ type: 'NEXT_QUESTION' , payload: updateData })
+    setStartStatus(true)
   }
     
     return (
       <div>
           <div className={classes.Footer}>
-            <button onClick={() => dispatch({ type: 'BACK_QUESTION' })}>قبلی</button>
-            <button onClick={ nextHandler }>بعدی</button>
+            <Button  color="secondary" variant="outlined" onClick={ backHandler }>قبلی</Button>
+            <Button disabled={Validate.RequireValidate}  color="primary" variant="outlined"  onClick={ nextHandler }>بعدی</Button>
+            <Button className={clsx({
+                        [classes.DisplayNone]: StartStatus
+            })} disabled={false}  color="primary" variant="outlined"  onClick={ startHandler }>برو بریم</Button>
         </div>
         {QuestionFilter(CurrentQuestion)}
+
+
             {/* <MultiCheckboxUpdate 
               number="15" 
               text="کدام گزینه ها بیشتر شما را آزار داده است؟"
