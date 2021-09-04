@@ -1,4 +1,5 @@
-import React , {useState}  from 'react';
+import React , {useState }  from 'react';
+import { useSelector , useDispatch } from 'react-redux';
 import "./MultiCheckbox.css";
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
@@ -8,6 +9,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
 import { TextField } from '@material-ui/core';
 import NoIdeaCheckbox from '../../../Partial/NoIdeaCheckbox/NoIdeaCheckbox';
+import * as actionTypes from '../../../Redux/Actions/actionTypes';
+
 
 
 const Height = 600
@@ -55,6 +58,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px"
   } ,
 
+  DisplayNone: {
+    display: "none"
+  } ,
+
   NoIdeaStatus: {
   display: "none"
 }
@@ -64,41 +71,37 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MultiCheckbox(props) {
   const classes = useStyles();
-  const [Checked, setChecked] = useState(false) 
-  const Data = props.choices.values;
-
-  let initialState = [];
-
-  for (let i = 0; i < Data.length; i++) {
-    initialState.push({
-      id: Data[i].id , 
-      status: false , 
-      choice: Data[i].choice
-    })
-  }
+  let dispatch = useDispatch();
+  const [Checked, setChecked] = useState(false)
   
-  const [Choices , setChoices] = useState(initialState);
+  let {CurrentQuestion} = useSelector(state => state.currentqa);
+  // let {Validate} = useSelector(state => state.validate);
   
+
+
+  
+ 
 
   const handleChange = (e, key) => {
-    let updateChoices = [];
-    Choices.forEach(item => {
+    let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
+    updateCurrentQuestion.choices.values.forEach(item => {
       if (item.id === key) {
-        updateChoices.push({
-          id: item.id , 
-          status: !item.status ,
-          choice: item.choice
-        })
-      } else {
-        updateChoices.push({
-          id: item.id , 
-          status: item.status ,
-          choice: item.choice
-        })
-      }
+        item.status = !item.status
+        dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
+      } 
     });
 
-    setChoices(updateChoices);
+    dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
+
+  }
+
+
+  const textFieldHandler = (e) => {
+    let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
+    updateCurrentQuestion.choices.description = e.target.value;
+    dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
+    dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
+
   }
 
   const getFormControlStyle = (columnCount) => {
@@ -128,33 +131,48 @@ export default function MultiCheckbox(props) {
   }
 }
 
-const formControlStyle = getFormControlStyle(props.choices.column);
+const formControlStyle = getFormControlStyle(CurrentQuestion.choices.column);
+
 
  let FormGroup = [];
 
- Choices.forEach(item => {
-   FormGroup.push(
-    <FormControlLabel
-    key={item.id}
-    className={clsx({
-              [classes.FormControlLabel]: true , 
-              [classes.CheckBoxColorSelected] : item.status
-    })}
-    control={<Checkbox disabled={Checked} key={item.id} checked={item.status} onChange={(e) => handleChange(e , item.id)} />}
-    label={item.choice}
-  />
-   )
+ CurrentQuestion.choices.values.forEach(item => {
+    FormGroup.push(
+      <FormControlLabel
+      key={item.id}
+      className={clsx({
+                [classes.FormControlLabel]: true , 
+                [classes.CheckBoxColorSelected] : item.status , 
+                [classes.DisplayNone]: !item.display
+      })}
+      control={<Checkbox 
+                className={clsx({
+                  [classes.DisplayNone]: !item.display
+                })}
+                disabled={Checked} 
+                key={item.id} 
+                checked={item.status} 
+                onChange={(e) => handleChange(e , item.id)} />}
+                label={item.caption}
+    />
+     )
  })
 
 
  const checkboxChangeHandler = () => {
   setChecked(prev => !prev);
-  setChoices(initialState)
+  let updateState = JSON.parse(JSON.stringify(CurrentQuestion));
+  updateState.noidea.status = !Checked
+  updateState.choices.values.forEach(item => {
+        item.status = false
+  })
+  dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateState });
+  dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateState })
 }
 
 
   return (
-    <QuestionTemplate number={props.number} text={props.text}>
+    <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
         <div className={classes.columnRoot}>
           <FormControl  style={formControlStyle} component="fieldset" className={classes.formControl}>
           {FormGroup}
@@ -164,7 +182,7 @@ const formControlStyle = getFormControlStyle(props.choices.column);
           <NoIdeaCheckbox
               label="هیچکدام"
               className={clsx({
-                        [classes.NoIdeaStatus]: !props.choices.noidea , 
+                        [classes.NoIdeaStatus]: !CurrentQuestion.noidea , 
                         [classes.NoIdeaCheckbox]: true
               })}
               checked={Checked}
@@ -175,11 +193,13 @@ const formControlStyle = getFormControlStyle(props.choices.column);
               className={clsx({
                         [classes.TextField]: true , 
                         [classes.TextFieldVisibility]: true , 
-                        [classes.TextFieldExist]: !props.choices.others
+                        [classes.TextFieldExist]: !CurrentQuestion.choices.others
               })}
+              onChange={textFieldHandler}
+              value={CurrentQuestion.choices.description}
               color="secondary" 
               variant="outlined" 
-              label="سایر موارد"
+              placeholder="سایر موارد"
               disabled={false}
               />
       </div>

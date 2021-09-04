@@ -23,10 +23,9 @@ import Shamsi from '../../Questions/SingleSelect/Shamsi/Shamsi';
 import SimpleNumberInput from '../../Questions/SingleSelect/SimpleNumberInput/SimpleNumberInput';
 import MultiLineInput from '../../Questions/SingleSelect/MultiLineInput/MultiLineInput';
 import CascadingDropDown from '../../Questions/MultiSelect/CascadingDropDown/CascadingDropDown';
-import MultiCheckbox from '../../Questions/MultiSelect/MultiCheckbox/MultiCheckbox';
 import TimePicker from '../../Questions/SingleSelect/TimePicker/TimePicker';
 import CustomSlider from '../../Questions/SingleSelect/Slider/Slider';
-import MultiCheckboxUpdate from '../../Questions/MultiSelect/MultiCheckbox/MultiCheckboxUpdate';
+import MultiCheckbox from '../../Questions/MultiSelect/MultiCheckbox/MultiCheckbox';
 import QuestionFilter from '../../Questions/QuestionFilter/QuestionFilter';
 import { IsCurrentQuestionHaveAnswerd } from '../../functions/handleData';
 
@@ -63,6 +62,7 @@ export default function SimpleCard() {
   let {Validate} = useSelector(state => state.validate);
   
 
+  
   const nextHandler = () => {
 
     dispatch(actionCreators.submitAnswer(CurrentQuestion))

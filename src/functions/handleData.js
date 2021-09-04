@@ -74,13 +74,11 @@ const deletedQuestionIdHandler = (QuestionStringId , bool , data) => {
     data.forEach(item => {
         intArr.forEach(element => {
             if (item.id === element) {
-                console.log(item.choices.values)
                 item.display = bool
                 if (bool === false) {
                     item.answered = false
                     item.choices.values.forEach(valuesStatus => {
                         valuesStatus.status = false
-                        console.log(valuesStatus)
                     })
                 }
             }
@@ -96,7 +94,7 @@ const deletedQuestionIdHandler = (QuestionStringId , bool , data) => {
         if (item.deletedChoiceId) {
             deletedChoiceIdHandler(item.deletedChoiceId , !item.status , data)
         }
-        if (item.deletedChoiceId) {
+        if (item.deletedQuestionId) {
          deletedQuestionIdHandler(item.deletedQuestionId , !item.status , data)
         }
     //    deletedChoiceIdHandler(item.deletedChoiceId , true , data)
@@ -139,11 +137,37 @@ export  const OneStepBackFromCurrentQuestion = (currentquestion , data) => {
 
 export const IsCurrentQuestionHaveAnswerd = (currentquesiton) => {
     let haveAnswer = false;
-    currentquesiton.choices.values.forEach(item => {
-        if ( item.status === true ) {
-            haveAnswer = true; 
+    if (currentquesiton.choices.description !== "") {
+        haveAnswer = true
+    }
+    if (currentquesiton.noidea) {
+        if (currentquesiton.noidea.status === true) {
+            haveAnswer = true;
         }
-    })
+    }
+   if (currentquesiton.choices.values) {
+        currentquesiton.choices.values.forEach(item => {
+            if ( item.status === true ) {
+                haveAnswer = true; 
+            }
+        })
+   }
 
     return haveAnswer;
+}
+
+
+// GET CURRENT QUESTION AS ARGUMENT AND RETURN OBJECT FOR SENDITG TO THE BACK 
+const answerGeneratorForBack = (currentquestion) => {
+    var object = {};
+    object.questionId = currentquestion.id;
+    object.description = currentquestion.description;
+    if (currentquestion.choices.values) {
+        object.choicesId = currentquestion.choices.values.map(item => {
+            return item.id
+        })
+    } else {
+        object.choicesId = null;
+    }
+    return object
 }

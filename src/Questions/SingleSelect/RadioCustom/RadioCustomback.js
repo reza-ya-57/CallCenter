@@ -1,5 +1,4 @@
 import React , {useState} from 'react';
-import { useSelector , useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -9,7 +8,6 @@ import { makeStyles } from '@material-ui/core';
 import { TextField } from '@material-ui/core';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
 import NoIdeaCheckbox from '../../../Partial/NoIdeaCheckbox/NoIdeaCheckbox';
-import * as actionTypes from '../../../Redux/Actions/actionTypes';
 
 const Height = 400
 const useStyles = makeStyles(theme => ({
@@ -68,87 +66,29 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function RadioCustom(props) {
-  let {CurrentQuestion} = useSelector(state => state.currentqa);
-  
-  let initialValue = null;
-  CurrentQuestion.choices.values.forEach(item => {
-    if(item.status === true) {
-      initialValue = item.id
-    }
-  })
-
   const classes = useStyles();
-  const [value, setValue] = React.useState(initialValue);
+  const [value, setValue] = React.useState('');
   const [Checked, setChecked] = useState(false);
-  let dispatch = useDispatch();
-
-
 
   const handleChange = (event) => {
-    setValue(parseInt(event.target.value));
-    let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
-    updateCurrentQuestion.choices.values.forEach(item => {
-      if (item.id === parseInt(event.target.value)) {
-        item.status = true
-      } else {
-        item.status = false
-      }
-    });
-    dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
-    dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
+    setValue(event.target.value);
   };
 
 
-  const textFieldHandler = (e) => {
-    if ( e.target.value.toString().length > 0) {
-      setValue("");
-      setChecked(true)
-
-
-      let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
-      updateCurrentQuestion.choices.description = e.target.value;
-      updateCurrentQuestion.noidea.status = true;
-      updateCurrentQuestion.choices.values.forEach(item => {
-        item.status = false
-        })
-      dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
-      dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
-
-
-
-    } else {
-      setChecked(false)
-
-      let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
-      updateCurrentQuestion.choices.description = e.target.value;
-      updateCurrentQuestion.noidea.status = false;
-      updateCurrentQuestion.choices.values.forEach(item => {
-        item.status = false
-        })
-      dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
-      dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
-
-    }
-
-
-
-  }
-
-  
   let FormControlLabels = [];
-  CurrentQuestion.choices.values.forEach(item => {
+  props.choices.values.forEach(item => {
     FormControlLabels.push(
         <FormControlLabel
-          label={item.caption}
+          label={item.choice}
           key={item.id}
           className={clsx({
             [classes.FormControlLabel]: true ,
-            [classes.RadioCheckedColor]: value === item.caption
+            [classes.RadioCheckedColor]: value === item.choice
             
           })} 
-          value={item.id} 
+          value={item.choice} 
           control={<Radio
-                  disabled={CurrentQuestion.noidea.status}
+                  disabled={Checked}
                   classes={{colorPrimary: classes.Radio ,
                             colorSecondary: classes.RadioColor ,
                             checked: classes.Radio}} 
@@ -190,14 +130,6 @@ const formControlStyle = getFormControlStyle(props.choices.column);
   const checkboxChangeHandler = () => {
     setChecked(prev => !prev);
     setValue("");
-    let updateState = JSON.parse(JSON.stringify(CurrentQuestion));
-    updateState.noidea.status = !Checked
-    updateState.choices.values.forEach(item => {
-          item.status = false
-    })
-    updateState.choices.description = "";
-    dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateState });
-    dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateState })
 }
 
 
@@ -220,23 +152,30 @@ const formControlStyle = getFormControlStyle(props.choices.column);
             <NoIdeaCheckbox
               label="هیچکدام"
               className={clsx({
-                  [classes.NoIdeaStatus]: !CurrentQuestion.noidea , 
+                  [classes.NoIdeaStatus]: !props.choices.noidea , 
                   [classes.NoIdeaCheckbox]: true
               })}
-              checked={CurrentQuestion.noidea.status}
+              checked={Checked}
               onChange={checkboxChangeHandler}
               />
 
             <TextField 
-                onChange={ textFieldHandler }
-                value={CurrentQuestion.choices.description}
+                onChange={ e => {
+                  if ( e.target.value.toString().length > 0) {
+                    setValue("");
+                    setChecked(true)
+                  } else {
+                    setChecked(false)
+                  }
+                } }
+
                 multiline={true}
                 className={clsx({
                   [classes.TextField]: true , 
                 })}
                 color="secondary" 
                 variant="outlined" 
-                label="سایر موارد"  
+                label="سایر موارد"
                 />
           </div>
         </div>

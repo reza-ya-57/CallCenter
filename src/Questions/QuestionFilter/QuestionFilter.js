@@ -3,7 +3,8 @@ import DropDown from "../SingleSelect/SingleDropDown/SingleDropDown";
 import MultiDropDown from "../MultiSelect/MultiDropDown/MultiDropDown";
 import Shamsi from "../SingleSelect/Shamsi/Shamsi";
 import MultiCheckbox from "../MultiSelect/MultiCheckbox/MultiCheckbox";
-import MultiCheckboxUpdate from "../MultiSelect/MultiCheckbox/MultiCheckboxUpdate";
+import RadioCustom from "../SingleSelect/RadioCustom/RadioCustom";
+import EmailField from "../SingleSelect/EmailField/EmailField";
 
 
 
@@ -12,14 +13,23 @@ const QuestionFilter = (CurrentQuestion) => {
         switch (CurrentQuestion.choiceTypeId) {
             case 12: {
                 return (
-                    <MultiCheckboxUpdate
+                    <MultiCheckbox
                         {...CurrentQuestion}
                     />
                 )
             }
-            case 100: {
+            case 13: {
                 return (
-                    <DropDown />
+                    <RadioCustom 
+                        {...CurrentQuestion}
+                    />
+                )
+            }
+            case 14: {
+                return (
+                    <EmailField
+                        {...CurrentQuestion}
+                    />
                 )
             }
             default : return null;
