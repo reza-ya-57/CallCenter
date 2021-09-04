@@ -27,6 +27,49 @@ const initialState = {
          }
 
    } ,
+    {
+       id: 26 ,
+       number: 1 ,
+       caption: "گزینه مورد نظر خود را وارد کنید؟" ,
+       description: "توضیحی برای سوال" ,
+       mandatory: true , 
+       choiceTypeId: 16 , 
+       sortOrder: 1 ,
+       answered: false ,
+       display: true ,
+       noidea: {id: -1 , caption: "سوشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "457" , status: false  , display: true} ,
+       choices:{
+           description: "" ,
+           column: null ,
+           max: 1400 , 
+           min: 5 ,
+           values:null
+         }
+
+   } ,
+    {
+       id: 400 ,
+       number: 12 ,
+       caption: "گزینه مورد نظر خود را وارد کنید؟" ,
+       description: "توضیحی برای سوال" ,
+       mandatory: true , 
+       choiceTypeId: 15 , 
+       sortOrder: 1 ,
+       answered: false ,
+       display: true ,
+       noidea: {id: -1 , caption: "سوشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "457" , status: false  , display: true} ,
+       choices:{
+           description: "" ,
+           other: true ,
+           column: 4 ,
+           values:[
+             {id: 102 , caption: "سوال بعدی حذف میشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "45" , status: false  , display: true} ,
+             {id: 103 , caption: "میشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "452" , status: false  , display: true} ,
+             {id: 104 , caption: "سیشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "453" , status: false  , display: true} ,
+               ]
+         }
+
+   } ,
 
    {
    id: 45 ,
@@ -70,16 +113,33 @@ const initialState = {
    noidea:  {id: 1 , caption: "2" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true } ,
    choices:{
        description: "" ,
-       other: true ,
-       column: 4 ,
-       values:[
-           {id: 100 , caption: "3" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true} ,
-           {id: 344 , caption: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
-           {id: 564 , caption: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
-           {id: 54 , caption: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
-        //    {id: 124 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
-        //    {id: 14 , choice: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
-           ]
+       column: null ,
+       values: [
+           
+        {id: 1 , caption: "2" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true } ,
+        {id: 34 , caption: "ایساکو" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67" , status: false  , display: true} ,
+        {id: 56 , caption: "سوال بعدی حذف میشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "60" , status: false  , display: true} ,
+       ]
+       }
+
+   }
+   ,
+
+   {
+   id: 61 ,
+   number: 3 ,
+   caption: "گزینه مورد نظر خود را وارد کنید؟" ,
+   description: "" ,
+   mandatory: true , 
+   choiceTypeId: 14 , 
+   sortOrder: 3 ,
+   answered: false ,
+   display: true ,
+   noidea:  {id: 1 , caption: "2" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "67,19,18" , status: false  , display: true } ,
+   choices:{
+       description: "" ,
+       column: null ,
+       values:null
        }
 
    }

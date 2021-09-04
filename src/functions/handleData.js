@@ -90,15 +90,17 @@ const deletedQuestionIdHandler = (QuestionStringId , bool , data) => {
     // منظور از آپدیت این است که بر اثاث گزینه هایی که انتحاب شده در آبجکت سوال 
     //display
     // را هم برای سوال هایی که باید حذف شوند و هم برای گزینه ها تغییر میدهد
-   questionobject.choices.values.forEach(item => {
-        if (item.deletedChoiceId) {
-            deletedChoiceIdHandler(item.deletedChoiceId , !item.status , data)
-        }
-        if (item.deletedQuestionId) {
-         deletedQuestionIdHandler(item.deletedQuestionId , !item.status , data)
-        }
-    //    deletedChoiceIdHandler(item.deletedChoiceId , true , data)
-   })
+   if (questionobject.choices.values) {
+        questionobject.choices.values.forEach(item => {
+            if (item.deletedChoiceId) {
+                deletedChoiceIdHandler(item.deletedChoiceId , !item.status , data)
+            }
+            if (item.deletedQuestionId) {
+            deletedQuestionIdHandler(item.deletedQuestionId , !item.status , data)
+            }
+        //    deletedChoiceIdHandler(item.deletedChoiceId , true , data)
+    })
+   }
 }
 // FINISH FUNCITON
  

@@ -1,13 +1,11 @@
 import React , {useState} from 'react';
 import { useStore } from 'react-redux';
 import { useSelector , useDispatch } from 'react-redux';
+import * as actionTypes from '../../../Redux/Actions/actionTypes';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
 import { makeStyles , TextField } from '@material-ui/core';
 import NoIdeaCheckbox from '../../../Partial/NoIdeaCheckbox/NoIdeaCheckbox';
 import clsx from 'clsx';
-import * as actionTypes from '../../../Redux/Actions/actionTypes';
-import { EmailTheme } from './EmailTheme';
-import { ThemeProvider } from '@material-ui/styles';
 
 
 const useStyles = makeStyles(theme => ({
