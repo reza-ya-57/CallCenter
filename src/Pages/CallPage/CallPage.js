@@ -62,11 +62,11 @@ export default function SimpleCard() {
   let {Validate} = useSelector(state => state.validate);
   
 
-  
+
   const nextHandler = () => {
 
     dispatch(actionCreators.submitAnswer(CurrentQuestion))
-    dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+    dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: false})
     const updateData = store.getState().qa.Data;
     dispatch({ type: 'NEXT_QUESTION' , payload: updateData })
 
@@ -79,7 +79,7 @@ export default function SimpleCard() {
     }
     const updateData = store.getState().qa.Data;
     dispatch({type: 'BACK_QUESTION' , Data: updateData})
-    dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: false})
+    dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
   }
 
   const startHandler = () => {
@@ -92,7 +92,7 @@ export default function SimpleCard() {
       <div>
           <div className={classes.Footer}>
             <Button  color="secondary" variant="outlined" onClick={ backHandler }>قبلی</Button>
-            <Button disabled={Validate.RequireValidate}  color="primary" variant="outlined"  onClick={ nextHandler }>بعدی</Button>
+            <Button disabled={!Validate.RequireValidate}  color="primary" variant="outlined"  onClick={ nextHandler }>بعدی</Button>
             <Button className={clsx({
                         [classes.DisplayNone]: StartStatus
             })} disabled={false}  color="primary" variant="outlined"  onClick={ startHandler }>برو بریم</Button>

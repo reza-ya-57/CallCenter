@@ -37,18 +37,16 @@ const EmailField = (props) => {
     const classes = useStyles();
     const [Error, setError] = useState(false)
     const [Checked, setChecked] = useState(false)
-    const [, setInputValue] = useState("")
+    // const [, setInputValue] = useState("")
 
     const InputHandler = (e) => {
-        console.log(e.target.value)
         setError(!validateEmail(e.target.value));
-        setInputValue(e.target.value);
+        // setInputValue(e.target.value);
         let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
         updateCurrentQuestion.choices.description = e.target.value;
         dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
         dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
-        
-        dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: !validateEmail(e.target.value) })
+        dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: validateEmail(e.target.value) })
     }
 
 
@@ -59,7 +57,7 @@ const EmailField = (props) => {
     updateState.noidea.status = !updateState.noidea.status
     dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateState });
     let {Validate} = store.getState().validate
-    dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: !updateState.noidea.status })
+    dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: updateState.noidea.status })
     }
 
     return (
@@ -68,10 +66,6 @@ const EmailField = (props) => {
                <TextField
                     value={CurrentQuestion.choices.description}
                     disabled={CurrentQuestion.noidea.status}
-                    // onFocus={InputHandler}
-                    // onBlur={() => {
-                    //     setError(false)
-                    // }}
                     placeholder="example@gmail.com"
                     className={classes.TextField}
                     type="email"

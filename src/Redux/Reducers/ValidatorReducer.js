@@ -5,7 +5,7 @@ import { IsCurrentQuestionHaveAnswerd } from '../../functions/handleData';
 
 const initialState = {
     Validate : {
-        RequireValidate: true , 
+        RequireValidate: false , 
 
     }
 }
@@ -17,7 +17,7 @@ export const ValidatorReducer = (state = initialState , action) => {
             return {
                 Validate: {
                     ...state.Validate ,
-                    RequireValidate: !updateRequireValidate
+                    RequireValidate: updateRequireValidate
                 }
             }
 
