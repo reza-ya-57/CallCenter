@@ -2,6 +2,9 @@ import React , { useState } from 'react';
 import { makeStyles, TextField } from '@material-ui/core';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
 import NoIdeaCheckbox from '../../../Partial/NoIdeaCheckbox/NoIdeaCheckbox';
+import { useStore } from 'react-redux';
+import { useSelector , useDispatch } from 'react-redux';
+import * as actionTypes from '../../../Redux/Actions/actionTypes';
 import clsx from 'clsx';
 
 const MaxWidth = 400
@@ -24,6 +27,9 @@ const useStyles = makeStyles(theme => ({
 
 
 const NationalCode = (props) => {
+    const dispatch = useDispatch();
+    const store = useStore();
+    let {CurrentQuestion} = useSelector(state => state.currentqa);
     const classes = useStyles();
     const [Error, setError] = useState(false)
     const [Checked, setChecked] = useState(false)
@@ -37,10 +43,24 @@ const NationalCode = (props) => {
         } else {
             setError(false)
         }
+        let validate = !checkCodeMeli(e.target.value.toString())
+
+        console.log(validate)
+        let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
+        updateCurrentQuestion.choices.description = e.target.value;
+        dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
+        dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
+        dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload:     checkCodeMeli(e.target.value.toString()) })
     }
 
     const checkboxChangeHandler = () => {
         setChecked(prev => !prev)
+        let updateState = JSON.parse(JSON.stringify(CurrentQuestion));
+        updateState.choices.description = "";
+        updateState.noidea.status = !updateState.noidea.status
+        dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateState });
+        let {Validate} = store.getState().validate
+        dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: updateState.noidea.status })
     }
 
 
@@ -49,16 +69,16 @@ const NationalCode = (props) => {
            <QuestionTemplate number={props.number} text={props.text}>
                 <div className={classes.Root}>
                     <TextField
-                            disabled={Checked}
+                            value={CurrentQuestion.choices.description}
+                            disabled={CurrentQuestion.noidea.status}
                             onFocus={InputHanlder}
                             onBlur={() => {
                                 setError(false)
                             }}
                             className={classes.TextField}
                             error={Error}
-                            value={InputValue}
                             onChange={InputHanlder}
-                            type='tel'
+                            type='number'
                             // onInput={(e) => {
                             //     e.target.value = e.target.value.toString().slice(0,11)
                                 
@@ -68,9 +88,10 @@ const NationalCode = (props) => {
                             autoFocus  />
                         <NoIdeaCheckbox
                             className={clsx({
-                                [classes.NoIdeaStatus]: !props.noidea
+                                [classes.NoIdeaStatus]: !CurrentQuestion.noidea , 
+                                [classes.NoIdeaCheckbox]: true
                             })}
-                            checked={Checked}
+                            checked={CurrentQuestion.noidea.status}
                             onChange={checkboxChangeHandler}
                         />
             </div>

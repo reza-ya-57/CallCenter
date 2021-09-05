@@ -1,4 +1,7 @@
 import React , {useState} from 'react';
+import { useStore } from 'react-redux';
+import { useSelector , useDispatch } from 'react-redux';
+import * as actionTypes from '../../../Redux/Actions/actionTypes';
 import "./Slider.css";
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';

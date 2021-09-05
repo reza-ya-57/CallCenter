@@ -1,5 +1,8 @@
 import "./Shamsi.css";
 import React, { useState } from "react";
+import { useStore } from 'react-redux';
+import { useSelector , useDispatch } from 'react-redux';
+import * as actionTypes from '../../../Redux/Actions/actionTypes';
 import "react-modern-calendar-datepicker/lib/DatePicker.css";
 import { Calendar } from "react-modern-calendar-datepicker";
 import { makeStyles } from "@material-ui/core";
@@ -69,7 +72,9 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const Shamsi = (props) => {
-  
+  let dispatch = useDispatch();
+  const store = useStore();
+  let {CurrentQuestion} = useSelector(state => state.currentqa);
   const classes = useStyles();
   const [selectedDay, setSelectedDay] = useState(null);
   const [Year, setYear] = useState('1400');
@@ -85,6 +90,12 @@ const Shamsi = (props) => {
       }
     })
     setDay(e.day.toString());
+    let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
+    updateCurrentQuestion.choices.description = `${e.year}` + "/" + `${e.month}` + "/" + `${e.day}`;
+    console.log(updateCurrentQuestion)
+    dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
+    dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
+    // dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true })
   }
 
   const yearHandler = (e , list) => {
@@ -124,7 +135,7 @@ const Shamsi = (props) => {
       setSelectedDay({day: parseInt(list.title) , month: localMonth ,year: parseInt(Year)})
     }
   }
-
+  console.log(CurrentQuestion)
 
   return (
     <QuestionTemplate type="Calendar" number={props.number} text={props.text}>
