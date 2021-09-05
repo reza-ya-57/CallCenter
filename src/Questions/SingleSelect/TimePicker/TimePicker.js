@@ -1,5 +1,7 @@
 import "date-fns";
-import React from "react";
+import React , {useState , useEffect} from "react";
+import { useSelector , useDispatch } from 'react-redux';
+import * as actionTypes from '../../../Redux/Actions/actionTypes';
 import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
 import {
@@ -12,14 +14,31 @@ import QuestionTemplate from "../../../Components/UI/WrapperComponent/QuestionTe
 
 
 export default function TimePicker(props) {
-  // The first commit of Material-UI
-  const [selectedDate, setSelectedDate] = React.useState(
-    new Date("2014-08-18T21:11:54")
-  );
+  let dispatch = useDispatch();
+  let {CurrentQuestion} = useSelector(state => state.currentqa);
+
+  if (CurrentQuestion.choices.description !== "") {
+    var initialDate = new Date()
+    console.log(initialDate)
+    let TimeArray = CurrentQuestion.choices.description.split(":");
+    initialDate.setHours(parseInt(TimeArray[0]));
+    initialDate.setMinutes(parseInt(TimeArray[1]))
+  }
+
+
+  const [selectedDate, setSelectedDate] = React.useState(initialDate);
+    // new Date("2014-08-18T21:11:54")
 
   const handleDateChange = (date) => {
-    console.log(date[0])
+    let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
+    let min = date.getMinutes();
+    let hour = date.getHours();
+    let timeString = `${hour}` + ":" + `${min}`;
+     updateCurrentQuestion.choices.description = timeString;
     setSelectedDate(date);
+    dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
+    console.log('hehefjoe')
+    dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
   };
 
   return (

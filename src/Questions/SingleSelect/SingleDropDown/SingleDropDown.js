@@ -1,6 +1,5 @@
 /* eslint-disable no-use-before-define */
 import React , {useState , useEffect} from 'react';
-import { useStore } from 'react-redux';
 import { useSelector , useDispatch } from 'react-redux';
 import * as actionTypes from '../../../Redux/Actions/actionTypes';
 import { makeStyles } from '@material-ui/core';
@@ -21,8 +20,9 @@ const useStyles = makeStyles(theme => ({
 export default function SingleDropDown(props) {
   let dispatch = useDispatch();
   let {CurrentQuestion} = useSelector(state => state.currentqa);
-  const classes = useStyles();
   const [ValueOfAutoComplete, setValueOfAutoComplete] = useState(null)
+  const classes = useStyles();
+  
   useEffect(() => {
     let ValueOfAuto = null;
     CurrentQuestion.choices.values.forEach(item => {

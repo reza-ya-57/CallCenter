@@ -12,7 +12,8 @@ import SimpleNumberInput from "../SingleSelect/SimpleNumberInput/SimpleNumberInp
 import CustomSlider from "../SingleSelect/Slider/Slider";
 import SingleDropDown from "../SingleSelect/SingleDropDown/SingleDropDown";
 import MultiDropDown from "../MultiSelect/MultiDropDown/MultiDropDown";
-
+import CascadingDropDown from '../MultiSelect/CascadingDropDown/CascadingDropDown'
+import TimePicker from '../SingleSelect/TimePicker/TimePicker'
 
 
 const QuestionFilter = (CurrentQuestion) => {
@@ -98,6 +99,20 @@ const QuestionFilter = (CurrentQuestion) => {
             case 23: {
                 return (
                     <MultiDropDown
+                        {...CurrentQuestion}
+                    />
+                )
+            }
+            case 24: {
+                return (
+                    <TimePicker
+                        {...CurrentQuestion}
+                    />
+                )
+            }
+            case 25: {
+                return (
+                    <CascadingDropDown
                         {...CurrentQuestion}
                     />
                 )
