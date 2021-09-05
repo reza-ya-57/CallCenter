@@ -1,6 +1,5 @@
 import RadioQuestion from "../SingleSelect/RadioCustom/RadioCustom";
 import DropDown from "../SingleSelect/SingleDropDown/SingleDropDown";
-import MultiDropDown from "../MultiSelect/MultiDropDown/MultiDropDown";
 import Shamsi from "../SingleSelect/Shamsi/Shamsi";
 import MultiCheckbox from "../MultiSelect/MultiCheckbox/MultiCheckbox";
 import RadioCustom from "../SingleSelect/RadioCustom/RadioCustom";
@@ -11,6 +10,8 @@ import NationalCode from "../SingleSelect/NationalCode/NationalCode";
 import PhoneNumber from "../SingleSelect/PhoneNumber/PhoneNumber";
 import SimpleNumberInput from "../SingleSelect/SimpleNumberInput/SimpleNumberInput";
 import CustomSlider from "../SingleSelect/Slider/Slider";
+import SingleDropDown from "../SingleSelect/SingleDropDown/SingleDropDown";
+import MultiDropDown from "../MultiSelect/MultiDropDown/MultiDropDown";
 
 
 
@@ -83,6 +84,20 @@ const QuestionFilter = (CurrentQuestion) => {
             case 21: {
                 return (
                     <CustomSlider
+                        {...CurrentQuestion}
+                    />
+                )
+            }
+            case 22: {
+                return (
+                    <SingleDropDown
+                        {...CurrentQuestion}
+                    />
+                )
+            }
+            case 23: {
+                return (
+                    <MultiDropDown
                         {...CurrentQuestion}
                     />
                 )

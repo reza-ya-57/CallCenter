@@ -1,4 +1,5 @@
-import React , {useState} from 'react';
+import clsx from 'clsx';
+import React , {useState , useEffect} from 'react';
 import { useStore } from 'react-redux';
 import { useSelector , useDispatch } from 'react-redux';
 import * as actionTypes from '../../../Redux/Actions/actionTypes';
@@ -15,7 +16,7 @@ import SentimentDissatisfiedIcon from '@material-ui/icons/SentimentDissatisfied'
 import SentimentSatisfiedIcon from '@material-ui/icons/SentimentSatisfied';
 import InsertEmoticonOutlinedIcon from '@material-ui/icons/InsertEmoticonOutlined';
 import SentimentVerySatisfiedOutlinedIcon from '@material-ui/icons/SentimentVerySatisfiedOutlined';
-import clsx from 'clsx';
+import NoIdeaCheckbox from '../../../Partial/NoIdeaCheckbox/NoIdeaCheckbox';
 
 
 const Icons = [
@@ -81,42 +82,99 @@ function valuetext(value) {
 
 
 export default function CustomSlider(props) {
+  let dispatch = useDispatch();
+  const store = useStore();
+  let {CurrentQuestion} = useSelector(state => state.currentqa);
   const classes = useStyles();
   const [Checked, setChecked] = useState(false)
+  const [ValueOfSlider, setValueOfSlider] = useState(0)
   let initialmarks = [];
+  const step =  parseInt(98 / (CurrentQuestion.choices.values.length -1 ))
 
-  const step =  parseInt(98 / (props.marks.length -1 ))
-
-  props.marks.forEach((item  , index) => {
+  CurrentQuestion.choices.values.forEach((item  , index) => {
 
     initialmarks.push ({
-      value: index + 1 === props.marks.length ? 100 : 2 + (index * step) , 
-      label: item.label ,  
-      icon: item.icon ? item.icon : Icons[parseInt(((7/props.marks.length)*(index + 1)) - 1 )]
+      id: item.id ,
+      value: index + 1 === CurrentQuestion.choices.values.length ? 100 : 2 + (index * step) , 
+      label: item.caption ,  
+      icon: item.icon ? item.icon : Icons[parseInt(((7/CurrentQuestion.choices.values.length)*(index + 1)) - 1 )]
     })
   })  
 
   let marks = initialmarks
 
+ useEffect(() => {
+  CurrentQuestion.choices.values.forEach(item => {
+    if (item.status === true) {
+      marks.forEach(element => {
+        if (element.id === item.id) {
+          setValueOfSlider(element.value)
+        }
+      })
+    }
+  })
+ }, [])
+
   function valueLabelFormat(value) {
 
     var test = marks.filter((mark) => mark.value === value);
-    return test[0].icon
+      if (test[0]) {
+        return test[0].icon
+      }
   }
 
-  const handleChange = () => {
-    setChecked(prev => !prev)
+ 
+
+  const SliderChangeHandler = ( e , val ) => {
+    setValueOfSlider(val)
+    let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
+    marks.forEach(item => {
+      if (item.value === val) {
+        updateCurrentQuestion.choices.values.forEach(element => {
+          if (element.id === item.id) {
+            element.status = true
+          } else {
+            element.status = false
+          }
+        })
+      }
+    })
+
+    
+    dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
+    dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
+    // dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: validate })
   }
+
+
+  const checkboxChangeHandler = () => {
+    setValueOfSlider(0)
+    setChecked(prev => !prev)
+    let updateState = JSON.parse(JSON.stringify(CurrentQuestion));
+    updateState.noidea.status = !updateState.noidea.status
+    updateState.choices.values.forEach(item => {
+      item.status = false
+    })
+    dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateState });
+    let {Validate} = store.getState().validate
+    dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: updateState.noidea.status })
+}
 
   return (
-    <QuestionTemplate number={props.number} text={props.text}>
+    <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
           <div className={classes.root}>
-              <FormControlLabel
-                control={<Checkbox checked={Checked} onChange={handleChange} name="check" />}
-                label="نظری ندارم"
+            <NoIdeaCheckbox
+                className={clsx({
+                    [classes.NoIdeaStatus]: !CurrentQuestion.noidea , 
+                    [classes.NoIdeaCheckbox]: true
+                })}
+                checked={CurrentQuestion.noidea.status}
+                onChange={checkboxChangeHandler}
               />
               <Slider
-                defaultValue={2}
+                disabled={CurrentQuestion.noidea.status}
+                // defaultValue={0}
+                value={ValueOfSlider}
                 classes={{
                   root: classes.SliderRoot ,
                   rail: classes.Rail, 
@@ -124,6 +182,7 @@ export default function CustomSlider(props) {
                   markLabel: classes.MarkLabel , 
                   thumb: classes.Thumb
                 }}
+                onChange={( e , val) => SliderChangeHandler( e , val )}
                 className={clsx({
                   [classes.SliderOpacity]: Checked
                 })}

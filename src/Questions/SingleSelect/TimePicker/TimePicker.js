@@ -18,6 +18,7 @@ export default function TimePicker(props) {
   );
 
   const handleDateChange = (date) => {
+    console.log(date[0])
     setSelectedDate(date);
   };
 
