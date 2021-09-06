@@ -1,7 +1,5 @@
 /* eslint-disable no-use-before-define */
 import React , {useState} from 'react';
-import { useSelector , useDispatch } from 'react-redux';
-import * as actionTypes from '../../../Redux/Actions/actionTypes';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';

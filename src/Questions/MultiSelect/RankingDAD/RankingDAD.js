@@ -1,214 +1,145 @@
-import React from "react";
-import "./RankingDAD.css";
-import { makeStyles } from "@material-ui/core";
-import {  DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
+import React, { useState} from "react";
+import { withStyles } from "@material-ui/core/styles";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import QuestionTemplate from "../../../Components/UI/WrapperComponent/QuestionTemplate";
+import clsx from "clsx";
+import { blueGrey } from "@material-ui/core/colors";
+// fake data generator
+// const getItems = count =>
+//   Array.from({ length: count }, (v, k) => k).map(k => ({
+//     id: `item-${k}`,
+//     choice: `item ${k}`
+//   }));
+
+const styles = theme => ({
+  DraggAbleListIsDraggin: {
+    backgroundColor: theme.palette.success.main , 
+    color: "blue" , 
+  } , 
+
+  DraggAbleListNotDragging: {
+    backgroundColor: blueGrey[700]
+  }
+});
+
+// a little function to help us with reordering the result
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+
+const grid = 8;
 
 
-const useStyles = makeStyles(theme => ({
-    Root: {
-        width: "400px" , 
-    }
-}))
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: "none",
+  // padding: grid * 2,
+  padding: "10px 30px" ,
+  margin: `0 0 ${grid}px 0`,
+  color: isDragging ? "black" : "white", 
 
-const { useEffect, useState, } = React;
-// const { DragDropContext, Draggable, Droppable } = ReactBeautifulDnd;
-
-const DATA = [
-  {
-    id: 'af1',
-    label: 'موارد را به ترتیب کنید',
-    items: [
-      {id: 'af2', label: 'Item 1'},
-      {id: 'af3', label: 'Item 2'},
-      {id: 'af4', label: 'Item 3'},
-      {id: 'af5', label: 'Item 4'},
-      {id: 'af6', label: 'Item 5'},
-    ],
-    tint: 1,
-  },
-  // {
-  //   id: 'af4',
-  //   label: 'Closing leads',
-  //   items: [
-  //     {id: 'af5', label: 'Item 1'}, 
-  //     {id: 'af6', label: 'Item 2'}, 
-  //   ],
-  //   tint: 2,
-  // },
-  // {
-  //   id: 'af7', label: 'On hold', 
-  //   items: [
-  //     {id: 'af8', label: 'Item 1'}, 
-  //     {id: 'af9', label: 'Item 2'}, 
-  //   ],
-  //   tint: 3,
-  // }, 
-];
+  // change background colour if dragging
+  // background: isDragging ? "green" : "hsl(215, 14%, 37.5%)",
+  color: "white" ,
+  borderRadius: "10px",
+  boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" ,
+  height: "40px" ,
+  border: "3px balck solid" ,
 
 
-function RankingDAD(props) {
-    const classes = useStyles();
-    
-  const [items, setItems] = useState([]);
-  const [groups, setGroups] = useState({});
+  // styles we need to apply on draggables
+  ...draggableStyle
+});
+
+const getListStyle = isDraggingOver => ({
+  background: isDraggingOver ? "lightblue" : "",
+  padding: "10px 50px",
+  width: "70%" , 
+  margin: "auto" ,
+  borderRadius: "10px" , 
+});
+
+const RankingDAD2 = (props) => {
+  let initialState = props.choices.map(item => {
+    return {id: item.id.toString() , choice: item.choice}
+  })
   
-  useEffect(() => {
-    // Mock an API call.
-    buildAndSave(DATA);
-  }, []);
+  const [state, setstate] = useState({
+    items: initialState
+  })
+
   
-  function buildAndSave(items)
-  {
-    const groups = {};
-    for (let i = 0; i < Object.keys(items).length; ++i) {
-      const currentGroup = items[i];
-      groups[currentGroup.id] = i;
+
+
+
+  function onDragEnd(result) {
+    // dropped outside the list
+    if (!result.destination) {
+      return;
     }
-    
-    // Set the data.
-    setItems(items);
-    
-    // Makes the groups searchable via their id.
-    setGroups(groups);
+
+  
+
+    const items = reorder(
+     state.items,
+      result.source.index,
+      result.destination.index
+    );
+
+    setstate({
+      items
+    });
   }
 
-  
-  
-  return (
+  // Normally you would want to split things out into separate components.
+  // But in this example everything is just done in one place for simplicity
+    const { classes } = props;
+    return (
       <QuestionTemplate number={props.number} text={props.text}>
-    <div className={classes.Root}>
-        <DragDropContext 
-      onDragEnd={(result) => {
-        const { destination, draggableId, source, type, } = result;
-
-        if (!destination) {
-          return;
-        }
-
-        if (destination.droppableId === source.droppableId && destination.index === source.index) {
-          return;
-        }
-        
-        if ('group' === type) {
-          const sourceIndex = source.index;
-          const targetIndex = destination.index;
-          
-          const workValue = items.slice();
-          const [deletedItem, ] = workValue.splice(sourceIndex, 1);
-          workValue.splice(targetIndex, 0, deletedItem);
-
-          buildAndSave(workValue);
-          
-          return;
-        }
-
-        const sourceDroppableIndex = groups[source.droppableId];
-        const targetDroppableIndex = groups[destination.droppableId];
-        const sourceItems = items[sourceDroppableIndex].items.slice();
-        const targetItems = source.droppableId !== destination.droppableId ? items[targetDroppableIndex].items.slice() : sourceItems;
-        
-        // Pull the item from the source.
-        const [deletedItem, ] = sourceItems.splice(source.index, 1);
-        targetItems.splice(destination.index, 0, deletedItem);
-        
-        const workValue = items.slice();
-        workValue[sourceDroppableIndex] = {
-          ...items[sourceDroppableIndex],
-          items: sourceItems,
-        };
-        workValue[targetDroppableIndex] = {
-          ...items[targetDroppableIndex],
-          items: targetItems,
-        };
-        
-        
-        setItems(workValue);
-      }}
-    >
-      <Droppable droppableId='ROOT' type='group'>
-        {(provided) => (
-          <div
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {items.map((item, index) => (
-              <Draggable 
-                draggableId={item.id}
-                key={item.id}
-                index={index}
-              >
-                {(provided) => (
-                  <div
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    ref={provided.innerRef}
-                  >
-                    <DroppableList
-                      key={item.id}
-                      {...item}
-                    />
-                  </div>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
-    </div>
-    </QuestionTemplate>
-  );
-}
-
-
-
-function DroppableList({ id, items, label, tint, })
-{
-  return (
-    <Droppable droppableId={id}>
-      {(provided) => (
-        <div
-          {...provided.droppableProps}
-          ref={provided.innerRef}
-        >
-          <div className={`holder holder--tint-${tint}`}>
-            <div className='holder__title'>
-              {label}
-            </div>
-            <div className='holder__content'>
-              <ul className='list'>
-                {items.map((item, index) => (
-                  <li 
-                    className='list__item'
-                    key={item.id}
-                  >
-                    <Draggable 
-                      draggableId={item.id}
-                      index={index}
-                    >
-                      {(provided) => (
-                        <div
-                          className='card'
-                          {...provided.draggableProps}
-                          {...provided.dragHandleProps}
-                          ref={provided.innerRef}
-                        >
-                          {item.label}
-                        </div>
+          <div >
+          <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable style={{backgroundColor: "red"}} droppableId="droppable">
+          {(provided, snapshot) => (
+            <div
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+              style={getListStyle(snapshot.isDraggingOver)}
+            >
+              {state.items.map((item, index) => (
+                <Draggable key={item.id} draggableId={item.id} index={index}>
+                  {(provided, snapshot) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      style={getItemStyle(
+                        snapshot.isDragging,
+                        provided.draggableProps.style
                       )}
-                    </Draggable>
-                  </li>
-                ))}
-                {provided.placeholder}
-              </ul>
+                      className={clsx({
+                        [classes.DraggAbleListIsDraggin]: snapshot.isDragging ,
+                        [classes.DraggAbleListNotDragging]: !snapshot.isDragging
+                      })}
+                    >
+                      {item.choice}
+                    </div>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
             </div>
-          </div>
-        </div>
-      )}
-    </Droppable>
-  );
+          )}
+        </Droppable>
+      </DragDropContext>
+      </div>
+      </QuestionTemplate>
+    );
+  
 }
 
-export default RankingDAD;
+export default  withStyles(styles, { withTheme: true })(RankingDAD2);
+// Put the thing into the DOM!

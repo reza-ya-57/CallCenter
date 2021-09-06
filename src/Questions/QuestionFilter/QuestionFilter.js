@@ -13,7 +13,8 @@ import CustomSlider from "../SingleSelect/Slider/Slider";
 import SingleDropDown from "../SingleSelect/SingleDropDown/SingleDropDown";
 import MultiDropDown from "../MultiSelect/MultiDropDown/MultiDropDown";
 import CascadingDropDown from '../MultiSelect/CascadingDropDown/CascadingDropDown'
-import TimePicker from '../SingleSelect/TimePicker/TimePicker'
+import TimePicker from '../SingleSelect/TimePicker/TimePicker';
+import RankingDAD from "../MultiSelect/RankingDAD/RankingDAD";
 
 
 const QuestionFilter = (CurrentQuestion) => {
@@ -117,6 +118,13 @@ const QuestionFilter = (CurrentQuestion) => {
                     />
                 )
             }
+            // case 26: {
+            //     return (
+            //         <RankingDAD
+            //             {...CurrentQuestion}
+            //         />
+            //     )
+            // }
             default : return null;
         }
    }
