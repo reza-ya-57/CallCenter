@@ -203,7 +203,7 @@ const formControlStyle = getFormControlStyle(props.choices.column);
 
   return (
 
-      <QuestionTemplate number={props.number} text={props.text}>
+      <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
         <div style={{margin: "auto" }}>
           <FormControl className={classes.FormControl} >
             <RadioGroup

@@ -39,18 +39,17 @@ export default function CascadingDropDown(props) {
     // WE FIRST SAVE INITIAL CHILD_DATA THAT COMES FROM PROPS IN NEW VARIABLE 
     // WHEN PARENT INPUT CHANGE WE LOOP THROUGH THAT TO 
     //  GENRATE NEW FILTER CHILD ACORDING TO THE PARENT SELECTED
-    // let initialChildData = props.ChildData;
+
     let initialChildData = CurrentQuestion.choices.childValues.slice();
 
-    // const [, setParent] = useState({ id: null , title: '' });
-    // const [, setChild] = useState({ title: "" , id: null , parentid: null });
 
     // OPTION FOR PARENT DATA ALWAYS EQUAL TO THE PROPS.PARENT
     // BUT FOR CHILD WE SHOULD FILTER IT ACORDING TO THE PARENT 
     // THIS STATE DEFINE TO DO THAT AND INITIALY SET TO THE PROPS.CHILDDATA
-    // const [ChildData, setChildData] = useState(props.ChildData)
+
     const [ChildData, setChildData] = useState(CurrentQuestion.choices.childValues)
-    let validate = false;
+    let validate = false
+
    // TRIGGER WHEN PARENT INPUT CHANGE 
   const parentHandler = (e , list) => {
       
@@ -60,7 +59,7 @@ export default function CascadingDropDown(props) {
       setParnet({...list})
     // SETPARENT TO THE INPUT THAT USER SELECT IN DROP_DOWN
     // setParent({...list})
-    // 
+
     updateCurrentQuestion.choices.parentValues.forEach(item => {
         if (list) {
             if (list.id === item.id) {
@@ -86,10 +85,9 @@ export default function CascadingDropDown(props) {
     })
 
     setChildData(updateChildData)
-    // setChild({id: null , title: "" , parentid: null})
 
     dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
-    // updateCurrentQuestion.choices.parentValues.for
+
     dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
     dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: validate })
   }
@@ -113,7 +111,7 @@ export default function CascadingDropDown(props) {
 
   return (
 
-      <QuestionTemplate number={props.number} text={props.text}>
+      <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
           <div className={classes.Root}>
             <Autocomplete
                 noOptionsText={'موردی یافت نشد'}

@@ -59,7 +59,7 @@ const EmailField = (props) => {
     }
 
     return (
-            <QuestionTemplate number={props.number} text={props.text}>
+            <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
             <div className={classes.Root}>
                <TextField
                     value={CurrentQuestion.choices.description}

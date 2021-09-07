@@ -60,7 +60,7 @@ export default function SingleDropDown(props) {
 
   return (
 
-      <QuestionTemplate number={props.number} text={props.text}>
+      <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
           <div className={classes.Root}>
             <Autocomplete
               noOptionsText={'موردی یافت نشد'}

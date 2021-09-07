@@ -42,7 +42,7 @@ export default function TimePicker(props) {
   };
 
   return (
-  <QuestionTemplate number={props.number} text={props.text}>
+  <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
     <div style={{width: "400px  " , margin: "auto"}}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Grid container>

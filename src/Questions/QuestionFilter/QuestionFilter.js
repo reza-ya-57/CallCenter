@@ -118,13 +118,13 @@ const QuestionFilter = (CurrentQuestion) => {
                     />
                 )
             }
-            // case 26: {
-            //     return (
-            //         <RankingDAD
-            //             {...CurrentQuestion}
-            //         />
-            //     )
-            // }
+            case 26: {
+                return (
+                    <RankingDAD
+                        {...CurrentQuestion}
+                    />
+                )
+            }
             default : return null;
         }
    }

@@ -28,7 +28,6 @@ export const CurrentQuestionReducer = (state = initialState , action) => {
        }
 
        case(actionTypes.UPDATE_CURRENT_QUESTION):
-       console.log(action.payload)
        return {
         CurrentQuestion: {...action.payload}
        }

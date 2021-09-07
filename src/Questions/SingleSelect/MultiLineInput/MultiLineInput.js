@@ -23,7 +23,7 @@ const MultiLineInput = (props) => {
     const classes = useStyles();
     const [Input, setInput] = useState('')
     const [Error,setError ] = useState(false)
-
+    let helperTextForTextField =  " تعداد کاراکتر بین " + `${CurrentQuestion.choices.min}` + " تا " + `${CurrentQuestion.choices.max}`
     const InputHanlder = (e) => {
         setInput(e.target.value)
         setError(true)
@@ -78,7 +78,7 @@ const MultiLineInput = (props) => {
                         placeholder="توضیحات"
                         variant="outlined" 
                         autoFocus 
-                        helperText="kdjflsdk"
+                        helperText={helperTextForTextField}
                         error={!Error}
                         />
                 </div>

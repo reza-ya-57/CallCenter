@@ -138,7 +138,7 @@ const Shamsi = (props) => {
   console.log(CurrentQuestion)
 
   return (
-    <QuestionTemplate type="Calendar" number={props.number} text={props.text}>
+    <QuestionTemplate type="Calendar" number={CurrentQuestion.number} text={CurrentQuestion.caption}>
         <div className={classes.Root}>
           <Calendar
               value={selectedDay}

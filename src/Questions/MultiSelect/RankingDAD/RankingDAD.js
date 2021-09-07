@@ -1,4 +1,6 @@
-import React, { useState} from "react";
+import React, { useState , useEffect} from "react";
+import { useSelector , useDispatch } from 'react-redux';
+import * as actionTypes from '../../../Redux/Actions/actionTypes';
 import { withStyles } from "@material-ui/core/styles";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import QuestionTemplate from "../../../Components/UI/WrapperComponent/QuestionTemplate";
@@ -64,13 +66,33 @@ const getListStyle = isDraggingOver => ({
 });
 
 const RankingDAD2 = (props) => {
-  let initialState = props.choices.map(item => {
-    return {id: item.id.toString() , choice: item.choice}
+
+  let dispatch = useDispatch();
+  let {CurrentQuestion} = useSelector(state => state.currentqa);
+
+  let initialState = CurrentQuestion.choices.values.map(item => {
+    return {id: item.id.toString() , choice: item.caption}
   })
   
   const [state, setstate] = useState({
     items: initialState
   })
+
+  useEffect(() => {
+    let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
+    state.items.forEach((item , StateIndex) => {
+      CurrentQuestion.choices.values.forEach((element , CQIndex) => {
+        if (parseInt(item.id) === element.id) {
+          updateCurrentQuestion.choices.values.splice(StateIndex , 1 , element)
+        }
+      })
+    })
+
+    console.log(updateCurrentQuestion.choices.values)
+    dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
+    dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true })
+
+  }, [state.items])
 
   
 
@@ -99,7 +121,7 @@ const RankingDAD2 = (props) => {
   // But in this example everything is just done in one place for simplicity
     const { classes } = props;
     return (
-      <QuestionTemplate number={props.number} text={props.text}>
+      <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
           <div >
           <DragDropContext onDragEnd={onDragEnd}>
         <Droppable style={{backgroundColor: "red"}} droppableId="droppable">
