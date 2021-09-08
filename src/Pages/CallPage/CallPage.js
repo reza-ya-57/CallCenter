@@ -14,6 +14,7 @@ import DetermineStatus from '../../Questions/DetermineStatus/DetermineStatus';
 import { ButtonGroup } from 'react-bootstrap';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import CascadingDropDown from '../../Questions/MultiSelect/CascadingDropDown/CascadingDropDown';
 
 
 
@@ -44,7 +45,7 @@ const useStyles = makeStyles(theme => ({
 
   ButtonGroup: {
     display: "flex" , 
-    justifyContent: "space-around" ,
+    // justifyContent: "space-around" ,
     position: "fixed" , 
     width: "100%" ,
     bottom: "0px"  ,
@@ -52,23 +53,26 @@ const useStyles = makeStyles(theme => ({
   } , 
 
   NextButton: {
-    flexGrow: 1 ,
-    backgroundColor: '#1B291B' , 
-    color: "white" , 
+    // flexGrow: 1 ,
+    width: "50%" ,
+    // backgroundColor: 'green' , 
+    // color: "white" , 
     fontSize: "1.2rem" , 
     "&:hover": {
     fontSize: "1.2rem" , 
-    backgroundColor: "red"
+    // backgroundColor: "red"
     }
   } , 
 
   BackButton: {
-    flexGrow: 1 , 
-    backgroundColor: "black" , 
+    // flexGrow: 1 , 
+    width: "50%" ,
+    backgroundColor: "#1B291B" , 
     color: "white" , 
     fontSize: "1.2rem" ,
     "&:hover": {
       // background: "blue" ,
+      backgroundColor: "#3D563D" ,
       fontSize: "1.2rem"
     }
   }
@@ -80,7 +84,8 @@ export default function SimpleCard() {
   const classes = useStyles();
   const store = useStore()
   let dispatch = useDispatch();
-
+  const Data = useSelector(state => state.qa.Data)
+  console.log(Data)
   const [StartStatus, setStartStatus] = useState(false)
   let {CurrentQuestion} = useSelector(state => state.currentqa);
   let {Validate} = useSelector(state => state.validate);
@@ -125,14 +130,14 @@ export default function SimpleCard() {
             })} disabled={false}  color="primary" variant="outlined"  onClick={ startHandler }>برو بریم</Button>
         </div>
         {QuestionFilter(CurrentQuestion)}
-          <ButtonGroup variant="contained" className={classes.ButtonGroup}>
+          <div variant="contained" className={classes.ButtonGroup}>
             <Button className={classes.BackButton}  variant="outlined" onClick={ backHandler }>
               <ArrowForwardIcon />
             </Button>
-            <Button className={classes.NextButton} variant="outlined" onClick={ nextHandler } disabled={!Validate.RequireValidate}>
+            <Button className={classes.NextButton} color="primary" variant="contained" onClick={ nextHandler } disabled={!Validate.RequireValidate}>
               <ArrowBackIcon />
             </Button>
-          </ButtonGroup>
+          </div>
       </div>
   );
 }

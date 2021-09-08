@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         margin: "auto" , 
         marginTop: "40px" ,
         maxHeight: Height  , 
-        overflow: "auto" , 
+        // overflow: "auto" , 
         border: "1px solid black" , 
         borderRadius: "10px 10px 10px 10px" 
     } ,
