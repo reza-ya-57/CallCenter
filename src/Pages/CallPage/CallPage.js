@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import * as actionCreators from '../../Redux/Actions/CurrentQuestionAction';
 import QuestionFilter from '../../Questions/QuestionFilter/QuestionFilter';
 import { IsCurrentQuestionHaveAnswerd } from '../../functions/handleData';
-import EditeDropDown from '../../Questions/EditeDropDown/EditeDropDown';
+import EditeModal from '../../Questions/EditeModal/EditeModal';
 import DetermineStatus from '../../Questions/DetermineStatus/DetermineStatus';
 import { ButtonGroup } from 'react-bootstrap';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
@@ -84,8 +84,6 @@ export default function SimpleCard() {
   const classes = useStyles();
   const store = useStore()
   let dispatch = useDispatch();
-  const Data = useSelector(state => state.qa.Data)
-  console.log(Data)
   const [StartStatus, setStartStatus] = useState(false)
   let {CurrentQuestion} = useSelector(state => state.currentqa);
   let {Validate} = useSelector(state => state.validate);
@@ -121,7 +119,7 @@ export default function SimpleCard() {
       <div>
           <div className={classes.Footer}>
             <div className={classes.HeaderMenu}>
-              <EditeDropDown />
+              <EditeModal />
               {/* <DetermineStatus /> */}
             </div>
             

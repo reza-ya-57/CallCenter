@@ -4,31 +4,30 @@ import { checkConditionOfChoices } from '../../functions/handleData';
 
 const initialState = {
     Data : [
-        // {
-        //     id: 88 ,
-        //     number: 1 ,
-        //     caption: "گزینه مورد نظر خود را وارد کنید؟" ,
-        //     description: "" ,
-        //     mandatory: true , 
-        //     choiceTypeId: 26 , 
-        //     sortOrder: 1 ,
-        //     answered: false ,
-        //     display: true ,
-        //     noidea: {id: -1 , caption: "سوشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "457" , status: false  , display: true} ,
-        //     choices:{
-        //         description: "" ,
-        //         max: 10 ,
-        //         min: 5 ,
-        //         values:[
-        //         {id: 100 , caption: "1" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "452" , status: false  , display: true} ,
-        //           {id: 102 , caption: "2" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "23" , status: false  , display: true} ,
-        //           {id: 103 , caption: "3" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "453" , status: false  , display: true} ,
-        //           {id: 104 , caption: "4" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "453" , status: false  , display: true} ,
-        //           {id: -1 , caption: "5" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "453" , status: false  , display: true} ,
-        //             ]
-        //       }
+        {
+            id: 88 ,
+            number: 1 ,
+            caption: "گزینه مورد نظر خود را وارد کنید؟" ,
+            description: "" ,
+            mandatory: true , 
+            choiceTypeId: 12 , 
+            sortOrder: 1 ,
+            answered: false ,
+            display: true ,
+            noidea: {id: -1 , caption: "سوشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "457" , status: false  , display: true} ,
+            choices:{
+                description: "" ,
+                column: 4 ,
+                values:[
+                {id: 100 , caption: "سوال شماره 3 حذف میشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "90" , status: false  , display: true} ,
+                  {id: 102 , caption: "2" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "23" , status: false  , display: true} ,
+                  {id: 103 , caption: "3" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "453" , status: false  , display: true} ,
+                  {id: 104 , caption: "4" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "453" , status: false  , display: true} ,
+                  {id: -1 , caption: "5" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "453" , status: false  , display: true} ,
+                    ]
+              }
      
-        // } ,
+        } ,
         {
             id: 89 ,
             number: 2 ,
@@ -254,29 +253,30 @@ const initialState = {
               }
      
         } ,
-    {
-       id: 98 ,
-       number: 11 ,
-       caption: "گزینه مورد نظر خود را وارد کنید؟" ,
-       description: "توضیحی برای سوال" ,
-       mandatory: true , 
-       choiceTypeId: 12 , 
-       sortOrder: 1 ,
-       answered: false ,
-       display: true ,
-       noidea: {id: -1 , caption: "سوشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "457" , status: false  , display: true} ,
-       choices:{
-           description: "" ,
-           other: true ,
-           column: 4 ,
-           values:[
-             {id: 102 , caption: "سوال بعدی حذف میشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "45" , status: false  , display: true} ,
-             {id: 103 , caption: "میشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "452" , status: false  , display: true} ,
-             {id: 104 , caption: "سیشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "453" , status: false  , display: true} ,
-               ]
-         }
-
-   } ,
+        {
+          id: 500 ,
+          number: 1 ,
+          caption: "گزینه مورد نظر خود را وارد کنید؟" ,
+          description: "" ,
+          mandatory: true , 
+          choiceTypeId: 26 , 
+          sortOrder: 1 ,
+          answered: false ,
+          display: true ,
+          noidea: {id: -1 , caption: "سوشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "457" , status: false  , display: true} ,
+          choices:{
+              description: "" ,
+              column: 4 ,
+              values:[
+              {id: 100 , caption: "1" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "452" , status: false  , display: true} ,
+                {id: 102 , caption: "2" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "23" , status: false  , display: true} ,
+                {id: 103 , caption: "3" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "453" , status: false  , display: true} ,
+                {id: 104 , caption: "4" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "453" , status: false  , display: true} ,
+                {id: -1 , caption: "5" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "453" , status: false  , display: true} ,
+                  ]
+            }
+   
+      } ,
     {
        id: 30 ,
        number: 12 ,

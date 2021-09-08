@@ -1,5 +1,4 @@
-import RadioQuestion from "../SingleSelect/RadioCustom/RadioCustom";
-import DropDown from "../SingleSelect/SingleDropDown/SingleDropDown";
+
 import Shamsi from "../SingleSelect/Shamsi/Shamsi";
 import MultiCheckbox from "../MultiSelect/MultiCheckbox/MultiCheckbox";
 import RadioCustom from "../SingleSelect/RadioCustom/RadioCustom";
