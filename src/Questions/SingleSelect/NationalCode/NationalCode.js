@@ -72,7 +72,6 @@ const NationalCode = (props) => {
                     <TextField
                             value={CurrentQuestion.choices.description}
                             disabled={CurrentQuestion.noidea.status}
-                            onFocus={InputHanlder}
                             onBlur={() => {
                                 setError(false)
                             }}

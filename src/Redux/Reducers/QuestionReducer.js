@@ -386,6 +386,7 @@ export const QuestionReducer = (state = initialState , action) => {
     switch(action.type) {
 
         case(actionTypes.SUBMIT_ANSWER): 
+             console.log("SUMBIT")
             let updateData = JSON.parse(JSON.stringify(state))
             checkConditionOfChoices( action.payload, updateData.Data)
             ReplaceCurrentQuestionInData(action.payload , updateData.Data)

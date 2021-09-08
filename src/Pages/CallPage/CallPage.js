@@ -87,22 +87,33 @@ export default function SimpleCard() {
   const [StartStatus, setStartStatus] = useState(false)
   let {CurrentQuestion} = useSelector(state => state.currentqa);
   let {Validate} = useSelector(state => state.validate);
+  let {CurrentQuestionChange} = useSelector(state => state.currentqa);
+
   
 
 
   const nextHandler = () => {
 
-    dispatch(actionCreators.submitAnswer(CurrentQuestion))
-    dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: false})
+    if (CurrentQuestionChange) {
+      dispatch(actionCreators.submitAnswer(CurrentQuestion))
+      dispatch({type: actionTypes.SET_CHANGE_CURRENT_CHANE , payload: false})
+      dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: false})
+    }
     const updateData = store.getState().qa.Data;
     dispatch({ type: 'NEXT_QUESTION' , payload: updateData })
 
   }
 
   const backHandler = () => {
+    // ایا سوال جاری دارای جواب است ؟
     var CurrentChange = IsCurrentQuestionHaveAnswerd(CurrentQuestion)
-    if (CurrentChange) {
+    // اگر سوال جاری هم دارای جواب باشد و هم اگر جوابی قبلا ثبت شده تغییری کرده یا نه ؟
+    // اگر تغییر کرده باید سابمیت شود
+    if (CurrentChange && CurrentQuestionChange && Validate.RequireValidate) {
       dispatch(actionCreators.submitAnswer(CurrentQuestion))
+      dispatch({type: actionTypes.SET_CHANGE_CURRENT_CHANE , payload: false})
+    } else if (CurrentQuestionChange && !Validate.RequireValidate){
+      console.log("dari eshtebah mizani")
     }
     const updateData = store.getState().qa.Data;
     dispatch({type: 'BACK_QUESTION' , Data: updateData})

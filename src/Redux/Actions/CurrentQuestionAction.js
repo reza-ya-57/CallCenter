@@ -8,4 +8,10 @@ export const submitAnswer = (questionobject) => {
         payload: questionobject
     }
 }
+// export const submitAnswer = (questionobject) => {
+//     return {
+//         type: actionTypes.SUBMIT_ANSWER , 
+//         payload: questionobject
+//     }
+// }
 
