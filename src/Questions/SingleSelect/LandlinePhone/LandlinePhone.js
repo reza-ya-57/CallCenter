@@ -32,7 +32,8 @@ const LandlinePhone = (props) => {
     const [InputValue, setInputValue] = useState('')
     const [Error, setError] = useState(false);
     const [Checked, setChecked] = useState(false);
-    let {CurrentQuestion} = useSelector(state => state.currentqa);
+    // let {CurrentQuestion} = useSelector(state => state.currentqa);
+    let CurrentQuestion = {...props} 
 
     const InputHanlder = (e) => {
         if (!ValidateLandlineNumber(e.target.value)) {

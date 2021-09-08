@@ -15,7 +15,8 @@ import QuestionTemplate from "../../../Components/UI/WrapperComponent/QuestionTe
 
 export default function TimePicker(props) {
   let dispatch = useDispatch();
-  let {CurrentQuestion} = useSelector(state => state.currentqa);
+  // let {CurrentQuestion} = useSelector(state => state.currentqa);
+  let CurrentQuestion = {...props} 
 
   if (CurrentQuestion.choices.description !== "") {
     var initialDate = new Date()

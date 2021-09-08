@@ -19,7 +19,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function SingleDropDown(props) {
   let dispatch = useDispatch();
-  let {CurrentQuestion} = useSelector(state => state.currentqa);
+  // let {CurrentQuestion} = useSelector(state => state.currentqa);
+  let CurrentQuestion = {...props} 
   const [ValueOfAutoComplete, setValueOfAutoComplete] = useState(null)
   const classes = useStyles();
   

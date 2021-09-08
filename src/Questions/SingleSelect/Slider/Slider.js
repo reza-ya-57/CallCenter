@@ -84,7 +84,8 @@ function valuetext(value) {
 export default function CustomSlider(props) {
   let dispatch = useDispatch();
   const store = useStore();
-  let {CurrentQuestion} = useSelector(state => state.currentqa);
+  // let {CurrentQuestion} = useSelector(state => state.currentqa);
+  let CurrentQuestion = {...props} 
   const classes = useStyles();
   const [Checked, setChecked] = useState(false)
   const [ValueOfSlider, setValueOfSlider] = useState(0)

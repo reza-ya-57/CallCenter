@@ -30,7 +30,8 @@ const useStyles = makeStyles(theme => ({
 const EmailField = (props) => {
     let dispatch = useDispatch();
     const store = useStore();
-    let {CurrentQuestion} = useSelector(state => state.currentqa);
+    // let {CurrentQuestion} = useSelector(state => state.currentqa);
+    let CurrentQuestion = {...props} 
 
     const classes = useStyles();
     const [Error, setError] = useState(false)

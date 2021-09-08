@@ -68,7 +68,8 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function RadioCustom(props) {
-  let {CurrentQuestion} = useSelector(state => state.currentqa);
+  // let {CurrentQuestion} = useSelector(state => state.currentqa);
+  let CurrentQuestion = {...props} 
   
   let initialValue = null;
   CurrentQuestion.choices.values.forEach(item => {

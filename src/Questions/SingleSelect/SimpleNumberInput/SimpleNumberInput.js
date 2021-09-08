@@ -30,7 +30,8 @@ const useStyles = makeStyles(theme => ({
 const SimpleNumberInput = (props) => {
     let dispatch = useDispatch();
     const store = useStore();
-    let {CurrentQuestion} = useSelector(state => state.currentqa);
+    // let {CurrentQuestion} = useSelector(state => state.currentqa);
+    let CurrentQuestion = {...props} 
     const classes = useStyles();
     const [InputValue, setInputValue] = useState('')
     const [Error, setError] = useState(false)

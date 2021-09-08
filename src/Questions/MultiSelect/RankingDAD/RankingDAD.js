@@ -68,7 +68,8 @@ const getListStyle = isDraggingOver => ({
 const RankingDAD2 = (props) => {
 
   let dispatch = useDispatch();
-  let {CurrentQuestion} = useSelector(state => state.currentqa);
+  // let {CurrentQuestion} = useSelector(state => state.currentqa);
+  let CurrentQuestion = {...props} 
 
   let initialState = CurrentQuestion.choices.values.map(item => {
     return {id: item.id.toString() , choice: item.caption}

@@ -74,7 +74,8 @@ export default function MultiCheckbox(props) {
   let dispatch = useDispatch();
   const [Checked, setChecked] = useState(false)
   
-  let {CurrentQuestion} = useSelector(state => state.currentqa);
+    // let {CurrentQuestion} = useSelector(state => state.currentqa);
+    let CurrentQuestion = {...props} 
   // let {Validate} = useSelector(state => state.validate);
   
 

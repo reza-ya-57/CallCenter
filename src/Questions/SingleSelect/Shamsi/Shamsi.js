@@ -74,7 +74,8 @@ const useStyles = makeStyles(theme => ({
 const Shamsi = (props) => {
   let dispatch = useDispatch();
   const store = useStore();
-  let {CurrentQuestion} = useSelector(state => state.currentqa);
+  // let {CurrentQuestion} = useSelector(state => state.currentqa);
+  let CurrentQuestion = {...props} 
   const classes = useStyles();
   const [selectedDay, setSelectedDay] = useState(null);
   const [Year, setYear] = useState('1400');

@@ -21,7 +21,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function MultiDropDown(props) {
   let dispatch = useDispatch();
-  let {CurrentQuestion} = useSelector(state => state.currentqa);
+  // let {CurrentQuestion} = useSelector(state => state.currentqa);
+  let CurrentQuestion = {...props} 
   const [ValueOfAutoComplete, setValueOfAutoComplete] = useState([])
   const classes = useStyles();
   // const DataTable = props.DataTable;

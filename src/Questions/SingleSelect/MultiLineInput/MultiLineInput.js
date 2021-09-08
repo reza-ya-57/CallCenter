@@ -19,7 +19,8 @@ const useStyles = makeStyles(theme => ({
 
 const MultiLineInput = (props) => {
     const dispatch = useDispatch();
-    let {CurrentQuestion} = useSelector(state => state.currentqa);
+    // let {CurrentQuestion} = useSelector(state => state.currentqa);
+    let CurrentQuestion = {...props} 
     const classes = useStyles();
     const [Input, setInput] = useState('')
     const [Error,setError ] = useState(false)

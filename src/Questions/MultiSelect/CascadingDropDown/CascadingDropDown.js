@@ -17,8 +17,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function CascadingDropDown(props) {
     let dispatch = useDispatch();
-    let {CurrentQuestion} = useSelector(state => state.currentqa);
-    // let CurrentQuestion = {...props} 
+    // let {CurrentQuestion} = useSelector(state => state.currentqa);
+    let CurrentQuestion = {...props} 
     let initialParent;
     let initialChild;
 
