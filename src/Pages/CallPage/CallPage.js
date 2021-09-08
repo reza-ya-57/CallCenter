@@ -15,6 +15,7 @@ import { ButtonGroup } from 'react-bootstrap';
 import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import CascadingDropDown from '../../Questions/MultiSelect/CascadingDropDown/CascadingDropDown';
+import CustomModal from '../../Partial/CustomModal/CustomModal';
 
 
 
@@ -85,6 +86,7 @@ export default function SimpleCard() {
   const store = useStore()
   let dispatch = useDispatch();
   const [StartStatus, setStartStatus] = useState(false)
+  const [ModalStatus, setModalStatus] = useState(false)
   let {CurrentQuestion} = useSelector(state => state.currentqa);
   let {Validate} = useSelector(state => state.validate);
   let {CurrentQuestionChange} = useSelector(state => state.currentqa);
@@ -110,14 +112,23 @@ export default function SimpleCard() {
     // اگر سوال جاری هم دارای جواب باشد و هم اگر جوابی قبلا ثبت شده تغییری کرده یا نه ؟
     // اگر تغییر کرده باید سابمیت شود
     if (CurrentChange && CurrentQuestionChange && Validate.RequireValidate) {
+      const updateData = store.getState().qa.Data;
       dispatch(actionCreators.submitAnswer(CurrentQuestion))
       dispatch({type: actionTypes.SET_CHANGE_CURRENT_CHANE , payload: false})
+      dispatch({type: 'BACK_QUESTION' , Data: updateData})
+      dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+
     } else if (CurrentQuestionChange && !Validate.RequireValidate){
+      setModalStatus(true)
       console.log("dari eshtebah mizani")
     }
+  }
+
+  const modalSubmitHandler = () => {
     const updateData = store.getState().qa.Data;
     dispatch({type: 'BACK_QUESTION' , Data: updateData})
     dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+    setModalStatus(false);
   }
 
   const startHandler = () => {
@@ -126,11 +137,20 @@ export default function SimpleCard() {
     setStartStatus(true)
   }
     
+
+
+
+  
+  const ModalhandleClose = () => {
+    setModalStatus(false);
+  };
+
     return (
       <div>
           <div className={classes.Footer}>
             <div className={classes.HeaderMenu}>
               <EditeModal />
+              <CustomModal ModalhandleClose={ModalhandleClose} ModalStatus={ModalStatus} modalSubmitHandler={modalSubmitHandler} />
               {/* <DetermineStatus /> */}
             </div>
             
