@@ -6,7 +6,7 @@ import { OneStepBackFromCurrentQuestion } from '../../functions/handleData';
 
 const initialState = {
     CurrentQuestion : null , 
-    CurrentQuestionChange: true
+    CurrentQuestionChange: true , 
 }
 
 export const CurrentQuestionReducer = (state = initialState , action) => {
@@ -18,28 +18,31 @@ export const CurrentQuestionReducer = (state = initialState , action) => {
         CurrentQuestion : {
             ...newresult
         } , 
-        CurrentQuestionChange: false
+        CurrentQuestionChange: false , 
        }
 
        case(actionTypes.BACK_QUESTION):
+       console.log(state.CurrentQuestion)
+       console.log(action.Data)
        var updateCurrentQuestion = OneStepBackFromCurrentQuestion(state.CurrentQuestion , action.Data);
+       console.log(updateCurrentQuestion)
        return {
         CurrentQuestion : {
             ...updateCurrentQuestion
         } ,
-        CurrentQuestionChange: false
+        CurrentQuestionChange: false , 
        }
 
        case(actionTypes.UPDATE_CURRENT_QUESTION):
        return {
         CurrentQuestion: {...action.payload} , 
-        CurrentQuestionChange: true
+        CurrentQuestionChange: true , 
        }
 
-       case(actionTypes.SET_CHANGE_CURRENT_CHANE): {
+       case(actionTypes.SET_CHANGE_CURRENT_QUESTION): {
            return {
                CurrentQuestion: {...state.CurrentQuestion} ,
-               CurrentQuestionChange: action.payload
+               CurrentQuestionChange: action.payload , 
            }
        }
 

@@ -46,7 +46,9 @@ const PhoneNumber = (props) => {
         } else if (e.target.value.toString()[0] + e.target.value.toString()[1] !== "09") {
             setError(true)
             validate = false;
-        } else {
+        } else if (e.target.value.toString().length === 11) {
+            setError(false)
+        }else {
             validate = true;
             setError(false)
         }

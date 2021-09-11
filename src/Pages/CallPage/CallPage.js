@@ -1,3 +1,17 @@
+// در این قسمت سوال ها به نوبت رندر میشوند 
+// در اینجا از دو مودال هم استفاده شده 
+// یکی مودال ویرایش سوال ها است
+// دومین مودال برای اخطار دادن است که در حالت های مختلف کار های متفاوتی انجام میدهد
+
+// در مورد توضیحات 
+// dispatch
+// ها و اینکه هر کداچه کاری انجام میدهند به آدرس زیر مراجهه کنید
+// ./src/Redux/Actions/ationTypes.js
+
+
+
+
+
 import React   from 'react';
 import { useStore } from 'react-redux';
 import clsx from 'clsx';
@@ -16,6 +30,7 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import CascadingDropDown from '../../Questions/MultiSelect/CascadingDropDown/CascadingDropDown';
 import CustomModal from '../../Partial/CustomModal/CustomModal';
+import { ReturnQuestionTurn } from '../../functions/handleData';
 
 
 
@@ -25,14 +40,6 @@ const useStyles = makeStyles(theme => ({
     // minWidth: 275,
   },
 
-  Footer: {
-    // backgroundColor: 'red' ,
-    // height: "100px" ,
-
-
-  } , 
-  
-
   DisplayNone: {
     display: "none"
   } , 
@@ -40,13 +47,11 @@ const useStyles = makeStyles(theme => ({
   HeaderMenu: {
     display: "flex" ,
     width: "100%" , 
-    // justifyContent: "space-around" , 
     alignItems: "flex-start" ,
   } , 
 
   ButtonGroup: {
     display: "flex" , 
-    // justifyContent: "space-around" ,
     position: "fixed" , 
     width: "100%" ,
     bottom: "0px"  ,
@@ -54,25 +59,19 @@ const useStyles = makeStyles(theme => ({
   } , 
 
   NextButton: {
-    // flexGrow: 1 ,
     width: "50%" ,
-    // backgroundColor: 'green' , 
-    // color: "white" , 
     fontSize: "1.2rem" , 
     "&:hover": {
     fontSize: "1.2rem" , 
-    // backgroundColor: "red"
     }
   } , 
 
   BackButton: {
-    // flexGrow: 1 , 
     width: "50%" ,
     backgroundColor: "#1B291B" , 
     color: "white" , 
     fontSize: "1.2rem" ,
     "&:hover": {
-      // background: "blue" ,
       backgroundColor: "#3D563D" ,
       fontSize: "1.2rem"
     }
@@ -85,55 +84,199 @@ export default function SimpleCard() {
   const classes = useStyles();
   const store = useStore()
   let dispatch = useDispatch();
+  // برای شروع شدن پرسیدن سوال ها و هیدن شدن دکمه برو بریم
   const [StartStatus, setStartStatus] = useState(false)
+  // برای نشان دادن یا ندادن مودال اخطار
   const [ModalStatus, setModalStatus] = useState(false)
+  // حالت های مختلف اخطار که طبق آن دکمه تایید و رد کردن مودال کارهای مختلفی انجام میدهد
+  const [ModalSituation, setModalSituation] = useState(null)
+  // مسیج هایی که در حالت های مختلف مودال باید در مودال نشان داده شود
+  const [ModalMessage, setModalMessage] = useState({
+    ModalMessageDescription: null, 
+    ModalMessageHeader: null
+    
+  })
+  // سوال جاری که در ریداکس قرار دارد
   let {CurrentQuestion} = useSelector(state => state.currentqa);
+  // ولید بودن جوابی که برای سوال جاری وارد شده است
   let {Validate} = useSelector(state => state.validate);
+  // آیا جواب سوال جاری دست خورده یا نه 
   let {CurrentQuestionChange} = useSelector(state => state.currentqa);
 
   
 
-
   const nextHandler = () => {
-
+    // اگر سوال جاری تغییر کرده باشد باید ثبت شود
     if (CurrentQuestionChange) {
       dispatch(actionCreators.submitAnswer(CurrentQuestion))
-      dispatch({type: actionTypes.SET_CHANGE_CURRENT_CHANE , payload: false})
+      dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
       dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: false})
     }
-    const updateData = store.getState().qa.Data;
-    dispatch({ type: 'NEXT_QUESTION' , payload: updateData })
+    // گرفتن دیتای تغییر پیدا شده در دیسپج های قبلی
+    const Data = store.getState().qa.Data;
+    dispatch({ type: 'NEXT_QUESTION' , payload: Data })
 
   }
+
 
   const backHandler = () => {
     // ایا سوال جاری دارای جواب است ؟
-    var CurrentChange = IsCurrentQuestionHaveAnswerd(CurrentQuestion)
-    // اگر سوال جاری هم دارای جواب باشد و هم اگر جوابی قبلا ثبت شده تغییری کرده یا نه ؟
-    // اگر تغییر کرده باید سابمیت شود
-    if (CurrentChange && CurrentQuestionChange && Validate.RequireValidate) {
-      const updateData = store.getState().qa.Data;
-      dispatch(actionCreators.submitAnswer(CurrentQuestion))
-      dispatch({type: actionTypes.SET_CHANGE_CURRENT_CHANE , payload: false})
-      dispatch({type: 'BACK_QUESTION' , Data: updateData})
-      dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+    const Data = store.getState().qa.Data;
+    // سوالی که نوبت پرسیدنش است را برمیگرداند
+    // با سوال جاری فرق میکند
+    // این سوالی است که اگر دکمه 
+    // NEXT
+    //را بزند وارد آن سوال میشود
+    let TurnedQuesiton = ReturnQuestionTurn(Data)
 
-    } else if (CurrentQuestionChange && !Validate.RequireValidate){
-      setModalStatus(true)
-      console.log("dari eshtebah mizani")
+
+
+
+    // در اینجا 6 حالت مختلف برای دکمه ی 
+    // BACK
+    // در نظر گرفته شده که طبق هر کدام باید چه اتفاقی بیفتد
+    // و در سه حالت آن که نیاز به باز شدم مودال است 
+    // ModalSituation
+    // را به حالت های مختلف ست میکند تا وفتی روی دکمه تایید مودال زده شده کارهای متفاوتی انجام شود
+    
+    //شرط اول 
+    // روی سوالی هستیم که نوبتش است
+    // یا میتوان گفت آیا سوال جاری با سوالی که نوبتش است یکی است
+    if (CurrentQuestion.id === TurnedQuesiton.id) {
+          // ایا جواب سوال تغییر کرده است
+          if (CurrentQuestionChange === true) {
+                // آیا پس از تغییر ، تغییرات وارد شده ولید است
+                if (Validate.RequireValidate) {
+                      dispatch(actionCreators.submitAnswer(CurrentQuestion))
+                      dispatch({type: 'BACK_QUESTION' , Data: Data})
+                      dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
+                      dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+                } else {
+                  setModalMessage({...ModalMessage , 
+                    ModalMessageHeader: "اطلاعات وارد شده معتبر نیست"  ,
+                    ModalMessageDescription: "در صورت تایید اطلاعات وارد شده ثبت نمیشود" 
+                  })
+                  setModalSituation("TURN_NOT_VALIDATE");
+                  setModalStatus(true)
+                }
+
+
+        } else {
+          
+            dispatch({type: 'BACK_QUESTION' , Data: Data})
+            dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
+            dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+        }
+
+    } else {
+          // ایا جواب سوال تغییر کرده است
+          if (CurrentQuestionChange === true) {
+             // ایا پس از تغییر ، تغییرات وارد شده ولید است
+                if (Validate.RequireValidate === true) {
+                  setModalMessage({...ModalMessage , 
+                    ModalMessageHeader: "اطلاعات وارد شده معتبر نیست"  ,
+                    ModalMessageDescription: "در صورت تایید اطلاعات وارد شده ثبت نمیشود" 
+                  })
+                  setModalSituation("NOT_TURN_VALIDATE");
+                  setModalStatus(true)
+                } else {
+                  setModalMessage({...ModalMessage , 
+                    ModalMessageHeader: "اطلاعات وارد شده معتبر نیست"  ,
+                    ModalMessageDescription: "در صورت تایید اطلاعات وارد شده ثبت نمیشود" 
+                  })
+                  setModalSituation("NOT_TURN_NOT_VALIDATE");
+                  setModalStatus(true)
+                }
+
+          } else {
+            dispatch({type: 'BACK_QUESTION' , Data: Data})
+            dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
+            dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+          }
+    }
+
+
+
+  }
+
+
+  // این تابع وقتی اجرا میشود که دکمه ی تایید مودال زده شود
+  // و با توجه به اینکه تو چه وضعیتی مودال فرا خوانده شده کار های متفاوتی میکند
+  const modalSubmitHandler = () => {
+    const Data = store.getState().qa.Data;
+    let backupCurrentQuestion;
+    Data.forEach(item => {
+      if (item.id === CurrentQuestion.id) {
+        backupCurrentQuestion = item;
+      }
+    })
+    console.log(ModalSituation)
+
+    if (ModalSituation === "TURN_NOT_VALIDATE") {
+
+      dispatch({type: 'BACK_QUESTION' , Data: Data})
+      dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+      dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
+      setModalStatus(false);
+    } else if (ModalSituation === "NOT_TURN_VALIDATE") {
+
+      dispatch(actionCreators.submitAnswer(CurrentQuestion))
+      dispatch({type: 'BACK_QUESTION' , Data: Data})
+      dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
+      dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+      setModalStatus(false);
+    } else if (ModalSituation === "NOT_TURN_NOT_VALIDATE") {
+          console.log("why this is working")
+          dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: backupCurrentQuestion })
+          dispatch({type: 'BACK_QUESTION' , Data: Data})
+          dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
+          dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+          setModalStatus(false) 
+    }
+      // switch (ModalSituation) {
+      //   case ("TURN_NOT_VALIDATE"): {
+      //     console.log("here")
+      //     dispatch({type: 'BACK_QUESTION' , Data: Data})
+      //     dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+      //     dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
+      //     setModalStatus(false);
+      //   }
+      //   case ("NOT_TURN_VALIDATE"): {
+      //     dispatch(actionCreators.submitAnswer(CurrentQuestion))
+      //     dispatch({type: 'BACK_QUESTION' , Data: Data})
+      //     dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
+      //     dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+      //     setModalStatus(false);
+      //   }
+      //   // case ("NOT_TURN_NOT_VALIDATE"): {
+      //   //   console.log("why this is working")
+      //   //   dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: backupCurrentQuestion })
+      //   //   dispatch({type: 'BACK_QUESTION' , Data: Data})
+      //   //   dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
+      //   //   dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
+      //   //   setModalStatus(false) 
+      //   // }
+      //   default: {
+      //     return null;
+      //   }
+      // }
+
+
+  }
+
+  const ModalCancel = () => {
+    const Data = store.getState().qa.Data;
+    setModalStatus(false);
+    if (ModalSituation === "NOT_TURN_VALIDATE") {
+      dispatch({type: 'BACK_QUESTION' , Data: Data})
+      dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
+      dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
     }
   }
 
-  const modalSubmitHandler = () => {
-    const updateData = store.getState().qa.Data;
-    dispatch({type: 'BACK_QUESTION' , Data: updateData})
-    dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
-    setModalStatus(false);
-  }
-
   const startHandler = () => {
-    const updateData = store.getState().qa.Data;
-    dispatch({ type: 'NEXT_QUESTION' , payload: updateData })
+    const Data = store.getState().qa.Data;
+    dispatch({ type: 'NEXT_QUESTION' , payload: Data })
     setStartStatus(true)
   }
     
@@ -150,7 +293,12 @@ export default function SimpleCard() {
           <div className={classes.Footer}>
             <div className={classes.HeaderMenu}>
               <EditeModal />
-              <CustomModal ModalhandleClose={ModalhandleClose} ModalStatus={ModalStatus} modalSubmitHandler={modalSubmitHandler} />
+              <CustomModal 
+                  {...ModalMessage}
+                  ModalhandleClose={ModalhandleClose} 
+                  ModalStatus={ModalStatus} 
+                  modalSubmitHandler={modalSubmitHandler}
+                  ModalCancel={ModalCancel} />
               {/* <DetermineStatus /> */}
             </div>
             
