@@ -36,8 +36,10 @@ const SimpleNumberInput = (props) => {
     const [InputValue, setInputValue] = useState('')
     const [Error, setError] = useState(false)
     const [Checked, setChecked] = useState(false)
-    
-
+    let helperTextForTextField;
+    if (CurrentQuestion.choices.min && CurrentQuestion.choices.max) {
+        helperTextForTextField =  " تعداد کاراکتر بین " + `${CurrentQuestion.choices.min}` + " تا " + `${CurrentQuestion.choices.max}`
+    }
 
     const InputHanlder = (e) => {
         setInputValue(e.target.value)
@@ -88,6 +90,7 @@ const SimpleNumberInput = (props) => {
            <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
             <div className={classes.Root}>
             <TextField
+                helperText={helperTextForTextField}
                 value={CurrentQuestion.choices.description}
                 disabled={CurrentQuestion.noidea.status}
                 onBlur={() => {

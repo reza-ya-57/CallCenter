@@ -85,7 +85,7 @@ export default function CustomModal(props) {
                     <h2 className={classes.Message}>{props.ModalMessageHeader}</h2>
                     <h4 className={classes.Message}>{props.ModalMessageDescription}</h4>
                 </Grid>
-                <Grid item justifyContent="center" alignItems="center" style={{display: "flex" , justifyContent: "center" , marginTop: "10px"}}>
+                <Grid item style={{display: "flex" , justifyContent: "center" , marginTop: "10px"}}>
                     <ButtonGroup className={classes.ButtonGroup} variant="contained" color="primary" aria-label="contained primary button group">
                       <Button color="primary" onClick={props.modalSubmitHandler}>تایید</Button>
                       <Button color="secondary" onClick={props.ModalCancel}>رد</Button>

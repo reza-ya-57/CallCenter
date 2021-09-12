@@ -106,20 +106,6 @@ export default function SimpleCard() {
   
 
   const nextHandler = () => {
-    // اگر سوال جاری تغییر کرده باشد باید ثبت شود
-    if (CurrentQuestionChange) {
-      dispatch(actionCreators.submitAnswer(CurrentQuestion))
-      dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
-      dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: false})
-    }
-    // گرفتن دیتای تغییر پیدا شده در دیسپج های قبلی
-    const Data = store.getState().qa.Data;
-    dispatch({ type: 'NEXT_QUESTION' , payload: Data })
-
-  }
-
-
-  const backHandler = () => {
     // ایا سوال جاری دارای جواب است ؟
     const Data = store.getState().qa.Data;
     // سوالی که نوبت پرسیدنش است را برمیگرداند
@@ -128,8 +114,49 @@ export default function SimpleCard() {
     // NEXT
     //را بزند وارد آن سوال میشود
     let TurnedQuesiton = ReturnQuestionTurn(Data)
+    if (CurrentQuestion.id !== TurnedQuesiton.id) {
+      if (CurrentQuestionChange === true) {
+          if (Validate.RequireValidate === true)  {
+              setModalMessage({...ModalMessage , 
+                ModalMessageHeader: "اطلاعات وارد شده معتبر نیست"  ,
+                ModalMessageDescription: "در صورت تایید اطلاعات وارد شده ثبت نمیشود" 
+              })
+              setModalSituation("GO_NEXT_EDITE_VALID");
+              setModalStatus(true)
+          }
+      } else {
+        
+        dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
+        dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: false})
+        const Data = store.getState().qa.Data;
+        dispatch({ type: 'NEXT_QUESTION' , payload: Data })
+      }
+    } else {
+      // اگر سوال جاری تغییر کرده باشد باید ثبت شود
+      if (CurrentQuestionChange) {
+        dispatch(actionCreators.submitAnswer(CurrentQuestion))
+        dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
+        dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: false})
+        const Data = store.getState().qa.Data;
+        dispatch({ type: 'NEXT_QUESTION' , payload: Data })
+      }
+    }
+
+    // گرفتن دیتای تغییر پیدا شده در دیسپج های قبلی
+    // const Data = store.getState().qa.Data;
+
+  }
 
 
+  const backHandler = (e , id) => {
+    // ایا سوال جاری دارای جواب است ؟
+    const Data = store.getState().qa.Data;
+    // سوالی که نوبت پرسیدنش است را برمیگرداند
+    // با سوال جاری فرق میکند
+    // این سوالی است که اگر دکمه 
+    // NEXT
+    //را بزند وارد آن سوال میشود
+    let TurnedQuesiton = ReturnQuestionTurn(Data)
 
 
     // در اینجا 6 حالت مختلف برای دکمه ی 
@@ -232,6 +259,13 @@ export default function SimpleCard() {
           dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
           dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
           setModalStatus(false) 
+    } else if (ModalSituation === "GO_NEXT_EDITE_VALID") {
+      dispatch(actionCreators.submitAnswer(CurrentQuestion))
+      dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
+      dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: false})
+      const Data = store.getState().qa.Data;
+      dispatch({ type: 'NEXT_QUESTION' , payload: Data })
+      setModalStatus(false);
     }
       // switch (ModalSituation) {
       //   case ("TURN_NOT_VALIDATE"): {
@@ -273,6 +307,10 @@ export default function SimpleCard() {
       dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
     }
   }
+  
+  const ModalhandleClose = () => {
+    setModalStatus(false);
+  };
 
   const startHandler = () => {
     const Data = store.getState().qa.Data;
@@ -284,15 +322,12 @@ export default function SimpleCard() {
 
 
   
-  const ModalhandleClose = () => {
-    setModalStatus(false);
-  };
 
     return (
       <div>
           <div className={classes.Footer}>
             <div className={classes.HeaderMenu}>
-              <EditeModal />
+              <EditeModal backHandler={backHandler} />
               <CustomModal 
                   {...ModalMessage}
                   ModalhandleClose={ModalhandleClose} 

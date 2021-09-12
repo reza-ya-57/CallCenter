@@ -38,6 +38,9 @@ const EmailField = (props) => {
     const [Checked, setChecked] = useState(false)
     // const [, setInputValue] = useState("")
 
+    let helperTextForTextField = "فرمت ایمیل";
+
+
     const InputHandler = (e) => {
         setError(!validateEmail(e.target.value));
         // setInputValue(e.target.value);
@@ -63,6 +66,7 @@ const EmailField = (props) => {
             <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
             <div className={classes.Root}>
                <TextField
+                    helperText={helperTextForTextField}
                     value={CurrentQuestion.choices.description}
                     disabled={CurrentQuestion.noidea.status}
                     placeholder="example@gmail.com"

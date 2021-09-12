@@ -32,6 +32,7 @@ const LandlinePhone = (props) => {
     const [InputValue, setInputValue] = useState('')
     const [Error, setError] = useState(false);
     const [Checked, setChecked] = useState(false);
+    let helperTextForTextField = "فرمت شماره تلفن ثابت";
     // let {CurrentQuestion} = useSelector(state => state.currentqa);
     let CurrentQuestion = {...props} 
 
@@ -64,6 +65,7 @@ const LandlinePhone = (props) => {
            <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
                 <div className={classes.Root}>
                 <TextField
+                    helperText={helperTextForTextField}
                     type="number"
                     value={CurrentQuestion.choices.description}
                     disabled={CurrentQuestion.noidea.status}

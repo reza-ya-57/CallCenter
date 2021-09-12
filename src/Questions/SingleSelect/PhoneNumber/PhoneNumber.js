@@ -35,6 +35,7 @@ const PhoneNumber = (props) => {
     const [InputValue, setInputValue] = useState('')
     const [Error, setError] = useState(false)
     const [Checked, setChecked] = useState(false)
+    let helperTextForTextField = "فرمت شماره تلفن همراه";
 
 
     const InputHanlder = (e) => {
@@ -74,6 +75,7 @@ const PhoneNumber = (props) => {
            <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
                 <div className={classes.Root}>
                     <TextField
+                            helperText={helperTextForTextField}
                             value={CurrentQuestion.choices.description}
                             disabled={CurrentQuestion.noidea.status}
                             className={classes.TextField}

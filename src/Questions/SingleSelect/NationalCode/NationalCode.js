@@ -35,7 +35,7 @@ const NationalCode = (props) => {
     const [Error, setError] = useState(false)
     const [Checked, setChecked] = useState(false)
     const [InputValue, setInputValue] = useState("")
-
+    let helperTextForTextField = "فرمت کد ملی ایران";
 
     const InputHanlder = (e) => {
         setInputValue(e.target.value)
@@ -70,6 +70,7 @@ const NationalCode = (props) => {
            <QuestionTemplate number={CurrentQuestion.number} text={CurrentQuestion.caption}>
                 <div className={classes.Root}>
                     <TextField
+                            helperText={helperTextForTextField}
                             value={CurrentQuestion.choices.description}
                             disabled={CurrentQuestion.noidea.status}
                             onBlur={() => {
