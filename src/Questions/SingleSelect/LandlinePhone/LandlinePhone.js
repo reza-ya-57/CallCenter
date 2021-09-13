@@ -3,7 +3,7 @@ import { makeStyles, TextField } from '@material-ui/core';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
 import NoIdeaCheckbox from '../../../Partial/NoIdeaCheckbox/NoIdeaCheckbox';
 import clsx from 'clsx';
-import { useSelector , useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as actionTypes from '../../../Redux/Actions/actionTypes';
 
 
@@ -29,11 +29,9 @@ const useStyles = makeStyles(theme => ({
 const LandlinePhone = (props) => {
     const dispatch = useDispatch();
     const classes = useStyles();
-    const [InputValue, setInputValue] = useState('')
     const [Error, setError] = useState(false);
-    const [Checked, setChecked] = useState(false);
+    const [, setChecked] = useState(false);
     let helperTextForTextField = "فرمت شماره تلفن ثابت";
-    // let {CurrentQuestion} = useSelector(state => state.currentqa);
     let CurrentQuestion = {...props} 
 
     const InputHanlder = (e) => {

@@ -3,7 +3,7 @@ import { makeStyles, TextField } from '@material-ui/core';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
 import NoIdeaCheckbox from '../../../Partial/NoIdeaCheckbox/NoIdeaCheckbox';
 import { useStore } from 'react-redux';
-import { useSelector , useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as actionTypes from '../../../Redux/Actions/actionTypes';
 import clsx from 'clsx';
 
@@ -29,12 +29,11 @@ const useStyles = makeStyles(theme => ({
 const NationalCode = (props) => {
     const dispatch = useDispatch();
     const store = useStore();
-    // let {CurrentQuestion} = useSelector(state => state.currentqa);
     let CurrentQuestion = {...props} 
     const classes = useStyles();
     const [Error, setError] = useState(false)
-    const [Checked, setChecked] = useState(false)
-    const [InputValue, setInputValue] = useState("")
+    const [, setChecked] = useState(false)
+    const [, setInputValue] = useState("")
     let helperTextForTextField = "فرمت کد ملی ایران";
 
     const InputHanlder = (e) => {
@@ -44,14 +43,12 @@ const NationalCode = (props) => {
         } else {
             setError(false)
         }
-        let validate = !checkCodeMeli(e.target.value.toString())
 
-        console.log(validate)
         let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
         updateCurrentQuestion.choices.description = e.target.value;
         dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
         dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
-        dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload:     checkCodeMeli(e.target.value.toString()) })
+        dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: checkCodeMeli(e.target.value.toString()) })
     }
 
     const checkboxChangeHandler = () => {
@@ -60,7 +57,6 @@ const NationalCode = (props) => {
         updateState.choices.description = "";
         updateState.noidea.status = !updateState.noidea.status
         dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateState });
-        let {Validate} = store.getState().validate
         dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: updateState.noidea.status })
     }
 
@@ -80,10 +76,10 @@ const NationalCode = (props) => {
                             error={Error}
                             onChange={InputHanlder}
                             type='number'
-                            // onInput={(e) => {
-                            //     e.target.value = e.target.value.toString().slice(0,11)
+                            onInput={(e) => {
+                                e.target.value = e.target.value.toString().slice(0,12)
                                 
-                            // }}
+                            }}
                             placeholder="کد ملی"
                             variant="outlined" 
                             autoFocus  />

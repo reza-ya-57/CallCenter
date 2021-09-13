@@ -1,5 +1,5 @@
 import React , {useState }  from 'react';
-import { useSelector , useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import "./MultiCheckbox.css";
 import { makeStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
@@ -13,11 +13,11 @@ import * as actionTypes from '../../../Redux/Actions/actionTypes';
 
 
 
-const Height = 600
+const Height = 400
 const useStyles = makeStyles((theme) => ({
   columnRoot: {
       overflow: "auto" , 
-      overflowX: "hidden" ,
+      // overflowX: "hidden" ,
       maxHeight: Height
   },
 

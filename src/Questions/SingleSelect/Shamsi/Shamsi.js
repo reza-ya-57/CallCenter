@@ -68,6 +68,11 @@ const useStyles = makeStyles(theme => ({
 
   TextField: {
     backgroundColor: "white"
+  } , 
+
+  Autocomplete: {
+    textAlign: "center" , 
+    marginLeft: "35px"
   }
 }))
 
@@ -77,13 +82,39 @@ const Shamsi = (props) => {
   // let {CurrentQuestion} = useSelector(state => state.currentqa);
   let CurrentQuestion = {...props} 
   const classes = useStyles();
-  const [selectedDay, setSelectedDay] = useState(null);
-  const [Year, setYear] = useState('1400');
-  const [Month, setMonth] = useState("مرداد");
-  const [Day, setDay] = useState("");
+
+  // CurrentQuestion.choices.description.forEach(item => {
+  //   if (item !== "") {
+  //     var Date = item.split("/");
+  //     console.log(Date)
+  //   }
+  // })
+  var Date = CurrentQuestion.choices.description !== "" ? CurrentQuestion.choices.description.split("/") : null
+  let initialYear = null;
+  let initialMonth = null;
+  let initialDay = null;
+  let initialDate = null
+ if (CurrentQuestion) {
+   if (CurrentQuestion.choices.description !== "") {
+     initialDate = {day: parseInt(Date[2]) , month: parseInt(Date[1]) , year: parseInt(Date[0])}
+    console.log(initialDate)
+    console.log(Date)
+  
+     initialYear = Date[0]
+     initialMonth = Date[1]
+     initialDay = Date[2]
+   }
+ }
+
+  const [selectedDay, setSelectedDay] = useState(initialDate);
+
+  const [Year, setYear] = useState(initialYear);
+  const [Month, setMonth] = useState(initialMonth);
+  const [Day, setDay] = useState(initialDay);
 
   const InputHandler = (e ) => {
     setSelectedDay({...e});
+    console.log(e)
     setYear(e.year.toString());
     month.forEach(item => {
       if (item.id === e.month) {
@@ -93,7 +124,7 @@ const Shamsi = (props) => {
     setDay(e.day.toString());
     let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
     updateCurrentQuestion.choices.description = `${e.year}` + "/" + `${e.month}` + "/" + `${e.day}`;
-    console.log(updateCurrentQuestion)
+    
     dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
     dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
     // dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true })
@@ -109,7 +140,7 @@ const Shamsi = (props) => {
         }
       });
       setSelectedDay({day: parseInt(Day) , month: localMonth ,year: parseInt(list.title)})
-  
+      console.log(Year)
       setYear(list.title)
     }
 
@@ -153,6 +184,9 @@ const Shamsi = (props) => {
             <div className={classes.InputWraper}>
               <div className={classes.InputLabelWraper}>
                 <Autocomplete
+                  classes={{
+                    input: classes.Autocomplete
+                  }}
                   onChange={(e , list) => yearHandler(e , list)}
                   value={{title: Year}}
                   options={year}
@@ -165,6 +199,9 @@ const Shamsi = (props) => {
               </div>
               <div className={classes.InputLabelWraper}>
                 <Autocomplete
+                  classes={{
+                    input: classes.Autocomplete
+                  }}
                   onChange={(e , list) => monthHandler(e , list)}
                   value={{id:5  ,title: Month}}
                   options={month}
@@ -175,6 +212,9 @@ const Shamsi = (props) => {
               </div>
               <div className={classes.InputLabelWraper}>
                 <Autocomplete
+                  classes={{
+                    input: classes.Autocomplete
+                  }}
                   onChange={(e , list) => dayHandler(e , list)}
                   value={{title: Day}}
                   options={day}

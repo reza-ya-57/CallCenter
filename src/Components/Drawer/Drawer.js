@@ -45,6 +45,7 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    height: "100vh"
   },
   
   ListItemSelected: {
@@ -69,14 +70,17 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {  
     marginRight: 36,
   },
+
   hide: {
     display: 'none',
   },
+
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
     whiteSpace: 'nowrap',
   },
+
   drawerOpen: {
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -84,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.enteringScreen,
     }),
   },
+
   drawerClose: {
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
@@ -95,20 +100,23 @@ const useStyles = makeStyles((theme) => ({
       width: theme.spacing(9) + 1,
     },
   },
+
   toolbar: {
     position: "relative" ,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
-    // backgroundImage:" linear-gradient(120deg,  " + `${theme.palette.green.main}` + ", #131628 )" ,
-    backgroundImage: theme.palette.green.main ,
+    backgroundImage:" linear-gradient(120deg,  " + `${theme.palette.green.main}` + ", #131628 )" ,
+    // backgroundImage: theme.palette.green.main ,
     // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
+
   nested: {
     backgroundColor: theme.palette.success.light
   } ,
+
   content: {
     // flexGrow: 1 ,
     width: "100%" ,
@@ -118,6 +126,7 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: theme.palette.success.main,
     // padding: theme.spacing(3),
   },
+  
   ListItem: {
     color: "white" ,
     '&:hover': {
@@ -148,23 +157,28 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "100px" ,
     marginRight: "30px"
   } ,
+
   companyLogo: {
     width: "70px" , 
     height: "60px"  ,
     borderRadius: "100px" ,
   } ,
+
   NavLink : {
     textDecoration: "none" ,
   } , 
+
   paper: {
     backgroundColor: "blue"
   }  , 
+
   SidebarContainer: {
     backgroundColor: theme.palette.grey.main  ,
   } , 
+
   subHeader: { 
-    // background: "linear-gradient(90deg," + `${theme.palette.green.main}` +" 0%, " + `${theme.palette.warning.main}` +" 35%, #000000 100%)" ,
-    backgroundColor: theme.palette.warning.main,
+    background: "linear-gradient(90deg," + `${theme.palette.green.main}` +" 0%, " + `${theme.palette.warning.main}` +" 35%, #000000 100%)" ,
+    // backgroundColor: theme.palette.warning.main,
     color: "white" ,
     zIndex: theme.zIndex.drawer + 1,
     display: "flex" ,

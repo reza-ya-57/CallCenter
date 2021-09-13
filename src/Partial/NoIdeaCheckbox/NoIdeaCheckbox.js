@@ -10,7 +10,8 @@ const useStyles = makeStyles(theme => ({
     FormControlLabel: {
         padding: "8px 5px" , 
         borderRadius: "10px" , 
-        backgroundColor: blueGrey[200]
+        backgroundColor: blueGrey[200] , 
+        marginBottom: "23px"
     } ,
 
     Checkbox: {

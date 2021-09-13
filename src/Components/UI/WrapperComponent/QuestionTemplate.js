@@ -17,11 +17,8 @@ const useStyles = makeStyles((theme) => ({
     } ,
 
     QuestionContainer: {
-        width: "80%" ,
-        margin: "auto" , 
-        marginTop: "40px" ,
+        width: "100%" ,
         maxHeight: Height  , 
-        // overflow: "auto" , 
         border: "1px solid black" , 
         borderRadius: "10px 10px 10px 10px" 
     } ,
@@ -29,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     Question: {
         display: 'flex' ,   
         alignItems: "center"  , 
-        // backgroundColor: "#3B3E4F" ,
         backgroundColor: blueGrey[900] ,
         color : "white"  ,
         borderRadius: "10px 10px 0px 0px" , 
@@ -44,10 +40,10 @@ const useStyles = makeStyles((theme) => ({
     } , 
     Answer: {
         backgroundColor: blueGrey[50],
-        // marginTop: "10px" , ,
         padding: "10px 20px" ,
         paddingBottom: "30px" ,
         width: "100%" ,
+        borderRadius: "10px 10px 10px 10px" 
     }
 }));
 

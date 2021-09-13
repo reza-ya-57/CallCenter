@@ -1,6 +1,6 @@
 import React , { useState } from 'react';
 import { makeStyles, TextField } from '@material-ui/core';
-import { useSelector , useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as actionTypes from '../../../Redux/Actions/actionTypes';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
 import NoIdeaCheckbox from '../../../Partial/NoIdeaCheckbox/NoIdeaCheckbox';
@@ -19,10 +19,9 @@ const useStyles = makeStyles(theme => ({
 
 const MultiLineInput = (props) => {
     const dispatch = useDispatch();
-    // let {CurrentQuestion} = useSelector(state => state.currentqa);
     let CurrentQuestion = {...props} 
     const classes = useStyles();
-    const [Input, setInput] = useState('')
+    const [, setInput] = useState('')
     const [Error,setError ] = useState(false)
     let helperTextForTextField;
     if (CurrentQuestion.choices.min && CurrentQuestion.choices.max) {

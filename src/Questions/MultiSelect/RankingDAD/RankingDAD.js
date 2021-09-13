@@ -1,5 +1,5 @@
 import React, { useState , useEffect} from "react";
-import { useSelector , useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as actionTypes from '../../../Redux/Actions/actionTypes';
 import { withStyles } from "@material-ui/core/styles";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -46,7 +46,6 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
   // change background colour if dragging
   // background: isDragging ? "green" : "hsl(215, 14%, 37.5%)",
-  color: "white" ,
   borderRadius: "10px",
   boxShadow: "rgba(149, 157, 165, 0.2) 0px 8px 24px" ,
   height: "40px" ,
@@ -68,7 +67,6 @@ const getListStyle = isDraggingOver => ({
 const RankingDAD2 = (props) => {
 
   let dispatch = useDispatch();
-  // let {CurrentQuestion} = useSelector(state => state.currentqa);
   let CurrentQuestion = {...props} 
 
   let initialState = CurrentQuestion.choices.values.map(item => {
@@ -89,7 +87,6 @@ const RankingDAD2 = (props) => {
       })
     })
 
-    console.log(updateCurrentQuestion.choices.values)
     dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
     dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true })
 

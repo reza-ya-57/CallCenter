@@ -1,6 +1,5 @@
 import React , {useState} from 'react';
-import { useStore } from 'react-redux';
-import { useSelector , useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as actionTypes from '../../../Redux/Actions/actionTypes';
 import QuestionTemplate from '../../../Components/UI/WrapperComponent/QuestionTemplate';
 import { makeStyles , TextField } from '@material-ui/core';
@@ -29,21 +28,17 @@ const useStyles = makeStyles(theme => ({
 
 const EmailField = (props) => {
     let dispatch = useDispatch();
-    const store = useStore();
-    // let {CurrentQuestion} = useSelector(state => state.currentqa);
     let CurrentQuestion = {...props} 
 
     const classes = useStyles();
     const [Error, setError] = useState(false)
-    const [Checked, setChecked] = useState(false)
-    // const [, setInputValue] = useState("")
+    const [, setChecked] = useState(false)
 
     let helperTextForTextField = "فرمت ایمیل";
 
 
     const InputHandler = (e) => {
         setError(!validateEmail(e.target.value));
-        // setInputValue(e.target.value);
         let updateCurrentQuestion = JSON.parse(JSON.stringify(CurrentQuestion));
         updateCurrentQuestion.choices.description = e.target.value;
         dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
@@ -58,7 +53,6 @@ const EmailField = (props) => {
     updateState.choices.description = "";
     updateState.noidea.status = !updateState.noidea.status
     dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateState });
-    let {Validate} = store.getState().validate
     dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: updateState.noidea.status })
     }
 

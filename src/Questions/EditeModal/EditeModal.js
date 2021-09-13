@@ -1,4 +1,4 @@
-import React  ,{useState} from 'react';
+import React  ,{useState , useRef} from 'react';
 import { useStore } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -6,7 +6,6 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { useSelector , useDispatch } from 'react-redux';
 import * as actionTypes from '../../Redux/Actions/actionTypes';
-import CascadingDropDown from '../MultiSelect/CascadingDropDown/CascadingDropDown';
 import { Grid } from '@material-ui/core';
 import { ReturnQuestionTurn } from '../../functions/handleData';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
@@ -15,7 +14,8 @@ import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import { IconButton } from '@material-ui/core';
 import CustomModal from '../../Partial/CustomModal/CustomModal';
 import * as actionCreators from '../../Redux/Actions/CurrentQuestionAction';
-import { yellow } from '@material-ui/core/colors';
+import { blue, green, grey, lime, red, yellow } from '@material-ui/core/colors';
+import Button from "@material-ui/core/Button"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,16 +25,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
   },
   paper: {
-    backgroundColor: theme.palette.background.paper,
     overflow: "auto" ,
     width: "80%" , 
     height: "80%" ,
-    // border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
     borderRadius: "10px" , 
-    // backgroundColor: theme.palette.background.default , 
-    backgroundColor: "#f9f9f9" , 
+    backgroundColor: grey[50] , 
   },
 
   QuestionWraper: {  
@@ -42,28 +39,35 @@ const useStyles = makeStyles((theme) => ({
   } ,
 
   CurrentTurnQuestion: {
-    borderRadius: "5px" ,
-    // color: "purple" , 
-    backgroundColor: "purple" ,
+    backgroundColor: blue[800] ,
     color: "white" ,
     cursor: "pointer" , 
     borderRadius: "5px" , 
     margin: "5px" , 
-    border: "1px purple solid" , 
+    // border: "1px purple solid" , 
     "&:hover": {
       transform: "scale(1.004)"
     }
   } ,
 
+  CurrentTurnQuestionIcon: {
+    color: blue[800] , 
+  } ,
+
+
   DeletedQuestion: {
-    color: "red", 
+    color: "black", 
     cursor: "no-drop" ,
     borderRadius: "5px" , 
     margin: "5px" , 
-    border: "1px red solid" , 
-    "&:hover": {
-      // transform: "scale(1.01)"
-    }
+    border: "2px #d50000 solid" , 
+    backgroundColor: red[50] ,
+    opacity: "0.5" ,
+  } ,
+
+  DeletedQuestionIcon: {
+    color: "#d50000" ,
+    fontSize: "1.2rem"
   } ,
 
   NotAnsweredQuestion: {
@@ -71,26 +75,35 @@ const useStyles = makeStyles((theme) => ({
     opacity: "0.5" ,
     borderRadius: "5px" , 
     margin: "5px" , 
-    border: "1px grey solid" , 
-    "&:hover": {
-      // transform: "scale(1.01)"
-    }
+    border: "2px grey solid" ,
   } , 
 
+  NotAnsweredQuestionIcon: {
+    color: "grey" ,
+    fontSize: "1.2rem"
+  } ,
+
   AnsweredQuestion: {
-    color: "green", 
+    color: "black", 
     cursor: "pointer" , 
     borderRadius: "5px" , 
     margin: "5px" , 
-    border: "1px green solid" , 
+    border: "2px #2e7d32 solid" , 
+    backgroundColor: green[50] ,
     "&:hover": {
       transform: "scale(1.004)"
     }
   } , 
 
+  AnsweredQuestionIcon: {
+    color: "#2e7d32" , 
+    fontSize: "1.2rem"
+  } ,
+
   CurrentQuestion: {
-    color: "black", 
-    backgroundColor: yellow[800] ,
+    color: "white", 
+    // backgroundColor: "#ffea00" ,
+    backgroundColor: yellow[900] ,
     cursor: "pointer" , 
     borderRadius: "5px" , 
     margin: "5px" , 
@@ -99,12 +112,21 @@ const useStyles = makeStyles((theme) => ({
     }
   } ,
 
+  CurrentQuestionIcon: {
+    color: "#ffea00" , 
+  } ,
+
   ModalHeader: {
     marginBottom: "10px" , 
     display: "flex" , 
     justifyContent: "space-between" , 
     alignItems: "center" ,
-
+    // border: "2px black solid" ,
+    backgroundColor: grey[900] , 
+    color : "white" , 
+    borderRadius: "10px" , 
+    marginLeft: "15px"  , 
+    padding: "0px 10px" 
   } , 
 
   HintWraper: {
@@ -112,6 +134,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center" , 
     alignItems: "center" , 
   } , 
+
+  CloseModalButton: {
+    color: "white"
+  }
 
 
 
@@ -143,6 +169,8 @@ export default function EditeModal(props) {
 
 
   const Data = useSelector(state => state.qa.Data)
+  let paperRef = useRef(null);
+  let CurrentQuestionRef = useRef(null);
 
   const handleOpen = () => {
     setOpen(true);
@@ -164,19 +192,22 @@ const clickHandler = (e , id ) => {
   //را بزند وارد آن سوال میشود
   let TurnedQuesiton = ReturnQuestionTurn(Data)
 
-  // dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: item })
-  // dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
   let clickedItem = null ;
   Data.forEach(item => {
     if (item.id === id) {
       clickedItem = item
       setClickItemId(item.id)
-      // setOpen(false)
     }
   })
+
+  // اگر روی سوال جاری کلیک شد فقط مودال بسته میشود
   if (CurrentQuestion.id === id) {
-    setOpen(false)
+    // setOpen(false)
+    console.log(paperRef.current.scrollTop)
+    console.log(CurrentQuestionRef)
+    paperRef.current.scrollTop = 400
   } else {
+
     // در اینجا 6 حالت مختلف برای دکمه ی 
   // BACK
   // در نظر گرفته شده که طبق هر کدام باید چه اتفاقی بیفتد
@@ -368,9 +399,10 @@ const clickHandler = (e , id ) => {
  
              </Grid>
            )
+           // سوال جاری که الان رویش هستید
        } else if (item.id === CurrentQuestion.id) {
              questionList.push(
-               <Grid key={item.id} className={classes.CurrentQuestion} onClick={(e) => clickHandler(e , item.id)} spacing={2} container item direction="row">
+               <Grid ref={CurrentQuestionRef} key={item.id} className={classes.CurrentQuestion} onClick={(e) => clickHandler(e , item.id)} spacing={2} container item direction="row">
  
                    <Grid item>
                      {item.number}
@@ -440,10 +472,10 @@ const clickHandler = (e , id ) => {
  editeModalHandler(Data)
 
   return (
-    <div>
-      <button type="button" onClick={handleOpen}>
-        react-transition-group
-      </button>
+    <div  >
+      <Button variant="contained" style={{backgroundColor: "yellow"}} type="button" onClick={handleOpen}>
+        ویرایش  جواب ها
+      </Button>
       <CustomModal 
                   {...ModalMessage}
                   ModalhandleClose={ModalhandleClose} 
@@ -463,40 +495,44 @@ const clickHandler = (e , id ) => {
         }}
       >
         <Fade in={open}>
-            <div className={classes.paper}>
-                <div className={classes.ModalHeader}>
-                    <div className={classes.HintWraper}>
-                        <RadioButtonUncheckedIcon style={{color: "green" , fontSize: "1.2rem"}} />
-                        <span>سوال جواب داه شده</span>
-                    </div>
-                    <div className={classes.HintWraper}>
-                        <FiberManualRecordIcon style={{color: "purple" }} />
-                        <span>سوال جاری</span>
-                    </div>
-                    <div className={classes.HintWraper}>
-                        <RadioButtonUncheckedIcon style={{color: "red" , fontSize: "1.2rem"}} />
-                        <span>سوال حذف شده</span>
-                    </div>
-                    <div className={classes.HintWraper}>
-                        <RadioButtonUncheckedIcon style={{color: "grey" , fontSize: "1.2rem"}} />
-                        <span>سوال جواب داده نشده</span>
-                    </div>
-                    <IconButton style={{color: "black" , position: "relative" , right: '20px'}} onClick={handleClose}>
-                      <HighlightOffIcon />
-                    </IconButton>
-              </div>
-              <div className={classes.QuestionWraper}>
-                  <Grid 
-                    spacing={2}
-                    container
-                    direction="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    >
-                      {questionList}
-                  
-                  </Grid>
-              </div>
+            <div ref={paperRef} className={classes.paper}>
+                  <div className={classes.ModalHeader}>
+                      <div className={classes.HintWraper}>
+                          <RadioButtonUncheckedIcon className={classes.AnsweredQuestionIcon} />
+                          <span>سوال جواب داه شده</span>
+                      </div>
+                      <div className={classes.HintWraper}>
+                          <FiberManualRecordIcon className={classes.CurrentQuestionIcon}/>
+                          <span>سوال جاری</span>
+                      </div>
+                      <div className={classes.HintWraper}>
+                          <RadioButtonUncheckedIcon className={classes.DeletedQuestionIcon} />
+                          <span>سوال حذف شده</span>
+                      </div>
+                      <div className={classes.HintWraper}>
+                          <RadioButtonUncheckedIcon className={classes.NotAnsweredQuestionIcon} />
+                          <span>سوال جواب داده نشده</span>
+                      </div>
+                      <div className={classes.HintWraper}>
+                          <FiberManualRecordIcon className={classes.CurrentTurnQuestionIcon} />
+                          <span>سوال بعدی</span>
+                      </div>
+                      <IconButton className={classes.CloseModalButton} onClick={handleClose}>
+                        <HighlightOffIcon />
+                      </IconButton>
+                </div>
+                <div className={classes.QuestionWraper}>
+                    <Grid 
+                      spacing={2}
+                      container
+                      direction="column"
+                      justifyContent="center"
+                      alignItems="center"
+                      >
+                        {questionList}
+                    
+                    </Grid>
+                </div>        
           </div>
         </Fade>
       </Modal>

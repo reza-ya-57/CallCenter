@@ -22,10 +22,7 @@ export const CurrentQuestionReducer = (state = initialState , action) => {
        }
 
        case(actionTypes.BACK_QUESTION):
-       console.log(state.CurrentQuestion)
-       console.log(action.Data)
        var updateCurrentQuestion = OneStepBackFromCurrentQuestion(state.CurrentQuestion , action.Data);
-       console.log(updateCurrentQuestion)
        return {
         CurrentQuestion : {
             ...updateCurrentQuestion

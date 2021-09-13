@@ -7,9 +7,6 @@ import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Grid from '@material-ui/core/Grid';
-import CancelIcon from '@material-ui/icons/Cancel';
-import { IconButton } from '@material-ui/core';
-import WarningIcon from '@material-ui/icons/Warning';
 
 
 
@@ -45,7 +42,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomModal(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
 
 //   const handleOpen = () => {
 //     setOpen(true);

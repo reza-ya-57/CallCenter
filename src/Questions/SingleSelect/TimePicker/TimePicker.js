@@ -20,7 +20,6 @@ export default function TimePicker(props) {
 
   if (CurrentQuestion.choices.description !== "") {
     var initialDate = new Date()
-    console.log(initialDate)
     let TimeArray = CurrentQuestion.choices.description.split(":");
     initialDate.setHours(parseInt(TimeArray[0]));
     initialDate.setMinutes(parseInt(TimeArray[1]))
@@ -38,7 +37,6 @@ export default function TimePicker(props) {
      updateCurrentQuestion.choices.description = timeString;
     setSelectedDate(date);
     dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: updateCurrentQuestion })
-    console.log('hehefjoe')
     dispatch({type: actionTypes.CHECK_FOR_REQUIRE_VALIDATE , CurrentQuestion: updateCurrentQuestion })
   };
 

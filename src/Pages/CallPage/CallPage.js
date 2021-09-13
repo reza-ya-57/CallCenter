@@ -31,6 +31,7 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import CascadingDropDown from '../../Questions/MultiSelect/CascadingDropDown/CascadingDropDown';
 import CustomModal from '../../Partial/CustomModal/CustomModal';
 import { ReturnQuestionTurn } from '../../functions/handleData';
+import { Grid } from '@material-ui/core';
 
 
 
@@ -50,31 +51,47 @@ const useStyles = makeStyles(theme => ({
     alignItems: "flex-start" ,
   } , 
 
+  Footer: {
+    // display: "flex" ,
+    // justifyContent: "center" , 
+    // alignItems: "center" , 
+    // border: "2px blue solid" ,
+    // height: "100px" , 
+    // // height: "100px"   , 
+    // position: "absolute" , 
+    // bottom: "0" , 
+    // minWidth: "80%" ,
+    // margin: "auto" ,
+  } ,
+
   ButtonGroup: {
-    display: "flex" , 
-    position: "fixed" , 
-    width: "100%" ,
-    bottom: "0px"  ,
-    height: "50px"
+    // display: "flex" , 
+    // width: "50%" ,
+    // justifyContent: "space-around"
+
+    // position: "fixed" , 
+    // width: "100%" ,
+    // bottom: "0px"  ,
+    // height: "50px"
   } , 
 
   NextButton: {
-    width: "50%" ,
-    fontSize: "1.2rem" , 
-    "&:hover": {
-    fontSize: "1.2rem" , 
-    }
+    // width: "50%" ,
+    // fontSize: "1.2rem" , 
+    // "&:hover": {
+    // fontSize: "1.2rem" , 
+    // }
   } , 
 
   BackButton: {
-    width: "50%" ,
-    backgroundColor: "#1B291B" , 
-    color: "white" , 
-    fontSize: "1.2rem" ,
-    "&:hover": {
-      backgroundColor: "#3D563D" ,
-      fontSize: "1.2rem"
-    }
+    // width: "50%" ,
+    // backgroundColor: "#1B291B" , 
+    // color: "white" , 
+    // fontSize: "1.2rem" ,
+    // "&:hover": {
+    //   backgroundColor: "#3D563D" ,
+    //   fontSize: "1.2rem"
+    // }
   }
 }));
 
@@ -237,7 +254,6 @@ export default function SimpleCard() {
         backupCurrentQuestion = item;
       }
     })
-    console.log(ModalSituation)
 
     if (ModalSituation === "TURN_NOT_VALIDATE") {
 
@@ -253,7 +269,6 @@ export default function SimpleCard() {
       dispatch({type: actionTypes.SET_REQUIRE_VALIDATE , payload: true})
       setModalStatus(false);
     } else if (ModalSituation === "NOT_TURN_NOT_VALIDATE") {
-          console.log("why this is working")
           dispatch({type: actionTypes.UPDATE_CURRENT_QUESTION , payload: backupCurrentQuestion })
           dispatch({type: 'BACK_QUESTION' , Data: Data})
           dispatch({type: actionTypes.SET_CHANGE_CURRENT_QUESTION , payload: false})
@@ -320,36 +335,38 @@ export default function SimpleCard() {
     
 
 
-
-  
-
     return (
-      <div>
-          <div className={classes.Footer}>
-            <div className={classes.HeaderMenu}>
-              <EditeModal backHandler={backHandler} />
+      <div style={{width: '80%' , margin: "auto" }}>
+                  <div className={classes.HeaderMenu}>
+                      <div variant="contained" className={classes.ButtonGroup}>
+
+                          <EditeModal backHandler={backHandler} />
+
+                      </div>
+
+                    
+                    <Button className={clsx({
+                                [classes.DisplayNone]: StartStatus
+                    })} disabled={false}  color="primary" variant="outlined"  onClick={ startHandler }>برو بریم</Button>
+                </div>
+               
+                  <div>
+                  {QuestionFilter(CurrentQuestion)}
+                  </div>
+                  <div className={classes.Footer}>                  
+                        <Button className={classes.BackButton}  variant="outlined" onClick={ backHandler }>
+                              <ArrowForwardIcon />
+                        </Button>
+                        <Button className={classes.NextButton} color="primary" variant="contained" onClick={ nextHandler } disabled={!Validate.RequireValidate}>
+                              <ArrowBackIcon />
+                        </Button>
+                    </div>
               <CustomModal 
                   {...ModalMessage}
                   ModalhandleClose={ModalhandleClose} 
                   ModalStatus={ModalStatus} 
                   modalSubmitHandler={modalSubmitHandler}
                   ModalCancel={ModalCancel} />
-              {/* <DetermineStatus /> */}
-            </div>
-            
-            <Button className={clsx({
-                        [classes.DisplayNone]: StartStatus
-            })} disabled={false}  color="primary" variant="outlined"  onClick={ startHandler }>برو بریم</Button>
-        </div>
-        {QuestionFilter(CurrentQuestion)}
-          <div variant="contained" className={classes.ButtonGroup}>
-            <Button className={classes.BackButton}  variant="outlined" onClick={ backHandler }>
-              <ArrowForwardIcon />
-            </Button>
-            <Button className={classes.NextButton} color="primary" variant="contained" onClick={ nextHandler } disabled={!Validate.RequireValidate}>
-              <ArrowBackIcon />
-            </Button>
-          </div>
       </div>
   );
 }

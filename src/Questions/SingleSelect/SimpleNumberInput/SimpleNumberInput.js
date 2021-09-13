@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     }  ,
 
     NoIdeaStatus: {
-        display: "none"
+        display: "none" ,
     }
 }))
 

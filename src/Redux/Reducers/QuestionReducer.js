@@ -17,7 +17,7 @@ const initialState = {
             noidea: {id: -1 , caption: "سوشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "457" , status: false  , display: true} ,
             choices:{
                 description: "" ,
-                column: 4 ,
+                column: 3 ,
                 values:[
                 {id: 100 , caption: "سوال شماره 3 حذف میشود" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "90" , status: false  , display: true} ,
                   {id: 102 , caption: "2" , sortOrder: 12 , deletedChoiceId: "45,12,14" , deletedQuestionId: "23" , status: false  , display: true} ,
