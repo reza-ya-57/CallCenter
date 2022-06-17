@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/CallCenter/static/css/main.d286e914.chunk.css",
+    "main.js": "/CallCenter/static/js/main.a41bf783.chunk.js",
+    "main.js.map": "/CallCenter/static/js/main.a41bf783.chunk.js.map",
+    "runtime-main.js": "/CallCenter/static/js/runtime-main.19c97a9b.js",
+    "runtime-main.js.map": "/CallCenter/static/js/runtime-main.19c97a9b.js.map",
+    "static/css/2.e730c243.chunk.css": "/CallCenter/static/css/2.e730c243.chunk.css",
+    "static/js/2.0226db7d.chunk.js": "/CallCenter/static/js/2.0226db7d.chunk.js",
+    "static/js/2.0226db7d.chunk.js.map": "/CallCenter/static/js/2.0226db7d.chunk.js.map",
+    "static/js/3.d771574d.chunk.js": "/CallCenter/static/js/3.d771574d.chunk.js",
+    "static/js/3.d771574d.chunk.js.map": "/CallCenter/static/js/3.d771574d.chunk.js.map",
+    "index.html": "/CallCenter/index.html",
+    "static/css/2.e730c243.chunk.css.map": "/CallCenter/static/css/2.e730c243.chunk.css.map",
+    "static/css/main.d286e914.chunk.css.map": "/CallCenter/static/css/main.d286e914.chunk.css.map",
+    "static/js/2.0226db7d.chunk.js.LICENSE.txt": "/CallCenter/static/js/2.0226db7d.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/CallCenter/static/media/IRANSans.a5c96d77.woff2",
+    "static/media/logo-behine22.336277d9.png": "/CallCenter/static/media/logo-behine22.336277d9.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.19c97a9b.js",
+    "static/css/2.e730c243.chunk.css",
+    "static/js/2.0226db7d.chunk.js",
+    "static/css/main.d286e914.chunk.css",
+    "static/js/main.a41bf783.chunk.js"
+  ]
+}
